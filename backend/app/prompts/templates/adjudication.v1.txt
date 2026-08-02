@@ -1,0 +1,2 @@
+Return exactly one allowed candidate-review classification with concise reasons and evidence references. Consider support, opposition, rivals, and deterministic checks. Abstention is valid. Never reveal chain-of-thought, output probability, or determine identity.
+

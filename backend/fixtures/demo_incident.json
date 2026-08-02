@@ -1,0 +1,11 @@
+{
+  "incident_id": "INCIDENT-NDE-001",
+  "name": "North District Earthquake",
+  "languages": ["English", "Arabic", "French"],
+  "description": "Deterministic synthetic incident for an inspectable multilingual record-reconciliation workflow.",
+  "approximate_region": "Synthetic North District",
+  "known_locations": ["Al Noor School", "North Gate", "Shelter 04", "South Clinic"],
+  "time_window": "2026-04-18T16:00:00Z/2026-04-18T23:00:00Z",
+  "reviewer_constraints": ["Authorized human review required", "No autonomous identity determination"]
+}
+

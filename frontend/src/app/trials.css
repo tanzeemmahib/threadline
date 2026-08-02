@@ -1,0 +1,144 @@
+.trials-page {
+  min-height: 100vh;
+  padding-bottom: 6rem;
+  background:
+    linear-gradient(90deg, rgb(103 200 212 / 2%) 1px, transparent 1px),
+    linear-gradient(rgb(103 200 212 / 2%) 1px, transparent 1px),
+    var(--background-deep);
+  background-size: 32px 32px;
+}
+
+.trials-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(18rem, 0.5fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  align-items: end;
+  padding-block: clamp(4rem, 8vw, 7rem) 3rem;
+}
+
+.trials-hero > div { display: grid; gap: 1rem; }
+.trials-hero .page-title { max-width: 15ch; }
+.trials-hero .body-large { max-width: 50rem; margin: 0; }
+.trials-safety { padding: 1rem; border: 1px solid #69522c; border-radius: var(--radius-md); background: var(--amber-soft); }
+.trials-safety p { margin: 0.8rem 0 0; color: #e5d7b4; font-size: 0.72rem; line-height: 1.6; }
+
+.trials-mobile-tabs { display: none; }
+
+.trials-status {
+  display: flex;
+  min-height: 4.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgb(12 26 37 / 94%);
+}
+
+.trials-status > div { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+.trials-status strong { font-size: 0.72rem; }
+.trials-status span:not(.mode-dot, .status-pill) { color: var(--text-tertiary); font-family: var(--font-mono); font-size: 0.55rem; }
+.trials-status p { margin: 0; color: var(--text-secondary); font-size: 0.65rem; }
+
+.trials-desktop-grid {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.75fr) minmax(24rem, 1.25fr) minmax(17rem, 0.75fr);
+  align-items: start;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.trials-column { min-width: 0; max-height: 54rem; overflow: auto; padding: 1rem; }
+.trials-column + .trials-column { border-left: 1px solid var(--border); }
+.trials-column > header,
+.trial-lower-panel > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.trials-column > header h2 { margin: 0.25rem 0 0; font-family: Georgia, serif; font-size: 1.35rem; font-weight: 400; }
+
+.trials-field { display: grid; gap: 0.35rem; }
+.trials-field > span,
+.mutation-selector legend { color: var(--text-tertiary); font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase; }
+.trials-field input,
+.trials-field select { width: 100%; height: 2.55rem; padding: 0 0.65rem; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--surface-subtle); color: var(--text-primary); font-size: 0.68rem; }
+.trial-case-note { margin: 0.8rem 0; padding: 0.75rem; border-left: 2px solid var(--cyan); background: var(--cyan-soft); }
+.trial-case-note strong { font-size: 0.68rem; line-height: 1.45; }
+.trial-case-note p,
+.trial-case-note small { display: block; margin: 0.4rem 0 0; color: var(--text-secondary); font-size: 0.58rem; line-height: 1.55; }
+.trial-case-note small { color: var(--amber); }
+
+.mutation-selector { display: grid; gap: 0.35rem; margin: 1rem 0; padding: 0; border: 0; }
+.mutation-selector legend { margin-bottom: 0.45rem; }
+.mutation-selector label { display: flex; min-width: 0; gap: 0.55rem; align-items: flex-start; padding: 0.58rem; border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; }
+.mutation-selector label:has(input:checked) { border-color: #346674; background: var(--cyan-soft); }
+.mutation-selector input { flex: 0 0 auto; margin-top: 0.12rem; accent-color: var(--cyan); }
+.mutation-selector span { display: grid; min-width: 0; gap: 0.2rem; }
+.mutation-selector strong { font-size: 0.6rem; }
+.mutation-selector small { color: var(--text-tertiary); font-size: 0.5rem; line-height: 1.4; }
+.trial-control-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+.trial-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.75rem; }
+
+.mutation-list { display: grid; gap: 0.7rem; }
+.mutation-list > article { padding: 0.8rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface-subtle); }
+.mutation-list > article > header { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.mutation-list header strong { font-size: 0.68rem; text-transform: capitalize; }
+.mutation-list header small { margin-left: auto; color: var(--text-tertiary); font-family: var(--font-mono); font-size: 0.48rem; }
+.mutation-list article > p { margin: 0.65rem 0 0; color: var(--amber); font-size: 0.55rem; line-height: 1.5; }
+.mutation-diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem; margin-top: 0.7rem; }
+.mutation-diff-grid > div { min-width: 0; padding: 0.55rem; border: 1px solid var(--border); background: var(--background-deep); }
+.mutation-diff-grid span { color: var(--text-tertiary); font-size: 0.48rem; text-transform: uppercase; }
+.mutation-diff-grid pre { max-height: 13rem; margin: 0.4rem 0 0; overflow: auto; color: var(--text-secondary); font-size: 0.52rem; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+.trial-system-results { display: grid; gap: 0.55rem; }
+.trial-system-results article { padding: 0.7rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-subtle); }
+.trial-system-results article > div { display: grid; gap: 0.45rem; }
+.trial-system-results strong { font-size: 0.65rem; }
+.trial-system-results dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.35rem; margin: 0.7rem 0 0; }
+.trial-system-results dl div { min-width: 0; padding-top: 0.5rem; border-top: 1px solid var(--border); }
+.trial-system-results dt { color: var(--text-tertiary); font-size: 0.44rem; text-transform: uppercase; }
+.trial-system-results dd { margin: 0.22rem 0 0; font-family: var(--font-mono); font-size: 0.54rem; }
+
+.trial-empty-state { display: grid; min-height: 12rem; place-content: center; padding: 1.5rem; border: 1px dashed var(--border-strong); border-radius: var(--radius-md); text-align: center; }
+.trial-empty-state strong { font-family: Georgia, serif; font-size: 1.15rem; font-weight: 400; }
+.trial-empty-state p { max-width: 28rem; margin: 0.5rem auto 0; color: var(--text-tertiary); font-size: 0.62rem; line-height: 1.55; }
+
+.trial-lower-panel { margin-top: 1rem; padding: 1.2rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.trial-lower-panel h2 { font-size: clamp(1.35rem, 3vw, 2rem); }
+.divergence-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; border: 1px solid var(--border); }
+.divergence-grid > div { min-width: 0; padding: 0.8rem; border-right: 1px solid var(--border); }
+.divergence-grid dt { color: var(--text-tertiary); font-size: 0.5rem; text-transform: uppercase; }
+.divergence-grid dd { margin: 0.35rem 0 0; color: var(--text-secondary); font-size: 0.65rem; line-height: 1.5; overflow-wrap: anywhere; }
+.divergence-grid .divergence-explanation { grid-column: 1 / -1; border-top: 1px solid var(--border); border-right: 0; }
+.trial-trace-json { max-height: 32rem; margin: 0; overflow: auto; padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--background-deep); color: var(--text-secondary); font-size: 0.58rem; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
+.trial-export > p { color: var(--text-secondary); font-size: 0.68rem; line-height: 1.55; }
+.trial-export > div { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+@media (max-width: 1100px) {
+  .trials-desktop-grid { grid-template-columns: minmax(16rem, 0.75fr) minmax(0, 1.25fr); }
+  .trials-run { grid-column: 1 / -1; max-height: none; border-top: 1px solid var(--border); border-left: 0 !important; }
+  .trial-system-results { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 760px) {
+  .trials-hero { grid-template-columns: 1fr; gap: 1.5rem; padding-block: 3rem 1.5rem; }
+  .trials-mobile-tabs { display: flex; gap: 0.25rem; overflow-x: auto; padding-block: 0.5rem; }
+  .trials-mobile-tabs button { flex: 0 0 auto; min-height: 2.5rem; padding: 0.5rem 0.7rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); color: var(--text-secondary); font-size: 0.62rem; }
+  .trials-mobile-tabs button[aria-selected="true"] { border-color: var(--cyan); background: var(--cyan-soft); color: var(--cyan); }
+  .trials-status { display: grid; }
+  .trials-status > div { align-items: flex-start; }
+  .trials-desktop-grid { display: block; border: 0; background: transparent; box-shadow: none; }
+  .trials-column,
+  .trial-lower-panel { display: none; max-height: none; border: 1px solid var(--border); border-radius: var(--radius-md); }
+  .trials-column.is-mobile-active,
+  .trial-lower-panel.is-mobile-active { display: block; }
+  .trials-column + .trials-column { border-left: 1px solid var(--border); }
+  .mutation-diff-grid,
+  .trial-control-pair,
+  .trial-actions,
+  .trial-system-results,
+  .divergence-grid { grid-template-columns: 1fr; }
+  .divergence-grid > div { border-right: 0; border-bottom: 1px solid var(--border); }
+  .divergence-grid .divergence-explanation { grid-column: auto; }
+}

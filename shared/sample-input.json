@@ -1,0 +1,28 @@
+{
+  "incident": {
+    "incident_id": "INCIDENT-NDE-001",
+    "name": "North District Earthquake",
+    "languages": ["English", "Arabic", "French"]
+  },
+  "records": [
+    {
+      "record_id": "FAMILY-018",
+      "source_type": "family_report",
+      "language": "Arabic",
+      "text": "ابني يوسف الحسن، عمره 14 عاماً. يتحدث العربية وبعض الفرنسية. شوهد آخر مرة قرب مدرسة النور حوالي الساعة 4:30 مساءً. كان يرتدي سترة زرقاء داكنة وحذاءً رمادياً."
+    },
+    {
+      "record_id": "SHELTER-204",
+      "source_type": "shelter_record",
+      "language": "English",
+      "text": "Unaccompanied youth registered as Yusuf Hasan, approximately 15. Arabic speaker with limited French. Arrived through North evacuation gate at 7:10 p.m. Wearing a navy hooded coat. Small scar above left eyebrow."
+    }
+  ],
+  "options": {
+    "provider_mode": "mock",
+    "include_workflow_trace": true,
+    "candidate_limit": 5,
+    "disabled_nodes": [],
+    "adjudicator_count": 2
+  }
+}

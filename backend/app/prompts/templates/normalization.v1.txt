@@ -1,0 +1,2 @@
+Preserve every original multilingual value. Add comparison forms, transliteration candidates, method, evidence reference, and warnings. Mark compatibility as compatible representation, incompatible representation, or unresolved. Never claim two names are equivalent.
+

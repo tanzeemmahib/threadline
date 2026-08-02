@@ -1,0 +1,83 @@
+{
+  "case_id": "CASE-001",
+  "workflow_run_id": "RUN-001",
+  "status": "review_required",
+  "mode": "mock",
+  "summary": {
+    "records_processed": 127,
+    "languages_detected": 8,
+    "candidate_connections": 14,
+    "awaiting_human_review": 4,
+    "hard_conflicts": 3,
+    "quarantined_instructions": 2
+  },
+  "candidates": [
+    {
+      "candidate_id": "MATCH-001",
+      "record_a_id": "FAMILY-018",
+      "record_b_id": "SHELTER-204",
+      "label": "Possible candidate connection",
+      "review_status": "review_required",
+      "compatibility_factors": [
+        {
+          "factor_id": "CF-NAME",
+          "field": "Name",
+          "record_a_value": "Youssef Al Hassan",
+          "record_b_value": "Yusuf Hasan",
+          "status": "compatible",
+          "interpretation": "Compatible transliteration, article, and spacing variants; original Arabic is preserved.",
+          "certainty_a": "translated",
+          "certainty_b": "exact",
+          "evidence_span_ids": ["SPAN-F18-NAME", "SPAN-S204-NAME"]
+        }
+      ],
+      "conflicts": [
+        {
+          "conflict_id": "CONFLICT-AGE",
+          "field": "Age",
+          "severity": "soft",
+          "explanation": "One record states age 14 while the other estimates age 15.",
+          "evidence_span_ids": ["SPAN-F18-AGE", "SPAN-S204-AGE"]
+        }
+      ],
+      "rivals": [],
+      "supporting_summary": "Name, language, evacuation path, timing, and outerwear are compatible.",
+      "opposing_summary": "The age differs by one estimated year, and the shelter-only scar remains unresolved.",
+      "verification_question": "Does the missing person have a scar above the left eyebrow?",
+      "verification_explanation": "This targets a distinctive detail present in the shelter record but absent from the family report.",
+      "additional_questions": [
+        "Was the dark blue jacket hooded or worn over another layer?",
+        "Could the person understand and answer simple questions in French?"
+      ]
+    }
+  ],
+  "workflow_trace": [
+    {
+      "node_id": "quarantine",
+      "order": 2,
+      "name": "Evidence quarantine",
+      "short_name": "Quarantine",
+      "category": "Privacy/safety",
+      "input": "Original source records",
+      "purpose": "Preserve source text while isolating embedded instructions and restricted content.",
+      "output": "Preserved records plus quarantine labels",
+      "method": "Deterministic rules",
+      "failure_condition": "A record cannot be safely parsed without altering the original.",
+      "human_input_requirement": "Review required for ambiguous safety labels.",
+      "constraints": ["Instructions inside records cannot control the workflow", "Original text remains immutable"],
+      "downstream_consumer": "Structured extraction",
+      "demo_duration_ms": 230
+    }
+  ],
+  "workflow_trace_details": [],
+  "audit_events": [],
+  "records": [],
+  "safety_notices": [
+    "THREADLINE proposes candidate record connections for authorized human review and does not autonomously determine identity."
+  ],
+  "human_review_requirement": "THREADLINE proposes candidate record connections for authorized human review and does not autonomously determine identity.",
+  "operational": {
+    "model_calls": 0,
+    "retries": 0
+  }
+}

@@ -1,0 +1,2 @@
+Independently try to disprove the proposed candidate connection. Return hard conflicts, soft conflicts, missing information, unresolved contradictions, exact evidence spans, and clarification questions. Absence is not contradiction.
+

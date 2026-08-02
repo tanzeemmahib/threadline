@@ -1,0 +1,89 @@
+.evaluation-page, .methodology-page { background: var(--background); }
+.evaluation-hero, .methodology-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr); align-items: end; gap: clamp(2rem, 7vw, 7rem); padding-block: clamp(4rem, 9vw, 8rem); }
+.evaluation-hero > div, .methodology-hero > div { display: grid; gap: 1.3rem; }
+.evaluation-hero .page-title, .methodology-hero .page-title { max-width: 16ch; }
+.evaluation-hero .body-large, .methodology-hero .body-large { max-width: 48rem; margin: 0; }
+.evaluation-disclaimer, .methodology-boundary { display: grid; align-content: start; gap: 0.8rem; padding: 1.2rem; }
+.evaluation-disclaimer strong, .methodology-boundary strong { font-family: Georgia, serif; font-size: 1.25rem; font-weight: 400; line-height: 1.3; }
+.evaluation-disclaimer p, .methodology-boundary p { margin: 0; color: var(--text-secondary); font-size: 0.76rem; line-height: 1.6; }
+
+.evaluation-section { padding-block: clamp(4.5rem, 8vw, 7rem); border-top: 1px solid var(--border); }
+.evaluation-section--dark { border-block: 1px solid var(--border); background: var(--background-deep); }
+.evaluation-section__heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr); align-items: end; gap: 3rem; margin-bottom: 2.5rem; }
+.evaluation-section__heading > div { display: grid; gap: 0.7rem; }
+.evaluation-section__heading > p { margin: 0; color: var(--text-secondary); font-size: 0.82rem; line-height: 1.6; }
+.benchmark-chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.benchmark-chart { min-width: 0; margin: 0; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.benchmark-chart__heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem; border-bottom: 1px solid var(--border); }
+.benchmark-chart__heading div { display: grid; gap: 0.25rem; }
+.benchmark-chart__heading div span, .benchmark-chart__heading > span { color: var(--text-tertiary); font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase; }
+.benchmark-chart__heading h3 { margin: 0; font-size: 0.95rem; }
+.benchmark-chart svg { display: block; width: 100%; height: auto; padding: 0.5rem 0.5rem 0; }
+.chart-axis { stroke: var(--border-strong); stroke-width: 1.2; }
+.chart-grid { stroke: var(--border); stroke-dasharray: 2 5; }
+.chart-tick, .chart-axis-label { fill: var(--text-tertiary); font-family: var(--font-mono); font-size: 9px; }
+.chart-label { fill: var(--text-secondary); font-size: 10px; }
+.chart-value { fill: var(--text-primary); font-family: var(--font-mono); font-size: 9px; font-weight: 700; }
+.chart-track { fill: #07141d; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 0.8rem; margin: 0; padding: 0.7rem 1rem; border-top: 1px solid var(--border); list-style: none; }
+.chart-legend li { display: flex; align-items: center; gap: 0.3rem; color: var(--text-tertiary); font-size: 0.54rem; }
+.chart-legend li span { width: 0.5rem; height: 0.5rem; border-radius: 2px; }
+.benchmark-chart figcaption { display: grid; gap: 0.3rem; padding: 0.8rem 1rem 1rem; border-top: 1px solid var(--border); }
+.benchmark-chart figcaption strong { font-size: 0.65rem; }
+.benchmark-chart figcaption p { margin: 0; color: var(--text-secondary); font-size: 0.64rem; line-height: 1.5; }
+.benchmark-chart figcaption span { color: var(--amber); font-family: var(--font-mono); font-size: 0.52rem; text-transform: uppercase; }
+
+.metric-catalog, .operations-table-wrap { margin-top: 1rem; overflow: hidden; }
+.metric-catalog h3 { margin: 0; padding: 1rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+.metric-catalog dl { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; }
+.metric-catalog dl div { padding: 0.8rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.metric-catalog dt { font-size: 0.67rem; font-weight: 700; }
+.metric-catalog dd { margin: 0.3rem 0 0; color: var(--text-tertiary); font-size: 0.58rem; line-height: 1.45; }
+.operations-table-wrap { overflow-x: auto; }
+.operations-table, .ablation-table { width: 100%; min-width: 720px; border-collapse: collapse; }
+.operations-table caption, .ablation-table caption { padding: 0.75rem 1rem; color: var(--amber); font-family: var(--font-mono); font-size: 0.58rem; text-align: left; text-transform: uppercase; }
+.operations-table th, .operations-table td, .ablation-table th, .ablation-table td { padding: 0.8rem 1rem; border-top: 1px solid var(--border); text-align: left; font-size: 0.68rem; }
+.operations-table thead th, .ablation-table thead th { color: var(--text-tertiary); font-family: var(--font-mono); font-size: 0.55rem; font-weight: 500; text-transform: uppercase; }
+.operations-table td, .ablation-table td { color: var(--text-secondary); font-family: var(--font-mono); }
+
+.output-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.output-card { overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.output-card > header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem; border-bottom: 1px solid var(--border); }
+.output-card > header > span { font-size: 0.8rem; font-weight: 700; }
+.output-card blockquote { min-height: 9.5rem; margin: 0; padding: 1.2rem; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-family: Georgia, serif; font-size: 1.05rem; line-height: 1.6; }
+.structured-output { min-height: 9.5rem; display: grid; align-content: center; gap: 0.4rem; padding: 1.2rem; border-bottom: 1px solid var(--border); background: var(--cyan-soft); }
+.structured-output span { color: var(--cyan); font-family: var(--font-mono); font-size: 0.58rem; text-transform: uppercase; }
+.structured-output strong { font-family: var(--font-mono); font-size: 0.82rem; }
+.structured-output p { margin: 0.3rem 0 0; color: var(--text-secondary); font-size: 0.75rem; }
+.output-card ul { display: grid; grid-template-columns: 1fr 1fr; margin: 0; padding: 0; list-style: none; }
+.output-card li { display: grid; grid-template-columns: auto 1fr; gap: 0.45rem; padding: 0.72rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.65rem; line-height: 1.4; }
+.output-card--baseline li span { color: var(--red); }
+.output-card--threadline li span { color: var(--teal); }
+.injection-result { display: grid; gap: 0.3rem; padding: 0.9rem 1rem; background: var(--red-soft); }
+.output-card--threadline .injection-result { background: var(--teal-soft); }
+.injection-result strong { color: var(--text-tertiary); font-size: 0.55rem; text-transform: uppercase; }
+.injection-result span { font-size: 0.68rem; }
+
+.ablation-table-wrap { overflow-x: auto; }
+.ablation-table td span { position: relative; z-index: 1; display: block; min-width: 5rem; padding: 0.35rem; border-radius: 3px; background: linear-gradient(90deg, rgb(103 200 212 / 18%) var(--value), transparent var(--value)); }
+.example-interpretation { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1.2rem; margin-top: 1rem; padding: 1rem; border: 1px solid #66522d; border-radius: var(--radius-md); background: var(--amber-soft); }
+.example-interpretation strong { color: var(--amber); font-size: 0.7rem; text-transform: uppercase; }
+.example-interpretation p { margin: 0; color: #e5d7b4; font-size: 0.75rem; line-height: 1.5; }
+.example-interpretation span { max-width: 12rem; color: var(--text-tertiary); font-family: var(--font-mono); font-size: 0.5rem; text-align: right; text-transform: uppercase; }
+.evaluation-close, .methodology-close { display: flex; align-items: end; justify-content: space-between; gap: 2rem; padding-block: clamp(4rem, 8vw, 7rem); border-top: 1px solid var(--border); }
+.evaluation-close > div, .methodology-close > div { display: grid; max-width: 48rem; gap: 0.7rem; }
+
+@media (max-width: 1024px) {
+  .benchmark-chart-grid { grid-template-columns: 1fr; }
+  .metric-catalog dl { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 760px) {
+  .evaluation-hero, .methodology-hero, .evaluation-section__heading { grid-template-columns: 1fr; }
+  .output-comparison { grid-template-columns: 1fr; }
+  .output-card ul { grid-template-columns: 1fr; }
+  .metric-catalog dl { grid-template-columns: 1fr; }
+  .example-interpretation { grid-template-columns: 1fr; }
+  .example-interpretation span { max-width: none; text-align: left; }
+  .evaluation-close, .methodology-close { align-items: stretch; flex-direction: column; }
+}
+

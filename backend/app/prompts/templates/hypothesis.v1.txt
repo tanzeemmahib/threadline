@@ -1,0 +1,2 @@
+Construct the strongest defensible candidate-connection hypothesis from supplied structured evidence only. Cite exact evidence spans, preserve uncertainty and missing information, list unsupported claims, and never output a probability or identity determination.
+

@@ -1,0 +1,39 @@
+[
+  {
+    "case_id": "CASE-CANONICAL-CANDIDATE",
+    "record_ids": ["FAMILY-018", "SHELTER-204"],
+    "identity_ids": ["SYN-YOUSSEF-01"],
+    "ground_truth_relation": "same_identity",
+    "expected_classification": "possible_candidate",
+    "ambiguity_status": "not_ambiguous",
+    "difficulty_tags": ["multilingual", "transliteration"],
+    "corruption_tags": ["estimated_age"],
+    "language_tags": ["Arabic", "English"],
+    "expected_evidence_fields": ["name", "age", "language", "location", "clothing"]
+  },
+  {
+    "case_id": "CASE-HARD-CONFLICT",
+    "record_ids": ["FAMILY-018", "HOSPITAL-052"],
+    "identity_ids": ["SYN-YOUSSEF-01", "SYN-YOUSSEF-ADULT-02"],
+    "ground_truth_relation": "different_identity",
+    "expected_classification": "conflicting_evidence",
+    "ambiguity_status": "not_ambiguous",
+    "difficulty_tags": ["documented_age_conflict"],
+    "corruption_tags": [],
+    "language_tags": ["Arabic", "English"],
+    "expected_evidence_fields": ["name", "age"]
+  },
+  {
+    "case_id": "CASE-REQUIRED-ABSTENTION",
+    "record_ids": ["EVAC-089", "VOLUNTEER-012", "SHELTER-AMB-002"],
+    "identity_ids": ["SYN-SAMIR-A", "SYN-SAMIR-B", "SYN-SAMIR-C"],
+    "ground_truth_relation": "genuinely_ambiguous",
+    "expected_classification": "insufficient_evidence",
+    "ambiguity_status": "two_equally_plausible_rivals",
+    "difficulty_tags": ["common_name", "broad_estimated_age", "missing_location", "no_distinctive_feature"],
+    "corruption_tags": ["rival_ambiguity"],
+    "language_tags": ["English", "French"],
+    "expected_evidence_fields": ["name", "age"]
+  }
+]
+

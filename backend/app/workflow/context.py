@@ -5,6 +5,7 @@ from typing import Any
 
 from app.config import Settings
 from app.providers.base import ModelProvider
+from app.schemas.linkage import LinkageDecision
 from app.schemas.models import (
     AdjudicationModelOutput,
     AnalyzeRequest,
@@ -31,6 +32,10 @@ class WorkflowContext:
     redactions: list[dict[str, str]] = field(default_factory=list)
     model_calls: int = 0
     retries: int = 0
+    # ── New identity-resolution fields ──
+    linkage_decisions: dict[str, LinkageDecision] = field(default_factory=dict)
+    raw_comparisons: dict[str, list[Any]] = field(default_factory=dict)
+    candidate_generation_rules: dict[str, list[str]] = field(default_factory=dict)
 
     @property
     def mock_mode(self) -> bool:

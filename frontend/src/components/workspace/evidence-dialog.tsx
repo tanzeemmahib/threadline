@@ -58,6 +58,10 @@ export function EvidenceDialog({
           <div><dt>Extraction status</dt><dd>{span.extraction_status.replaceAll("_", " ")}</dd></div>
           <div><dt>Certainty label</dt><dd>{field ? certaintyLabels[field.certainty] : "Review required"}</dd></div>
           <div><dt>Normalized candidate representation</dt><dd>{field?.normalized_value ?? "No normalized value supplied"}</dd></div>
+          <div><dt>Immutable offsets</dt><dd><code>[{span.start}, {span.end})</code></dd></div>
+          <div><dt>Span validation</dt><dd>{span.validation_status ?? (span.valid ? "valid" : "invalid")}</dd></div>
+          <div><dt>Validation hash</dt><dd><code>{span.content_hash ?? "Legacy span — hash unavailable"}</code></dd></div>
+          <div><dt>Created by</dt><dd>{span.created_by ?? "threadline_extract"}{span.created_at ? ` · ${span.created_at}` : ""}</dd></div>
         </dl>
 
         <div className="normalization-callout">

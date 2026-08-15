@@ -23,6 +23,32 @@ class Certainty(StrEnum):
     inferred = "inferred"
     missing = "missing"
 
+    @classmethod
+    def _missing_(cls, value: object) -> Certainty | None:
+        """Normalize domain-valid provider confidence aliases conservatively.
+
+        The extracted value and its source span still pass the normal strict
+        validation. Unknown labels continue to fail closed.
+        """
+        if not isinstance(value, str):
+            return None
+        alias = value.strip().lower().replace("-", "_").replace(" ", "_")
+        aliases = {
+            "high": cls.exact,
+            "high_confidence": cls.exact,
+            "verbatim": cls.exact,
+            "confirmed": cls.exact,
+            "medium": cls.estimated,
+            "medium_confidence": cls.estimated,
+            "approximate": cls.estimated,
+            "low": cls.inferred,
+            "low_confidence": cls.inferred,
+            "uncertain": cls.inferred,
+            "unknown": cls.missing,
+            "not_present": cls.missing,
+        }
+        return aliases.get(alias)
+
 
 class Classification(StrEnum):
     strong_candidate_for_review = "strong_candidate_for_review"
@@ -56,6 +82,12 @@ class RecordInput(StrictModel):
     display_name: str | None = None
     source_reliability_metadata: str | None = None
     translated_text: str | None = None
+    source_organization: str | None = None
+    created_at: datetime | None = None
+    event_time: datetime | None = None
+    provenance_metadata: dict[str, Any] = Field(default_factory=dict)
+    reliability_metadata: dict[str, Any] = Field(default_factory=dict)
+    ingestion_hash: str | None = None
 
 
 class AnalyzeOptions(StrictModel):
@@ -108,6 +140,12 @@ class EvidenceSpan(StrictModel):
     normalization_note: str | None = None
     valid: bool = True
     validation_error: str | None = None
+    source_document_id: str | None = None
+    language: str | None = None
+    created_at: datetime | None = None
+    validated_at: datetime | None = None
+    validation_status: Literal["unvalidated", "valid", "invalid"] = "unvalidated"
+    content_hash: str | None = None
 
 
 class ExtractedField(StrictModel):
@@ -183,8 +221,8 @@ class CandidateConnection(StrictModel):
     record_a_id: str
     record_b_id: str
     label: str
-    classification: str
-    classification_code: Classification
+    classification: str | None
+    classification_code: Classification | None
     review_status: Literal["review_required"] = "review_required"
     supporting_summary: str
     opposing_summary: str
@@ -195,14 +233,27 @@ class CandidateConnection(StrictModel):
     compatibility_factors: list[CompatibilityFactor] = Field(default_factory=list)
     conflicts: list[Conflict] = Field(default_factory=list)
     rivals: list[RivalComparison] = Field(default_factory=list)
-    retrieval_score: float = Field(ge=0)
+    retrieval_score: float | None = Field(ge=0)
     score_components: list[ScoreComponent] = Field(default_factory=list)
-    rank: int = Field(ge=1)
+    rank: int | None = Field(ge=1)
     adjudicator_agreement: bool = True
+    # ── New identity-resolution fields (backward-compatible Optional) ──
+    blocking_reason_codes: list[str] = Field(default_factory=list)
+    candidate_generation_rules: list[str] = Field(default_factory=list)
+    candidate_fallback: bool = False
+    pairwise_comparisons: list[dict[str, Any]] = Field(default_factory=list)
+    linkage_decision: dict[str, Any] | None = None
+    linkage_decision_state: str | None = None
+    false_merge_risk: str | None = None
+    review_priority: str | None = None
+    llm_downgrade_applied: bool = False
+    llm_downgrade_reason: str | None = None
 
     @field_validator("label", "classification")
     @classmethod
-    def reject_identity_claims(cls, value: str) -> str:
+    def reject_identity_claims(cls, value: str | None) -> str | None:
+        if value is None:
+            return value
         forbidden = {"confirmed_match", "identity_confirmed", "person_found", "guaranteed_match"}
         if value.lower().replace(" ", "_") in forbidden:
             raise ValueError("autonomous identity claims are prohibited")
@@ -295,6 +346,360 @@ class AnalysisSummary(StrictModel):
     quarantined_instructions: int
 
 
+class ClaimType(StrEnum):
+    extracted_fact = "extracted_fact"
+    normalized_representation = "normalized_representation"
+    timeline_interpretation = "timeline_interpretation"
+    compatibility_claim = "compatibility_claim"
+    contradiction_claim = "contradiction_claim"
+    rival_comparison_claim = "rival_comparison_claim"
+
+
+class ContractRuleClass(StrEnum):
+    blocking = "blocking"
+    review_required = "review_required"
+    informational = "informational"
+
+
+class ContractSeverity(StrEnum):
+    information = "information"
+    warning = "warning"
+    critical = "critical"
+
+
+class ContractStatus(StrEnum):
+    passed = "passed"
+    passed_with_review_requirements = "passed_with_review_requirements"
+    blocked = "blocked"
+    verifier_error = "verifier_error"
+
+
+class RuleEvaluationStatus(StrEnum):
+    pass_ = "pass"
+    warn = "warn"
+    fail = "fail"
+    block = "block"
+
+
+class ClaimTransformation(StrictModel):
+    transformation_id: str
+    transformation_type: str
+    transformation_version: str
+    input_claim_ids: list[str] = Field(default_factory=list)
+    input_artifact_ids: list[str] = Field(default_factory=list)
+    output_certainty: Certainty
+    created_by_step: str
+    created_at: datetime | None = None
+
+
+class EvidenceClaim(StrictModel):
+    claim_id: str
+    candidate_id: str
+    claim_type: ClaimType
+    claim_text: str
+    source_record_ids: list[str] = Field(default_factory=list)
+    source_spans: list[EvidenceSpan] = Field(default_factory=list)
+    certainty_basis: dict[str, Certainty] = Field(default_factory=dict)
+    generated_by_node: str
+    supported: bool
+    support_reason: str
+    violations: list[str] = Field(default_factory=list)
+    source_record_id: str | None = None
+    source_span_ids: list[str] = Field(default_factory=list)
+    parent_claim_ids: list[str] = Field(default_factory=list)
+    transformation_type: str | None = None
+    transformation_version: str = "1.0.0"
+    prompt_template_version: str | None = None
+    model_identifier: str | None = None
+    created_by: str = "threadline"
+    created_at: datetime | None = None
+    claim_hash: str | None = None
+    raw_value: str | None = None
+    normalized_value: str | None = None
+    certainty_category: Certainty = Certainty.inferred
+    transformation_history: list[ClaimTransformation] = Field(default_factory=list)
+    consumed_by_rule_ids: list[str] = Field(default_factory=list)
+    also_supports_candidate_ids: list[str] = Field(default_factory=list)
+    case_id: str | None = None
+
+
+class ContractViolation(StrictModel):
+    violation_id: str
+    rule_id: str
+    severity: ContractSeverity
+    claim_id: str | None = None
+    message: str
+    blocks_release: bool
+    suggested_resolution: str
+    rule_class: ContractRuleClass = ContractRuleClass.blocking
+    evidence_span_ids: list[str] = Field(default_factory=list)
+
+
+class ContractRuleResult(StrictModel):
+    rule_id: str
+    rule_class: ContractRuleClass
+    severity: ContractSeverity
+    passed: bool
+    affected_claim_ids: list[str] = Field(default_factory=list)
+    affected_evidence_span_ids: list[str] = Field(default_factory=list)
+    operator_explanation: str
+    remediation_guidance: str
+    rule_name: str | None = None
+    rule_version: str | None = None
+    status: RuleEvaluationStatus | None = None
+    reason_code: str | None = None
+    input_artifact_ids: list[str] = Field(default_factory=list)
+    related_source_span_ids: list[str] = Field(default_factory=list)
+    evaluation_timestamp: datetime | None = None
+    evaluator_version: str | None = None
+
+
+class CandidateClaimLedger(StrictModel):
+    ledger_id: str
+    case_id: str
+    candidate_id: str
+    supporting_claim_ids: list[str] = Field(default_factory=list)
+    contradiction_claim_ids: list[str] = Field(default_factory=list)
+    timeline_claim_ids: list[str] = Field(default_factory=list)
+    compatibility_claim_ids: list[str] = Field(default_factory=list)
+    rival_comparison_claim_ids: list[str] = Field(default_factory=list)
+    missing_evidence: list[str] = Field(default_factory=list)
+    required_follow_up_evidence: list[str] = Field(default_factory=list)
+    safety_notices: list[str] = Field(default_factory=list)
+    contract_result_ids: list[str] = Field(default_factory=list)
+
+
+class EvidenceContract(StrictModel):
+    contract_id: str
+    case_id: str
+    candidate_id: str
+    classification: Classification | None
+    contract_status: ContractStatus
+    release_allowed: bool
+    claims: list[EvidenceClaim] = Field(default_factory=list)
+    violations: list[ContractViolation] = Field(default_factory=list)
+    contradictions_considered: list[str] = Field(default_factory=list)
+    rivals_considered: list[str] = Field(default_factory=list)
+    decision_critical_evidence: list[dict[str, Any]] = Field(default_factory=list)
+    audit_chain_status: dict[str, Any] = Field(default_factory=dict)
+    created_at: datetime
+    verifier_version: str
+    safety_notice: str = SAFETY_NOTICE
+    schema_version: str = "threadline-evidence-contract/2.0.0"
+    rule_set_version: str = "threadline-contract-rules/3.1.0"
+    rule_results: list[ContractRuleResult] = Field(default_factory=list)
+    candidate_ledger: CandidateClaimLedger | None = None
+
+
+class AuditActorType(StrEnum):
+    system = "system"
+    model = "model"
+    human = "human"
+
+
+class AuditIntegrityStatus(StrEnum):
+    verified = "verified"
+    broken = "broken"
+    incomplete = "incomplete"
+    unsupported_schema = "unsupported_schema"
+    verifier_error = "verifier_error"
+
+
+class AuditChainEvent(StrictModel):
+    event_id: str
+    workflow_run_id: str
+    contract_id: str | None = None
+    candidate_id: str | None = None
+    case_id: str | None = None
+    referenced_artifact_ids: list[str] = Field(default_factory=list)
+    workflow_version: str = "threadline-workflow/2.0.0"
+    sequence_number: int = Field(ge=1)
+    event_type: str
+    actor_type: AuditActorType = AuditActorType.system
+    actor_id: str | None = None
+    created_at: datetime
+    payload: dict[str, Any] = Field(default_factory=dict)
+    payload_hash: str
+    previous_event_hash: str
+    event_hash: str
+    hash_algorithm: str = "sha256"
+    schema_version: str = "threadline-audit-event/1.1.0"
+
+
+class AuditIntegrityResult(StrictModel):
+    workflow_run_id: str
+    status: AuditIntegrityStatus
+    valid: bool
+    first_invalid_event_id: str | None = None
+    first_invalid_sequence: int | None = None
+    expected_previous_hash: str | None = None
+    observed_previous_hash: str | None = None
+    expected_payload_hash: str | None = None
+    observed_payload_hash: str | None = None
+    expected_event_hash: str | None = None
+    observed_event_hash: str | None = None
+    missing_sequence_numbers: list[int] = Field(default_factory=list)
+    duplicated_sequence_numbers: list[int] = Field(default_factory=list)
+    verified_event_count: int = 0
+    terminal_hash: str | None = None
+    hash_algorithm: str = "sha256"
+    verifier_version: str = "threadline-audit-verifier/1.0.0"
+    limitation: str = (
+        "Integrity verification covers ordered event metadata and payload hashes only; it "
+        "does not seal current artifact rows, establish source truth, or prevent offline "
+        "database mutation."
+    )
+
+
+class AuditTrailResponse(StrictModel):
+    workflow_run_id: str
+    events: list[AuditChainEvent] = Field(default_factory=list)
+    integrity: AuditIntegrityResult
+
+
+class ReplayStatus(StrEnum):
+    exact_match = "exact_match"
+    equivalent_match = "equivalent_match"
+    diverged = "diverged"
+    unsupported = "unsupported"
+    replay_error = "replay_error"
+
+
+class ReplayMode(StrEnum):
+    deterministic = "deterministic"
+    frozen_model_outputs = "frozen_model_outputs"
+    semantic = "semantic"
+    unsupported = "unsupported"
+
+
+class ReplayCheckpoint(StrictModel):
+    checkpoint_id: str
+    expected_hash: str
+    observed_hash: str | None = None
+    consistent: bool | None = None
+
+
+class ReplayManifest(StrictModel):
+    workflow_run_id: str
+    original_input_package_hash: str
+    canonical_normalized_input_hash: str
+    workflow_schema_version: str
+    contract_schema_version: str
+    scoring_version: str
+    rule_set_version: str
+    configuration_hash: str
+    prompt_template_versions: dict[str, str] = Field(default_factory=dict)
+    model_identifiers: list[str] = Field(default_factory=list)
+    deterministic_seeds: list[int] = Field(default_factory=list)
+    ordered_workflow_nodes: list[str] = Field(default_factory=list)
+    node_checkpoints: list[ReplayCheckpoint] = Field(default_factory=list)
+    final_candidate_set_hash: str
+    final_ranking_hash: str
+    final_contract_hash: str
+    final_response_hash: str
+    audit_chain_terminal_hash: str
+    created_at: datetime
+    manifest_version: str = "threadline-replay-manifest/1.0.0"
+
+
+class ReplayCertificate(StrictModel):
+    replay_id: str
+    source_workflow_run_id: str
+    replay_workflow_run_id: str | None = None
+    replay_status: ReplayStatus
+    replay_mode: ReplayMode
+    started_at: datetime
+    completed_at: datetime
+    manifest_version: str
+    checkpoints: list[ReplayCheckpoint] = Field(default_factory=list)
+    first_divergence: str | None = None
+    expected_hash: str | None = None
+    observed_hash: str | None = None
+    classification_consistent: bool
+    ranking_consistent: bool
+    contract_consistent: bool
+    audit_chain_consistent: bool
+    release_permitted: bool
+    limitations: list[str] = Field(default_factory=list)
+
+
+class CounterfactualType(StrEnum):
+    remove_evidence_span = "remove_evidence_span"
+    remove_source_record = "remove_source_record"
+    remove_compatibility_claim = "remove_compatibility_claim"
+    remove_conflicting_claim = "remove_conflicting_claim"
+    remove_rival_comparison_claim = "remove_rival_comparison_claim"
+    reduce_evidence_certainty = "reduce_evidence_certainty"
+    mark_source_unavailable = "mark_source_unavailable"
+
+
+class CounterfactualRequest(StrictModel):
+    candidate_id: str
+    counterfactual_type: CounterfactualType
+    evidence_span_id: str | None = None
+    source_record_id: str | None = None
+    claim_id: str | None = None
+
+
+class CounterfactualCertificate(StrictModel):
+    certificate_id: str
+    original_workflow_run_id: str
+    counterfactual_run_id: str
+    candidate_id: str
+    counterfactual_type: CounterfactualType
+    removed_or_altered_evidence_ids: list[str] = Field(default_factory=list)
+    original_classification: Classification | None = None
+    counterfactual_classification: Classification | None = None
+    original_rank: int | None = None
+    counterfactual_rank: int | None = None
+    original_score: float | None = None
+    counterfactual_score: float | None = None
+    triggered_violations: list[str] = Field(default_factory=list)
+    resolved_violations: list[str] = Field(default_factory=list)
+    decision_changed: bool
+    rank_changed: bool
+    classification_changed: bool
+    release_status: ContractReleaseStatus
+    explanation: str
+    first_responsible_node: str
+    created_at: datetime
+    limitations: list[str] = Field(default_factory=list)
+
+
+class ContractReleaseStatus(StrEnum):
+    released = "released"
+    withheld = "withheld"
+
+
+class ReleaseState(StrictModel):
+    state: Literal[
+        "draft",
+        "contract_evaluating",
+        "contract_blocked",
+        "authorized_review_required",
+        "authorized_review_in_progress",
+        "authorized_disposition_recorded",
+    ] = "draft"
+    contract_ids: list[str] = Field(default_factory=list)
+    blocking_rule_ids: list[str] = Field(default_factory=list)
+    authorized_review_required: bool | None = None
+    review_id: str | None = None
+    reviewer_id: str | None = None
+    disposition: str | None = None
+
+
+class CasePackageInput(StrictModel):
+    package_id: str = Field(min_length=1, max_length=200)
+    incident: IncidentInput
+    records: list[RecordInput] = Field(min_length=1)
+    schema_version: str = "threadline-case-package/1.0.0"
+    synthetic_only: Literal[True] = True
+
+
+class CasePackage(CasePackageInput):
+    package_hash: str
+
+
 class AnalyzeResponse(StrictModel):
     case_id: str
     workflow_run_id: str
@@ -306,6 +711,15 @@ class AnalyzeResponse(StrictModel):
     workflow_trace: list[WorkflowTrace]
     workflow_trace_details: list[WorkflowTraceDetail]
     audit_events: list[AuditEvent]
+    audit_chain_events: list[AuditChainEvent] = Field(default_factory=list)
+    audit_integrity: AuditIntegrityResult | None = None
+    replay_manifest: ReplayManifest | None = None
+    latest_replay_certificate: ReplayCertificate | None = None
+    counterfactual_certificates: list[CounterfactualCertificate] = Field(default_factory=list)
+    evidence_contract: EvidenceContract | None = None
+    evidence_contracts: list[EvidenceContract] = Field(default_factory=list)
+    contract_release_status: ContractReleaseStatus = ContractReleaseStatus.withheld
+    release_state: ReleaseState = Field(default_factory=ReleaseState)
     safety_notices: list[str] = Field(default_factory=lambda: [SAFETY_NOTICE])
     human_review_requirement: str = SAFETY_NOTICE
     operational: dict[str, int | float] = Field(default_factory=dict)
@@ -600,6 +1014,10 @@ class AblationRunResponse(StrictModel):
 
 
 class ReviewOutcome(StrEnum):
+    additional_evidence_required = "additional_evidence_required"
+    candidate_thread_not_supported = "candidate_thread_not_supported"
+    candidate_thread_remains_plausible = "candidate_thread_remains_plausible"
+    escalate_to_authorized_case_process = "escalate_to_authorized_case_process"
     request_more_information = "request_more_information"
     dismiss_candidate = "dismiss_candidate"
     escalate_for_authorized_review = "escalate_for_authorized_review"
@@ -614,14 +1032,23 @@ class ReviewCreate(StrictModel):
     reviewer_id: str = Field(min_length=1, max_length=120)
     notes: str = Field(default="", max_length=4_000)
     verification_reference: str | None = Field(default=None, max_length=500)
+    rationale: str | None = Field(default=None, max_length=4_000)
+    remaining_uncertainty: list[str] = Field(default_factory=list)
+    requested_evidence: list[str] = Field(default_factory=list)
+    workflow_run_id: str | None = None
+    contract_id: str | None = None
+    referenced_artifact_ids: list[str] = Field(default_factory=list)
 
 
 class ReviewReceipt(StrictModel):
     review_id: str
     case_id: str
+    candidate_id: str | None = None
     created_at: datetime
     outcome: ReviewOutcome
     audit_event_id: str
+    audit_chain_event_id: str | None = None
+    release_state: ReleaseState = Field(default_factory=ReleaseState)
     safety_notice: str = SAFETY_NOTICE
 
 
@@ -883,3 +1310,52 @@ class ReportResponse(StrictModel):
     result_id: str
     created_at: datetime
     markdown: str
+
+
+# The V1 held-out evaluation is a standalone, versioned evidence artifact.  These
+# append-only models intentionally remain separate from the interactive benchmark
+# response so archived JSON can be validated without starting the API.
+class V1EvaluationMetric(StrictModel):
+    metric_id: str
+    value: float
+    numerator: int | float
+    denominator: int | float
+    definition: str
+
+
+class V1EvaluationSplit(StrictModel):
+    split_name: str
+    case_count: int = Field(ge=0)
+    identity_ids: list[str]
+    metrics: list[V1EvaluationMetric]
+
+
+class V1RiskBound(StrictModel):
+    confidence_level: float = 0.95
+    method: Literal["wilson_score_upper_bound"] = "wilson_score_upper_bound"
+    observed_unsafe_releases: int = Field(ge=0)
+    evaluated_cases: int = Field(ge=0)
+    negative_cases: int = Field(ge=0)
+    # Retained for backward compatibility. V1.1 defines this as the conditional
+    # bound over different-identity cases, where an unsafe positive is possible.
+    upper_bound_percent: float = Field(ge=0, le=100)
+    all_case_upper_bound_percent: float | None = Field(default=None, ge=0, le=100)
+    conditional_negative_upper_bound_percent: float | None = Field(
+        default=None, ge=0, le=100
+    )
+    target_percent: float = Field(ge=0, le=100)
+    target_status: Literal["met", "not_met", "not_assessed"] = "not_assessed"
+    assumptions: list[str]
+
+
+class V1EvaluationArtifact(StrictModel):
+    artifact_version: str
+    benchmark_id: str
+    dataset_content_hash: str
+    generated_at: datetime
+    calibration: V1EvaluationSplit
+    holdout: V1EvaluationSplit
+    identity_overlap_count: int = Field(ge=0)
+    risk_bound: V1RiskBound
+    limitations: list[str]
+    synthetic_only: Literal[True] = True

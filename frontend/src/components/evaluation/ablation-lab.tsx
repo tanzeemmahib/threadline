@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { ThreadButton, ThreadLoader } from "@/components/thread-motion";
 import { defaultBenchmarkConfig } from "@/lib/benchmark/generator";
 import { FALLBACK_NOTICE, MEASURED_EVALUATION_LABEL, MOCK_EVALUATION_LABEL, threadlineService } from "@/lib/api/client";
 import type { AblationNodeId, BackendAblationRunResponse, ProviderMode } from "@/types";
@@ -74,12 +75,12 @@ export function AblationLab() {
   }
 
   return (
-    <section className="research-lab-section shell" id="ablation-lab" aria-labelledby="ablation-lab-title">
+    <section className="research-lab-section shell" id="ablation-lab" aria-labelledby="ablation-lab-title" aria-busy={busy}>
       <header className="research-section-heading"><div><p className="eyebrow">Ablation laboratory</p><h2 className="section-title" id="ablation-lab-title">Remove a node. Inspect the errors it changes.</h2></div><p>Complete-workflow results remain visible as the comparison anchor.</p></header>
       <div className="ablation-config">
-        <div className="ablation-run-controls"><label><span>Benchmark</span><select value={benchmark} onChange={(event) => setBenchmark(event.target.value)}><option>Crisis benchmark v2 / seed 41027</option><option>Multilingual hard cases / seed 41027</option><option>Injection safety slice / seed 41027</option></select></label><label><span>Evaluation source</span><select value={providerMode} onChange={(event) => setProviderMode(event.target.value as ProviderMode)}><option value="mock">Deterministic mock provider</option><option value="openai_compatible">Connected model provider</option></select></label><button className="button-primary" type="button" disabled={busy} onClick={() => void runEvaluation()}>{busy ? "Running…" : "Run evaluation"}</button></div>
+        <div className="ablation-run-controls"><label><span>Benchmark</span><select value={benchmark} onChange={(event) => setBenchmark(event.target.value)}><option>Crisis benchmark v2 / seed 41027</option><option>Multilingual hard cases / seed 41027</option><option>Injection safety slice / seed 41027</option></select></label><label><span>Evaluation source</span><select value={providerMode} onChange={(event) => setProviderMode(event.target.value as ProviderMode)}><option value="mock">Deterministic mock provider</option><option value="openai_compatible">Connected model provider</option></select></label><ThreadButton variant="primary" type="button" disabled={busy} onClick={() => void runEvaluation()}>{busy ? <><ThreadLoader compact announce={false} />Running…</> : "Run evaluation"}</ThreadButton></div>
         <fieldset><legend>Enabled workflow nodes</legend><div className="node-toggle-grid">{nodeOptions.map((node) => <label key={node.id}><input type="checkbox" checked={enabled.has(node.id)} onChange={() => toggleNode(node.id)} /><span><strong>{node.label}</strong><small>{enabled.has(node.id) ? "Enabled" : "Removed for this run"}</small></span></label>)}</div></fieldset>
-        <p className="ablation-run-status" role="status" aria-live="polite">{runState}</p>{busy ? <button className="button-quiet" type="button" onClick={() => abortRef.current?.abort()}>Cancel evaluation</button> : null}
+        <p className="ablation-run-status" role="status" aria-live="polite">{runState}</p>{busy ? <ThreadButton variant="danger" type="button" onClick={() => abortRef.current?.abort()}>Cancel evaluation</ThreadButton> : null}
       </div>
 
       <div className="ablation-metrics-grid">{results.map((metric) => <button type="button" key={metric.id} aria-pressed={selectedMetric === metric.id} onClick={() => setSelectedMetric(metric.id)}><span>{metric.label}</span><div><strong>{metric.configured.toFixed(1)}%</strong><small>vs {metric.full.toFixed(1)}% complete</small></div><i style={{ width: `${Math.max(0, Math.min(100, metric.configured))}%` }} /><p>{metric.description} {metric.better === "higher" ? "Higher is better." : "Lower is better."}</p></button>)}</div>

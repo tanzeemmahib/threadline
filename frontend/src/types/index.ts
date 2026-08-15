@@ -3,8 +3,19 @@ export type SourceType =
   | "shelter_record"
   | "hospital_intake"
   | "evacuation_log"
+  | "transport_manifest"
+  | "missing_person_registry"
+  | "field_team_note"
+  | "translated_witness_statement"
+  | "scanned_document_metadata"
   | "translated_phone_submission"
-  | "volunteer_note";
+  | "volunteer_note"
+  | "family_tracing_report"
+  | "shelter_intake"
+  | "field_clinic_register"
+  | "evacuation_manifest"
+  | "aid_registration"
+  | "translated_witness_note";
 
 export type CandidateStatus =
   | "candidate"
@@ -38,12 +49,24 @@ export interface Incident {
 export interface OriginalEvidenceSpan {
   span_id: string;
   record_id: string;
+  quote: string;
   start: number;
   end: number;
   text: string;
   field: string;
+  certainty: EvidenceCertainty;
+  extraction_method: string;
   extraction_status: "extracted" | "review_required" | "quarantined";
-  normalization_note?: string;
+  normalization_note?: string | null;
+  valid: boolean;
+  validation_error?: string | null;
+  source_document_id?: string | null;
+  content_hash?: string | null;
+  language?: string | null;
+  validation_status?: "unvalidated" | "valid" | "invalid";
+  created_at?: string | null;
+  created_by?: string;
+  validated_at?: string | null;
 }
 
 export interface ExtractedField {
@@ -72,6 +95,12 @@ export interface SourceRecord {
   fields: ExtractedField[];
   evidence_spans: OriginalEvidenceSpan[];
   reliability_note: string;
+  source_organization?: string | null;
+  created_at?: string | null;
+  event_time?: string | null;
+  provenance_metadata?: Record<string, JsonValue>;
+  reliability_metadata?: Record<string, JsonValue>;
+  ingestion_hash?: string | null;
 }
 
 export interface CompatibilityFactor {
@@ -116,8 +145,9 @@ export interface CandidateConnection {
   candidate_id: string;
   record_a_id: string;
   record_b_id: string;
-  label: "Possible candidate connection" | "Strong candidate for review" | "Insufficient evidence" | "Conflicting evidence";
-  classification?: "Strong candidate for review" | "Possible candidate" | "Insufficient evidence" | "Conflicting evidence";
+  label: "Possible candidate connection" | "Strong candidate for review" | "Insufficient evidence" | "Conflicting evidence" | "Output withheld";
+  classification?: "Strong candidate for review" | "Possible candidate" | "Insufficient evidence" | "Conflicting evidence" | null;
+  classification_code?: ContractClassification | null;
   abstention_reasons?: string[];
   review_status: "review_required" | "escalated" | "dismissed" | "unrelated" | "more_information_requested";
   compatibility_factors: CompatibilityFactor[];
@@ -168,6 +198,10 @@ export interface WorkflowRun {
 }
 
 export type ReviewOutcome =
+  | "additional_evidence_required"
+  | "candidate_thread_not_supported"
+  | "candidate_thread_remains_plausible"
+  | "escalate_to_authorized_case_process"
   | "request_more_information"
   | "dismiss_candidate"
   | "escalate_authorized_review"
@@ -179,6 +213,11 @@ export interface ReviewDecision {
   candidate_id: string;
   outcome: ReviewOutcome;
   notes: string;
+  remaining_uncertainty?: string[];
+  requested_evidence?: string[];
+  workflow_run_id?: string;
+  contract_id?: string;
+  referenced_artifact_ids?: string[];
   reviewer_role: string;
   timestamp: string;
 }
@@ -401,6 +440,252 @@ export interface AnalysisSummary {
   quarantined_instructions: number;
 }
 
+export type ContractClassification =
+  | "strong_candidate_for_review"
+  | "possible_candidate"
+  | "insufficient_evidence"
+  | "conflicting_evidence";
+
+export type EvidenceClaimType =
+  | "extracted_fact"
+  | "normalized_representation"
+  | "timeline_interpretation"
+  | "compatibility_claim"
+  | "contradiction_claim"
+  | "rival_comparison_claim";
+
+export interface EvidenceClaim {
+  claim_id: string;
+  candidate_id: string;
+  claim_type: EvidenceClaimType;
+  claim_text: string;
+  source_record_ids: string[];
+  source_spans: OriginalEvidenceSpan[];
+  certainty_basis: Record<string, EvidenceCertainty>;
+  generated_by_node: string;
+  supported: boolean;
+  support_reason: string;
+  violations: string[];
+  source_record_id?: string | null;
+  source_span_ids?: string[];
+  parent_claim_ids?: string[];
+  transformation_type?: string;
+  transformation_version?: string;
+  prompt_template_version?: string | null;
+  model_identifier?: string | null;
+  created_by?: string;
+  created_at?: string | null;
+  claim_hash?: string | null;
+  raw_value?: string | null;
+  normalized_value?: string | null;
+  certainty_category?: EvidenceCertainty;
+  transformation_history?: Array<{
+    transformation_id: string;
+    transformation_type: string;
+    transformation_version: string;
+    input_claim_ids: string[];
+    input_artifact_ids: string[];
+    output_certainty: EvidenceCertainty;
+    created_by_step: string;
+    created_at?: string | null;
+  }>;
+  consumed_by_rule_ids?: string[];
+  also_supports_candidate_ids?: string[];
+  case_id?: string | null;
+}
+
+export interface ContractViolation {
+  violation_id: string;
+  rule_id: string;
+  severity: "information" | "warning" | "critical";
+  claim_id: string | null;
+  message: string;
+  blocks_release: boolean;
+  suggested_resolution: string;
+  rule_class?: "blocking" | "review_required" | "informational";
+  evidence_span_ids?: string[];
+}
+
+export interface ContractRuleResult {
+  rule_id: string;
+  rule_class: "blocking" | "review_required" | "informational";
+  severity: "information" | "warning" | "critical";
+  passed: boolean;
+  affected_claim_ids: string[];
+  affected_evidence_span_ids: string[];
+  operator_explanation: string;
+  remediation_guidance: string;
+  rule_name?: string;
+  rule_version?: string;
+  status?: "pass" | "warn" | "fail" | "block";
+  reason_code?: string;
+  input_artifact_ids?: string[];
+  related_source_span_ids?: string[];
+  evaluation_timestamp?: string | null;
+  evaluator_version?: string;
+}
+
+export interface CandidateClaimLedger {
+  ledger_id: string;
+  case_id: string;
+  candidate_id: string;
+  supporting_claim_ids: string[];
+  contradiction_claim_ids: string[];
+  timeline_claim_ids: string[];
+  compatibility_claim_ids: string[];
+  rival_comparison_claim_ids: string[];
+  missing_evidence: string[];
+  required_follow_up_evidence: string[];
+  safety_notices: string[];
+  contract_result_ids: string[];
+}
+
+export interface EvidenceContract {
+  contract_id: string;
+  case_id: string;
+  candidate_id: string;
+  classification: ContractClassification | null;
+  contract_status: "passed" | "passed_with_review_requirements" | "blocked" | "verifier_error";
+  release_allowed: boolean;
+  claims: EvidenceClaim[];
+  violations: ContractViolation[];
+  contradictions_considered: string[];
+  rivals_considered: string[];
+  decision_critical_evidence: Array<Record<string, JsonValue>>;
+  audit_chain_status: Record<string, JsonValue>;
+  created_at: string;
+  verifier_version: string;
+  safety_notice: string;
+  schema_version?: string;
+  rule_set_version?: string;
+  rule_results?: ContractRuleResult[];
+  candidate_ledger?: CandidateClaimLedger | null;
+}
+
+export interface AuditChainEvent {
+  event_id: string;
+  workflow_run_id: string;
+  contract_id: string | null;
+  candidate_id: string | null;
+  sequence_number: number;
+  event_type: string;
+  actor_type: "system" | "model" | "human";
+  actor_id: string | null;
+  created_at: string;
+  payload: Record<string, JsonValue>;
+  payload_hash: string;
+  previous_event_hash: string;
+  event_hash: string;
+  hash_algorithm: string;
+  schema_version: string;
+}
+
+export interface AuditIntegrityResult {
+  workflow_run_id: string;
+  status: "verified" | "broken" | "incomplete" | "unsupported_schema" | "verifier_error";
+  valid: boolean;
+  first_invalid_event_id: string | null;
+  first_invalid_sequence: number | null;
+  expected_previous_hash: string | null;
+  observed_previous_hash: string | null;
+  expected_payload_hash: string | null;
+  observed_payload_hash: string | null;
+  expected_event_hash: string | null;
+  observed_event_hash: string | null;
+  missing_sequence_numbers: number[];
+  duplicated_sequence_numbers: number[];
+  verified_event_count: number;
+  terminal_hash: string | null;
+  hash_algorithm: string;
+  verifier_version: string;
+  limitation: string;
+}
+
+export interface ReplayCheckpoint {
+  checkpoint_id: string;
+  expected_hash: string;
+  observed_hash: string | null;
+  consistent: boolean | null;
+}
+
+export interface ReplayManifest {
+  workflow_run_id: string;
+  original_input_package_hash: string;
+  canonical_normalized_input_hash: string;
+  workflow_schema_version: string;
+  contract_schema_version: string;
+  scoring_version: string;
+  rule_set_version: string;
+  configuration_hash: string;
+  prompt_template_versions: Record<string, string>;
+  model_identifiers: string[];
+  deterministic_seeds: number[];
+  ordered_workflow_nodes: string[];
+  node_checkpoints: ReplayCheckpoint[];
+  final_candidate_set_hash: string;
+  final_ranking_hash: string;
+  final_contract_hash: string;
+  final_response_hash: string;
+  audit_chain_terminal_hash: string;
+  created_at: string;
+  manifest_version: string;
+}
+
+export interface ReplayCertificate {
+  replay_id: string;
+  source_workflow_run_id: string;
+  replay_workflow_run_id: string | null;
+  replay_status: "exact_match" | "equivalent_match" | "diverged" | "unsupported" | "replay_error";
+  replay_mode: "deterministic" | "frozen_model_outputs" | "semantic" | "unsupported";
+  started_at: string;
+  completed_at: string;
+  manifest_version: string;
+  checkpoints: ReplayCheckpoint[];
+  first_divergence: string | null;
+  expected_hash: string | null;
+  observed_hash: string | null;
+  classification_consistent: boolean;
+  ranking_consistent: boolean;
+  contract_consistent: boolean;
+  audit_chain_consistent: boolean;
+  release_permitted: boolean;
+  limitations: string[];
+}
+
+export type CounterfactualType =
+  | "remove_evidence_span"
+  | "remove_source_record"
+  | "remove_compatibility_claim"
+  | "remove_conflicting_claim"
+  | "remove_rival_comparison_claim"
+  | "reduce_evidence_certainty"
+  | "mark_source_unavailable";
+
+export interface CounterfactualCertificate {
+  certificate_id: string;
+  original_workflow_run_id: string;
+  counterfactual_run_id: string;
+  candidate_id: string;
+  counterfactual_type: CounterfactualType;
+  removed_or_altered_evidence_ids: string[];
+  original_classification: ContractClassification | null;
+  counterfactual_classification: ContractClassification | null;
+  original_rank: number | null;
+  counterfactual_rank: number | null;
+  original_score: number | null;
+  counterfactual_score: number | null;
+  triggered_violations: string[];
+  resolved_violations: string[];
+  decision_changed: boolean;
+  rank_changed: boolean;
+  classification_changed: boolean;
+  release_status: "released" | "withheld";
+  explanation: string;
+  first_responsible_node: string;
+  created_at: string;
+  limitations: string[];
+}
+
 export interface AnalyzeRequest {
   incident: Pick<Incident, "incident_id" | "name" | "languages"> & {
     description?: string;
@@ -414,6 +699,12 @@ export interface AnalyzeRequest {
     display_name?: string | null;
     translated_text?: string | null;
     source_reliability_metadata?: string | null;
+    source_organization?: string | null;
+    created_at?: string | null;
+    event_time?: string | null;
+    provenance_metadata?: Record<string, JsonValue>;
+    reliability_metadata?: Record<string, JsonValue>;
+    ingestion_hash?: string | null;
   }>;
   options?: {
     provider_mode?: ProviderMode;
@@ -435,6 +726,21 @@ export interface AnalyzeResponse {
   workflow_trace: WorkflowNode[];
   workflow_trace_details?: BackendWorkflowTraceDetail[];
   audit_events?: AuditEvent[];
+  audit_chain_events?: AuditChainEvent[];
+  audit_integrity?: AuditIntegrityResult | null;
+  replay_manifest?: ReplayManifest | null;
+  latest_replay_certificate?: ReplayCertificate | null;
+  counterfactual_certificates?: CounterfactualCertificate[];
+  evidence_contract?: EvidenceContract | null;
+  evidence_contracts?: EvidenceContract[];
+  contract_release_status?: "released" | "withheld";
+  release_state?:
+    | { state: "draft" }
+    | { state: "contract_evaluating"; contract_ids: string[] }
+    | { state: "contract_blocked"; contract_ids: string[]; blocking_rule_ids: string[]; authorized_review_required: true }
+    | { state: "authorized_review_required"; contract_ids: string[]; authorized_review_required: true }
+    | { state: "authorized_review_in_progress"; contract_ids: string[]; review_id: string; reviewer_id: string }
+    | { state: "authorized_disposition_recorded"; contract_ids: string[]; review_id: string; reviewer_id: string; disposition: string };
   safety_notices?: string[];
   human_review_requirement?: string;
   operational?: Record<string, number>;

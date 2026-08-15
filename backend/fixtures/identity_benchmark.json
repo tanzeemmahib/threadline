@@ -1,0 +1,443 @@
+{
+  "benchmark_id": "IDENTITY-BENCH-v1",
+  "description": "Deterministic identity-resolution benchmark for THREADLINE",
+  "version": "1.0.0",
+  "incidents": [
+    {
+      "incident_id": "INC-CLEAR-MATCH-GOV-ID",
+      "description": "Clear match via government ID",
+      "records": [
+        {"record_id": "GOV-A1", "source_type": "shelter_record", "language": "English", "text": "Youssef Al Hassan, age 14, ID GOV-12345, DOB 2003-04-15, phone +1-555-1234. Scar above left eyebrow. Last seen Al Noor School 4:30pm.", "display_name": "Youssef Al Hassan", "timestamp": "2026-04-18T16:30:00Z"},
+        {"record_id": "GOV-A2", "source_type": "hospital_intake", "language": "English", "text": "Yusuf Hasan, age 14, ID GOV-12345, DOB 2003-04-15, phone 5551234. Arrived North Gate 7:10pm.", "display_name": "Yusuf Hasan", "timestamp": "2026-04-18T19:10:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["GOV-A1", "GOV-A2"],
+        "expected_state": "link_recommended",
+        "acceptable_states": ["link_recommended"],
+        "expected_blocking": [],
+        "safety_rationale": "Government ID match plus DOB match plus phone match = strong evidence"
+      }
+    },
+    {
+      "incident_id": "INC-CLEAR-MATCH-MULTI-FIELD",
+      "description": "Clear match via multiple compatible non-unique fields",
+      "records": [
+        {"record_id": "MULTI-A1", "source_type": "family_report", "language": "English", "text": "Amal Rafiq, DOB 2005-06-12, phone +1-555-9876, email amal.r@example.com. Speaks Arabic and French. Scar on right hand.", "display_name": "Amal Rafiq", "timestamp": "2026-04-18T12:00:00Z"},
+        {"record_id": "MULTI-A2", "source_type": "shelter_record", "language": "English", "text": "Amal Rafiq, age 21, phone 5559876, email amal.r@example.com. Speaks Arabic and English. Scar on right hand noted.", "display_name": "Amal Rafiq", "timestamp": "2026-04-18T18:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["MULTI-A1", "MULTI-A2"],
+        "expected_state": "link_recommended",
+        "acceptable_states": ["link_recommended", "human_review_required"],
+        "expected_blocking": [],
+        "safety_rationale": "Exact name + phone + email + distinguishing mark = strong multi-field evidence"
+      }
+    },
+    {
+      "incident_id": "INC-CLEAR-MATCH-TRANSLITERATION",
+      "description": "Clear match with name transliteration variation",
+      "records": [
+        {"record_id": "TRANS-A1", "source_type": "family_report", "language": "Arabic", "text": "يوسف الحسن، 14 سنة، هاتف 5551234. ندبة فوق الحاجب الأيسر.", "display_name": "يوسف الحسن", "timestamp": "2026-04-18T16:00:00Z"},
+        {"record_id": "TRANS-A2", "source_type": "shelter_record", "language": "English", "text": "Youssef Al Hassan, age 14, phone 5551234. Scar above left eyebrow.", "display_name": "Youssef Al Hassan", "timestamp": "2026-04-18T19:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["TRANS-A1", "TRANS-A2"],
+        "expected_state": "link_recommended",
+        "acceptable_states": ["link_recommended", "human_review_required"],
+        "expected_blocking": [],
+        "safety_rationale": "Phone match + compatible age + name transliteration = strong cross-language evidence"
+      }
+    },
+    {
+      "incident_id": "INC-CLEAR-MATCH-NAME-VARIANT",
+      "description": "Clear match with name spelling variant",
+      "records": [
+        {"record_id": "SPELL-A1", "source_type": "volunteer_note", "language": "English", "text": "Yusuf Hasan, approximately 15. Phone 5551234. Navy jacket.", "display_name": "Yusuf Hasan", "timestamp": "2026-04-18T17:00:00Z"},
+        {"record_id": "SPELL-A2", "source_type": "hospital_intake", "language": "English", "text": "Youssef Hassan, age 14. Phone 5551234. Dark blue hooded coat.", "display_name": "Youssef Hassan", "timestamp": "2026-04-18T19:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["SPELL-A1", "SPELL-A2"],
+        "expected_state": "link_recommended",
+        "acceptable_states": ["link_recommended", "human_review_required"],
+        "expected_blocking": [],
+        "safety_rationale": "Phone exact match + name similarity = strong evidence despite spelling difference"
+      }
+    },
+    {
+      "incident_id": "INC-CLEAR-NONMATCH-DIFFERENT-IDS",
+      "description": "Clear non-match: conflicting government IDs",
+      "records": [
+        {"record_id": "CONFLICT-ID1", "source_type": "shelter_record", "language": "English", "text": "Samir Nader, ID GOV-11111, DOB 1988-07-22.", "display_name": "Samir Nader", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "CONFLICT-ID2", "source_type": "hospital_intake", "language": "English", "text": "Samir Nader, ID GOV-22222, DOB 1988-07-22.", "display_name": "Samir Nader", "timestamp": "2026-04-18T12:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "different_identity",
+        "expected_pair": ["CONFLICT-ID1", "CONFLICT-ID2"],
+        "expected_state": "blocked_by_conflict",
+        "acceptable_states": ["blocked_by_conflict"],
+        "expected_blocking": ["government_id"],
+        "safety_rationale": "Different government IDs = different people despite same name and DOB"
+      }
+    },
+    {
+      "incident_id": "INC-CLEAR-NONMATCH-CONFLICTING-DOB",
+      "description": "Clear non-match: conflicting dates of birth",
+      "records": [
+        {"record_id": "DOBCONF-A1", "source_type": "family_report", "language": "English", "text": "Lina Haddad, DOB 2005-06-12, phone +1-555-4321.", "display_name": "Lina Haddad", "timestamp": "2026-04-18T12:00:00Z"},
+        {"record_id": "DOBCONF-A2", "source_type": "shelter_record", "language": "English", "text": "Lina Haddad, DOB 2002-03-28, phone +1-555-4321.", "display_name": "Lina Haddad", "timestamp": "2026-04-18T18:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "different_identity",
+        "expected_pair": ["DOBCONF-A1", "DOBCONF-A2"],
+        "expected_state": "blocked_by_conflict",
+        "acceptable_states": ["blocked_by_conflict"],
+        "expected_blocking": ["date_of_birth"],
+        "safety_rationale": "Same name and phone but different DOB = blocked (dangerous false-merge trap)"
+      }
+    },
+    {
+      "incident_id": "INC-NONMATCH-DIFFERENT-NAMES",
+      "description": "Clear non-match: completely different names and identifiers",
+      "records": [
+        {"record_id": "DIFF-A1", "source_type": "family_report", "language": "English", "text": "Karim Mansour, age 35, DOB 1988-07-22, phone +1-555-9999.", "display_name": "Karim Mansour", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "DIFF-A2", "source_type": "shelter_record", "language": "English", "text": "Nadia Saleh, age 14, DOB 2012-03-10, phone +1-555-1111.", "display_name": "Nadia Saleh", "timestamp": "2026-04-18T14:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "different_identity",
+        "expected_pair": ["DIFF-A1", "DIFF-A2"],
+        "expected_state": "blocked_by_conflict",
+        "acceptable_states": ["blocked_by_conflict", "do_not_link", "insufficient_evidence"],
+        "expected_blocking": [],
+        "safety_rationale": "Different names, DOBs, phones, ages = clearly different people"
+      }
+    },
+    {
+      "incident_id": "INC-AMBIGUOUS-COMMON-NAME",
+      "description": "Ambiguous: common name with no independent evidence",
+      "records": [
+        {"record_id": "COMMON-A1", "source_type": "volunteer_note", "language": "English", "text": "Samir, age 12-16. No distinctive features. Location unknown.", "display_name": "Samir", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "COMMON-A2", "source_type": "evacuation_log", "language": "English", "text": "Samir, approximately 14. No distinctive features. Location unknown.", "display_name": "Samir", "timestamp": "2026-04-18T18:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "genuinely_ambiguous",
+        "expected_pair": ["COMMON-A1", "COMMON-A2"],
+        "expected_state": "insufficient_evidence",
+        "acceptable_states": ["insufficient_evidence", "human_review_required"],
+        "expected_blocking": [],
+        "safety_rationale": "Common name + approximate age only = insufficient for any recommendation"
+      }
+    },
+    {
+      "incident_id": "INC-SAME-SHELTER-ONLY",
+      "description": "Same shelter with no independent evidence",
+      "records": [
+        {"record_id": "SHELTER-A1", "source_type": "shelter_record", "language": "English", "text": "Patient arrived at Al Noor School shelter. No name recorded.", "display_name": "Unknown", "timestamp": "2026-04-18T16:00:00Z"},
+        {"record_id": "SHELTER-A2", "source_type": "shelter_record", "language": "English", "text": "Child arrived at Al Noor School shelter. No name recorded.", "display_name": "Unknown", "timestamp": "2026-04-18T18:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "genuinely_ambiguous",
+        "expected_pair": ["SHELTER-A1", "SHELTER-A2"],
+        "expected_state": "insufficient_evidence",
+        "acceptable_states": ["insufficient_evidence"],
+        "expected_blocking": [],
+        "safety_rationale": "Shared shelter location alone = not identity evidence"
+      }
+    },
+    {
+      "incident_id": "INC-APPROXIMATE-AGE-COMPATIBLE",
+      "description": "Compatible approximate ages with name match but no strong discriminator",
+      "records": [
+        {"record_id": "AGE-A1", "source_type": "family_report", "language": "English", "text": "Mina Darzi, estimated age 14-16. Last seen near Cedar Market.", "display_name": "Mina Darzi", "timestamp": "2026-04-18T12:00:00Z"},
+        {"record_id": "AGE-A2", "source_type": "shelter_record", "language": "English", "text": "Mina Darzi, approximately 15. Located near Cedar Market.", "display_name": "Mina Darzi", "timestamp": "2026-04-18T18:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["AGE-A1", "AGE-A2"],
+        "expected_state": "human_review_required",
+        "acceptable_states": ["human_review_required", "insufficient_evidence"],
+        "expected_blocking": [],
+        "safety_rationale": "Compatible name+age+location but no phone/email/gov_ID = requires human review"
+      }
+    },
+    {
+      "incident_id": "INC-CONFLICTING-EXACT-AGE",
+      "description": "Conflicting exact ages",
+      "records": [
+        {"record_id": "AGEB-A1", "source_type": "family_report", "language": "English", "text": "Omar Khalil, age 14 (exact). Phone +1-555-1212.", "display_name": "Omar Khalil", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "AGEB-A2", "source_type": "hospital_intake", "language": "English", "text": "Omar Khalil, age 24 (documented). Phone +1-555-1212.", "display_name": "Omar Khalil", "timestamp": "2026-04-18T14:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "different_identity",
+        "expected_pair": ["AGEB-A1", "AGEB-A2"],
+        "expected_state": "blocked_by_conflict",
+        "acceptable_states": ["blocked_by_conflict"],
+        "expected_blocking": ["age"],
+        "safety_rationale": "Same name and phone but exact ages 14 vs 24 = blocked (documented ages conflict)"
+      }
+    },
+    {
+      "incident_id": "INC-DOB-YEAR-ONLY-COMPATIBLE",
+      "description": "Year-only DOB match with full DOB",
+      "records": [
+        {"record_id": "DOBYR-A1", "source_type": "volunteer_note", "language": "English", "text": "Nadia Saleh, DOB 2012, phone +1-555-3434.", "display_name": "Nadia Saleh", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "DOBYR-A2", "source_type": "shelter_record", "language": "English", "text": "Nadia Saleh, DOB 2012-03-10, phone 5553434.", "display_name": "Nadia Saleh", "timestamp": "2026-04-18T16:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["DOBYR-A1", "DOBYR-A2"],
+        "expected_state": "link_recommended",
+        "acceptable_states": ["link_recommended", "human_review_required"],
+        "expected_blocking": [],
+        "safety_rationale": "Same DOB year + exact name + phone match = strong evidence"
+      }
+    },
+    {
+      "incident_id": "INC-SIBLINGS-SAME-ADDRESS",
+      "description": "Siblings sharing surname, address, and family contacts",
+      "records": [
+        {"record_id": "SIB-A1", "source_type": "family_report", "language": "English", "text": "Karim Mansour, age 35, home 42 Cedar Road, mother Fatima Mansour.", "display_name": "Karim Mansour", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "SIB-A2", "source_type": "shelter_record", "language": "English", "text": "Omar Mansour, age 32, home 42 Cedar Road, mother Fatima Mansour.", "display_name": "Omar Mansour", "timestamp": "2026-04-18T12:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "different_identity",
+        "expected_pair": ["SIB-A1", "SIB-A2"],
+        "expected_state": "human_review_required",
+        "acceptable_states": ["human_review_required", "insufficient_evidence", "blocked_by_conflict"],
+        "expected_blocking": [],
+        "safety_rationale": "Siblings share address and mother but have different first names and ages = must not auto-link"
+      }
+    },
+    {
+      "incident_id": "INC-DUPLICATE-REPORTS",
+      "description": "Duplicate reports from different organizations",
+      "records": [
+        {"record_id": "DUP-A1", "source_type": "shelter_record", "language": "English", "text": "Lina Haddad, age 14, shelter Al Noor School, phone 5551212.", "display_name": "Lina Haddad", "timestamp": "2026-04-18T16:00:00Z"},
+        {"record_id": "DUP-A2", "source_type": "evacuation_log", "language": "English", "text": "Lina Haddad, age 14, last seen Al Noor School, phone 5551212.", "display_name": "Lina Haddad", "timestamp": "2026-04-18T16:30:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["DUP-A1", "DUP-A2"],
+        "expected_state": "link_recommended",
+        "acceptable_states": ["link_recommended"],
+        "expected_blocking": [],
+        "safety_rationale": "Exact name + age + phone + location = same person reported twice"
+      }
+    },
+    {
+      "incident_id": "INC-SPARSE-REPORT",
+      "description": "Sparse report requiring more information",
+      "records": [
+        {"record_id": "SPARSE-A1", "source_type": "phone_submission", "language": "English", "text": "A child was seen at North Gate wearing a green jacket. No name available.", "display_name": "Unknown child", "timestamp": "2026-04-18T18:00:00Z"},
+        {"record_id": "SPARSE-A2", "source_type": "volunteer_note", "language": "English", "text": "Young person, green jacket, North Gate area.", "display_name": "Unknown", "timestamp": "2026-04-18T18:30:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "genuinely_ambiguous",
+        "expected_pair": ["SPARSE-A1", "SPARSE-A2"],
+        "expected_state": "insufficient_evidence",
+        "acceptable_states": ["insufficient_evidence"],
+        "expected_blocking": [],
+        "safety_rationale": "No name or identifier = cannot recommend linkage despite location+clothing match"
+      }
+    },
+    {
+      "incident_id": "INC-ONE-MATCH-SEVERAL-WEAK-CONFLICTS",
+      "description": "One unique match plus several weak conflicts",
+      "records": [
+        {"record_id": "MIX-A1", "source_type": "family_report", "language": "English", "text": "Amal Rafiq, ID GOV-55555, age 14, speaks Arabic, last seen River Road, wearing blue jacket.", "display_name": "Amal Rafiq", "timestamp": "2026-04-18T12:00:00Z"},
+        {"record_id": "MIX-A2", "source_type": "hospital_intake", "language": "English", "text": "Amal Rafiq, ID GOV-55555, age 15, speaks French, last seen Cedar Market, wearing black jacket.", "display_name": "Amal Rafiq", "timestamp": "2026-04-18T18:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["MIX-A1", "MIX-A2"],
+        "expected_state": "link_recommended",
+        "acceptable_states": ["link_recommended"],
+        "expected_blocking": [],
+        "safety_rationale": "Government ID match resolves all weak conflicts (age, language, location, clothing differences)"
+      }
+    },
+    {
+      "incident_id": "INC-SEVERAL-WEAK-MATCHES-ONE-BLOCKING",
+      "description": "Several weak matches plus one blocking conflict",
+      "records": [
+        {"record_id": "WEAKBLOCK-A1", "source_type": "family_report", "language": "English", "text": "Samir Nader, age 20, phone 5551212, location Cedar Market, DOB 2006-05-10.", "display_name": "Samir Nader", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "WEAKBLOCK-A2", "source_type": "shelter_record", "language": "English", "text": "Samir Nader, age 21, phone 5551212, location Cedar Market, DOB 2004-11-03.", "display_name": "Samir Nader", "timestamp": "2026-04-18T16:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "different_identity",
+        "expected_pair": ["WEAKBLOCK-A1", "WEAKBLOCK-A2"],
+        "expected_state": "blocked_by_conflict",
+        "acceptable_states": ["blocked_by_conflict"],
+        "expected_blocking": ["date_of_birth"],
+        "safety_rationale": "Name+phone+location all match but DOB conflicts = blocked (DOB overrides weak matches)"
+      }
+    },
+    {
+      "incident_id": "INC-RIVAL-CANDIDATES",
+      "description": "Three rival candidates with similar evidence",
+      "records": [
+        {"record_id": "RIVAL-A1", "source_type": "family_report", "language": "English", "text": "Samir, age 12-16. No distinctive features. Location unknown.", "display_name": "Samir", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "RIVAL-A2", "source_type": "volunteer_note", "language": "English", "text": "Samir, approximately 13. Wearing green jacket. Seen at North Gate.", "display_name": "Samir", "timestamp": "2026-04-18T18:00:00Z"},
+        {"record_id": "RIVAL-A3", "source_type": "shelter_record", "language": "English", "text": "Samir, age 14. Wearing navy jacket. Arrived at South Clinic.", "display_name": "Samir", "timestamp": "2026-04-18T16:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "genuinely_ambiguous",
+        "expected_pair": ["RIVAL-A1", "RIVAL-A2"],
+        "expected_state": "insufficient_evidence",
+        "acceptable_states": ["insufficient_evidence", "human_review_required"],
+        "expected_blocking": [],
+        "safety_rationale": "Three candidate pairs all weak = rival ambiguity must prevent automatic recommendation"
+      }
+    },
+    {
+      "incident_id": "INC-CANDIDATE-MISSED-BY-ONE-STRATEGY",
+      "description": "Candidate missed by phone blocking but recovered by name+location",
+      "records": [
+        {"record_id": "MISS-A1", "source_type": "shelter_record", "language": "English", "text": "Mina Darzi, age 14, last seen Al Noor School. Phone not recorded.", "display_name": "Mina Darzi", "timestamp": "2026-04-18T16:00:00Z"},
+        {"record_id": "MISS-A2", "source_type": "volunteer_note", "language": "English", "text": "Mina Darzi, approximately 14, seen at Al Noor School. Phone not recorded.", "display_name": "Mina Darzi", "timestamp": "2026-04-18T18:00:00Z"},
+        {"record_id": "MISS-A3", "source_type": "hospital_intake", "language": "English", "text": "Omar Khalil, age 35, North Gate.", "display_name": "Omar Khalil", "timestamp": "2026-04-18T14:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["MISS-A1", "MISS-A2"],
+        "expected_state": "human_review_required",
+        "acceptable_states": ["human_review_required"],
+        "expected_blocking": [],
+        "safety_rationale": "No phone = must use name+location blocking. Compatible evidence but requires review."
+      }
+    },
+    {
+      "incident_id": "INC-PATHOLOGICAL-COMMON-NAME",
+      "description": "Pathological high-frequency name with no discriminators",
+      "records": [
+        {"record_id": "PATH-A1", "source_type": "shelter_record", "language": "English", "text": "Mohammed, age 30-40. No distinctive features.", "display_name": "Mohammed", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "PATH-A2", "source_type": "evacuation_log", "language": "English", "text": "Mohammed, approximately 35. No distinctive features.", "display_name": "Mohammed", "timestamp": "2026-04-18T14:00:00Z"},
+        {"record_id": "PATH-A3", "source_type": "hospital_intake", "language": "English", "text": "Mohammed, age 32. Scar on left hand.", "display_name": "Mohammed", "timestamp": "2026-04-18T16:00:00Z"},
+        {"record_id": "PATH-A4", "source_type": "volunteer_note", "language": "English", "text": "Fatima, age 28. Shelter North Gate.", "display_name": "Fatima", "timestamp": "2026-04-18T18:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "genuinely_ambiguous",
+        "expected_pair": ["PATH-A1", "PATH-A2"],
+        "expected_state": "insufficient_evidence",
+        "acceptable_states": ["insufficient_evidence"],
+        "expected_blocking": [],
+        "safety_rationale": "High-frequency name with only approximate age = multiple ambiguous pairs expected"
+      }
+    },
+    {
+      "incident_id": "INC-OCR-NOISE",
+      "description": "OCR-like noise in fields",
+      "records": [
+        {"record_id": "OCR-A1", "source_type": "scanned_form", "language": "English", "text": "Nadia Saleh, DOB 20l2-03-10 (OCR noise), phone +l-555-3434.", "display_name": "Nadia Saleh", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "OCR-A2", "source_type": "shelter_record", "language": "English", "text": "Nadia Saleh, DOB 2012-03-10, phone +1-555-3434.", "display_name": "Nadia Saleh", "timestamp": "2026-04-18T16:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["OCR-A1", "OCR-A2"],
+        "expected_state": "link_recommended",
+        "acceptable_states": ["link_recommended", "human_review_required"],
+        "expected_blocking": [],
+        "safety_rationale": "Name + phone match despite OCR noise in DOB = strong evidence, DOB comparison may fail gracefully"
+      }
+    },
+    {
+      "incident_id": "INC-REUSED-PHONE",
+      "description": "Reused family phone number",
+      "records": [
+        {"record_id": "FAMPHONE-A1", "source_type": "family_report", "language": "English", "text": "Nadia Saleh, age 14, phone +1-555-1111.", "display_name": "Nadia Saleh", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "FAMPHONE-A2", "source_type": "family_report", "language": "English", "text": "Amal Rafiq, age 14, phone +1-555-1111.", "display_name": "Amal Rafiq", "timestamp": "2026-04-18T12:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "different_identity",
+        "expected_pair": ["FAMPHONE-A1", "FAMPHONE-A2"],
+        "expected_state": "human_review_required",
+        "acceptable_states": ["human_review_required", "insufficient_evidence"],
+        "expected_blocking": [],
+        "safety_rationale": "Shared phone but different names = family phone, not identity match. Must require review."
+      }
+    },
+    {
+      "incident_id": "INC-PHONE-FORMAT-VARIATION",
+      "description": "Phone formatting differences normalize correctly",
+      "records": [
+        {"record_id": "PHONEFMT-A1", "source_type": "shelter_record", "language": "English", "text": "Karim Mansour, phone (555) 123-4567.", "display_name": "Karim Mansour", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "PHONEFMT-A2", "source_type": "hospital_intake", "language": "English", "text": "Karim Mansour, phone +1-555-123-4567.", "display_name": "Karim Mansour", "timestamp": "2026-04-18T14:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["PHONEFMT-A1", "PHONEFMT-A2"],
+        "expected_state": "link_recommended",
+        "acceptable_states": ["link_recommended", "human_review_required"],
+        "expected_blocking": [],
+        "safety_rationale": "Same phone digits despite formatting differences + exact name = strong evidence"
+      }
+    },
+    {
+      "incident_id": "INC-MISSING-FIELDS-SAME-PERSON",
+      "description": "Same person with missing fields on one side",
+      "records": [
+        {"record_id": "MISSFLD-A1", "source_type": "family_report", "language": "English", "text": "Omar Khalil, age 14, DOB 2012-03-10, phone +1-555-7878, distinctive scar on right forearm.", "display_name": "Omar Khalil", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "MISSFLD-A2", "source_type": "volunteer_note", "language": "English", "text": "Omar, approximately 14-15. Seen at North Gate.", "display_name": "Omar", "timestamp": "2026-04-18T16:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["MISSFLD-A1", "MISSFLD-A2"],
+        "expected_state": "human_review_required",
+        "acceptable_states": ["human_review_required", "insufficient_evidence"],
+        "expected_blocking": [],
+        "safety_rationale": "Name partial match + compatible age but missing critical fields on one side = needs review"
+      }
+    },
+    {
+      "incident_id": "INC-EMAIL-MATCH-NO-NAME",
+      "description": "Email match without name",
+      "records": [
+        {"record_id": "EMAIL-A1", "source_type": "digital_form", "language": "English", "text": "Email yhassan@example.com, age 14. North Gate arrival.", "display_name": "Unknown", "timestamp": "2026-04-18T16:00:00Z"},
+        {"record_id": "EMAIL-A2", "source_type": "shelter_record", "language": "English", "text": "Youssef Hassan, email yhassan@example.com, age 14. Family contact.", "display_name": "Youssef Hassan", "timestamp": "2026-04-18T12:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["EMAIL-A1", "EMAIL-A2"],
+        "expected_state": "link_recommended",
+        "acceptable_states": ["link_recommended", "human_review_required"],
+        "expected_blocking": [],
+        "safety_rationale": "Email exact match + compatible age = strong evidence even with partial name"
+      }
+    },
+    {
+      "incident_id": "INC-REORDERED-NAMES",
+      "description": "Reordered name components",
+      "records": [
+        {"record_id": "REORDER-A1", "source_type": "shelter_record", "language": "English", "text": "Al Hassan, Youssef. Age 14. DOB 2003-04-15.", "display_name": "Al Hassan, Youssef", "timestamp": "2026-04-18T16:00:00Z"},
+        {"record_id": "REORDER-A2", "source_type": "hospital_intake", "language": "English", "text": "Youssef Al Hassan. Age 14. DOB 2003-04-15.", "display_name": "Youssef Al Hassan", "timestamp": "2026-04-18T18:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": ["REORDER-A1", "REORDER-A2"],
+        "expected_state": "link_recommended",
+        "acceptable_states": ["link_recommended", "human_review_required"],
+        "expected_blocking": [],
+        "safety_rationale": "Same DOB + age + name components reordered = strong evidence"
+      }
+    },
+    {
+      "incident_id": "INC-NO-CANDIDATE-PAIR",
+      "description": "Records that should not become candidates",
+      "records": [
+        {"record_id": "NOPAIR-A1", "source_type": "shelter_record", "language": "English", "text": "Zainab Noor, age 45, shelter River Road.", "display_name": "Zainab Noor", "timestamp": "2026-04-18T10:00:00Z"},
+        {"record_id": "NOPAIR-A2", "source_type": "hospital_intake", "language": "English", "text": "Tariq Aziz, age 12, hospital South Clinic.", "display_name": "Tariq Aziz", "timestamp": "2026-04-18T14:00:00Z"}
+      ],
+      "ground_truth": {
+        "relation": "different_identity",
+        "expected_pair": [],
+        "expected_state": "do_not_link",
+        "acceptable_states": ["do_not_link", "insufficient_evidence"],
+        "expected_blocking": [],
+        "safety_rationale": "Completely different names, ages, locations with no shared blocking key = should not be paired"
+      }
+    }
+  ]
+}

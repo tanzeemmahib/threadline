@@ -8,7 +8,7 @@
 }
 
 .research-panel-header h2,
-.reconstruction-header h2 { margin: 0.25rem 0; font-family: Georgia, serif; font-size: 1.45rem; font-weight: 400; }
+.reconstruction-header h2 { margin: 0.25rem 0; font-family: var(--font-sans); font-size: 1.45rem; font-weight: 560; }
 .research-panel-header p,
 .reconstruction-header p { max-width: 48rem; margin: 0; color: var(--text-secondary); font-size: 0.72rem; line-height: 1.55; }
 .research-panel-header > span { color: var(--text-tertiary); font-family: var(--font-mono); font-size: 0.6rem; }
@@ -101,7 +101,7 @@
 .translation-warning { margin-top: 0.7rem; padding: 0.7rem; border-left: 2px solid var(--amber); background: var(--amber-soft); }
 .translation-warning p { margin-top: 0.3rem; }
 .abstention-outcome { padding: 1rem; border-bottom: 1px solid var(--border); background: var(--amber-soft); }
-.abstention-outcome h3 { margin: 0.4rem 0; font-family: Georgia, serif; font-size: 1.05rem; font-weight: 400; }
+.abstention-outcome h3 { margin: 0.4rem 0; font-family: var(--font-sans); font-size: 1.05rem; font-weight: 560; }
 .abstention-outcome p,
 .abstention-outcome li { color: #e1d3b1; font-size: 0.66rem; line-height: 1.5; }
 .abstention-outcome ul { display: grid; gap: 0.25rem; margin-bottom: 0; padding-left: 1rem; }
@@ -342,7 +342,7 @@
 .error-case-detail { padding: 1rem; }
 .error-case-detail > header { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
 .error-case-detail header span { color: var(--text-tertiary); font-family: var(--font-mono); font-size: 0.52rem; }
-.error-case-detail h3 { margin: 0.25rem 0 0; font-family: Georgia, serif; font-size: 1.2rem; font-weight: 400; text-transform: capitalize; }
+.error-case-detail h3 { margin: 0.25rem 0 0; font-family: var(--font-sans); font-size: 1.2rem; font-weight: 560; text-transform: capitalize; }
 .error-case-detail dl { display: grid; grid-template-columns: 1fr 1fr; margin: 0; }
 .error-case-detail dl > div { padding: 0.8rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .error-case-detail dt { color: var(--text-tertiary); font-size: 0.5rem; text-transform: uppercase; }

@@ -1,0 +1,265 @@
+{
+  "schema_version": "threadline-creative-manifest/1.1.0",
+  "project": "THREADLINE",
+  "provider": "Local deterministic previews plus authenticated Higgsfield CLI generation (Plus plan)",
+  "created_at": "2026-08-03T00:00:00-07:00",
+  "updated_at": "2026-08-11T00:00:00-07:00",
+  "paid_generation_authorized": false,
+  "authorization_note": "No unconsumed authorization remains. Three Higgsfield image concept jobs authorized on 2026-08-09 and the image-plus-video cinematic hero pass authorized on 2026-08-11 all completed. No additional image, video, audio, 3D, upload, deploy, or publish job is authorized.",
+  "authorization_history": [
+    {
+      "date": "2026-08-09",
+      "scope": [
+        "TL-HF-OPENING-20260809",
+        "TL-HF-WORKBENCH-20260809",
+        "TL-HF-SAFETY-20260809"
+      ],
+      "basis": "Explicit user-mandated Higgsfield workflow for frontend visual direction",
+      "consumed": true
+    },
+    {
+      "date": "2026-08-11",
+      "scope": [
+        "TL-HF-HERO-ATMOSPHERE-20260811",
+        "TL-HF-HERO-LOOP-20260811"
+      ],
+      "basis": "Explicit mandatory Higgsfield workflow for the final cinematic frontend pass",
+      "authenticated_account": true,
+      "account_plan": "Plus",
+      "consumed": true
+    }
+  ],
+  "currency": "USD",
+  "status_values": [
+    "planned",
+    "cost_estimated",
+    "approved",
+    "generating",
+    "completed",
+    "superseded",
+    "failed",
+    "cancelled"
+  ],
+  "asset_record_fields": {
+    "asset_id": "Stable repository-local identifier.",
+    "purpose": "Why THREADLINE needs the asset and where it will be used.",
+    "prompt": "Exact generation prompt submitted to the provider.",
+    "model": "Higgsfield model or workflow identifier and version when available.",
+    "duration_seconds": "Requested or actual duration for timed media; null for still images.",
+    "resolution": "Requested or actual pixel dimensions as width and height; null when unknown.",
+    "generation_cost": "Estimated and actual cost with currency; null until known.",
+    "status": "Current lifecycle status from status_values.",
+    "local_path": "Repository-relative path. Art-direction references remain outside the frontend public tree; an explicitly approved, optimized atmospheric delivery asset may live under frontend/public when its UI remains native HTML/CSS."
+  },
+  "assets": [
+    {
+      "asset_id": "TL-REF-HERO-001",
+      "purpose": "Zero-cost landing hero art-direction reference for stakeholder approval.",
+      "prompt": "Deterministic SVG composition: THREADLINE premium humanitarian evidence platform, navy editorial field, fictional record nodes, one authored cyan thread, proof-before-release language, no people or real records.",
+      "model": "deterministic-local-svg/1.0",
+      "duration_seconds": null,
+      "resolution": { "width": 1600, "height": 900 },
+      "generation_cost": { "estimated": 0, "actual": 0, "currency": "USD", "credits": 0 },
+      "status": "superseded",
+      "local_path": "creative/threadline/previews/hero-composition.svg"
+    },
+    {
+      "asset_id": "TL-REF-LINEAGE-001",
+      "purpose": "Zero-cost signature claim-to-source interaction reference.",
+      "prompt": "Deterministic SVG composition: four-stage reverse provenance rail from candidate claim through normalization and extraction to exact source span, synthetic data only.",
+      "model": "deterministic-local-svg/1.0",
+      "duration_seconds": null,
+      "resolution": { "width": 1600, "height": 900 },
+      "generation_cost": { "estimated": 0, "actual": 0, "currency": "USD", "credits": 0 },
+      "status": "superseded",
+      "local_path": "creative/threadline/previews/lineage-composition.svg"
+    },
+    {
+      "asset_id": "TL-REF-CONTRADICTION-001",
+      "purpose": "Zero-cost side-by-side contradiction workspace reference.",
+      "prompt": "Deterministic SVG composition: opposing exact fictional source spans, soft age contradiction, visible unresolved gap, amber evidence treatment.",
+      "model": "deterministic-local-svg/1.0",
+      "duration_seconds": null,
+      "resolution": { "width": 1600, "height": 900 },
+      "generation_cost": { "estimated": 0, "actual": 0, "currency": "USD", "credits": 0 },
+      "status": "superseded",
+      "local_path": "creative/threadline/previews/contradiction-composition.svg"
+    },
+    {
+      "asset_id": "TL-REF-GATE-001",
+      "purpose": "Zero-cost evidence-contract release gate reference.",
+      "prompt": "Deterministic SVG composition: inspectable contract rules, exact claims, review requirement, and authorized review action; no autonomous confirmation language.",
+      "model": "deterministic-local-svg/1.0",
+      "duration_seconds": null,
+      "resolution": { "width": 1600, "height": 900 },
+      "generation_cost": { "estimated": 0, "actual": 0, "currency": "USD", "credits": 0 },
+      "status": "superseded",
+      "local_path": "creative/threadline/previews/release-gate-composition.svg"
+    },
+    {
+      "asset_id": "TL-REF-MOBILE-001",
+      "purpose": "Zero-cost mobile static-composition and reduced-motion reference.",
+      "prompt": "Deterministic portrait SVG composition: mobile source lineage, unresolved gap, evidence contract, and authorized decision controls using synthetic evidence only.",
+      "model": "deterministic-local-svg/1.0",
+      "duration_seconds": null,
+      "resolution": { "width": 900, "height": 1600 },
+      "generation_cost": { "estimated": 0, "actual": 0, "currency": "USD", "credits": 0 },
+      "status": "superseded",
+      "local_path": "creative/threadline/previews/mobile-composition.svg"
+    },
+    {
+      "asset_id": "TL-HF-OPENING-20260809",
+      "purpose": "Visual-development reference for the documentary opening scene; never shipped or embedded.",
+      "prompt": null,
+      "prompt_summary": "Warm near-black documentary opening with monumental editorial serif language, tiny case metadata, archival paper texture, and one restrained oxidized-brass thread.",
+      "prompt_record_status": "not_retained_verbatim",
+      "model": "gpt_image_2 / GPT Image 2",
+      "duration_seconds": null,
+      "requested_resolution": { "label": "2K", "aspect_ratio": "16:9" },
+      "resolution": { "width": 2688, "height": 1520 },
+      "generation_cost": { "estimated": null, "actual": null, "currency": "USD", "credits_actual": null, "billing_data_retained": false },
+      "status": "completed",
+      "generated_at": "2026-08-09T21:14:27Z",
+      "provider_output_id": "4a628511-fb4b-4227-b60f-91e67905ae6d",
+      "local_path": "docs/art-direction/higgsfield-opening.png",
+      "sha256": "8378a045ed56f9364a5929dd9c029168913ed86c452d1988c63c571a44688c75",
+      "frontend_public_asset": false,
+      "embedded_in_product": false
+    },
+    {
+      "asset_id": "TL-HF-WORKBENCH-20260809",
+      "purpose": "Visual-development reference for the archive-to-forensic-workbench transition; never shipped or embedded.",
+      "prompt": null,
+      "prompt_summary": "Museum archive documents align into source material, an evidence matrix, and a restrained disposition column connected by a physical brass thread.",
+      "prompt_record_status": "not_retained_verbatim",
+      "model": "gpt_image_2 / GPT Image 2",
+      "duration_seconds": null,
+      "requested_resolution": { "label": "2K", "aspect_ratio": "16:9" },
+      "resolution": { "width": 2688, "height": 1520 },
+      "generation_cost": { "estimated": null, "actual": null, "currency": "USD", "credits_actual": null, "billing_data_retained": false },
+      "status": "completed",
+      "generated_at": "2026-08-09T21:17:52Z",
+      "provider_output_id": "f7c2c7eb-e255-4ee8-a088-e0b1d911efcc",
+      "local_path": "docs/art-direction/higgsfield-workbench.png",
+      "sha256": "5d4268efcec641d441d74ee856b35b7bf56b389870cbb196e12ac8324008dc58",
+      "frontend_public_asset": false,
+      "embedded_in_product": false
+    },
+    {
+      "asset_id": "TL-HF-SAFETY-20260809",
+      "purpose": "Visual-development reference for the safety gate, verified timeline gap, and audit trail; never shipped or embedded.",
+      "prompt": null,
+      "prompt_summary": "Monumental abstention scene on warm black with ivory type, thin brass rule, a real missing interval, and a vertical typeset audit rail.",
+      "prompt_record_status": "not_retained_verbatim",
+      "model": "gpt_image_2 / GPT Image 2",
+      "duration_seconds": null,
+      "requested_resolution": { "label": "2K", "aspect_ratio": "16:9" },
+      "resolution": { "width": 2688, "height": 1520 },
+      "generation_cost": { "estimated": null, "actual": null, "currency": "USD", "credits_actual": null, "billing_data_retained": false },
+      "status": "completed",
+      "generated_at": "2026-08-09T21:17:52Z",
+      "provider_output_id": "64cfe9ab-3126-47a0-821d-efb3c782103d",
+      "local_path": "docs/art-direction/higgsfield-safety.png",
+      "sha256": "fffe9fdec503705141e72b7647c38364607a3d1597fee07a7ac5b59960cf8f46",
+      "frontend_public_asset": false,
+      "embedded_in_product": false
+    },
+    {
+      "asset_id": "TL-CIN-PLATE-001",
+      "purpose": "Optional text-free atmospheric plate behind the functional landing hero; not required for product operation.",
+      "prompt": "Macro documentary view of fictional paper records on a dark navy table with one restrained cyan evidence thread and unresolved amber annotations no people no faces no readable text",
+      "model": "seedance_2_0 / Seedance 2.0",
+      "duration_seconds": 8,
+      "resolution": { "width": 1920, "height": 1080, "label": "1080p", "aspect_ratio": "16:9" },
+      "generation_cost": { "estimated": null, "actual": null, "currency": "USD", "credits_estimated": 72, "credits_actual": 0 },
+      "status": "cancelled",
+      "local_path": "creative/threadline/finals/threadline-atmospheric-plate.mp4",
+      "approval_required": true,
+      "generation_submitted": false,
+      "cancellation_reason": "Superseded navy/cyan direction; no video was generated."
+    },
+    {
+      "asset_id": "TL-HF-HERO-ATMOSPHERE-20260811",
+      "purpose": "Text-free cinematic hero atmosphere and art-direction source for the final landing pass. The real headline, record fragments, controls, evidence content, and product interface remain semantic HTML/CSS/SVG.",
+      "prompt": "Text-free cinematic background plate for a premium interactive documentary about fragmented identity records. Warm near-black archival space, matte charcoal-black table receding into darkness, abstract completely unprinted paper record fragments at different depths primarily on the right half and lower edge, subtle torn paper edges, faint non-readable map contour lines and registration marks, a single hair-thin oxidized brass physical fiber resting across selected paper edges, soft volumetric side light from upper right, restrained dust in the light, tactile physical imperfection, contemporary editorial composition, museum archive atmosphere, humanitarian field-record seriousness, center-left and upper-left kept dark and quiet for large real HTML typography, deep but stable cinematic lens depth, widescreen 16:9. Absolutely no people, faces, bodies, injuries, disaster imagery, fire, destruction, logos, letters, numbers, handwriting, type, readable text, fake interface, holograms, neon, blue or cyan glow, science fiction, cyberpunk, digital particles.",
+      "prompt_record_status": "retained_verbatim",
+      "model": "gpt_image_2 / GPT Image 2",
+      "duration_seconds": null,
+      "requested_resolution": { "label": "2K", "aspect_ratio": "16:9", "quality": "high" },
+      "resolution": { "width": 2688, "height": 1520 },
+      "generation_cost": { "estimated": null, "actual": null, "currency": "USD", "credits_actual": null, "billing_data_retained": false },
+      "status": "completed",
+      "provider_output_id": "0fd7b390-90d3-4113-ae32-78a4ad36eaf2",
+      "local_path": "docs/art-direction/higgsfield-hero-atmosphere-20260811.png",
+      "sha256": "826efd60648c673bc0b8f7fdb9fdcaa87a2ecadfcfd72dab4224f0d64fc552c8",
+      "bytes": 5526363,
+      "content_review": {
+        "readable_text": false,
+        "faces_or_people": false,
+        "fake_interface": false
+      },
+      "frontend_public_asset": false,
+      "embedded_in_product": false
+    },
+    {
+      "asset_id": "TL-HF-HERO-LOOP-20260811",
+      "purpose": "Optional silent living-photograph atmosphere behind the functional landing hero. It supplies only physical light, paper, dust, and camera drift; all product meaning and interaction remain native HTML/CSS/SVG.",
+      "prompt": "Animate this exact text-free archival background as a living photograph. Extremely slow eight-second dolly push forward, no more than a subtle two-percent apparent scale change, with near-imperceptible lateral drift and stable framing. Papers remain anchored; only two or three paper edge corners shift microscopically. Very subtle multi-plane parallax among the right-side paper layers. Sparse physical dust moves slowly through the warm side light and the light intensity breathes almost imperceptibly. The thin brass fiber remains physical, matte, and non-glowing. Preserve the dark quiet left half for real HTML typography. No new objects, no people, no faces, no bodies, no text, no letters, no numbers, no logos, no interface, no disaster imagery, no dramatic action, no camera shake, no rotation, no fast zoom, no cuts, no morphing, no warping, no glowing effects. Keep the first and final framing closely aligned for loop-friendly silent background playback.",
+      "prompt_record_status": "retained_verbatim",
+      "model": "seedance_2_0 / Seedance 2.0",
+      "duration_seconds": 8.041667,
+      "resolution": { "width": 1920, "height": 1080, "label": "1080p", "aspect_ratio": "16:9" },
+      "audio": false,
+      "generation_cost": { "estimated": null, "actual": null, "currency": "USD", "credits_actual": null, "billing_data_retained": false },
+      "status": "completed",
+      "provider_output_id": "5323d49c-fc0b-4608-884f-e40dad0e0afa",
+      "source_mp4": {
+        "repository_path": null,
+        "shipped": false,
+        "bytes": 8609831,
+        "sha256": "80865eb8acf4dcb7f3498d8f498b34771a90395c696238478064b0efc9d5f731"
+      },
+      "local_path": "frontend/public/media/threadline/hero-archive-loop.webm",
+      "delivery": {
+        "format": "WebM",
+        "codec": "VP8",
+        "width": 1280,
+        "height": 720,
+        "duration_seconds": 8,
+        "silent": true,
+        "bytes": 278404,
+        "sha256": "6e54c787086dd3d3b710235acae3383e030cb520398c59daa8b99f141bf9dd77"
+      },
+      "content_review": {
+        "readable_text": false,
+        "faces_or_people": false,
+        "fake_interface": false
+      },
+      "frontend_public_asset": true,
+      "embedded_in_product": true,
+      "required_for_product_operation": false,
+      "fallbacks": [
+        "static poster on mobile",
+        "static poster when prefers-reduced-motion is enabled",
+        "static poster when video loading or playback fails"
+      ]
+    },
+    {
+      "asset_id": "TL-HERO-POSTER-20260811",
+      "purpose": "Static poster fallback derived from the approved text-free Higgsfield hero plate for mobile, reduced-motion, unsupported-video, and video-failure states.",
+      "prompt": null,
+      "model": "deterministic-local-sharp/webp",
+      "duration_seconds": null,
+      "resolution": { "width": 1920, "height": 1080 },
+      "generation_cost": { "estimated": 0, "actual": 0, "currency": "USD", "credits": 0 },
+      "status": "completed",
+      "source_asset_id": "TL-HF-HERO-ATMOSPHERE-20260811",
+      "local_path": "frontend/public/media/threadline/hero-archive-poster.webp",
+      "sha256": "584085eb1454568a1d29139bec760c7e19053e9ccd8b00711c4104a542864581",
+      "bytes": 79134,
+      "frontend_public_asset": true,
+      "embedded_in_product": true,
+      "required_for_product_operation": false
+    }
+  ]
+}

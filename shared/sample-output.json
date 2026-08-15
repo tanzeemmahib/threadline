@@ -17,6 +17,8 @@
       "record_a_id": "FAMILY-018",
       "record_b_id": "SHELTER-204",
       "label": "Possible candidate connection",
+      "classification": "Possible candidate",
+      "classification_code": "possible_candidate",
       "review_status": "review_required",
       "compatibility_factors": [
         {
@@ -71,6 +73,103 @@
   ],
   "workflow_trace_details": [],
   "audit_events": [],
+  "evidence_contract": {
+    "contract_id": "CONTRACT-SAMPLE-MATCH-001",
+    "case_id": "CASE-001",
+    "candidate_id": "MATCH-001",
+    "classification": "possible_candidate",
+    "contract_status": "passed",
+    "release_allowed": true,
+    "claims": [
+      {
+        "claim_id": "CLAIM-SAMPLE-NAME",
+        "candidate_id": "MATCH-001",
+        "claim_type": "extracted_fact",
+        "claim_text": "Name: Yusuf Hasan",
+        "source_record_ids": ["SHELTER-204"],
+        "source_spans": [
+          {
+            "span_id": "SPAN-S204-NAME",
+            "record_id": "SHELTER-204",
+            "field": "Name",
+            "quote": "Yusuf Hasan",
+            "text": "Yusuf Hasan",
+            "start": 34,
+            "end": 45,
+            "certainty": "exact",
+            "extraction_method": "deterministic_fixture",
+            "extraction_status": "extracted",
+            "normalization_note": null,
+            "valid": true,
+            "validation_error": null
+          }
+        ],
+        "certainty_basis": {"SPAN-S204-NAME": "exact"},
+        "generated_by_node": "extract",
+        "supported": true,
+        "support_reason": "Exact quote and offsets resolve to immutable source text.",
+        "violations": []
+      }
+    ],
+    "violations": [],
+    "contradictions_considered": [],
+    "rivals_considered": [],
+    "decision_critical_evidence": [],
+    "audit_chain_status": {},
+    "created_at": "2026-04-18T22:03:00Z",
+    "verifier_version": "threadline-evidence-contracts/1.0.0",
+    "safety_notice": "THREADLINE proposes candidate record connections for authorized human review and does not autonomously determine identity."
+  },
+  "evidence_contracts": [
+    {
+      "contract_id": "CONTRACT-SAMPLE-MATCH-001",
+      "case_id": "CASE-001",
+      "candidate_id": "MATCH-001",
+      "classification": "possible_candidate",
+      "contract_status": "passed",
+      "release_allowed": true,
+      "claims": [
+        {
+          "claim_id": "CLAIM-SAMPLE-NAME",
+          "candidate_id": "MATCH-001",
+          "claim_type": "extracted_fact",
+          "claim_text": "Name: Yusuf Hasan",
+          "source_record_ids": ["SHELTER-204"],
+          "source_spans": [
+            {
+              "span_id": "SPAN-S204-NAME",
+              "record_id": "SHELTER-204",
+              "field": "Name",
+              "quote": "Yusuf Hasan",
+              "text": "Yusuf Hasan",
+              "start": 34,
+              "end": 45,
+              "certainty": "exact",
+              "extraction_method": "deterministic_fixture",
+              "extraction_status": "extracted",
+              "normalization_note": null,
+              "valid": true,
+              "validation_error": null
+            }
+          ],
+          "certainty_basis": {"SPAN-S204-NAME": "exact"},
+          "generated_by_node": "extract",
+          "supported": true,
+          "support_reason": "Exact quote and offsets resolve to immutable source text.",
+          "violations": []
+        }
+      ],
+      "violations": [],
+      "contradictions_considered": [],
+      "rivals_considered": [],
+      "decision_critical_evidence": [],
+      "audit_chain_status": {},
+      "created_at": "2026-04-18T22:03:00Z",
+      "verifier_version": "threadline-evidence-contracts/1.0.0",
+      "safety_notice": "THREADLINE proposes candidate record connections for authorized human review and does not autonomously determine identity."
+    }
+  ],
+  "contract_release_status": "released",
   "records": [],
   "safety_notices": [
     "THREADLINE proposes candidate record connections for authorized human review and does not autonomously determine identity."

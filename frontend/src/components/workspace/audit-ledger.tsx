@@ -17,7 +17,7 @@ export function AuditLedger({ events }: { events: AuditEvent[] }) {
   }), [eventType, events, origin, query]);
 
   return (
-    <section className="audit-ledger" aria-labelledby="ledger-title">
+    <section className="audit-ledger" id="audit-ledger" aria-labelledby="ledger-title">
       <header className="research-panel-header">
         <div><span className="panel-kicker">Complete provenance record</span><h2 id="ledger-title">Case audit ledger</h2><p>Chronological, source-linked events for the synthetic workflow and human checkpoint.</p></div>
         <span>{filtered.length} / {events.length} events</span>
@@ -56,4 +56,3 @@ export function AuditLedger({ events }: { events: AuditEvent[] }) {
     </section>
   );
 }
-

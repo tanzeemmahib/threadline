@@ -49,9 +49,18 @@ export function ReconstructionCanvas({
   const relatedRecords = records.filter((record) => relatedRecordIds.has(record.record_id));
   const selectedEvent = data.events.find((event) => event.event_id === selection.eventId) ?? data.events[0];
   const selectedLocation = data.locations.find((location) => location.location_id === selection.locationId) ?? data.locations[0];
+  const compatibleFactors = candidate.compatibility_factors.filter((factor) => factor.status === "compatible");
+  const unresolvedFactors = candidate.compatibility_factors.filter((factor) => factor.status === "uncertain");
+  const conflictingFactors = candidate.compatibility_factors.filter((factor) => factor.status === "soft_conflict" || factor.status === "hard_conflict");
+  const graphTextAlternative = [
+    `${candidate.record_a_id} and ${candidate.record_b_id} share ${compatibleFactors.length ? compatibleFactors.map((factor) => factor.field.toLowerCase()).join(" and ") : "no independently sufficient compatible factors"}.`,
+    unresolvedFactors.length ? `${unresolvedFactors.map((factor) => factor.field).join(" and ")} ${unresolvedFactors.length === 1 ? "remains" : "remain"} unresolved.` : null,
+    conflictingFactors.length ? `${conflictingFactors.map((factor) => `${factor.field} is a ${factor.status.replace("_", " ")}`).join("; ")}.` : null,
+    "The candidate remains routed to human verification.",
+  ].filter(Boolean).join(" ");
 
   return (
-    <div className="reconstruction-canvas">
+    <div className="reconstruction-canvas" id="reconstruction-canvas">
       <header className="reconstruction-header">
         <div>
           <span className="panel-kicker">Synchronized case reconstruction</span>
@@ -63,7 +72,6 @@ export function ReconstructionCanvas({
       <ul className="reconstruction-legend" aria-label="Reconstruction evidence legend">
         <li className="legend-exact">Exact timestamp</li><li className="legend-estimated">Estimated timestamp</li><li className="legend-inferred">Inferred movement</li><li className="legend-verified">Verified location</li><li className="legend-approximate">Approximate location</li><li className="legend-contradiction">Contradiction</li><li className="legend-missing">Missing information</li>
       </ul>
-      {candidate.candidate_id !== "MATCH-001" && <p className="reconstruction-context-warning" role="note">No candidate-specific route can be reconstructed for this pair. The district route remains visible only as canonical incident context and is not evidence linking these records.</p>}
 
       <section className="reconstruction-graph" aria-labelledby="record-graph-title">
         <div className="reconstruction-layer-heading">
@@ -89,7 +97,12 @@ export function ReconstructionCanvas({
                 className={`factor-${factor.status} ${factor.factor_id === selection.factorId ? "is-selected" : ""}`}
                 key={factor.factor_id}
                 type="button"
-                onClick={() => onSelectFactor(factor.factor_id)}
+                aria-label={`${factor.field}: ${factor.status.replaceAll("_", " ")}. Open supporting source evidence.`}
+                onClick={() => {
+                  onSelectFactor(factor.factor_id);
+                  const sourceSpan = factor.evidence_span_ids[0];
+                  if (sourceSpan) onOpenEvidence(sourceSpan);
+                }}
               >
                 <span>{factor.field}</span><strong>{factor.status.replaceAll("_", " ")}</strong>
               </button>
@@ -98,7 +111,7 @@ export function ReconstructionCanvas({
         </div>
         <details className="reconstruction-fallback">
           <summary>Text alternative for record graph</summary>
-          <p>{candidate.record_a_id} and {candidate.record_b_id} are connected by compatible name, language, location, and timeline factors. Age is a soft conflict; the shelter-only scar is missing from the family report and remains unresolved.</p>
+          <p>{graphTextAlternative}</p>
         </details>
       </section>
 

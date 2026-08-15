@@ -1,85 +1,225 @@
 # THREADLINE
 
-Reconnect fragmented records. Preserve human judgment.
+**An experimental safety and review layer for proposed connections between fragmented synthetic missing-person records.**
 
-THREADLINE is an uncertainty-aware humanitarian record-reconciliation research prototype. It proposes evidence-linked candidate connections for authorized review and does not autonomously determine identity. Every included identity, incident, benchmark, trial, and screenshot fixture is synthetic.
+THREADLINE preserves exact provenance, challenges each candidate hypothesis with contradictions and rivals, and deterministically withholds outputs that are not safe for authorized human review. It treats an unsupported connection as the highest-cost failure and never presents record similarity as proof of identity.
 
-## Integrated repository
+## The problem
+
+Disaster records arrive incomplete, multilingual, inconsistently formatted, OCR-damaged, and sometimes contradictory. A phone may appear with a domestic or international prefix. One source may contain only a birth year. A native-script name may appear elsewhere as a Latin transliteration. Naive exact matching misses these threads; unconstrained fuzzy matching can merge different people.
+
+## The solution
+
+THREADLINE separates probabilistic extraction from deterministic identity policy:
+
+1. Ingest and quarantine untrusted record text.
+2. Extract typed identity evidence tied to exact source spans.
+3. Preserve raw evidence while building canonical comparison forms.
+4. Retrieve a bounded set of plausible candidate pairs.
+5. Compare each field as exact, normalized, compatible, partial, conflicting, missing, or incomparable.
+6. Apply explicit conflict blocks, evidence weights, and a fixed `0.35` recommendation threshold.
+7. Withhold unsafe output or prepare a possible connection for authorized human review.
+8. Retain reason codes, provenance, audit events, replay data, and counterfactual evidence.
+
+## Why it is different
+
+- **Evidence before confidence:** every displayed claim traces to an original quotation and offsets.
+- **Multilingual by design:** original scripts remain authoritative; transliteration is an additional comparison view, never a replacement.
+- **Partial evidence is typed:** a matching birth year is compatible with a full date, not falsely “exact” and not discarded.
+- **Conflict-aware:** government-ID and date-of-birth conflicts can block automatic linkage even when other fields agree.
+- **Conservative abstention:** names, locations, shared contacts, and weak attributes cannot independently authorize a merge.
+- **Benchmarkable policy:** retrieval, comparison, scoring, conflicts, and decision states are deterministic and shared by the benchmark and API path.
+
+## Architecture
+
+![THREADLINE evidence-first architecture](docs/threadline-workflow.png)
+
+Five schema-constrained stages can use the configured provider: extraction, multilingual normalization, hypothesis construction, contradiction challenge, and adjudication. Quarantine, source-span validation, timeline rules, candidate generation, pairwise comparison, scoring, blocking conflicts, privacy redaction, and the release contract are deterministic. Model-assisted stages may preserve or downgrade a result; they cannot upgrade a deterministic blocking state.
+
+The editable vector version is [docs/threadline-workflow.svg](docs/threadline-workflow.svg).
+
+## Safety
+
+THREADLINE proposes record connections for authorized review; it does not autonomously determine a person’s identity.
+
+- Zero observed false merges among 8 evaluated different-identity pairs and zero unsafe under-specified links in the archived Prompt V2 extraction/downstream-policy benchmark. The denominator is small and is not a field-safety guarantee.
+- Perfect (`1.000`) blocking-conflict recall in that benchmark.
+- Exact and partial DOB semantics preserve precision and block incompatible years.
+- Phone comparison handles Unicode digits, punctuation, `+`/`00` prefixes, conservative domestic/international compatibility, extensions, OCR repair provenance, and unsafe suffix cases.
+- Transliteration-only name evidence cannot recommend a link.
+- Malformed provider output fails closed after one bounded repair attempt.
+- Domain-valid certainty aliases are normalized, while unknown labels remain schema errors.
+- Review decisions are structured and appended to a tamper-evident audit history.
+
+## Benchmark
+
+THREADLINE keeps two evidence tracks separate. The submission comparison is a fixed-seed deterministic mock harness in which every system receives the same synthetic record packets; it demonstrates workflow behavior and reproducibility, not live-model quality. The archived Phase 11 Prompt V2 artifact below is one live-provider extraction run over 58 synthetic records; it is not a same-model baseline comparison or a claim about field performance.
+
+| Metric | Phase 10T Prompt V1 | Phase 11 Prompt V2 |
+|---|---:|---:|
+| Extraction success | — | 57 / 58 |
+| Micro extraction recall | — | 0.8626 |
+| Micro extraction precision | — | 0.8396 |
+| Micro extraction F1 | — | 0.8509 |
+| Retrieval recall | — | 14 / 14 |
+| True links | 3 | 4 |
+| False non-links | 11 | 10 |
+| False merges | 0 observed | 0 / 8 evaluated different-identity pairs |
+| Unsafe links | 0 | 0 |
+| Conflict recall | 1.000 | 1.000 |
+| Weighted safety score | -35 | -5 |
+
+Prompt V2 improved the separate targeted extraction comparison from `0.8615 → 0.8923` recall, `0.9333 → 0.9667` precision, and `0.8960 → 0.9280` F1. In the archived full run, 57 of 58 records produced schema-valid output; median successful-record latency was `49,714 ms`, nearest-rank p95 was `82,819 ms`, and 236,788 tokens were recorded. API cost was not preserved and is therefore **Not measured**.
+
+An August 2026 full live-provider Prompt V3 trial completed all `58 / 58` extractions and preserved the decision-safety results (4 true links, 0 false merges, 0 unsafe links, `1.000` conflict recall, WSS `-5`). It improved recall to `0.8846` but reduced precision to `0.6736` and F1 to `0.7648`, so it was not promoted. Production deliberately remains on the better-balanced Prompt V2 pending further precision work and repeated trials.
+
+Artifacts:
+
+- `backend/data/live_runs_phase11/full-prompt-v2-run-1/live-artifact.json`
+- `backend/data/live_runs_phase11/full-prompt-v2-run-1/raw-outputs.json`
+- `backend/data/live_runs_phase13/full-prompt-v3-run-1/live-artifact.json`
+- `docs/threadbench-data-card.md`
+- `docs/final-validation.md`
+- `docs/submission/results.json`
+- `docs/submission/results.csv`
+- `docs/submission/raw-outputs.json`
+- `docs/submission/benchmark-report.md`
+
+## Prior work and scope
+
+THREADLINE does not claim to have invented digital missing-person matching. The [ICRC Missing Persons Digital Matching project](https://www.icrc.org/sites/default/files/media_file/2024-12/MPDM_tool_A4_1%20pager.pdf) already describes multilingual matching, database search, and human analysis of candidate results. THREADLINE's narrower research contribution is exact claim-to-source lineage, adversarial contradiction analysis, retained rivals, prompt-injection containment, deterministic release rules around probabilistic stages, replay, counterfactual evaluation, and safety-weighted synthetic benchmarking.
+
+The design is informed by the ICRC [Handbook on Data Protection in Humanitarian Action](https://www.icrc.org/en/data-protection-humanitarian-action-handbook) and the [revised OCHA Data Responsibility Guidelines](https://centre.humdata.org/revised-ocha-data-responsibility-guidelines/). THREADLINE is not endorsed by either organization and has not been validated for operational humanitarian use.
+
+## Visual direction and provenance
+
+On August 9, 2026, the user explicitly authorized three Higgsfield `gpt_image_2` concept generations at 2K, 16:9: an opening documentary frame, the archive-to-workbench transition, and the safety/abstention scene. The downloaded references are retained under `docs/art-direction/` for provenance and review. They are not in the frontend public asset tree and are never embedded, served, or used as a background-video substitute. The shipped landing experience recreates the direction natively in semantic React, CSS, and SVG. See `docs/threadline-art-direction.md` and `creative/threadline/manifests/generation-manifest.json`.
+
+## Demo
+
+The quickest judge flow uses only synthetic data:
+
+```powershell
+./scripts/run-v1-demo.ps1
+```
+
+If PowerShell script execution is restricted:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/run-v1-demo.ps1
+```
+
+Then open:
+
+- `http://127.0.0.1:3000/demo?demo=guided` for the eight-scene evidence challenge.
+- The `passing_workspace` and `blocked_workspace` URLs printed by the script for persisted API-backed cases.
+- `http://127.0.0.1:8000/docs` for the live API contract.
+
+The guided case is explicitly fictional. It shows the same record packet through a reasonable single-prompt deterministic replay and the full workflow, then opens exact spans, a soft date conflict, a material location contradiction, a credible rival, the deterministic release contract, and the authorized-review handoff. The replay is visibly labelled **not model performance**.
+
+## Tech stack
+
+- **Backend:** Python 3.11+, FastAPI, Pydantic 2, RapidFuzz, HTTPX, SQLite, pytest, Ruff, mypy.
+- **Frontend:** Next.js 16 App Router, React 19, TypeScript, Tailwind CSS 4 plus repository CSS, Node’s test runner, ESLint.
+- **Provider interface:** OpenAI-compatible structured-output endpoint or deterministic mock provider.
+
+## Repository structure
 
 ```text
-frontend/   Next.js 16 / React 19 workspace, evaluation laboratory, and Trials UI
-backend/    FastAPI workflow, SQLite persistence, jobs, trials, and evaluation engine
-docs/       API, schemas, data cards, threat model, and reproducibility guidance
-shared/     canonical synthetic request/response examples
-scripts/    Windows PowerShell start and integration-smoke commands
+backend/
+  app/api/            FastAPI routes
+  app/prompts/        versioned extraction and workflow prompts
+  app/services/       normalization, retrieval, comparison, decisions, audit
+  app/workflow/       production orchestration nodes
+  fixtures/           synthetic benchmark and canonical identity assignments
+  tests/              unit, contract, integration, safety, adversarial tests
+frontend/
+  src/app/            Next.js routes and global styles
+  src/components/     workspace, evidence, review, and evaluation UI
+  src/data/           clearly labeled synthetic demo fixtures
+docs/                 architecture, safety, evaluation, demo, and submission docs
+scripts/              local start, demo, and integration-smoke commands
+shared/               stable sample and evaluation artifacts
 ```
 
-The frontend routes are `/`, `/workspace`, `/workspace/packet`, `/benchmark`, `/trials`, and `/methodology`. The existing visual language, responsive behavior, RTL evidence, keyboard focus, reduced-motion handling, and print packet remain intact.
+## Running locally
 
-## Quick start on Windows
-
-Backend (Python 3.11+):
+Install backend dependencies:
 
 ```powershell
-Set-Location backend
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-pip install -r requirements-dev.txt
-Copy-Item .env.example .env
-Set-Location ..
-.\scripts\start-backend.ps1
+cd backend
+py -3.11 -m venv .venv
+./.venv/Scripts/python.exe -m pip install -r requirements-dev.txt
+cd ..
 ```
 
-Frontend (Node.js 20+), in another terminal:
+Install frontend dependencies:
 
 ```powershell
-npm --prefix frontend install
-.\scripts\start-frontend.ps1
+cd frontend
+npm ci
+cd ..
 ```
 
-Open `http://localhost:3000`. `NEXT_PUBLIC_API_URL` defaults to the local backend in the start script. Without a URL, the workspace is explicit fixture mode. Failed requests are never silently replaced; the interface shows `Backend unavailable — synthetic fallback active` with retry/cancel state.
-
-## Provider modes
-
-`LLM_PROVIDER=mock` is the network-free default. UI labels are `Deterministic mock provider` and `Deterministic mock evaluation — not real model performance`. Connected OpenAI-compatible mode uses `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL`, `LLM_TEMPERATURE`, `LLM_TIMEOUT_SECONDS`, `LLM_MAX_RETRIES`, and `LLM_MAX_CONCURRENT_CALLS`; the UI labels it `Connected model provider` / `Measured provider evaluation`. Legacy `THREADLINE_OPENAI_*` variables still work. Keys remain server-side and are removed from exports.
-
-## Durable workflow and research evaluation
-
-SQLite at `backend/data/threadline.db` stores workflow runs, results, reviews, audit events, trials, jobs, reports, and export metadata across restarts. Evaluation jobs default to one concurrent job and expose queued/running/completed/failed/cancelled state, real progress, cancellation, errors, and reloadable result IDs.
-
-The benchmark runs exact/fuzzy, generic single-call, structured single-call, and the 12-stage THREADLINE workflow on identical records. Multi-seed defaults are `[104, 205, 306, 407, 508]`; aggregates include mean/std/min/max and fixed-seed bootstrap 95% intervals. Risk–coverage uses an observable review-priority score, never a probability. The adaptive router chooses deterministic-only, reduced, or full processing from observable complexity and compares actual metrics, calls, and duration.
-
-THREADLINE Trials includes eight fixtures (`TRIAL-001`…`008`) and 15 deterministic mutation types. Mutation records preserve ground truth, which is never included in model prompts. Trial results store all four outputs, a deterministic first-divergence finding, full workflow trace, provider mode, seed, mutations, and exportable result ID.
-
-## Quality and smoke checks
+Start two terminals from the repository root:
 
 ```powershell
-Set-Location backend
-python -m ruff check app tests
-python -m ruff format --check app tests
-python -m mypy app
-python -m pytest
+./scripts/start-backend.ps1
+```
 
-Set-Location ..\frontend
-npm run lint
-npm run typecheck
+```powershell
+./scripts/start-frontend.ps1
+```
+
+The default mock provider requires no credentials. For a live OpenAI-compatible provider, copy `backend/.env.example` to `backend/.env` and supply credentials locally. Never commit `.env`.
+
+## Tests
+
+The current runtime validation is green: 454 backend tests, the 10-gate deterministic validator, 28 Phase 11 extraction-contract tests, 35 frontend behavior tests, frontend typecheck, a full repository-wide ESLint pass, the production build, and desktop/mobile browser QA.
+
+The repository-wide Ruff and mypy baselines remain known debt (`184` Ruff findings and `139` mypy findings across 16 files at the current audit). The commands below are the complete check set, not a claim that those two static-analysis commands are currently green.
+
+```powershell
+cd backend
+./.venv/Scripts/python.exe -m pytest
+./.venv/Scripts/python.exe _phase10s_validate.py
+./.venv/Scripts/python.exe -m pytest tests/test_phase11_extraction_contract.py
+./.venv/Scripts/python.exe -m ruff check app tests scripts
+./.venv/Scripts/python.exe -m mypy app
+```
+
+```powershell
+cd frontend
 npm test
+npm run typecheck
+npm run lint
 npm run build
-
-Set-Location ..
-.\scripts\integration-smoke.ps1
 ```
 
-The opt-in connected-provider smoke is `python backend/scripts/real_provider_smoke.py` after setting `LLM_*` variables.
+With the backend running:
 
-## Safety boundary
+```powershell
+./scripts/integration-smoke.ps1
+```
 
-- No public people search, facial recognition, biometrics, identity probability, or automatic identity decision.
-- Original evidence remains immutable; derived fields cite source spans and provenance.
-- Prompt-like record text is quarantined before model-backed reasoning.
-- Candidate classifications are limited to strong-for-review, possible, insufficient, and conflicting.
-- Review actions record workflow state only; authorized external verification remains required.
-- Synthetic benchmark performance does not establish field safety or fairness.
+## Limitations
 
-Start with [API contract](docs/api-contract.md), [THREADLINE Trials](docs/threadline-trials.md), [THREADBENCH data card](docs/threadbench-data-card.md), [reproducibility](docs/reproducibility.md), and [threat model](docs/threat-model.md).
+- Evaluation uses synthetic fixtures and one archived full live-provider run for each of Prompt V2 and Prompt V3; it does not establish real-world accuracy or demographic fairness, repeatability, or confidence intervals.
+- A phone or email may be shared by a household, and transliteration is inherently ambiguous. THREADLINE therefore requires independent support and routes borderline cases to review.
+- The built-in transliteration layer covers selected scripts and common variants, not every language or naming convention.
+- Location and distinguishing-mark extraction remain provider-sensitive and require continued precision evaluation.
+- Audit hashes reveal mutation of chained event metadata and payloads, but do not prevent database changes or cryptographically seal the current contract/result rows. Production use needs access controls and an external artifact-signing or anchoring boundary.
+- Production deployment would require governance, access control, encryption, regional data handling, reviewer training, retention policy, and evaluation on representative authorized datasets.
+
+## Future work
+
+- Validate with consented, representative humanitarian datasets and measure subgroup error rates.
+- Add incident-aware country context for phone comparison without unsafe global assumptions.
+- Expand deterministic transliteration support and calibrated review tooling.
+- Complete repeated live-provider trials and report confidence intervals for extraction and decision drift.
+
+## Submission package
+
+The project description, technical narrative, safety statement, 2–4 minute demo script, judge Q&A, and checklist are in [docs/hackathon-submission.md](docs/hackathon-submission.md).
+
+Licensed under [MIT](LICENSE).

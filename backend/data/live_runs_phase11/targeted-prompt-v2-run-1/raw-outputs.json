@@ -1,0 +1,998 @@
+{
+  "run_id": "targeted-prompt-v2-run-1",
+  "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+  "timestamp": 1786132148.6201637,
+  "records": {
+    "GOV-A1": {
+      "status": "ok",
+      "latency_ms": 140526,
+      "attempts": 3,
+      "tokens": 5875,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Youssef Al Hassan",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "14",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        },
+        {
+          "key": "government_id",
+          "value": "GOV-12345",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:government_id"
+        },
+        {
+          "key": "date_of_birth",
+          "value": "2003-04-15",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:date_of_birth"
+        },
+        {
+          "key": "phone",
+          "value": "5551234",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:phone"
+        },
+        {
+          "key": "distinguishing_marks",
+          "value": "Scar above left eyebrow",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:distinguishing_marks"
+        },
+        {
+          "key": "last_known_location",
+          "value": "Al Noor School",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:last_known_location"
+        },
+        {
+          "key": "last_seen_time",
+          "value": "2026-04-18 16:30",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:last_seen_time"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age",
+          "government_id",
+          "date_of_birth",
+          "phone",
+          "distinguishing_marks",
+          "last_known_location",
+          "last_seen_time"
+        ],
+        "values": {
+          "name": "Youssef Al Hassan",
+          "age": "14",
+          "government_id": "GOV-12345",
+          "date_of_birth": "2003-04-15",
+          "phone": "5551234",
+          "distinguishing_marks": "Scar above left eyebrow",
+          "last_known_location": "Al Noor School",
+          "last_seen_time": "2026-04-18 16:30"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "exact",
+          "government_id": "exact",
+          "date_of_birth": "exact",
+          "phone": "exact",
+          "distinguishing_marks": "exact",
+          "last_known_location": "exact",
+          "last_seen_time": "exact"
+        }
+      }
+    },
+    "GOV-A2": {
+      "status": "ok",
+      "latency_ms": 100630,
+      "attempts": 2,
+      "tokens": 5019,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Yusuf Hasan",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "14",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        },
+        {
+          "key": "government_id",
+          "value": "GOV-12345",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:government_id"
+        },
+        {
+          "key": "date_of_birth",
+          "value": "2003-04-15",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:date_of_birth"
+        },
+        {
+          "key": "phone",
+          "value": "5551234",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:phone"
+        },
+        {
+          "key": "last_seen_time",
+          "value": "2026-04-18 19:10",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:last_seen_time"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age",
+          "government_id",
+          "date_of_birth",
+          "phone",
+          "last_seen_time"
+        ],
+        "values": {
+          "name": "Yusuf Hasan",
+          "age": "14",
+          "government_id": "GOV-12345",
+          "date_of_birth": "2003-04-15",
+          "phone": "5551234",
+          "last_seen_time": "2026-04-18 19:10"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "exact",
+          "government_id": "exact",
+          "date_of_birth": "exact",
+          "phone": "exact",
+          "last_seen_time": "exact"
+        }
+      }
+    },
+    "TRANS-A1": {
+      "status": "ok",
+      "latency_ms": 52890,
+      "attempts": 2,
+      "tokens": 4397,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "\u064a\u0648\u0633\u0641 \u0627\u0644\u062d\u0633\u0646",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "14",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        },
+        {
+          "key": "phone",
+          "value": "5551234",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:phone"
+        },
+        {
+          "key": "distinguishing_marks",
+          "value": "\u0646\u062f\u0628\u0629 \u0641\u0648\u0642 \u0627\u0644\u062d\u0627\u062c\u0628 \u0627\u0644\u0623\u064a\u0633\u0631",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:distinguishing_marks"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age",
+          "phone",
+          "distinguishing_marks"
+        ],
+        "values": {
+          "name": "\u064a\u0648\u0633\u0641 \u0627\u0644\u062d\u0633\u0646",
+          "age": "14",
+          "phone": "5551234",
+          "distinguishing_marks": "\u0646\u062f\u0628\u0629 \u0641\u0648\u0642 \u0627\u0644\u062d\u0627\u062c\u0628 \u0627\u0644\u0623\u064a\u0633\u0631"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "exact",
+          "phone": "exact",
+          "distinguishing_marks": "exact"
+        }
+      }
+    },
+    "TRANS-A2": {
+      "status": "ok",
+      "latency_ms": 49854,
+      "attempts": 2,
+      "tokens": 4317,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Youssef Al Hassan",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "14",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        },
+        {
+          "key": "phone",
+          "value": "5551234",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:phone"
+        },
+        {
+          "key": "distinguishing_marks",
+          "value": "Scar above left eyebrow",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:distinguishing_marks"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age",
+          "phone",
+          "distinguishing_marks"
+        ],
+        "values": {
+          "name": "Youssef Al Hassan",
+          "age": "14",
+          "phone": "5551234",
+          "distinguishing_marks": "Scar above left eyebrow"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "exact",
+          "phone": "exact",
+          "distinguishing_marks": "exact"
+        }
+      }
+    },
+    "CONFLICT-ID1": {
+      "status": "ok",
+      "latency_ms": 29654,
+      "attempts": 2,
+      "tokens": 3609,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Samir Nader",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "government_id",
+          "value": "GOV-11111",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:government_id"
+        },
+        {
+          "key": "date_of_birth",
+          "value": "1988-07-22",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:date_of_birth"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "government_id",
+          "date_of_birth"
+        ],
+        "values": {
+          "name": "Samir Nader",
+          "government_id": "GOV-11111",
+          "date_of_birth": "1988-07-22"
+        },
+        "certainties": {
+          "name": "exact",
+          "government_id": "exact",
+          "date_of_birth": "exact"
+        }
+      }
+    },
+    "CONFLICT-ID2": {
+      "status": "ok",
+      "latency_ms": 38217,
+      "attempts": 2,
+      "tokens": 3943,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Samir Nader",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "government_id",
+          "value": "GOV-22222",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:government_id"
+        },
+        {
+          "key": "date_of_birth",
+          "value": "1988-07-22",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:date_of_birth"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "government_id",
+          "date_of_birth"
+        ],
+        "values": {
+          "name": "Samir Nader",
+          "government_id": "GOV-22222",
+          "date_of_birth": "1988-07-22"
+        },
+        "certainties": {
+          "name": "exact",
+          "government_id": "exact",
+          "date_of_birth": "exact"
+        }
+      }
+    },
+    "AGEB-A1": {
+      "status": "ok",
+      "latency_ms": 41089,
+      "attempts": 2,
+      "tokens": 3985,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Omar Khalil",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "14",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        },
+        {
+          "key": "phone",
+          "value": "+1-555-1212",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:phone"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age",
+          "phone"
+        ],
+        "values": {
+          "name": "Omar Khalil",
+          "age": "14",
+          "phone": "+1-555-1212"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "exact",
+          "phone": "exact"
+        }
+      }
+    },
+    "AGEB-A2": {
+      "status": "ok",
+      "latency_ms": 61406,
+      "attempts": 2,
+      "tokens": 3883,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Omar Khalil",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "24",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        },
+        {
+          "key": "phone",
+          "value": "+1-555-1212",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:phone"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age",
+          "phone"
+        ],
+        "values": {
+          "name": "Omar Khalil",
+          "age": "24",
+          "phone": "+1-555-1212"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "exact",
+          "phone": "exact"
+        }
+      }
+    },
+    "MISS-A1": {
+      "status": "ok",
+      "latency_ms": 42534,
+      "attempts": 2,
+      "tokens": 3949,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Mina Darzi",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "14",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        },
+        {
+          "key": "last_known_location",
+          "value": "Al Noor School",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:last_known_location"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age",
+          "last_known_location"
+        ],
+        "values": {
+          "name": "Mina Darzi",
+          "age": "14",
+          "last_known_location": "Al Noor School"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "exact",
+          "last_known_location": "exact"
+        }
+      }
+    },
+    "MISS-A2": {
+      "status": "ok",
+      "latency_ms": 45359,
+      "attempts": 2,
+      "tokens": 4057,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Mina Darzi",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "approximately 14",
+          "certainty": "estimated",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        },
+        {
+          "key": "last_known_location",
+          "value": "Al Noor School",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:last_known_location"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age",
+          "last_known_location"
+        ],
+        "values": {
+          "name": "Mina Darzi",
+          "age": "approximately 14",
+          "last_known_location": "Al Noor School"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "estimated",
+          "last_known_location": "exact"
+        }
+      }
+    },
+    "MISS-A3": {
+      "status": "ok",
+      "latency_ms": 56766,
+      "attempts": 3,
+      "tokens": 3997,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Omar Khalil",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "35",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        },
+        {
+          "key": "last_known_location",
+          "value": "North Gate",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:last_known_location"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age",
+          "last_known_location"
+        ],
+        "values": {
+          "name": "Omar Khalil",
+          "age": "35",
+          "last_known_location": "North Gate"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "exact",
+          "last_known_location": "exact"
+        }
+      }
+    },
+    "PATH-A1": {
+      "status": "ok",
+      "latency_ms": 26894,
+      "attempts": 2,
+      "tokens": 3516,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Mohammed",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "30-40",
+          "certainty": "estimated",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age"
+        ],
+        "values": {
+          "name": "Mohammed",
+          "age": "30-40"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "estimated"
+        }
+      }
+    },
+    "PATH-A2": {
+      "status": "ok",
+      "latency_ms": 30899,
+      "attempts": 2,
+      "tokens": 3592,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Mohammed",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "approximately 35",
+          "certainty": "estimated",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age"
+        ],
+        "values": {
+          "name": "Mohammed",
+          "age": "approximately 35"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "estimated"
+        }
+      }
+    },
+    "PATH-A3": {
+      "status": "ok",
+      "latency_ms": 27199,
+      "attempts": 2,
+      "tokens": 3503,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Mohammed",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "32",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        },
+        {
+          "key": "distinguishing_marks",
+          "value": "Scar on left hand",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:distinguishing_marks"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age",
+          "distinguishing_marks"
+        ],
+        "values": {
+          "name": "Mohammed",
+          "age": "32",
+          "distinguishing_marks": "Scar on left hand"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "exact",
+          "distinguishing_marks": "exact"
+        }
+      }
+    },
+    "PATH-A4": {
+      "status": "ok",
+      "latency_ms": 57769,
+      "attempts": 2,
+      "tokens": 3825,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Fatima",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "age",
+          "value": "28",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:age"
+        },
+        {
+          "key": "shelter_location",
+          "value": "North Gate",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:shelter_location"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "age",
+          "shelter_location"
+        ],
+        "values": {
+          "name": "Fatima",
+          "age": "28",
+          "shelter_location": "North Gate"
+        },
+        "certainties": {
+          "name": "exact",
+          "age": "exact",
+          "shelter_location": "exact"
+        }
+      }
+    },
+    "OCR-A1": {
+      "status": "ok",
+      "latency_ms": 54846,
+      "attempts": 2,
+      "tokens": 4273,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Nadia Saleh",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "date_of_birth",
+          "value": "20l2-03-10",
+          "certainty": "estimated",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:date_of_birth"
+        },
+        {
+          "key": "phone",
+          "value": "+l-555-3434",
+          "certainty": "estimated",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:phone"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "date_of_birth",
+          "phone"
+        ],
+        "values": {
+          "name": "Nadia Saleh",
+          "date_of_birth": "20l2-03-10",
+          "phone": "+l-555-3434"
+        },
+        "certainties": {
+          "name": "exact",
+          "date_of_birth": "estimated",
+          "phone": "estimated"
+        }
+      }
+    },
+    "OCR-A2": {
+      "status": "ok",
+      "latency_ms": 40351,
+      "attempts": 2,
+      "tokens": 3955,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Nadia Saleh",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "date_of_birth",
+          "value": "2012-03-10",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:date_of_birth"
+        },
+        {
+          "key": "phone",
+          "value": "+1-555-3434",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:phone"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "date_of_birth",
+          "phone"
+        ],
+        "values": {
+          "name": "Nadia Saleh",
+          "date_of_birth": "2012-03-10",
+          "phone": "+1-555-3434"
+        },
+        "certainties": {
+          "name": "exact",
+          "date_of_birth": "exact",
+          "phone": "exact"
+        }
+      }
+    },
+    "PHONEFMT-A1": {
+      "status": "ok",
+      "latency_ms": 28468,
+      "attempts": 2,
+      "tokens": 3556,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Karim Mansour",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "phone",
+          "value": "5551234567",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:phone"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "phone"
+        ],
+        "values": {
+          "name": "Karim Mansour",
+          "phone": "5551234567"
+        },
+        "certainties": {
+          "name": "exact",
+          "phone": "exact"
+        }
+      }
+    },
+    "PHONEFMT-A2": {
+      "status": "ok",
+      "latency_ms": 33743,
+      "attempts": 2,
+      "tokens": 3700,
+      "error_class": null,
+      "error_preview": null,
+      "fields": [
+        {
+          "key": "name",
+          "value": "Karim Mansour",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:name"
+        },
+        {
+          "key": "phone",
+          "value": "+1-555-123-4567",
+          "certainty": "exact",
+          "normalization_status": "canonical",
+          "normalization_rule_id": "canonical:v1.0.0:phone"
+        }
+      ],
+      "unknown_keys": [],
+      "raw_output": {
+        "keys": [
+          "name",
+          "phone"
+        ],
+        "values": {
+          "name": "Karim Mansour",
+          "phone": "+1-555-123-4567"
+        },
+        "certainties": {
+          "name": "exact",
+          "phone": "exact"
+        }
+      }
+    }
+  }
+}

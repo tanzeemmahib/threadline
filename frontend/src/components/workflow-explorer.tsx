@@ -1,8 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { BrandMark } from "@/components/brand-mark";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type KeyboardEvent as ReactKeyboardEvent,
+} from "react";
 import { StatusPill } from "@/components/status-pill";
+import { ThreadButton, ThreadLoader } from "@/components/thread-motion";
 import type { WorkflowInspectorTab, WorkflowNode, WorkflowNodeTrace } from "@/types";
 
 const inspectorTabs: WorkflowInspectorTab[] = ["Overview", "Input", "Prompt", "Output", "Validation", "Evidence", "Diff"];
@@ -12,6 +18,7 @@ export function WorkflowExplorer({ nodes, traces = [] }: { nodes: WorkflowNode[]
   const [activeIndex, setActiveIndex] = useState(nodes.length - 1);
   const [replaying, setReplaying] = useState(false);
   const [tab, setTab] = useState<WorkflowInspectorTab>("Overview");
+  const inspectorTabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const selectedIndex = Math.max(0, nodes.findIndex((node) => node.node_id === selectedId));
   const selected = nodes[selectedIndex] ?? nodes[0];
   const trace = useMemo(() => traces.find((item) => item.node_id === selected?.node_id), [selected?.node_id, traces]);
@@ -43,10 +50,26 @@ export function WorkflowExplorer({ nodes, traces = [] }: { nodes: WorkflowNode[]
     setReplaying(true);
   }
 
+  function handleInspectorTabKeyDown(event: ReactKeyboardEvent<HTMLButtonElement>, index: number) {
+    let nextIndex: number | undefined;
+
+    if (event.key === "ArrowRight") nextIndex = (index + 1) % inspectorTabs.length;
+    if (event.key === "ArrowLeft") nextIndex = (index - 1 + inspectorTabs.length) % inspectorTabs.length;
+    if (event.key === "Home") nextIndex = 0;
+    if (event.key === "End") nextIndex = inspectorTabs.length - 1;
+    if (nextIndex === undefined) return;
+
+    event.preventDefault();
+    const nextTab = inspectorTabs[nextIndex];
+    if (!nextTab) return;
+    setTab(nextTab);
+    inspectorTabRefs.current[nextIndex]?.focus();
+  }
+
   if (!selected) return null;
 
   return (
-    <div className="workflow-explorer print-page">
+    <div className="workflow-explorer print-page" aria-busy={replaying}>
       <header className="workflow-explorer__header">
         <div>
           <span className="panel-kicker">RUN-001 · Synthetic trace</span>
@@ -54,12 +77,12 @@ export function WorkflowExplorer({ nodes, traces = [] }: { nodes: WorkflowNode[]
           <p>Inspect each node’s inputs, prompt boundary, structured output, validation, evidence, and state change.</p>
         </div>
         <div className="workflow-explorer__actions no-print">
-          <button className="button-secondary" type="button" onClick={replay} disabled={replaying}>{replaying ? "Replaying trace…" : "Replay node by node"}</button>
-          <button className="button-quiet" type="button" onClick={() => window.print()}>Print workflow</button>
+          <ThreadButton variant="secondary" motion="connect" type="button" onClick={replay} disabled={replaying}>{replaying ? "Replaying trace…" : "Replay node by node"}</ThreadButton>
+          <ThreadButton variant="quiet" motion="quiet" type="button" onClick={() => window.print()}>Print workflow</ThreadButton>
         </div>
       </header>
 
-      {replaying && <div className="workflow-processing" role="status"><BrandMark compact /><div><strong>Workflow processing</strong><span>Replaying deterministic UI state. No model calls are being made.</span></div></div>}
+      {replaying && <div className="workflow-processing" role="status" aria-live="polite" aria-atomic="true"><ThreadLoader compact announce={false} /><div><strong>Workflow processing</strong><span>Replaying deterministic UI state. No model calls are being made.</span></div></div>}
 
       <div className="workflow-scrubber">
         <label htmlFor="workflow-scrubber"><span>Workflow scrubber</span><strong>{String(activeIndex + 1).padStart(2, "0")} / {String(nodes.length).padStart(2, "0")} · {nodes[activeIndex]?.short_name}</strong></label>
@@ -88,7 +111,18 @@ export function WorkflowExplorer({ nodes, traces = [] }: { nodes: WorkflowNode[]
           <StatusPill tone={selected.category.includes("Human") ? "amber" : selected.category.includes("LLM") ? "cyan" : "teal"}>{selected.category}</StatusPill>
         </header>
         <div className="inspector-tabs" role="tablist" aria-label="Node inspector sections">
-          {inspectorTabs.map((item) => <button id={`inspector-tab-${item}`} key={item} type="button" role="tab" aria-selected={tab === item} aria-controls="node-inspector-panel" onClick={() => setTab(item)}>{item}</button>)}
+          {inspectorTabs.map((item, index) => <button
+            id={`inspector-tab-${item}`}
+            key={item}
+            ref={(element) => { inspectorTabRefs.current[index] = element; }}
+            type="button"
+            role="tab"
+            tabIndex={tab === item ? 0 : -1}
+            aria-selected={tab === item}
+            aria-controls="node-inspector-panel"
+            onClick={() => setTab(item)}
+            onKeyDown={(event) => handleInspectorTabKeyDown(event, index)}
+          >{item}</button>)}
         </div>
         <div id="node-inspector-panel" className="node-inspector-panel" role="tabpanel" aria-labelledby={`inspector-tab-${tab}`}>
           {tab === "Overview" && <dl className="inspector-definition-grid">

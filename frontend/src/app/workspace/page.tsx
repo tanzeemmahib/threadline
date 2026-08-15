@@ -10,11 +10,10 @@ export const metadata: Metadata = {
 export default function WorkspacePage() {
   return (
     <>
-      <SiteHeader workspace />
+      <SiteHeader workspace active="workspace" />
       <main id="main-content" className="workspace-page">
         <WorkspaceShell />
       </main>
     </>
   );
 }
-

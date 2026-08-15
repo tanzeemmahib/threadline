@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function TrialsPage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader active="trials" />
       <main id="main-content" className="trials-page">
         <TrialsLab />
       </main>

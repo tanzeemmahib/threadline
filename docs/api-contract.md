@@ -52,6 +52,8 @@ Status: implemented by the FastAPI service under `backend/`. The existing fronte
 
 The response retains frontend fields `case_id`, `workflow_run_id`, `status`, `summary`, `records`, `candidates`, and compact `workflow_trace`. Additive fields include `mode`, `workflow_trace_details`, `audit_events`, `safety_notices`, `human_review_requirement`, and measured `operational` counts.
 
+V1 adds `audit_chain_events`, typed `audit_integrity`, `replay_manifest`, `latest_replay_certificate`, `counterfactual_certificates`, full contract rule results, and claim lineage fields. See [V1 architecture](v1-architecture.md) for the complete route table and hash envelope.
+
 Each candidate has a frontend display `classification` and an exact machine `classification_code`: `strong_candidate_for_review`, `possible_candidate`, `insufficient_evidence`, or `conflicting_evidence`. Prohibited identity claims and invented match probabilities are schema-invalid.
 
 ## Evaluation APIs

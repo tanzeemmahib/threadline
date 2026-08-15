@@ -1,0 +1,153 @@
+{
+  "schema_version": "threadline-skill-allowlist/1.0.0",
+  "created_at": "2026-08-03T00:00:00-07:00",
+  "default_deny": true,
+  "repository_root": "C:\\Users\\Lenovo\\Downloads\\threadline",
+  "creative_root": "C:\\Users\\Lenovo\\Downloads\\threadline\\creative\\threadline",
+  "paid_generation_authorized": false,
+  "credit_policy": {
+    "available_credits": 1200,
+    "protected_reserve_credits": 120,
+    "maximum_spendable_credits": 1080,
+    "require_per_asset_cost_estimate": true,
+    "require_manifest_status": "approved"
+  },
+  "skills": {
+    "higgsfield-brandkit": {
+      "status": "restricted",
+      "allowed_use": ["workflow_knowledge_only"],
+      "deny_scripts": true
+    },
+    "higgsfield-game-generation": {
+      "status": "blocked",
+      "allowed_use": []
+    },
+    "higgsfield-generate": {
+      "status": "restricted",
+      "allowed_use": ["catalog_discovery", "schema_discovery", "cost_estimation"]
+    },
+    "higgsfield-marketplace-cards": {
+      "status": "blocked",
+      "allowed_use": []
+    },
+    "higgsfield-product-photoshoot": {
+      "status": "blocked",
+      "allowed_use": []
+    },
+    "higgsfield-soul-id": {
+      "status": "blocked",
+      "allowed_use": []
+    },
+    "higgsfield-video-explainer": {
+      "status": "restricted",
+      "allowed_use": ["cinematic_workflow_knowledge_only"]
+    },
+    "higgsfield-websites": {
+      "status": "restricted",
+      "allowed_use": ["design_accessibility_and_review_knowledge_only"],
+      "deny_create_repo_deploy_publish": true
+    },
+    "higgsfield-youtube-thumbnail": {
+      "status": "blocked",
+      "allowed_use": []
+    }
+  },
+  "approved_command_patterns": [
+    {
+      "pattern": "^higgsfield model list( --json)?$",
+      "purpose": "Read-only remote model catalog discovery",
+      "network": true
+    },
+    {
+      "pattern": "^higgsfield model get [a-z0-9_\\-]+( --json)?$",
+      "purpose": "Read-only model contract discovery",
+      "network": true
+    },
+    {
+      "pattern": "^higgsfield workflow list( --json)?$",
+      "purpose": "Read-only workflow catalog discovery",
+      "network": true
+    },
+    {
+      "pattern": "^higgsfield workflow get [a-z0-9_\\-]+( --json)?$",
+      "purpose": "Read-only workflow contract discovery",
+      "network": true
+    },
+    {
+      "pattern": "^higgsfield generate cost [a-z0-9_\\-]+(?: [a-zA-Z0-9_./:@\\-]+)*$",
+      "purpose": "Non-generating cost estimate after argument review",
+      "network": true
+    },
+    {
+      "pattern": "^higgsfield generate cost workflow [a-z0-9_\\-]+(?: [a-zA-Z0-9_./:@\\-]+)*$",
+      "purpose": "Non-generating workflow cost estimate after argument review",
+      "network": true
+    },
+    {
+      "pattern": "^higgsfield generate cost seedance_2_0 --prompt \\\"Macro documentary view of fictional paper records on a dark navy table with one restrained cyan evidence thread and unresolved amber annotations no people no faces no readable text\\\" --duration 8 --resolution 1080p --aspect_ratio 16:9 --generate_audio false --mode std$",
+      "purpose": "Exact non-generating cost estimate for the optional THREADLINE atmospheric plate",
+      "network": true
+    }
+  ],
+  "conditionally_allowed_after_authorization": [
+    {
+      "pattern": "^higgsfield generate create [a-z0-9_\\-]+ .+ --wait --json$",
+      "conditions": [
+        "paid_generation_authorized equals true in both allowlist and generation manifest",
+        "asset has a matching manifest record with status approved",
+        "exact command and estimated cost are recorded before execution",
+        "all local inputs resolve under approved_upload_roots",
+        "projected balance remains at or above protected reserve"
+      ]
+    }
+  ],
+  "approved_upload_roots": [
+    "creative/threadline/references",
+    "creative/threadline/previews",
+    "creative/threadline/finals",
+    "creative/threadline/audio"
+  ],
+  "explicitly_denied_patterns": [
+    "curl * | sh",
+    "curl * | bash",
+    "wget * | sh",
+    "Invoke-Expression",
+    "PowerShell -EncodedCommand",
+    "npx --yes *",
+    "npx shadcn* add http*",
+    "pip install *",
+    "npm install *",
+    "bun add *",
+    "brew install *",
+    "apt-get install *",
+    "higgsfield auth *",
+    "higgsfield upload *",
+    "higgsfield website create *",
+    "higgsfield website repo *",
+    "higgsfield website secrets *",
+    "higgsfield website deploy *",
+    "higgsfield website publish *",
+    "higgsfield website contest *",
+    "higgsfield game deploy *",
+    "higgsfield game publish *",
+    "higgsfield marketplace-cards create *",
+    "higgsfield product-photoshoot create *",
+    "higgsfield soul-id create *",
+    "python* .agents/skills/*/scripts/*",
+    "requests to api.meshy.ai",
+    "reads from browser profile or cookie databases",
+    "reads from .ssh, cloud credential directories, or Git credential stores",
+    "writes outside repository_root except invocation of already-installed application binaries"
+  ],
+  "network_allowlist": [
+    "configured Higgsfield API endpoint for read-only catalog/schema/cost calls"
+  ],
+  "evidence": {
+    "review": "creative/threadline/SECURITY_REVIEW.md",
+    "installed_skill_count": 9,
+    "inspected_file_count": 107,
+    "packaged_python_script_count": 14,
+    "package_manifest_count_inside_skills": 0,
+    "original_scanner_report_retained": false
+  }
+}

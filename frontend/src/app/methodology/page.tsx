@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { StatusPill } from "@/components/status-pill";
+import { ThreadLink } from "@/components/thread-motion";
 import { workflowNodes } from "@/data/mock-data";
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ const spanSchema = `{
 export default function MethodologyPage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader active="methodology" />
       <main id="main-content" className="methodology-page">
         <section className="methodology-hero shell" aria-labelledby="methodology-title">
           <div>
@@ -82,25 +82,38 @@ export default function MethodologyPage() {
 
           <section id="nodes" className="method-section">
             <header><span>04</span><div><p className="eyebrow">Node-by-node reasoning</p><h2 className="section-title">Open every stage. Inspect every contract.</h2></div></header>
-            <div className="node-method-list method-section__body">
-              {workflowNodes.map((node) => (
-                <details key={node.node_id} className="node-method">
-                  <summary><span>{String(node.order).padStart(2, "0")}</span><div><strong>{node.name}</strong><small>{node.category}</small></div><i aria-hidden="true">+</i></summary>
-                  <div className="node-method__content">
-                    <dl>
-                      <div><dt>Objective</dt><dd>{node.purpose}</dd></div>
-                      <div><dt>Why this node exists</dt><dd>It keeps {node.short_name.toLowerCase()} responsibility separate so its evidence, failure, and downstream effect can be inspected.</dd></div>
-                      <div><dt>Input</dt><dd>{node.input}</dd></div>
-                      <div><dt>Constraints</dt><dd><ul>{node.constraints.map((constraint) => <li key={constraint}>{constraint}</li>)}</ul></dd></div>
-                      <div><dt>Output schema</dt><dd>{node.output}</dd></div>
-                      <div><dt>Failure behaviour</dt><dd>{node.failure_condition} The original record remains preserved and the stage may return a warning or abstention.</dd></div>
-                      <div><dt>Downstream consumer</dt><dd>{node.downstream_consumer}</dd></div>
-                      <div><dt>Uses an LLM?</dt><dd>{node.method === "Configured LLM" ? "Yes — Configured LLM. No model name is assumed by the frontend." : `No — ${node.method}.`}</dd></div>
-                      <div><dt>Requires human input?</dt><dd>{node.human_input_requirement}</dd></div>
-                    </dl>
-                  </div>
-                </details>
-              ))}
+            <div className="node-method-ledger method-section__body">
+              <div className="node-method-ledger__head" aria-hidden="true">
+                <span>Stage</span><span>Responsibility</span><span>Execution</span><span>Hand-off</span><span>Contract</span>
+              </div>
+              <ol className="node-method-list">
+                {workflowNodes.map((node) => (
+                  <li className="node-method-list__item" key={node.node_id}>
+                    <details className="node-method">
+                      <summary>
+                        <span className="node-method__stage">{String(node.order).padStart(2, "0")}</span>
+                        <div className="node-method__identity"><strong>{node.name}</strong><small>{node.category}</small></div>
+                        <span className="node-method__method"><span className="sr-only">Execution method: </span>{node.method}</span>
+                        <span className="node-method__handoff"><span className="sr-only">Downstream consumer: </span>{node.downstream_consumer}</span>
+                        <i aria-hidden="true">+</i>
+                      </summary>
+                      <div className="node-method__content">
+                        <dl>
+                          <div><dt>Objective</dt><dd>{node.purpose}</dd></div>
+                          <div><dt>Why this node exists</dt><dd>It keeps {node.short_name.toLowerCase()} responsibility separate so its evidence, failure, and downstream effect can be inspected.</dd></div>
+                          <div><dt>Input</dt><dd>{node.input}</dd></div>
+                          <div><dt>Constraints</dt><dd><ul>{node.constraints.map((constraint) => <li key={constraint}>{constraint}</li>)}</ul></dd></div>
+                          <div><dt>Output schema</dt><dd>{node.output}</dd></div>
+                          <div><dt>Failure behaviour</dt><dd>{node.failure_condition} The original record remains preserved and the stage may return a warning or abstention.</dd></div>
+                          <div><dt>Downstream consumer</dt><dd>{node.downstream_consumer}</dd></div>
+                          <div><dt>Uses an LLM?</dt><dd>{node.method === "Configured LLM" ? "Yes — Configured LLM. No model name is assumed by the frontend." : `No — ${node.method}.`}</dd></div>
+                          <div><dt>Requires human input?</dt><dd>{node.human_input_requirement}</dd></div>
+                        </dl>
+                      </div>
+                    </details>
+                  </li>
+                ))}
+              </ol>
             </div>
           </section>
 
@@ -131,18 +144,18 @@ export default function MethodologyPage() {
 
           <section id="evaluation" className="method-section">
             <header><span>09</span><div><p className="eyebrow">Evaluation methodology</p><h2 className="section-title">Reference cases, baselines, and ablations.</h2></div></header>
-            <div className="method-section__body evaluation-method"><div><strong>Systems</strong><p>Exact/fuzzy matching, generic single-prompt LLM, structured single-call LLM, and full workflow.</p></div><div><strong>Quality metrics</strong><p>Candidate recall, false-link rate, abstention quality, evidence faithfulness, multilingual robustness, and tested prompt-injection resistance.</p></div><div><strong>Operational metrics</strong><p>Average latency and model-call count, measured under the same environment and reported with variance when a real harness is connected.</p></div><div><strong>Interactive laboratories</strong><p>Generate a fixed-seed dataset, remove seven safety or reasoning nodes, inspect affected cases, and filter errors by their first divergence.</p></div></div>
-            <p className="method-note">Current values on the Evaluation page are illustrative interface data only. A measured report must publish dataset version, reference labels, sample count, prompts/configuration, run environment, uncertainty intervals, and failure review.</p>
+            <div className="method-section__body evaluation-method"><div><strong>Systems</strong><p>A fixed-seed deterministic harness compares exact/fuzzy matching, two reasonable single-call prompts, and the full workflow on identical record packets. It evaluates workflow behavior, not live-model quality.</p></div><div><strong>Safety-first metrics</strong><p>Raw false-release opportunities are reported separately from possible-connection coverage, abstention, contradiction recall, citation validity, and reviewer handoff. A withheld case is not counted as an ordinary error.</p></div><div><strong>Archived live evidence</strong><p>The versioned Prompt V2 archive measures extraction and downstream policy on 58 synthetic records. It is one provider run, not a same-model baseline comparison or a field-validation claim.</p></div><div><strong>Ablations and counterfactuals</strong><p>Node removals are reported even when they produce no measured change. A separate deterministic counterfactual records the first rule changed when material contradictory evidence is removed.</p></div></div>
+            <p className="method-note">Submission artifacts lock fixture hashes, prompt and provider identifiers, raw outputs, metric definitions, denominators, and limitations. Cost, live same-model baseline comparison, and repeated-run uncertainty remain explicitly not measured.</p>
           </section>
 
           <section id="safety" className="method-section">
             <header><span>10</span><div><p className="eyebrow">Safety and privacy</p><h2 className="section-title">Treat records as evidence, never instructions.</h2></div></header>
-            <div className="safety-grid method-section__body"><article><h3>Instruction/data separation</h3><p>Embedded instructions are preserved as record content, quarantined, and excluded from workflow control. The demonstrated case is a test, not proof of universal resistance.</p></article><article><h3>Data minimization</h3><p>The privacy gate limits review packets to authorized fields and requires auditable access decisions.</p></article><article><h3>Language safety</h3><p>The interface uses candidate and compatibility language, avoids invented probabilities, and retains uncertainty labels.</p></article><article><h3>Human authority</h3><p>Final decisions require authorized external procedures and independent verification beyond this prototype.</p></article></div>
+            <div className="safety-grid method-section__body"><article><h3>Instruction/data separation</h3><p>Embedded instructions are preserved as record content, quarantined, and excluded from workflow control. The demonstrated case is a test, not proof of universal resistance.</p></article><article><h3>Reviewer minimization</h3><p>The privacy gate limits reviewer-facing packets. It runs after model-backed stages and must not be mistaken for provider-side data minimization.</p></article><article><h3>Language safety</h3><p>The interface uses candidate and compatibility language, avoids invented probabilities, and retains uncertainty labels.</p></article><article><h3>Human authority</h3><p>Final decisions require authorized external procedures and independent verification beyond this prototype.</p></article></div>
           </section>
 
           <section id="limitations" className="method-section">
             <header><span>11</span><div><p className="eyebrow">Limitations</p><h2 className="section-title">What remains unresolved.</h2></div></header>
-            <ul className="limitation-list method-section__body"><li>Synthetic examples do not represent the distribution, ambiguity, or harm profile of real disaster records.</li><li>No production backend, authorization layer, privacy enforcement, or measured evaluation output is present in this repository.</li><li>Transliteration and translation can erase context; language-specialist review remains necessary.</li><li>Prompt-injection testing covers one deterministic demonstration and cannot establish universal protection.</li><li>Candidate retrieval can miss relevant records or surface harmful false links; abstention and independent review remain essential.</li></ul>
+            <ul className="limitation-list method-section__body"><li>Synthetic examples do not represent the distribution, ambiguity, or harm profile of real disaster records.</li><li>The local backend has no production authentication, case-level authorization, encryption-at-rest boundary, retention policy, or operational privacy governance.</li><li>The central baseline comparison is a deterministic mock workflow harness—not measured live-model performance—and a same-model live comparison has not been run.</li><li>Transliteration and translation can erase context; language-specialist review remains necessary.</li><li>Prompt-injection testing covers bounded synthetic cases and cannot establish universal protection.</li><li>Candidate retrieval can miss relevant records or surface harmful false links; abstention and independent review remain essential.</li></ul>
           </section>
 
           <section id="future" className="method-section">
@@ -151,7 +164,7 @@ export default function MethodologyPage() {
           </section>
         </article>
 
-        <section className="methodology-close shell"><div><p className="eyebrow">See the method in motion</p><h2 className="section-title">Replay the synthetic workflow and inspect its evidence.</h2></div><Link className="button-primary" href="/workspace">Open workspace <span aria-hidden="true">→</span></Link></section>
+        <section className="methodology-close shell"><div><p className="eyebrow">See the method in motion</p><h2 className="section-title">Replay the synthetic workflow and inspect its evidence.</h2></div><ThreadLink variant="primary" bridge arrow="forward" href="/workspace">Open workspace</ThreadLink></section>
       </main>
     </>
   );

@@ -37,7 +37,10 @@ class Settings:
     app_version: str = "2.0.0"
     provider_mode: str = _first("LLM_PROVIDER", "THREADLINE_PROVIDER_MODE", default="mock")
     openai_base_url: str = _first(
-        "LLM_BASE_URL", "THREADLINE_OPENAI_BASE_URL", default="https://api.openai.com/v1"
+        "LLM_BASE_URL",
+        "LLM_BASE_URI",
+        "THREADLINE_OPENAI_BASE_URL",
+        default="https://api.openai.com/v1",
     )
     openai_api_key: str | None = _optional("LLM_API_KEY", "THREADLINE_OPENAI_API_KEY")
     openai_model: str = _first("LLM_MODEL", "THREADLINE_OPENAI_MODEL", default="gpt-4.1-mini")

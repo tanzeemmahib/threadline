@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { StatusPill } from "@/components/status-pill";
+import { ThreadButton, ThreadLoader } from "@/components/thread-motion";
 import {
   ApiRequestError,
   FALLBACK_NOTICE,
@@ -142,22 +143,22 @@ export function EvaluationRunConsole() {
       <div className="shell">
         <header className="research-section-heading"><div><p className="eyebrow">Persistent evaluation console</p><h2 className="section-title" id="run-console-title">Multi-seed evidence, not a single lucky run.</h2></div><p>Jobs persist progress and results in SQLite. Fixed-seed bootstrap intervals, review-priority risk–coverage, and adaptive routing all use actual stored outputs.</p></header>
         <div className="evaluation-console-grid">
-          <form className="dataset-controls" onSubmit={(event) => event.preventDefault()}>
+          <form className="dataset-controls" aria-busy={active} onSubmit={(event) => event.preventDefault()}>
             <div className="range-control-grid"><label><span><strong>Fictional identities</strong><output>{identities}</output></span><input type="range" min="2" max="50" value={identities} onChange={(event) => setIdentities(Number(event.target.value))} /></label><label><span><strong>Records per identity</strong><output>{recordsPerIdentity}</output></span><input type="range" min="2" max="8" value={recordsPerIdentity} onChange={(event) => setRecordsPerIdentity(Number(event.target.value))} /></label></div>
             <label className="seed-field"><span>Fixed seeds</span><input value={seedText} onChange={(event) => setSeedText(event.target.value)} /></label>
             <label className="seed-field"><span>Provider</span><select value={providerMode} onChange={(event) => setProviderMode(event.target.value as ProviderMode)}><option value="mock">Deterministic mock provider</option><option value="openai_compatible">Connected model provider</option></select></label>
-            <div className="dataset-export-actions"><button className="button-primary" type="button" disabled={active} onClick={() => void startJob()}>Queue multi-seed job</button>{active ? <button className="button-danger" type="button" onClick={() => void cancelJob()}>Cancel job</button> : null}</div>
-            <div className="job-progress" role="status" aria-live="polite"><div><span style={{ width: `${(job?.progress ?? 0) * 100}%` }} /></div><strong>{job?.state ?? "idle"}</strong><p>{message}{requestId ? ` · request ${requestId}` : ""}</p></div>
+            <div className="dataset-export-actions"><ThreadButton variant="primary" type="button" disabled={active} onClick={() => void startJob()}>{active ? <><ThreadLoader compact announce={false} />Queue multi-seed job</> : "Queue multi-seed job"}</ThreadButton>{active ? <ThreadButton variant="danger" type="button" onClick={() => void cancelJob()}>Cancel job</ThreadButton> : null}</div>
+            <div className="job-progress" role="status" aria-live="polite"><div><span style={{ "--thread-progress": job?.progress ?? 0 } as CSSProperties} /></div><strong>{job?.state ?? "idle"}</strong><p>{message}{requestId ? ` · request ${requestId}` : ""}</p></div>
             <label className="seed-field"><span>Reload stored result</span><select defaultValue="" onChange={(event) => { if (event.target.value) void loadResult(event.target.value); }}><option value="">Select a persisted benchmark suite</option>{storedResults.map((item) => <option key={item.result_id} value={item.result_id}>{item.result_id} · {new Date(item.created_at).toLocaleString()}</option>)}</select></label>
           </form>
-          <div className="evaluation-console-results">
+          <div className="evaluation-console-results" aria-busy={exporting !== null}>
             <div className="evaluation-console-label"><StatusPill tone={providerMode === "mock" ? "amber" : "teal"}>{providerMode === "mock" ? MOCK_EVALUATION_LABEL : MEASURED_EVALUATION_LABEL}</StatusPill></div>
             {result ? <>
               <dl className="console-summary"><div><dt>Successful seeds</dt><dd>{result.multi_seed.successful_runs}</dd></div><div><dt>Failed seeds</dt><dd>{result.multi_seed.failed_runs}</dd></div><div><dt>Cases</dt><dd>{result.multi_seed.total_cases}</dd></div><div><dt>Model calls</dt><dd>{result.multi_seed.model_calls}</dd></div></dl>
               <div className="console-table-wrap"><table className="operations-table"><caption>Multi-seed aggregate with fixed-seed bootstrap 95% intervals</caption><thead><tr><th>Metric</th><th>Mean</th><th>Std.</th><th>Min–max</th><th>95% CI</th></tr></thead><tbody>{result.multi_seed.metrics.map((metric) => <tr key={metric.metric_id}><th>{metric.metric_id.replaceAll("_", " ")}</th><td>{metric.mean.toFixed(2)}</td><td>{metric.standard_deviation.toFixed(2)}</td><td>{metric.minimum.toFixed(2)}–{metric.maximum.toFixed(2)}</td><td>{metric.confidence_interval.lower.toFixed(2)}–{metric.confidence_interval.upper.toFixed(2)}</td></tr>)}</tbody></table></div>
               <div className="console-table-wrap"><table className="operations-table"><caption>Risk–coverage policies based on observable review-priority scores, not probabilities</caption><thead><tr><th>Policy</th><th>Threshold</th><th>Coverage</th><th>Selective risk</th><th>Reviewed</th></tr></thead><tbody>{result.risk_coverage.map((point) => <tr key={point.policy}><th>{point.policy}</th><td>{point.review_priority_threshold.toFixed(2)}</td><td>{(point.coverage * 100).toFixed(1)}%</td><td>{(point.selective_risk * 100).toFixed(1)}%</td><td>{point.reviewed_cases}/{point.total_cases}</td></tr>)}</tbody></table></div>
               {result.adaptive_router ? <div className="adaptive-summary"><h3>Adaptive router comparison</h3><p>Full workflow: {result.adaptive_router.full_model_calls} calls / {result.adaptive_router.full_duration_ms.toFixed(1)} ms. Adaptive: {result.adaptive_router.adaptive_model_calls} calls / {result.adaptive_router.adaptive_duration_ms.toFixed(1)} ms.</p><ul>{result.adaptive_router.decisions.map((decision) => <li key={decision.case_id}><strong>{decision.case_id}</strong><span>{decision.profile.replaceAll("_", " ")} · {decision.observable_signals.join(", ")}</span></li>)}</ul></div> : null}
-              <div className="dataset-export-actions">{(["json", "csv", "markdown"] as const).map((format) => <button className="button-secondary" type="button" key={format} disabled={!resultId || exporting !== null} onClick={() => void exportResult(format)}>{exporting === format ? "Preparing…" : `Export ${format.toUpperCase()}`}</button>)}</div>
+              <div className="dataset-export-actions">{(["json", "csv", "markdown"] as const).map((format) => <ThreadButton variant="secondary" type="button" key={format} disabled={!resultId || exporting !== null} onClick={() => void exportResult(format)}>{exporting === format ? <><ThreadLoader compact announce={false} />Preparing…</> : `Export ${format.toUpperCase()}`}</ThreadButton>)}</div>
             </> : <div className="trial-empty-state"><strong>No persisted evaluation loaded</strong><p>Queue a job or select a stored result to inspect multi-seed statistics, risk–coverage, and adaptive routing.</p></div>}
           </div>
         </div>

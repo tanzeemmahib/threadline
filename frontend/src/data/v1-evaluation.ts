@@ -1,0 +1,15 @@
+export const v1HeldOutEvidence = {
+  artifactVersion: "threadline-v1-evaluation/1.0.0",
+  benchmarkId: "BENCH-8ED65F7BCC0B",
+  holdoutCases: 40,
+  negativeCases: 4,
+  observedUnsafeReleases: 0,
+  candidateTop1Recall: { numerator: 4, denominator: 36, percent: 11.111 },
+  releasedReviewPrecision: { numerator: 3, denominator: 3, percent: 100 },
+  differentIdentityWithheld: { numerator: 4, denominator: 4, percent: 100 },
+  conditionalWilsonUpperPercent: 48.989,
+  targetPercent: 10.0,
+  targetStatus: "not met",
+  label: "On the held-out synthetic benchmark, all 4 different-identity cases were withheld and 3 released review proposals were supported by the reference labels.",
+  limitation: "Only 4 cases offered a false-release opportunity. The conditional 95% Wilson upper bound is 48.989%, so the predeclared 10.0% demonstration target was not met. This is preliminary synthetic evidence, not a field-safety guarantee.",
+} as const;

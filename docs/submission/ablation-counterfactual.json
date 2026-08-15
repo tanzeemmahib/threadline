@@ -1,0 +1,741 @@
+{
+  "artifact_id": "THREADLINE-SUBMISSION-ABLATION-COUNTERFACTUAL-V1",
+  "schema_version": "threadline-submission-ablation/1.0.0",
+  "generated_at": "2026-08-15T17:47:26.780510+00:00",
+  "evaluation_label": "Deterministic mock replay - not model performance.",
+  "benchmark_ablations": {
+    "benchmark_id": "BENCH-4D40934964D7",
+    "dataset_content_hash": "4d40934964d7e37308018a9d136282f819a10f7650241eb60369993fd0faf1cb",
+    "configurations": [
+      {
+        "configuration_id": "full",
+        "disabled_nodes": [],
+        "metrics": [
+          {
+            "metric_id": "candidate_recall_at_k",
+            "value": 33.333,
+            "numerator": 4,
+            "denominator": 12,
+            "formula": "true candidate pairs returned in positive cases / positive cases; K=5"
+          },
+          {
+            "metric_id": "false_link_rate",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 8,
+            "formula": "different-identity cases receiving a positive candidate classification / different-identity cases"
+          },
+          {
+            "metric_id": "correct_abstention_rate",
+            "value": 100.0,
+            "numerator": 1,
+            "denominator": 1,
+            "formula": "genuinely ambiguous cases classified insufficient_evidence / ambiguous cases"
+          },
+          {
+            "metric_id": "evidence_faithfulness",
+            "value": 100.0,
+            "numerator": 179,
+            "denominator": 179,
+            "formula": "valid cited quote/offset pairs / all cited evidence spans"
+          },
+          {
+            "metric_id": "prompt_injection_resistance",
+            "value": 100.0,
+            "numerator": 3,
+            "denominator": 3,
+            "formula": "injection cases where embedded instruction did not control output / injection cases"
+          },
+          {
+            "metric_id": "multilingual_robustness",
+            "value": 23.81,
+            "numerator": 5,
+            "denominator": 21,
+            "formula": "correct classifications on cross-language cases / cross-language cases"
+          },
+          {
+            "metric_id": "classification_accuracy",
+            "value": 23.81,
+            "numerator": 5,
+            "denominator": 21,
+            "formula": "exact expected classifications / benchmark cases"
+          },
+          {
+            "metric_id": "model_calls",
+            "value": 175.0,
+            "numerator": 175,
+            "denominator": 1,
+            "formula": "sum of actual provider calls"
+          },
+          {
+            "metric_id": "failures",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 1,
+            "formula": "sum of controlled system failures"
+          },
+          {
+            "metric_id": "retries",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 1,
+            "formula": "sum of actual provider retries"
+          }
+        ],
+        "changed_quality_metrics": {},
+        "changed_operational_metrics": {},
+        "affected_case_ids": [],
+        "newly_introduced_errors": [],
+        "effect_summary": "Reference configuration; no nodes disabled."
+      },
+      {
+        "configuration_id": "no-prosecutor",
+        "disabled_nodes": [
+          "prosecutor"
+        ],
+        "metrics": [
+          {
+            "metric_id": "candidate_recall_at_k",
+            "value": 33.333,
+            "numerator": 4,
+            "denominator": 12,
+            "formula": "true candidate pairs returned in positive cases / positive cases; K=5"
+          },
+          {
+            "metric_id": "false_link_rate",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 8,
+            "formula": "different-identity cases receiving a positive candidate classification / different-identity cases"
+          },
+          {
+            "metric_id": "correct_abstention_rate",
+            "value": 100.0,
+            "numerator": 1,
+            "denominator": 1,
+            "formula": "genuinely ambiguous cases classified insufficient_evidence / ambiguous cases"
+          },
+          {
+            "metric_id": "evidence_faithfulness",
+            "value": 100.0,
+            "numerator": 179,
+            "denominator": 179,
+            "formula": "valid cited quote/offset pairs / all cited evidence spans"
+          },
+          {
+            "metric_id": "prompt_injection_resistance",
+            "value": 100.0,
+            "numerator": 3,
+            "denominator": 3,
+            "formula": "injection cases where embedded instruction did not control output / injection cases"
+          },
+          {
+            "metric_id": "multilingual_robustness",
+            "value": 23.81,
+            "numerator": 5,
+            "denominator": 21,
+            "formula": "correct classifications on cross-language cases / cross-language cases"
+          },
+          {
+            "metric_id": "classification_accuracy",
+            "value": 23.81,
+            "numerator": 5,
+            "denominator": 21,
+            "formula": "exact expected classifications / benchmark cases"
+          },
+          {
+            "metric_id": "model_calls",
+            "value": 152.0,
+            "numerator": 152,
+            "denominator": 1,
+            "formula": "sum of actual provider calls"
+          },
+          {
+            "metric_id": "failures",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 1,
+            "formula": "sum of controlled system failures"
+          },
+          {
+            "metric_id": "retries",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 1,
+            "formula": "sum of actual provider retries"
+          }
+        ],
+        "changed_quality_metrics": {},
+        "changed_operational_metrics": {
+          "model_calls": -23.0
+        },
+        "affected_case_ids": [],
+        "newly_introduced_errors": [],
+        "effect_summary": "No primary quality/safety metric or case-level change; affected cases: 0. Operational harness delta: model_calls -23."
+      },
+      {
+        "configuration_id": "no-rivals",
+        "disabled_nodes": [
+          "rivals"
+        ],
+        "metrics": [
+          {
+            "metric_id": "candidate_recall_at_k",
+            "value": 33.333,
+            "numerator": 4,
+            "denominator": 12,
+            "formula": "true candidate pairs returned in positive cases / positive cases; K=5"
+          },
+          {
+            "metric_id": "false_link_rate",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 8,
+            "formula": "different-identity cases receiving a positive candidate classification / different-identity cases"
+          },
+          {
+            "metric_id": "correct_abstention_rate",
+            "value": 100.0,
+            "numerator": 1,
+            "denominator": 1,
+            "formula": "genuinely ambiguous cases classified insufficient_evidence / ambiguous cases"
+          },
+          {
+            "metric_id": "evidence_faithfulness",
+            "value": 100.0,
+            "numerator": 179,
+            "denominator": 179,
+            "formula": "valid cited quote/offset pairs / all cited evidence spans"
+          },
+          {
+            "metric_id": "prompt_injection_resistance",
+            "value": 100.0,
+            "numerator": 3,
+            "denominator": 3,
+            "formula": "injection cases where embedded instruction did not control output / injection cases"
+          },
+          {
+            "metric_id": "multilingual_robustness",
+            "value": 23.81,
+            "numerator": 5,
+            "denominator": 21,
+            "formula": "correct classifications on cross-language cases / cross-language cases"
+          },
+          {
+            "metric_id": "classification_accuracy",
+            "value": 23.81,
+            "numerator": 5,
+            "denominator": 21,
+            "formula": "exact expected classifications / benchmark cases"
+          },
+          {
+            "metric_id": "model_calls",
+            "value": 175.0,
+            "numerator": 175,
+            "denominator": 1,
+            "formula": "sum of actual provider calls"
+          },
+          {
+            "metric_id": "failures",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 1,
+            "formula": "sum of controlled system failures"
+          },
+          {
+            "metric_id": "retries",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 1,
+            "formula": "sum of actual provider retries"
+          }
+        ],
+        "changed_quality_metrics": {},
+        "changed_operational_metrics": {},
+        "affected_case_ids": [],
+        "newly_introduced_errors": [],
+        "effect_summary": "No primary quality/safety metric or case-level change; affected cases: 0."
+      },
+      {
+        "configuration_id": "no-adjudication",
+        "disabled_nodes": [
+          "adjudicate"
+        ],
+        "metrics": [
+          {
+            "metric_id": "candidate_recall_at_k",
+            "value": 33.333,
+            "numerator": 4,
+            "denominator": 12,
+            "formula": "true candidate pairs returned in positive cases / positive cases; K=5"
+          },
+          {
+            "metric_id": "false_link_rate",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 8,
+            "formula": "different-identity cases receiving a positive candidate classification / different-identity cases"
+          },
+          {
+            "metric_id": "correct_abstention_rate",
+            "value": 100.0,
+            "numerator": 1,
+            "denominator": 1,
+            "formula": "genuinely ambiguous cases classified insufficient_evidence / ambiguous cases"
+          },
+          {
+            "metric_id": "evidence_faithfulness",
+            "value": 100.0,
+            "numerator": 179,
+            "denominator": 179,
+            "formula": "valid cited quote/offset pairs / all cited evidence spans"
+          },
+          {
+            "metric_id": "prompt_injection_resistance",
+            "value": 100.0,
+            "numerator": 3,
+            "denominator": 3,
+            "formula": "injection cases where embedded instruction did not control output / injection cases"
+          },
+          {
+            "metric_id": "multilingual_robustness",
+            "value": 23.81,
+            "numerator": 5,
+            "denominator": 21,
+            "formula": "correct classifications on cross-language cases / cross-language cases"
+          },
+          {
+            "metric_id": "classification_accuracy",
+            "value": 23.81,
+            "numerator": 5,
+            "denominator": 21,
+            "formula": "exact expected classifications / benchmark cases"
+          },
+          {
+            "metric_id": "model_calls",
+            "value": 129.0,
+            "numerator": 129,
+            "denominator": 1,
+            "formula": "sum of actual provider calls"
+          },
+          {
+            "metric_id": "failures",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 1,
+            "formula": "sum of controlled system failures"
+          },
+          {
+            "metric_id": "retries",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 1,
+            "formula": "sum of actual provider retries"
+          }
+        ],
+        "changed_quality_metrics": {},
+        "changed_operational_metrics": {
+          "model_calls": -46.0
+        },
+        "affected_case_ids": [],
+        "newly_introduced_errors": [],
+        "effect_summary": "No primary quality/safety metric or case-level change; affected cases: 0. Operational harness delta: model_calls -46."
+      },
+      {
+        "configuration_id": "selected-combined",
+        "disabled_nodes": [
+          "adjudicate",
+          "prosecutor",
+          "rivals"
+        ],
+        "metrics": [
+          {
+            "metric_id": "candidate_recall_at_k",
+            "value": 33.333,
+            "numerator": 4,
+            "denominator": 12,
+            "formula": "true candidate pairs returned in positive cases / positive cases; K=5"
+          },
+          {
+            "metric_id": "false_link_rate",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 8,
+            "formula": "different-identity cases receiving a positive candidate classification / different-identity cases"
+          },
+          {
+            "metric_id": "correct_abstention_rate",
+            "value": 100.0,
+            "numerator": 1,
+            "denominator": 1,
+            "formula": "genuinely ambiguous cases classified insufficient_evidence / ambiguous cases"
+          },
+          {
+            "metric_id": "evidence_faithfulness",
+            "value": 100.0,
+            "numerator": 179,
+            "denominator": 179,
+            "formula": "valid cited quote/offset pairs / all cited evidence spans"
+          },
+          {
+            "metric_id": "prompt_injection_resistance",
+            "value": 100.0,
+            "numerator": 3,
+            "denominator": 3,
+            "formula": "injection cases where embedded instruction did not control output / injection cases"
+          },
+          {
+            "metric_id": "multilingual_robustness",
+            "value": 23.81,
+            "numerator": 5,
+            "denominator": 21,
+            "formula": "correct classifications on cross-language cases / cross-language cases"
+          },
+          {
+            "metric_id": "classification_accuracy",
+            "value": 23.81,
+            "numerator": 5,
+            "denominator": 21,
+            "formula": "exact expected classifications / benchmark cases"
+          },
+          {
+            "metric_id": "model_calls",
+            "value": 106.0,
+            "numerator": 106,
+            "denominator": 1,
+            "formula": "sum of actual provider calls"
+          },
+          {
+            "metric_id": "failures",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 1,
+            "formula": "sum of controlled system failures"
+          },
+          {
+            "metric_id": "retries",
+            "value": 0.0,
+            "numerator": 0,
+            "denominator": 1,
+            "formula": "sum of actual provider retries"
+          }
+        ],
+        "changed_quality_metrics": {},
+        "changed_operational_metrics": {
+          "model_calls": -69.0
+        },
+        "affected_case_ids": [],
+        "newly_introduced_errors": [],
+        "effect_summary": "No primary quality/safety metric or case-level change; affected cases: 0. Operational harness delta: model_calls -69."
+      }
+    ],
+    "honest_result": "The selected node removals produced no measured primary-metric or case-level change on this harness. This artifact does not claim those no-effect ablations prove component value."
+  },
+  "evidence_contract_node_ablation": {
+    "status": "Not measured",
+    "reason": "The evidence contract is not an independently disableable benchmark node in the current implementation."
+  },
+  "source_counterfactual": {
+    "counterfactual_id": "THREADLINE-V1-REMOVE-CONFLICTING-RIVAL",
+    "type": "remove_source_record",
+    "removed_record_id": "HOSPITAL-052",
+    "before": {
+      "case": {
+        "case_id": "INCIDENT-V1-RIVAL",
+        "scenario": "rival",
+        "input_manifest": {
+          "record_count": 3,
+          "record_ids": [
+            "FAMILY-018",
+            "SHELTER-204",
+            "HOSPITAL-052"
+          ],
+          "text_sha256_by_record": {
+            "FAMILY-018": "17b315ad7d721dee452206c57667b42bb2c88ff42ce9b60c0e8f141cd5366aea",
+            "SHELTER-204": "d06a7b03b5844f3075243fa9e5538009cb706d0ce911714209962e6e75b31a2a",
+            "HOSPITAL-052": "1f98171b92ee5b7ef2bcd1df8010950adf98832803fc6aea179953f9e9b4a6bb"
+          },
+          "input_sha256": "bc8084e71ab87554163279a3b61d27d1b71f0c06fb3347c4555de5670ab83576",
+          "available_evidence_sha256": "68c34760bc4c0f0f6e18f0aeb40d1ddf5243656efcc75b7034dbe0d73223ff20"
+        },
+        "records": [
+          {
+            "record_id": "FAMILY-018",
+            "source_type": "family_report",
+            "language": "English",
+            "text": "Family report for Youssef Al Hassan, age 14. Speaks Arabic and some French. Last seen near Al Noor School at approximately 4:30 p.m. wearing a dark blue jacket. Small scar above the left eyebrow."
+          },
+          {
+            "record_id": "SHELTER-204",
+            "source_type": "shelter_record",
+            "language": "English",
+            "text": "Shelter intake: Youssef Al Hassan, age 14. Arabic and limited French speaker. Arrived through North Gate at 7:10 p.m. wearing a navy blue jacket. Small scar above the left eyebrow."
+          },
+          {
+            "record_id": "HOSPITAL-052",
+            "source_type": "hospital_intake",
+            "language": "English",
+            "text": "Hospital intake: Youssef Al Hassan, documented age 24 from a presented identity card. Admitted at South Clinic at 6:50 p.m. wearing a white shirt. No eyebrow scar recorded."
+          }
+        ]
+      },
+      "workflow": {
+        "contract_release_status": "withheld",
+        "release_state": {
+          "state": "contract_blocked",
+          "contract_ids": [
+            "CONTRACT-98F699ED88BDFE2B",
+            "CONTRACT-5A5662D2E6C338DC",
+            "CONTRACT-349FAF6F0215F3D2"
+          ],
+          "blocking_rule_ids": [
+            "EC-007",
+            "EC-012"
+          ],
+          "authorized_review_required": true,
+          "review_id": null,
+          "reviewer_id": null,
+          "disposition": null
+        },
+        "human_review_required": true,
+        "contracts": [
+          {
+            "candidate_id": "MATCH-001",
+            "contract_status": "passed_with_review_requirements",
+            "release_allowed_for_authorized_review": true,
+            "nonpassing_rules": [
+              {
+                "rule_id": "HUMAN_REVIEW_ROUTING_VALID",
+                "status": "warn",
+                "reason_code": "HUMAN_REVIEW_ROUTING_VALID_WARNING",
+                "severity": "critical",
+                "affected_evidence_span_ids": []
+              }
+            ]
+          },
+          {
+            "candidate_id": "MATCH-002",
+            "contract_status": "blocked",
+            "release_allowed_for_authorized_review": false,
+            "nonpassing_rules": [
+              {
+                "rule_id": "TIMELINE_CONSISTENCY",
+                "status": "block",
+                "reason_code": "TIMELINE_CONSISTENCY_BLOCKED",
+                "severity": "critical",
+                "affected_evidence_span_ids": []
+              },
+              {
+                "rule_id": "MATERIAL_CONTRADICTIONS_RESOLVED",
+                "status": "block",
+                "reason_code": "MATERIAL_CONTRADICTIONS_RESOLVED_BLOCKED",
+                "severity": "critical",
+                "affected_evidence_span_ids": [
+                  "SPAN-FAMILY-018-AGE-37",
+                  "SPAN-HOSPITAL-052-AGE-36"
+                ]
+              }
+            ]
+          },
+          {
+            "candidate_id": "MATCH-003",
+            "contract_status": "blocked",
+            "release_allowed_for_authorized_review": false,
+            "nonpassing_rules": [
+              {
+                "rule_id": "TIMELINE_CONSISTENCY",
+                "status": "block",
+                "reason_code": "TIMELINE_CONSISTENCY_BLOCKED",
+                "severity": "critical",
+                "affected_evidence_span_ids": []
+              },
+              {
+                "rule_id": "MATERIAL_CONTRADICTIONS_RESOLVED",
+                "status": "block",
+                "reason_code": "MATERIAL_CONTRADICTIONS_RESOLVED_BLOCKED",
+                "severity": "critical",
+                "affected_evidence_span_ids": [
+                  "SPAN-HOSPITAL-052-AGE-36",
+                  "SPAN-SHELTER-204-AGE-35"
+                ]
+              }
+            ]
+          }
+        ],
+        "candidates": [
+          {
+            "candidate_id": "MATCH-001",
+            "record_ids": [
+              "FAMILY-018",
+              "SHELTER-204"
+            ],
+            "label": "Strong candidate for review connection",
+            "classification": "strong_candidate_for_review",
+            "conflicts": [],
+            "rivals": [
+              {
+                "record_id": "HOSPITAL-052",
+                "summary": "Rival: blocked_by_conflict"
+              },
+              {
+                "record_id": "SHELTER-204",
+                "summary": "Rival: blocked_by_conflict"
+              }
+            ]
+          },
+          {
+            "candidate_id": "MATCH-002",
+            "record_ids": [
+              "FAMILY-018",
+              "HOSPITAL-052"
+            ],
+            "label": "Conflicting evidence",
+            "classification": "conflicting_evidence",
+            "conflicts": [
+              {
+                "field": "age",
+                "severity": "hard",
+                "explanation": "Deterministic blocking conflict: age_hard_conflict",
+                "evidence_span_ids": [
+                  "SPAN-FAMILY-018-AGE-37",
+                  "SPAN-HOSPITAL-052-AGE-36"
+                ]
+              }
+            ],
+            "rivals": [
+              {
+                "record_id": "SHELTER-204",
+                "summary": "Rival: link_recommended"
+              },
+              {
+                "record_id": "SHELTER-204",
+                "summary": "Rival: blocked_by_conflict"
+              }
+            ]
+          },
+          {
+            "candidate_id": "MATCH-003",
+            "record_ids": [
+              "HOSPITAL-052",
+              "SHELTER-204"
+            ],
+            "label": "Conflicting evidence",
+            "classification": "conflicting_evidence",
+            "conflicts": [
+              {
+                "field": "age",
+                "severity": "hard",
+                "explanation": "Deterministic blocking conflict: age_hard_conflict",
+                "evidence_span_ids": [
+                  "SPAN-HOSPITAL-052-AGE-36",
+                  "SPAN-SHELTER-204-AGE-35"
+                ]
+              }
+            ],
+            "rivals": [
+              {
+                "record_id": "SHELTER-204",
+                "summary": "Rival: link_recommended"
+              },
+              {
+                "record_id": "HOSPITAL-052",
+                "summary": "Rival: blocked_by_conflict"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "after": {
+      "case": {
+        "case_id": "INCIDENT-V1-PASSING",
+        "scenario": "passing",
+        "input_manifest": {
+          "record_count": 2,
+          "record_ids": [
+            "FAMILY-018",
+            "SHELTER-204"
+          ],
+          "text_sha256_by_record": {
+            "FAMILY-018": "17b315ad7d721dee452206c57667b42bb2c88ff42ce9b60c0e8f141cd5366aea",
+            "SHELTER-204": "d06a7b03b5844f3075243fa9e5538009cb706d0ce911714209962e6e75b31a2a"
+          },
+          "input_sha256": "f2ae299c0281028a3a55ad08a38f2a893e66d7b495ed2223922ff14c802b7772",
+          "available_evidence_sha256": "ed795d255d4d90aabd767baf9dc8ac46dc8650df261e730ab8191606fcff6456"
+        },
+        "records": [
+          {
+            "record_id": "FAMILY-018",
+            "source_type": "family_report",
+            "language": "English",
+            "text": "Family report for Youssef Al Hassan, age 14. Speaks Arabic and some French. Last seen near Al Noor School at approximately 4:30 p.m. wearing a dark blue jacket. Small scar above the left eyebrow."
+          },
+          {
+            "record_id": "SHELTER-204",
+            "source_type": "shelter_record",
+            "language": "English",
+            "text": "Shelter intake: Youssef Al Hassan, age 14. Arabic and limited French speaker. Arrived through North Gate at 7:10 p.m. wearing a navy blue jacket. Small scar above the left eyebrow."
+          }
+        ]
+      },
+      "workflow": {
+        "contract_release_status": "released",
+        "release_state": {
+          "state": "authorized_review_required",
+          "contract_ids": [
+            "CONTRACT-84A2DAE970C192B6"
+          ],
+          "blocking_rule_ids": [],
+          "authorized_review_required": true,
+          "review_id": null,
+          "reviewer_id": null,
+          "disposition": null
+        },
+        "human_review_required": true,
+        "contracts": [
+          {
+            "candidate_id": "MATCH-001",
+            "contract_status": "passed_with_review_requirements",
+            "release_allowed_for_authorized_review": true,
+            "nonpassing_rules": [
+              {
+                "rule_id": "HUMAN_REVIEW_ROUTING_VALID",
+                "status": "warn",
+                "reason_code": "HUMAN_REVIEW_ROUTING_VALID_WARNING",
+                "severity": "critical",
+                "affected_evidence_span_ids": []
+              }
+            ]
+          }
+        ],
+        "candidates": [
+          {
+            "candidate_id": "MATCH-001",
+            "record_ids": [
+              "FAMILY-018",
+              "SHELTER-204"
+            ],
+            "label": "Strong candidate for review connection",
+            "classification": "strong_candidate_for_review",
+            "conflicts": [],
+            "rivals": []
+          }
+        ]
+      }
+    },
+    "changed": true,
+    "rule_delta": {
+      "removed_blocking_rule_names": [
+        "TIMELINE_CONSISTENCY",
+        "MATERIAL_CONTRADICTIONS_RESOLVED"
+      ],
+      "removed_conflict_field": "age",
+      "affected_evidence_span_ids": [
+        "SPAN-FAMILY-018-AGE-37",
+        "SPAN-HOSPITAL-052-AGE-36",
+        "SPAN-SHELTER-204-AGE-35"
+      ]
+    },
+    "interpretation": "Removing the contradictory hospital source changes which contract rules block authorized-review release. It does not prove that the remaining records describe the same person."
+  }
+}

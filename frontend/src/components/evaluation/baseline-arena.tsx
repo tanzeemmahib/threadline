@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 import { StatusPill } from "@/components/status-pill";
+import { ThreadButton, ThreadLoader } from "@/components/thread-motion";
 import { mockCaseData } from "@/data/mock-data";
 import { baselineResults, evidenceMatrixRows } from "@/data/research-data";
 import { FALLBACK_NOTICE, MOCK_EVALUATION_LABEL, threadlineService } from "@/lib/api/client";
@@ -14,6 +15,7 @@ export function BaselineArena() {
   const [runState, setRunState] = useState("Synthetic example output · run the backend comparison for measured outputs.");
   const [busy, setBusy] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
+  const systemTabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const displayedResults = actualResults ?? baselineResults;
   const candidate = mockCaseData.candidates.find((item) => item.candidate_id === caseId) ?? mockCaseData.candidates[0];
   const selected = displayedResults.find((result) => result.system_id === selectedSystem) ?? displayedResults[3];
@@ -36,15 +38,29 @@ export function BaselineArena() {
     }
   }
 
+  function handleSystemTabKey(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    let nextIndex: number | null = null;
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex = (index + 1) % displayedResults.length;
+    if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex = (index - 1 + displayedResults.length) % displayedResults.length;
+    if (event.key === "Home") nextIndex = 0;
+    if (event.key === "End") nextIndex = displayedResults.length - 1;
+    if (nextIndex === null) return;
+    event.preventDefault();
+    const nextSystem = displayedResults[nextIndex];
+    if (!nextSystem) return;
+    setSelectedSystem(nextSystem.system_id);
+    systemTabRefs.current[nextIndex]?.focus();
+  }
+
   return (
     <section className="research-lab-section research-lab-section--dark" id="baseline-arena" aria-labelledby="baseline-arena-title">
-      <div className="shell">
+      <div className="shell" aria-busy={busy}>
         <header className="research-section-heading">
-          <div><p className="eyebrow">Baseline arena</p><h2 className="section-title" id="baseline-arena-title">Same case. Four reasoning shapes.</h2><p className="ablation-run-status" role="status">{runState}</p><div className="dataset-export-actions"><button className="button-primary" type="button" disabled={busy} onClick={() => void runComparison()}>{busy ? "Running…" : "Run backend comparison"}</button>{busy ? <button className="button-quiet" type="button" onClick={() => abortRef.current?.abort()}>Cancel</button> : null}</div></div>
+          <div><p className="eyebrow">Baseline arena</p><h2 className="section-title" id="baseline-arena-title">Same case. Four reasoning shapes.</h2><p className="ablation-run-status" role="status">{runState}</p><div className="dataset-export-actions"><ThreadButton variant="primary" type="button" disabled={busy} onClick={() => void runComparison()}>{busy ? <><ThreadLoader compact announce={false} />Running…</> : "Run backend comparison"}</ThreadButton>{busy ? <ThreadButton variant="danger" type="button" onClick={() => abortRef.current?.abort()}>Cancel</ThreadButton> : null}</div></div>
           <div className="arena-case-control"><label htmlFor="arena-case">Selected case</label><select id="arena-case" value={caseId} onChange={(event) => setCaseId(event.target.value)}>{mockCaseData.candidates.map((item) => <option value={item.candidate_id} key={item.candidate_id}>{item.candidate_id} · {item.classification ?? item.label}</option>)}</select></div>
         </header>
-        <div className="arena-system-tabs" role="tablist" aria-label="Comparison systems">{displayedResults.map((item) => <button key={item.system_id} type="button" role="tab" aria-selected={selectedSystem === item.system_id} onClick={() => setSelectedSystem(item.system_id)}><span>{item.system_name}</span><small>{item.output_origin}</small></button>)}</div>
-        <article className="arena-output" aria-live="polite">
+        <div className="arena-system-tabs" role="tablist" aria-label="Comparison systems">{displayedResults.map((item, index) => <button id={`arena-tab-${item.system_id}`} key={item.system_id} ref={(element) => { systemTabRefs.current[index] = element; }} type="button" role="tab" aria-selected={selected.system_id === item.system_id} aria-controls="arena-system-panel" tabIndex={selected.system_id === item.system_id ? 0 : -1} onClick={() => setSelectedSystem(item.system_id)} onKeyDown={(event) => handleSystemTabKey(event, index)}><span>{item.system_name}</span><small>{item.output_origin}</small></button>)}</div>
+        <article className="arena-output" id="arena-system-panel" role="tabpanel" aria-labelledby={`arena-tab-${selected.system_id}`} aria-live="polite">
           <header><div><span>{selected.system_name}</span><h3>{candidate.record_a_id} ↔ {candidate.record_b_id}</h3></div><div><StatusPill tone="slate">{selected.output_origin}</StatusPill><StatusPill tone={caseClassification === "Conflicting evidence" ? "red" : caseClassification === "Insufficient evidence" ? "amber" : "cyan"}>{caseClassification}</StatusPill></div></header>
           <dl className="arena-output-grid">
             <div><dt>Candidate output</dt><dd>{actualResults ? selected.candidate_output : caseId === "MATCH-001" ? selected.candidate_output : `${candidate.record_a_id} ↔ ${candidate.record_b_id}`}</dd></div>

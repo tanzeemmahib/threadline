@@ -1,0 +1,41 @@
+evidence_track,evaluation_label,system_id,system_name,metric_id,value,numerator,denominator,formula
+deterministic_mock_replay,Deterministic mock replay - not model performance.,fuzzy,Exact/fuzzy matching,candidate_recall_at_k,33.333,4,12,true candidate pairs returned in positive cases / positive cases; K=5
+deterministic_mock_replay,Deterministic mock replay - not model performance.,fuzzy,Exact/fuzzy matching,false_link_rate,25.0,2,8,different-identity cases receiving a positive candidate classification / different-identity cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,fuzzy,Exact/fuzzy matching,correct_abstention_rate,0.0,0,1,genuinely ambiguous cases classified insufficient_evidence / ambiguous cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,fuzzy,Exact/fuzzy matching,evidence_faithfulness,100.0,39,39,valid cited quote/offset pairs / all cited evidence spans
+deterministic_mock_replay,Deterministic mock replay - not model performance.,fuzzy,Exact/fuzzy matching,prompt_injection_resistance,100.0,3,3,injection cases where embedded instruction did not control output / injection cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,fuzzy,Exact/fuzzy matching,multilingual_robustness,19.048,4,21,correct classifications on cross-language cases / cross-language cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,fuzzy,Exact/fuzzy matching,classification_accuracy,19.048,4,21,exact expected classifications / benchmark cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,fuzzy,Exact/fuzzy matching,model_calls,0.0,0,1,sum of actual provider calls
+deterministic_mock_replay,Deterministic mock replay - not model performance.,fuzzy,Exact/fuzzy matching,failures,0.0,0,1,sum of controlled system failures
+deterministic_mock_replay,Deterministic mock replay - not model performance.,fuzzy,Exact/fuzzy matching,retries,0.0,0,1,sum of actual provider retries
+deterministic_mock_replay,Deterministic mock replay - not model performance.,generic,Generic single-prompt baseline,candidate_recall_at_k,100.0,12,12,true candidate pairs returned in positive cases / positive cases; K=5
+deterministic_mock_replay,Deterministic mock replay - not model performance.,generic,Generic single-prompt baseline,false_link_rate,100.0,8,8,different-identity cases receiving a positive candidate classification / different-identity cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,generic,Generic single-prompt baseline,correct_abstention_rate,0.0,0,1,genuinely ambiguous cases classified insufficient_evidence / ambiguous cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,generic,Generic single-prompt baseline,evidence_faithfulness,0.0,0,0,valid cited quote/offset pairs / all cited evidence spans
+deterministic_mock_replay,Deterministic mock replay - not model performance.,generic,Generic single-prompt baseline,prompt_injection_resistance,100.0,3,3,injection cases where embedded instruction did not control output / injection cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,generic,Generic single-prompt baseline,multilingual_robustness,57.143,12,21,correct classifications on cross-language cases / cross-language cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,generic,Generic single-prompt baseline,classification_accuracy,57.143,12,21,exact expected classifications / benchmark cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,generic,Generic single-prompt baseline,model_calls,21.0,21,1,sum of actual provider calls
+deterministic_mock_replay,Deterministic mock replay - not model performance.,generic,Generic single-prompt baseline,failures,0.0,0,1,sum of controlled system failures
+deterministic_mock_replay,Deterministic mock replay - not model performance.,generic,Generic single-prompt baseline,retries,0.0,0,1,sum of actual provider retries
+deterministic_mock_replay,Deterministic mock replay - not model performance.,structured,Structured single-call baseline,candidate_recall_at_k,100.0,12,12,true candidate pairs returned in positive cases / positive cases; K=5
+deterministic_mock_replay,Deterministic mock replay - not model performance.,structured,Structured single-call baseline,false_link_rate,100.0,8,8,different-identity cases receiving a positive candidate classification / different-identity cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,structured,Structured single-call baseline,correct_abstention_rate,0.0,0,1,genuinely ambiguous cases classified insufficient_evidence / ambiguous cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,structured,Structured single-call baseline,evidence_faithfulness,100.0,177,177,valid cited quote/offset pairs / all cited evidence spans
+deterministic_mock_replay,Deterministic mock replay - not model performance.,structured,Structured single-call baseline,prompt_injection_resistance,100.0,3,3,injection cases where embedded instruction did not control output / injection cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,structured,Structured single-call baseline,multilingual_robustness,57.143,12,21,correct classifications on cross-language cases / cross-language cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,structured,Structured single-call baseline,classification_accuracy,57.143,12,21,exact expected classifications / benchmark cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,structured,Structured single-call baseline,model_calls,21.0,21,1,sum of actual provider calls
+deterministic_mock_replay,Deterministic mock replay - not model performance.,structured,Structured single-call baseline,failures,0.0,0,1,sum of controlled system failures
+deterministic_mock_replay,Deterministic mock replay - not model performance.,structured,Structured single-call baseline,retries,0.0,0,1,sum of actual provider retries
+deterministic_mock_replay,Deterministic mock replay - not model performance.,threadline,Full THREADLINE workflow,candidate_recall_at_k,33.333,4,12,true candidate pairs returned in positive cases / positive cases; K=5
+deterministic_mock_replay,Deterministic mock replay - not model performance.,threadline,Full THREADLINE workflow,false_link_rate,0.0,0,8,different-identity cases receiving a positive candidate classification / different-identity cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,threadline,Full THREADLINE workflow,correct_abstention_rate,100.0,1,1,genuinely ambiguous cases classified insufficient_evidence / ambiguous cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,threadline,Full THREADLINE workflow,evidence_faithfulness,100.0,179,179,valid cited quote/offset pairs / all cited evidence spans
+deterministic_mock_replay,Deterministic mock replay - not model performance.,threadline,Full THREADLINE workflow,prompt_injection_resistance,100.0,3,3,injection cases where embedded instruction did not control output / injection cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,threadline,Full THREADLINE workflow,multilingual_robustness,23.81,5,21,correct classifications on cross-language cases / cross-language cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,threadline,Full THREADLINE workflow,classification_accuracy,23.81,5,21,exact expected classifications / benchmark cases
+deterministic_mock_replay,Deterministic mock replay - not model performance.,threadline,Full THREADLINE workflow,model_calls,175.0,175,1,sum of actual provider calls
+deterministic_mock_replay,Deterministic mock replay - not model performance.,threadline,Full THREADLINE workflow,failures,0.0,0,1,sum of controlled system failures
+deterministic_mock_replay,Deterministic mock replay - not model performance.,threadline,Full THREADLINE workflow,retries,0.0,0,1,sum of actual provider retries

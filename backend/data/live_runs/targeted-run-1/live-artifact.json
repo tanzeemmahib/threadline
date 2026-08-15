@@ -1,0 +1,67 @@
+{
+  "execution_mode": "live_provider",
+  "benchmark_version": "IDENTITY-BENCH-v1",
+  "fixture_sha256": "eed1032519f78ebfd18a49da55c920c1b280ade1b7e32ebda514157ff1ead850",
+  "ground_truth_schema": "v3",
+  "identity_schema_version": "1.0",
+  "identity_assignment_sha256": "5baf5a35a0641eeb7496abd5c133540526bfa7e0ac031e086de397c86c36e569",
+  "provider": "openai_compatible",
+  "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+  "temperature": 0.0,
+  "run_id": "targeted-run-1",
+  "timestamp": 1786075730.3384323,
+  "incidents": [
+    "INC-CLEAR-MATCH-GOV-ID",
+    "INC-CLEAR-MATCH-TRANSLITERATION",
+    "INC-CLEAR-NONMATCH-DIFFERENT-IDS",
+    "INC-CONFLICTING-EXACT-AGE",
+    "INC-CANDIDATE-MISSED-BY-ONE-STRATEGY",
+    "INC-PATHOLOGICAL-COMMON-NAME",
+    "INC-OCR-NOISE",
+    "INC-PHONE-FORMAT-VARIATION"
+  ],
+  "incident_count": 8,
+  "metrics": {
+    "evaluated_pairs": 13,
+    "same_identity_pairs": 5,
+    "different_identity_pairs": 2,
+    "under_specified_pairs": 6,
+    "universe_under_specified": 6,
+    "decision_state_counts": {
+      "link_recommended": 1,
+      "human_review_required": 3,
+      "insufficient_evidence": 7,
+      "blocked_by_conflict": 2,
+      "do_not_link": 0
+    },
+    "true_link_count": 1,
+    "false_merge_count": 0,
+    "false_non_match_count": 4,
+    "blocked_conflict_recall": 1.0,
+    "human_review": 3,
+    "insufficient": 7,
+    "blocked": 2,
+    "wss": -15,
+    "wss_v3": -15,
+    "unsafe_under_specified_link_count": 0
+  },
+  "safety": {
+    "different_identity_auto_links": 0,
+    "under_specified_auto_links": 0,
+    "blocked_conflict_recall": 1.0,
+    "malformed_output_escapes": 0,
+    "retrieval_fn": 0
+  },
+  "extraction_summary": {
+    "total": 19,
+    "ok": 19,
+    "errors": 0,
+    "error_classes": {},
+    "unknown_key_count": 4,
+    "avg_latency_ms": 25085,
+    "max_latency_ms": 77541,
+    "total_tokens": 21903,
+    "total_attempts": 21,
+    "canonical_key_validity": 0.7894736842105263
+  }
+}

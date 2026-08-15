@@ -1,0 +1,135 @@
+{
+  "execution_mode": "live_provider",
+  "benchmark_version": "IDENTITY-BENCH-v1",
+  "fixture_sha256": "eed1032519f78ebfd18a49da55c920c1b280ade1b7e32ebda514157ff1ead850",
+  "ground_truth_schema": "v3",
+  "identity_assignment_sha256": "5baf5a35a0641eeb7496abd5c133540526bfa7e0ac031e086de397c86c36e569",
+  "provider": "openai_compatible",
+  "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+  "temperature": 0.0,
+  "prompt_version": "v2",
+  "run_id": "targeted-prompt-v2-run-1",
+  "timestamp": 1786132149.0140467,
+  "incidents": [
+    "INC-CLEAR-MATCH-GOV-ID",
+    "INC-CLEAR-MATCH-TRANSLITERATION",
+    "INC-CLEAR-NONMATCH-DIFFERENT-IDS",
+    "INC-CONFLICTING-EXACT-AGE",
+    "INC-CANDIDATE-MISSED-BY-ONE-STRATEGY",
+    "INC-PATHOLOGICAL-COMMON-NAME",
+    "INC-OCR-NOISE",
+    "INC-PHONE-FORMAT-VARIATION"
+  ],
+  "incident_count": 8,
+  "metrics": {
+    "evaluated_pairs": 10,
+    "same_identity_pairs": 5,
+    "different_identity_pairs": 2,
+    "decision_state_counts": {
+      "link_recommended": 1,
+      "human_review_required": 4,
+      "insufficient_evidence": 3,
+      "blocked_by_conflict": 2,
+      "do_not_link": 0
+    },
+    "true_link_count": 1,
+    "false_merge_count": 0,
+    "false_non_match_count": 4,
+    "blocked_conflict_recall": 1.0,
+    "human_review": 4,
+    "insufficient": 3,
+    "blocked": 2,
+    "wss": -10,
+    "unsafe_under_specified_link_count": 0
+  },
+  "extraction_quality": {
+    "total_tp": 58,
+    "total_fp": 2,
+    "total_fn": 7,
+    "hallucinated_fields": 2,
+    "unknown_key_count": 0,
+    "micro_precision": 0.9667,
+    "micro_recall": 0.8923,
+    "micro_f1": 0.928,
+    "records_ok": 19,
+    "records_total": 19,
+    "per_field": {
+      "age": {
+        "expected": 15,
+        "extracted": 13,
+        "tp": 13,
+        "fp": 0,
+        "fn": 2,
+        "precision": 1.0,
+        "recall": 0.8667,
+        "f1": 0.9286
+      },
+      "date_of_birth": {
+        "expected": 6,
+        "extracted": 6,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "distinguishing_marks": {
+        "expected": 4,
+        "extracted": 4,
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1": 0.75
+      },
+      "government_id": {
+        "expected": 5,
+        "extracted": 4,
+        "tp": 4,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.8889
+      },
+      "last_known_location": {
+        "expected": 5,
+        "extracted": 4,
+        "tp": 4,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.8889
+      },
+      "name": {
+        "expected": 19,
+        "extracted": 19,
+        "tp": 19,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "phone": {
+        "expected": 11,
+        "extracted": 10,
+        "tp": 9,
+        "fp": 1,
+        "fn": 2,
+        "precision": 0.9,
+        "recall": 0.8182,
+        "f1": 0.8571
+      }
+    }
+  },
+  "safety": {
+    "different_identity_auto_links": 0,
+    "under_specified_auto_links": 0,
+    "blocked_conflict_recall": 1.0,
+    "malformed_output_escapes": 0
+  }
+}

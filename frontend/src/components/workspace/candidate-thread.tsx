@@ -32,13 +32,18 @@ export function CandidateThread({
   const recordB = records.find((record) => record.record_id === candidate.record_b_id);
   const injectionRecord = records.find((record) => record.record_id === "PHONE-066");
   const hardConflict = candidate.compatibility_factors.some((factor) => factor.status === "hard_conflict");
+  const relationshipAriaLabel = hardConflict
+    ? "A hard conflict interrupts the evidence path between the selected source records."
+    : injectionRecord
+      ? "Compatibility factors form a candidate path between the selected source records; a missing detail appears as a faded segment and the quarantined record remains isolated."
+      : "Compatibility factors form a candidate path between the selected source records; a missing detail appears as a faded segment.";
 
   if (!recordA || !recordB) {
     return <div className="workspace-empty"><strong>Candidate records unavailable.</strong><span>Original records remain preserved. Select another candidate thread.</span></div>;
   }
 
   return (
-    <div className="candidate-thread">
+    <div className="candidate-thread" id="candidate-thread">
       <header className="candidate-thread__header">
         <div>
           <span className="panel-kicker">Selected evidence path</span>
@@ -66,12 +71,14 @@ export function CandidateThread({
         <div className="relationship-map__evidence relationship-map__evidence--name">Name variant</div>
         <div className="relationship-map__evidence relationship-map__evidence--timeline">Timeline</div>
         <div className="relationship-map__evidence relationship-map__evidence--missing">Missing detail</div>
-        <div className="relationship-map__quarantined"><span>⊘</span><strong>PHONE-066</strong><small>Quarantined</small></div>
-        <svg viewBox="0 0 860 350" role="img" aria-label={hardConflict ? "A hard conflict interrupts the evidence path between the selected source records." : "Compatibility factors form a candidate path between the selected source records; a missing detail appears as a faded segment and the quarantined record remains isolated."}>
+        {injectionRecord && (
+          <div className="relationship-map__quarantined"><span>⊘</span><strong>{injectionRecord.record_id}</strong><small>Quarantined</small></div>
+        )}
+        <svg viewBox="0 0 860 350" role="img" aria-label={relationshipAriaLabel}>
           <path className="map-path map-path--main" d="M190 120 C300 120 300 80 430 80 S550 120 670 120" />
           <path className="map-path map-path--secondary" d="M190 150 C300 150 310 190 430 190 S560 150 670 150" />
           <path className="map-path map-path--missing" d="M430 190 C480 240 540 255 650 255" />
-          <path className="map-path map-path--quarantine" d="M94 260 C150 260 172 240 220 240" />
+          {injectionRecord && <path className="map-path map-path--quarantine" d="M94 260 C150 260 172 240 220 240" />}
           {hardConflict && <g className="break-mark"><path d="m406 68 18 24 18-24 18 24"/><circle cx="434" cy="80" r="21"/></g>}
         </svg>
         <figcaption id="relationship-caption">

@@ -1,0 +1,478 @@
+/*
+ * Archival editorial skin.
+ * The existing component and behavior contracts stay intact; this final layer
+ * translates the product from a cool SaaS dashboard into a forensic workbench.
+ */
+
+.workspace-page,
+.evaluation-page,
+.methodology-page,
+.trials-page {
+  background: var(--background-deep);
+}
+
+.incident-strip,
+.case-navigator,
+.workspace-panel-header,
+.center-toolbar,
+.review-panel__header,
+.research-index {
+  border-color: var(--border);
+  background: rgb(20 18 14 / 97%);
+  backdrop-filter: none;
+}
+
+.incident-strip {
+  min-height: 5rem;
+  padding-inline: clamp(1rem, 3vw, 2.4rem);
+}
+
+.incident-strip__identity strong,
+.workspace-panel-header h1,
+.workspace-panel-header h2,
+.review-panel__header h2,
+.candidate-thread__header h2,
+.lineage-workspace__header h2,
+.contradiction-workspace__header h2,
+.reconstruction-header h2,
+.review-section h3,
+.evidence-contract h3,
+.evaluation-page h1,
+.methodology-page h1,
+.trials-page h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.incident-strip__identity strong { font-size: 1rem; }
+.incident-strip__metrics dt,
+.incident-strip__mode,
+.workspace-panel-header > span,
+.panel-kicker {
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+}
+
+.panel-kicker { color: var(--brass-light); }
+
+.mode-dot,
+.mode-dot--mock,
+.mode-dot--backend {
+  border: 1px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--brass);
+  transform: rotate(45deg);
+}
+
+.workspace-grid {
+  border-top: 1px solid var(--border);
+  background: var(--background-deep);
+}
+
+.workspace-column {
+  background: var(--surface-subtle);
+}
+
+.workspace-records,
+.workspace-review { border-color: var(--border-strong); }
+.workspace-center { background: var(--background); }
+
+.workspace-panel-header,
+.center-toolbar {
+  min-height: 5rem;
+  padding-inline: 1.15rem;
+}
+
+.workspace-panel-header h1,
+.workspace-panel-header h2 { font-size: 1.45rem; }
+
+.case-navigator__threads > button,
+.candidate-switcher button,
+.lineage-factor,
+.contradiction-tabs button {
+  border-radius: 1px;
+  background: transparent;
+}
+
+.case-navigator__threads > button.is-active,
+.candidate-switcher button[aria-pressed="true"],
+.lineage-factor[aria-pressed="true"] {
+  border-color: var(--brass);
+  background: #262015;
+  box-shadow: inset 2px 0 var(--brass);
+}
+
+.record-filters {
+  padding: 1rem;
+}
+
+.search-field input,
+.record-filters select,
+.dialog-field select,
+.dialog-field textarea {
+  border-radius: 1px;
+  background: #12100d;
+}
+
+.record-row {
+  padding: 1rem;
+  transition: background 200ms ease, opacity 200ms ease;
+}
+
+.record-row:hover { background: #211d16; }
+.record-row.is-selected {
+  background: #282116;
+  box-shadow: inset 2px 0 var(--brass);
+}
+
+.record-row__name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.record-status {
+  border: 1px solid var(--border);
+  border-radius: 1px;
+  background: transparent;
+}
+
+.record-status--candidate { border-color: var(--bronze); background: #251f15; color: var(--brass-light); }
+.record-status--conflicting,
+.record-status--quarantined { border-color: #704030; background: var(--red-soft); color: #cd826b; }
+.record-status--insufficient { border-color: #6c5834; background: var(--amber-soft); color: #d1b475; }
+
+.segmented-control {
+  gap: 0.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.segmented-control button {
+  min-height: 2.6rem;
+  padding-inline: 0.8rem;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.segmented-control button[aria-pressed="true"] {
+  border-bottom-color: var(--brass);
+  background: transparent;
+  color: var(--ivory);
+}
+
+.candidate-thread,
+.lineage-workspace,
+.contradiction-workspace,
+.reconstruction-canvas,
+.review-panel__body,
+.workflow-explorer,
+.audit-ledger {
+  padding: clamp(1rem, 2vw, 1.6rem);
+}
+
+.relationship-map,
+.record-graph,
+.district-map,
+.lineage-stage,
+.contradiction-comparison,
+.workflow-node-detail,
+.panel,
+.panel-subtle {
+  border-color: var(--border);
+  border-radius: 2px;
+  background: var(--surface);
+  box-shadow: none;
+}
+
+.relationship-map,
+.record-graph,
+.district-map {
+  background-color: #12100d;
+  background-image: none;
+}
+
+.relationship-map__node,
+.relationship-map__quarantined,
+.relationship-map__evidence,
+.record-graph__records button,
+.record-graph__factors button,
+.workflow-node,
+.baseline-card,
+.trial-card,
+.method-card-grid article,
+.safety-grid article {
+  border-radius: 1px;
+  background: #1d1913;
+}
+
+.record-graph__records button.is-selected,
+.record-graph__factors button.is-selected {
+  border-color: var(--brass);
+  background: #282116;
+  box-shadow: inset 2px 0 var(--brass);
+}
+
+.relationship-map__evidence {
+  border-color: var(--bronze);
+  background: #282116;
+  color: var(--brass-light);
+}
+
+.district-road { stroke: #3b3327; }
+.district-route { stroke: var(--brass); }
+.district-map__controls button { border-radius: 1px; background: rgb(18 16 13 / 94%); }
+
+.lineage-stage {
+  background: #18150f;
+}
+
+.lineage-pair > div,
+.normalization-callout,
+.review-warning,
+.workflow-state-note,
+.example-interpretation,
+.trials-safety,
+.synthetic-value-note,
+.method-note,
+.reconstruction-context-warning {
+  border-left-color: var(--brass);
+  border-radius: 1px;
+  background: var(--amber-soft);
+}
+
+.lineage-spans mark,
+.source-evidence mark {
+  background: rgb(183 149 82 / 18%);
+  color: var(--ivory);
+}
+
+.guided-demo-launch,
+.guided-demo {
+  border-color: var(--brass);
+  border-radius: 2px;
+  background: #1a1711;
+  box-shadow: 0 12px 28px rgb(0 0 0 / 28%);
+}
+
+.guided-demo__progress span { background: var(--brass); }
+
+.review-panel__header--withheld {
+  min-height: 11rem;
+  display: grid;
+  align-content: end;
+  border-bottom: 1px solid var(--rust);
+  background: #17100d;
+}
+
+.review-panel__header--withheld h2 {
+  max-width: 16ch;
+  color: var(--ivory);
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 0.95;
+}
+
+.review-panel__header--withheld p { color: #c48572; font-family: var(--font-mono); }
+
+.comparison-row,
+.contract-claims > ol > li,
+.contract-violations,
+.evidence-contract,
+.evidence-contract--blocked {
+  border-radius: 1px;
+  background: #17140f;
+}
+
+.evidence-contract--blocked {
+  border-left: 2px solid var(--rust);
+  background: #18120f;
+}
+
+.contract-violations {
+  border-color: #704030;
+  background: #2c1814;
+}
+
+.contract-violations h4,
+.contract-violations strong { color: #d28a73; }
+.contract-violations p { color: #d8c7bd; }
+
+.verification-question { background: #2a2418; }
+
+.evidence-contract__header h3,
+.review-section h3 {
+  font-size: 1.65rem;
+}
+
+.evidence-contract__action {
+  min-height: 3.2rem;
+}
+
+dialog { background: transparent; }
+dialog::backdrop { background: rgb(8 7 5 / 86%); backdrop-filter: none; }
+.dialog-shell { border-radius: 2px; background: #1a1712; }
+
+.workspace-tabs {
+  background: #15120e;
+}
+
+.workspace-tabs button {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.workspace-tabs button[aria-selected="true"] {
+  border-bottom-color: var(--brass);
+  color: var(--ivory);
+}
+
+.workspace-review code {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.research-index {
+  border-radius: 1px;
+}
+
+.research-index a,
+.research-index button {
+  border-radius: 0;
+}
+
+.chart-track { fill: #15120e; }
+.chart-bar { fill: var(--brass); }
+
+.ablation-table td span {
+  background: rgb(183 149 82 / 13%);
+}
+
+.node-state-diff pre,
+.schema-grid pre,
+.methodology-page code,
+.evaluation-page code,
+.trials-page code {
+  color: var(--bone);
+}
+
+.trials-hero {
+  background-color: var(--background-deep);
+  background-image: none;
+}
+
+.mutation-selector label:has(input:checked) {
+  border-color: var(--brass);
+  background: var(--cyan-soft);
+}
+
+.record-row.is-related:not(.is-selected) { background: rgb(183 149 82 / 4%); }
+
+.workflow-processing {
+  border-color: var(--bronze);
+  border-radius: 1px;
+  background: #282116;
+}
+
+.workflow-node--active { box-shadow: inset 2px 0 var(--brass); }
+
+.integrity-panel {
+  border-color: var(--border-strong);
+  border-radius: 1px;
+  background: #1b1812;
+}
+
+@media (max-width: 1180px) {
+  .workspace-grid { border-top: 0; }
+
+  .workspace-page .center-toolbar .segmented-control button,
+  .workspace-page .district-map__controls button,
+  .workspace-page .timeline-selection-detail button,
+  .workspace-page .inspector-tabs button,
+  .workspace-page .incident-strip__mode .button-quiet,
+  .workspace-page .reconstruction-fallback summary {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 767px) {
+  .workspace-tabs {
+    grid-template-columns: minmax(3.1rem, 0.8fr) minmax(6.3rem, 1.65fr) minmax(3.1rem, 0.8fr) minmax(3.85rem, 1fr) minmax(2.75rem, 0.65fr);
+  }
+
+  .workspace-tabs button {
+    overflow: hidden;
+    min-height: 2.75rem;
+    padding-inline: 0.25rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .center-toolbar > .status-pill { font-size: 0.6875rem; }
+
+  .center-toolbar .segmented-control {
+    padding: 0 0 0.35rem;
+    border-bottom: 1px solid var(--border-strong);
+    background: transparent;
+  }
+
+  .center-toolbar .segmented-control button {
+    min-height: 2.75rem;
+    padding-inline: 0.85rem;
+    font-size: 0.6875rem;
+  }
+
+  .guided-demo-launch span,
+  .guided-demo__index span { font-size: 0.6875rem; }
+
+  .workspace-page .district-map__controls button {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    font-size: 0.6875rem;
+  }
+}
+
+@media print {
+  body::before { display: none; }
+  .workspace-page,
+  .workspace-grid,
+  .workspace-column,
+  .workspace-center,
+  .evaluation-page,
+  .methodology-page,
+  .trials-page {
+    background: #f4efe5 !important;
+    color: #262019 !important;
+  }
+  .panel,
+  .panel-subtle,
+  .workflow-node,
+  .workflow-node-detail,
+  .workflow-state-note,
+  .relationship-map,
+  .record-graph,
+  .district-map,
+  .lineage-stage {
+    border-color: #b7aa96 !important;
+    background: #fffdf8 !important;
+    color: #262019 !important;
+    box-shadow: none !important;
+  }
+}

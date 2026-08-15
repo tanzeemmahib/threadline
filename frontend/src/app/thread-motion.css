@@ -1,0 +1,753 @@
+/* THREADLINE motion grammar: fragment → trace → signal → connection → resolution. */
+
+:root {
+  --thread-motion-micro: 160ms;
+  --thread-motion-fast: 240ms;
+  --thread-motion-signal: 300ms;
+  --thread-motion-standard: 420ms;
+  --thread-motion-trace: 580ms;
+  --thread-motion-resolve: 720ms;
+  --thread-motion-route: 320ms;
+  --thread-arrow-delay: 70ms;
+  --thread-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --thread-ease-trace: cubic-bezier(0.22, 1, 0.36, 1);
+  --thread-ease-resolve: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.thread-control {
+  --thread-magnetic-x: 0px;
+  --thread-magnetic-y: 0px;
+  --thread-content-x: 0px;
+  --thread-content-y: 0px;
+  --thread-proximity: 0;
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  transform: translate3d(var(--thread-magnetic-x), var(--thread-magnetic-y), 0);
+  transform-origin: center;
+  transition:
+    border-color var(--thread-motion-fast) ease,
+    background var(--thread-motion-fast) ease,
+    color var(--thread-motion-fast) ease,
+    box-shadow var(--thread-motion-fast) ease,
+    transform var(--thread-motion-fast) var(--thread-ease-out);
+}
+
+.thread-control__content {
+  position: relative;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: inherit;
+  transform: translate3d(var(--thread-content-x), var(--thread-content-y), 0);
+  transition: letter-spacing var(--thread-motion-standard) var(--thread-ease-out), transform var(--thread-motion-fast) var(--thread-ease-out);
+}
+
+.thread-control:disabled,
+.thread-control[aria-disabled="true"] {
+  --thread-magnetic-x: 0px !important;
+  --thread-magnetic-y: 0px !important;
+  --thread-content-x: 0px !important;
+  --thread-content-y: 0px !important;
+}
+
+.trace-border {
+  position: absolute;
+  z-index: 2;
+  inset: 1px;
+  color: var(--bronze);
+  pointer-events: none;
+}
+
+.trace-border svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.trace-border path {
+  fill: none;
+  stroke: currentColor;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  stroke-linecap: square;
+  stroke-width: 0.65;
+  transition: stroke-dashoffset var(--thread-motion-trace) var(--thread-ease-trace);
+}
+
+.thread-node {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: var(--background-deep);
+  opacity: 0.26;
+  transition: background var(--thread-motion-fast) ease, opacity var(--thread-motion-fast) ease, transform var(--thread-motion-fast) var(--thread-ease-out);
+}
+
+.thread-node--active,
+.thread-node--resolved { background: currentColor; opacity: 1; }
+.thread-node--interrupted { border-color: var(--rust); opacity: 1; }
+
+.trace-border__origin,
+.trace-border__destination {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.trace-border__origin {
+  left: -2px;
+  opacity: calc(0.18 + var(--thread-proximity) * 0.72);
+}
+
+.trace-border__destination { right: -2px; opacity: 0; }
+
+.thread-arrow {
+  position: relative;
+  z-index: 4;
+  width: 1.6rem;
+  height: 0.7rem;
+  flex: 0 0 auto;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 1;
+}
+
+.thread-arrow__stem,
+.thread-arrow__head {
+  stroke-dasharray: 1;
+  transition: stroke-dashoffset var(--thread-motion-standard) var(--thread-ease-trace);
+}
+
+.thread-arrow__stem { stroke-dashoffset: 0.42; transition-delay: var(--thread-arrow-delay); }
+.thread-arrow__head { stroke-dashoffset: 1; transition-delay: 0ms; }
+
+.thread-control__connection {
+  position: absolute;
+  z-index: 2;
+  right: 0.65rem;
+  bottom: 0.28rem;
+  left: 0.65rem;
+  display: grid;
+  grid-template-columns: 4px 1fr 4px;
+  align-items: center;
+  height: 4px;
+  color: currentColor;
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.thread-control__connection i {
+  width: 4px;
+  height: 4px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: var(--background-deep);
+  opacity: 0.45;
+  transition: background var(--thread-motion-fast) ease, opacity var(--thread-motion-fast) ease;
+}
+
+.thread-control__connection b {
+  position: relative;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--thread-motion-standard) var(--thread-ease-trace);
+}
+
+.thread-control__connection b::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  content: "";
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity var(--thread-motion-fast) ease;
+}
+
+.thread-pulse {
+  position: absolute;
+  z-index: 3;
+  right: 14%;
+  bottom: 0.3rem;
+  left: 14%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor 44%, currentColor 56%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transform: scaleX(0.16) translateX(-190%);
+  transform-origin: center;
+}
+
+.thread-control.is-pulsing .thread-pulse {
+  animation: thread-signal-travel var(--thread-motion-signal) var(--thread-ease-resolve) both;
+}
+
+.thread-control.is-pulsing .thread-control__connection i:last-child {
+  animation: thread-destination-resolve var(--thread-motion-signal) var(--thread-ease-out) both;
+}
+
+.thread-control.is-pressing:not(:disabled):not([aria-disabled="true"]) {
+  box-shadow: 0 2px 8px rgb(0 0 0 / 16%);
+  transform: translate3d(var(--thread-magnetic-x), calc(var(--thread-magnetic-y) + 1px), 0) scale(0.988);
+  transition-duration: 85ms;
+}
+
+.thread-control.is-pressing .trace-border { inset: 2px; }
+.thread-control.is-pressing .thread-control__content { transform: translate3d(var(--thread-content-x), calc(var(--thread-content-y) + 1px), 0); }
+
+.thread-control.is-releasing {
+  animation: thread-control-settle var(--thread-motion-fast) var(--thread-ease-out);
+}
+
+.button-primary.thread-control:hover,
+.button-primary.thread-control:active,
+.editorial-button.thread-control:hover,
+.editorial-button.thread-control:active,
+.site-header__text-cta.thread-control:hover,
+.site-header__text-cta.thread-control:active {
+  transform: translate3d(var(--thread-magnetic-x), var(--thread-magnetic-y), 0);
+}
+
+.button-primary.thread-control.is-pressing,
+.editorial-button.thread-control.is-pressing,
+.site-header__text-cta.thread-control.is-pressing {
+  transform: translate3d(var(--thread-magnetic-x), calc(var(--thread-magnetic-y) + 1px), 0) scale(0.988);
+}
+
+.thread-control[data-thread-control="signature"] .thread-control__connection {
+  right: 1rem;
+  bottom: 50%;
+  left: auto;
+  width: 2.65rem;
+  opacity: 0.28;
+  transform: translateY(50%);
+}
+
+.thread-control[data-thread-control="signature"] .thread-pulse {
+  right: 1rem;
+  bottom: 50%;
+  left: auto;
+  width: 2.65rem;
+  transform: translateY(50%) scaleX(0.16) translateX(-190%);
+}
+
+.thread-control[data-thread-control="signature"]:has(> .thread-arrow) > .thread-control__connection {
+  display: none;
+}
+
+.thread-control[data-thread-control="signature"]:has(> .thread-arrow) > .thread-pulse {
+  right: 1rem;
+  bottom: 0.3rem;
+  left: 1rem;
+  width: auto;
+  transform: scaleX(0.16) translateX(-190%);
+}
+
+.thread-control[data-thread-control="quiet"] {
+  overflow: visible;
+}
+
+.thread-control[data-thread-control="quiet"] .trace-border,
+.thread-control[data-thread-control="quiet"] > .thread-pulse { display: none; }
+
+.thread-control[data-thread-control="quiet"] .thread-control__connection {
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  opacity: 0.8;
+}
+
+.thread-control[data-thread-control="quiet"] .thread-control__connection i { opacity: 0; }
+.thread-control[data-thread-control="quiet"] .thread-control__connection b { transform-origin: center; }
+
+.thread-control:is(:focus-visible, [aria-current="page"]) .trace-border path,
+.thread-control[data-thread-control="signature"].is-tracing .trace-border path,
+.thread-control[data-thread-control="signature"]:focus-visible .trace-border path {
+  stroke-dashoffset: 0;
+}
+
+.thread-control:is(:focus-visible, [aria-current="page"]) .trace-border__origin,
+.thread-control:is(:focus-visible, [aria-current="page"]) .trace-border__destination {
+  background: currentColor;
+  opacity: 1;
+}
+
+.thread-control:is(:focus-visible, [aria-current="page"]) .thread-control__connection b,
+.thread-control:is(:focus-visible, [aria-current="page"]) .thread-arrow__stem,
+.thread-control:is(:focus-visible, [aria-current="page"]) .thread-arrow__head {
+  stroke-dashoffset: 0;
+}
+
+.thread-control:is(:focus-visible, [aria-current="page"]) .thread-control__connection b { transform: scaleX(1); }
+.thread-control:is(:focus-visible, [aria-current="page"]) .thread-control__connection b::after,
+.thread-control:is(:focus-visible, [aria-current="page"]) .thread-control__connection i { opacity: 1; }
+
+.thread-control:is(:focus-visible, [aria-current="page"]) .thread-arrow__stem { transition-delay: 0ms; }
+.thread-control:is(:focus-visible, [aria-current="page"]) .thread-arrow__head { transition-delay: var(--thread-arrow-delay); }
+
+/* Fallback vocabulary for existing semantic buttons that do not need a React wrapper. */
+.button-primary:not(.thread-control),
+.button-secondary:not(.thread-control),
+.button-quiet:not(.thread-control),
+.button-danger:not(.thread-control) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.button-primary:not(.thread-control)::before,
+.button-secondary:not(.thread-control)::before,
+.button-quiet:not(.thread-control)::before,
+.button-danger:not(.thread-control)::before {
+  position: absolute;
+  z-index: 0;
+  right: 0.65rem;
+  bottom: 0.28rem;
+  left: 0.65rem;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  opacity: 0.45;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--thread-motion-standard) var(--thread-ease-trace);
+}
+
+.button-primary:not(.thread-control)::after,
+.button-secondary:not(.thread-control)::after,
+.button-quiet:not(.thread-control)::after,
+.button-danger:not(.thread-control)::after {
+  position: absolute;
+  right: 0.55rem;
+  bottom: calc(0.28rem - 1.5px);
+  left: 0.55rem;
+  width: auto;
+  height: 4px;
+  background:
+    radial-gradient(circle at left, currentColor 0 1.5px, transparent 2px),
+    radial-gradient(circle at right, currentColor 0 1.5px, transparent 2px);
+  content: "";
+  opacity: 0.35;
+}
+
+.button-primary:not(.thread-control):focus-visible::before,
+.button-secondary:not(.thread-control):focus-visible::before,
+.button-quiet:not(.thread-control):focus-visible::before,
+.button-danger:not(.thread-control):focus-visible::before { transform: scaleX(1); }
+
+.button-primary:not(.thread-control).is-pressing,
+.button-secondary:not(.thread-control).is-pressing,
+.button-quiet:not(.thread-control).is-pressing,
+.button-danger:not(.thread-control).is-pressing { transform: translateY(1px) scale(0.988); }
+
+.button-primary:not(.thread-control).is-releasing,
+.button-secondary:not(.thread-control).is-releasing,
+.button-quiet:not(.thread-control).is-releasing,
+.button-danger:not(.thread-control).is-releasing { animation: thread-control-settle var(--thread-motion-fast) var(--thread-ease-out); }
+
+.button-danger:not(.thread-control)::before { background: linear-gradient(90deg, currentColor 0 42%, transparent 42% 57%, currentColor 57%); }
+
+/* Links and navigation use one thread expanding outward from a central node. */
+.site-nav__link.thread-control,
+.text-link.thread-control,
+.site-header__text-cta.thread-control { overflow: visible; }
+
+.text-link.thread-control,
+.text-link.thread-control:hover,
+.site-header__text-cta.thread-control,
+.site-header__text-cta.thread-control:hover {
+  border-bottom-color: transparent;
+}
+
+.site-nav__link[aria-current="page"] { color: var(--ivory); }
+
+/* Inputs begin inspection from a leading node; errors interrupt the path. */
+.thread-input {
+  position: relative;
+  display: block;
+  min-width: 0;
+  isolation: isolate;
+}
+
+.thread-input > input { position: relative; z-index: 2; width: 100%; padding-left: 2.1rem; }
+.thread-input__leading,
+.thread-input__node { position: absolute; z-index: 4; top: 50%; left: 0.82rem; transform: translateY(-50%); }
+.thread-input__trace { z-index: 3; color: var(--brass); opacity: 0; transition: opacity var(--thread-motion-fast) ease; }
+.thread-input:focus-within .thread-input__trace { opacity: 1; }
+.thread-input:focus-within .thread-input__trace path { stroke-dashoffset: 0.18; }
+.thread-input:focus-within .thread-input__node { background: var(--brass); color: var(--brass); opacity: 1; }
+.thread-input[data-thread-input-state="valid"] .thread-input__trace path { stroke-dashoffset: 0; }
+.thread-input[data-thread-input-state="invalid"] .thread-input__trace { color: var(--rust); opacity: 1; }
+.thread-input[data-thread-input-state="invalid"] .thread-input__trace path { stroke-dasharray: 0.43 0.14 0.28 0.15; stroke-dashoffset: 0.12; }
+
+:is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea) {
+  background-image: linear-gradient(90deg, var(--brass), var(--brass));
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size var(--thread-motion-standard) var(--thread-ease-trace), border-color var(--thread-motion-fast) ease, box-shadow var(--thread-motion-fast) ease;
+}
+
+:is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea):focus-visible {
+  border-color: var(--brass);
+  background-size: 100% 1px;
+  box-shadow: inset 2px 0 var(--brass);
+}
+
+:is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea):user-invalid {
+  border-color: var(--rust);
+  background-image: linear-gradient(90deg, var(--rust), var(--rust)), linear-gradient(90deg, var(--rust), var(--rust));
+  background-position: left bottom, right bottom;
+  background-size: 43% 1px, 43% 1px;
+  box-shadow: none;
+}
+
+/* Dense forensic rows reveal one precise provenance trace, never a floating card. */
+:where(.record-row, .workflow-node, .evidence-matrix__row, .ablation-metrics-grid button, .error-case-list button, .lineage-factor, .contract-source-spans button) {
+  position: relative;
+  transition: border-color var(--thread-motion-fast) ease, background var(--thread-motion-fast) ease, transform var(--thread-motion-fast) var(--thread-ease-out);
+}
+
+:where(.record-row, .workflow-node, .evidence-matrix__row, .ablation-metrics-grid button, .error-case-list button, .lineage-factor, .contract-source-spans button)::after {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.32rem;
+  left: 0.7rem;
+  height: 1px;
+  background: var(--brass);
+  content: "";
+  opacity: 0.5;
+  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--thread-motion-standard) var(--thread-ease-trace);
+}
+
+:where(.record-row.is-selected, .workflow-node[aria-pressed="true"], .evidence-matrix__row[aria-pressed="true"], .ablation-metrics-grid button[aria-pressed="true"], .error-case-list button[aria-pressed="true"], .lineage-factor[aria-pressed="true"], .contract-source-spans button:focus-visible)::after {
+  transform: scaleX(1);
+}
+
+/* Selection controls retain a short, stable thread fragment. */
+:is(.workspace-tabs, .segmented-control, .inspector-tabs, .contradiction-tabs, .trials-mobile-tabs, .arena-system-tabs) button {
+  background-image: linear-gradient(90deg, var(--brass), var(--brass));
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size var(--thread-motion-standard) var(--thread-ease-trace), border-color var(--thread-motion-fast) ease, color var(--thread-motion-fast) ease;
+}
+
+:is(.workspace-tabs, .segmented-control, .inspector-tabs, .contradiction-tabs, .trials-mobile-tabs, .arena-system-tabs) button:is([aria-selected="true"], [aria-pressed="true"], :focus-visible) {
+  border-bottom-color: transparent;
+  background-size: min(2.25rem, 58%) 1px;
+}
+
+/* Three-node search language: no rotation, no disguised spinner. */
+.thread-loader {
+  display: inline-flex;
+  min-width: 5rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--brass-light);
+}
+
+.thread-loader__geometry {
+  position: relative;
+  display: grid;
+  width: 4.75rem;
+  grid-template-columns: 5px 1fr 5px 1fr 5px;
+  align-items: center;
+}
+
+.thread-loader--compact { min-width: 3.2rem; }
+.thread-loader--compact .thread-loader__geometry { width: 3rem; }
+
+.thread-loader__geometry > i {
+  width: 5px;
+  height: 5px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: var(--background-deep);
+  animation: thread-loader-node 1800ms var(--thread-ease-out) infinite;
+}
+
+.thread-loader__geometry > i:nth-of-type(2) { animation-delay: 310ms; }
+.thread-loader__geometry > i:nth-of-type(3) { animation-delay: 620ms; }
+
+.thread-loader__geometry > b {
+  height: 1px;
+  background: currentColor;
+  opacity: 0.58;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: thread-loader-segment 1800ms var(--thread-ease-trace) infinite;
+}
+
+.thread-loader__geometry > b:nth-of-type(1) { animation-delay: 150ms; }
+.thread-loader__geometry > b:nth-of-type(2) { animation-delay: 460ms; }
+
+.thread-loader__geometry > em {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 0.5rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0;
+  animation: thread-loader-signal 1800ms var(--thread-ease-resolve) infinite;
+}
+
+.connection-state { display: inline-flex; width: 5.5rem; color: var(--brass); }
+.thread-trace { width: 100%; height: 0.75rem; overflow: visible; fill: none; stroke: currentColor; stroke-width: 0.8; }
+.thread-trace .signal-path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset var(--thread-motion-trace) var(--thread-ease-trace); }
+.thread-trace__node { fill: var(--background-deep); stroke: currentColor; stroke-width: 0.9; }
+.thread-trace__signal { fill: currentColor; opacity: 0; }
+.thread-trace[data-thread-state="searching"] .signal-path { stroke-dashoffset: 0.46; }
+.thread-trace[data-thread-state="partial"] .signal-path { stroke-dashoffset: 0.24; stroke-dasharray: 0.72 0.28; }
+.thread-trace[data-thread-state="connected"] .signal-path { stroke-dashoffset: 0; }
+.thread-trace[data-thread-state="connected"] .thread-trace__node { fill: currentColor; }
+.thread-trace[data-thread-state="connected"] .thread-trace__node--destination { animation: thread-trace-destination var(--thread-motion-resolve) var(--thread-ease-out) both; }
+.thread-trace[data-thread-state="connected"] .thread-trace__signal { animation: thread-trace-signal var(--thread-motion-resolve) var(--thread-ease-resolve) both; }
+.thread-trace[data-thread-state="interrupted"] { color: var(--rust); }
+.thread-trace[data-thread-state="interrupted"] .signal-path { stroke-dasharray: 0.42 0.16 0.25 0.17; stroke-dashoffset: 0.08; }
+.thread-trace[data-thread-state="interrupted"] .thread-trace__node--destination { fill: var(--background-deep); }
+
+.resolution-transition > * { transition: opacity var(--thread-motion-standard) ease, transform var(--thread-motion-resolve) var(--thread-ease-out); }
+.resolution-transition[data-resolution-phase="fragmented"] > * { opacity: 0.56; transform: translateX(var(--fragment-offset, 2px)); }
+.resolution-transition[data-resolution-phase="resolved"] > * { opacity: 1; transform: translateX(0); }
+
+/* The route bridge remains continuous across the root layout. */
+.threadline-route-transition { grid-template-columns: 7px 1fr 7px; padding-inline: clamp(1rem, 5vw, 5rem); }
+.threadline-route-transition > i {
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--brass);
+  border-radius: 50%;
+  background: var(--background-deep);
+  opacity: 0;
+  transition: background var(--thread-motion-fast) ease, opacity var(--thread-motion-fast) ease;
+}
+.threadline-route-transition > span { width: auto; }
+.threadline-route-transition.is-active > i:first-child { background: var(--brass); opacity: 1; }
+.threadline-route-transition.is-active > i:last-child { animation: thread-route-destination var(--thread-motion-route) var(--thread-ease-out) both; }
+.threadline-route-transition.is-active span { animation-duration: var(--thread-motion-route); animation-timing-function: var(--thread-ease-resolve); }
+
+/* Progress lines resolve by transform, avoiding layout work. */
+.guided-demo__progress span,
+.job-progress > div span {
+  width: 100% !important;
+  transform: scaleX(var(--thread-progress, 0));
+  transform-origin: left;
+  transition: transform var(--thread-motion-fast) var(--thread-ease-trace) !important;
+}
+
+/* Workflow replay uses the connected-node loader instead of rotating the mark. */
+.workflow-processing .thread-loader { flex: 0 0 auto; }
+
+/* Disclosures resolve two fragments into one short line instead of rotating a plus. */
+.node-method summary i,
+.workflow-step__marker {
+  position: relative;
+  display: block;
+  width: 1.2rem;
+  height: 0.55rem;
+  color: var(--brass);
+  font-size: 0 !important;
+  transform: none !important;
+}
+
+.node-method summary i::before,
+.workflow-step__marker::before {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  left: 2px;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--thread-motion-standard) var(--thread-ease-trace);
+}
+
+.node-method summary i::after,
+.workflow-step__marker::after {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at left center, currentColor 0 1.5px, transparent 2px),
+    radial-gradient(circle at right center, currentColor 0 1.5px, transparent 2px);
+  content: "";
+  opacity: 0.58;
+}
+
+.node-method[open] summary i::before,
+.node-method summary:focus-visible i::before,
+.workflow-step[open] .workflow-step__marker::before,
+.workflow-step summary:focus-visible .workflow-step__marker::before { transform: scaleX(1); }
+
+/* Empty evidence states keep two honest, unconnected nodes. */
+:where(.workspace-empty, .trial-empty-state, .empty-research-state) {
+  position: relative;
+  padding-top: max(1rem, 22px);
+}
+
+:where(.workspace-empty, .trial-empty-state, .empty-research-state)::before {
+  position: absolute;
+  top: 0.55rem;
+  left: 50%;
+  width: 4.5rem;
+  height: 6px;
+  background:
+    radial-gradient(circle at left center, transparent 0 1.5px, var(--text-tertiary) 1.75px 2.5px, transparent 2.75px),
+    radial-gradient(circle at right center, transparent 0 1.5px, var(--text-tertiary) 1.75px 2.5px, transparent 2.75px);
+  content: "";
+  opacity: 0.58;
+  transform: translateX(-50%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .thread-control:not(:disabled):not([aria-disabled="true"]):hover .trace-border path { stroke-dashoffset: 0; }
+  .thread-control:not(:disabled):not([aria-disabled="true"]):hover .trace-border__origin,
+  .thread-control:not(:disabled):not([aria-disabled="true"]):hover .trace-border__destination { background: currentColor; opacity: 1; }
+  .thread-control:not(:disabled):not([aria-disabled="true"]):hover .thread-control__connection b { transform: scaleX(1); }
+  .thread-control:not(:disabled):not([aria-disabled="true"]):hover .thread-control__connection b::after,
+  .thread-control:not(:disabled):not([aria-disabled="true"]):hover .thread-control__connection i { opacity: 1; }
+  .thread-control:not(:disabled):not([aria-disabled="true"]):hover .thread-arrow__stem,
+  .thread-control:not(:disabled):not([aria-disabled="true"]):hover .thread-arrow__head { stroke-dashoffset: 0; }
+  .thread-control:not(:disabled):not([aria-disabled="true"]):hover .thread-arrow__stem { transition-delay: 0ms; }
+  .thread-control:not(:disabled):not([aria-disabled="true"]):hover .thread-arrow__head { transition-delay: var(--thread-arrow-delay); }
+  .thread-control[data-thread-control="signature"]:not([data-thread-magnetic]):hover .thread-control__content { transform: translate3d(1px, 0, 0); }
+  .editorial-button.thread-control[data-thread-control="signature"]:hover .thread-control__content,
+  .site-header__text-cta.thread-control[data-thread-control="signature"]:hover .thread-control__content { letter-spacing: 0.105em; }
+  .button-primary.thread-control[data-thread-control="signature"]:hover .thread-control__content { letter-spacing: 0.025em; }
+  .button-primary:not(.thread-control):not(:disabled):hover::before,
+  .button-secondary:not(.thread-control):not(:disabled):hover::before,
+  .button-quiet:not(.thread-control):not(:disabled):hover::before,
+  .button-danger:not(.thread-control):not(:disabled):hover::before { transform: scaleX(1); }
+  :where(.record-row, .workflow-node, .evidence-matrix__row, .ablation-metrics-grid button, .error-case-list button, .lineage-factor, .contract-source-spans button):hover { transform: translateY(-1px); }
+  :where(.record-row, .workflow-node, .evidence-matrix__row, .ablation-metrics-grid button, .error-case-list button, .lineage-factor, .contract-source-spans button):hover::after { transform: scaleX(1); }
+}
+
+@keyframes thread-control-settle {
+  from { transform: translate3d(var(--thread-magnetic-x), calc(var(--thread-magnetic-y) + 1px), 0) scale(0.988); }
+  to { transform: translate3d(var(--thread-magnetic-x), var(--thread-magnetic-y), 0) scale(1); }
+}
+
+@keyframes thread-signal-travel {
+  0% { opacity: 0; transform: scaleX(0.12) translateX(-190%); }
+  18% { opacity: 0.72; }
+  82% { opacity: 0.5; }
+  100% { opacity: 0; transform: scaleX(0.2) translateX(190%); }
+}
+
+@keyframes thread-destination-resolve {
+  0%, 65% { background: var(--background-deep); opacity: 0.45; }
+  78% { background: currentColor; opacity: 1; }
+  100% { background: currentColor; opacity: 0.78; }
+}
+
+@keyframes thread-loader-node {
+  0%, 12%, 100% { background: var(--background-deep); opacity: 0.45; }
+  20%, 76% { background: currentColor; opacity: 1; }
+  88% { background: var(--background-deep); opacity: 0.68; }
+}
+
+@keyframes thread-loader-segment {
+  0%, 12%, 100% { opacity: 0; transform: scaleX(0); }
+  28%, 74% { opacity: 0.72; transform: scaleX(1); }
+  88% { opacity: 0.28; transform: scaleX(1); transform-origin: right; }
+}
+
+@keyframes thread-loader-signal {
+  0%, 58% { opacity: 0; transform: translateX(0); }
+  64% { opacity: 0.82; }
+  83% { opacity: 0.5; transform: translateX(4.2rem); }
+  88%, 100% { opacity: 0; transform: translateX(4.2rem); }
+}
+
+@keyframes thread-route-destination {
+  0%, 54% { background: var(--background-deep); opacity: 0; }
+  74%, 100% { background: var(--brass); opacity: 1; }
+}
+
+@keyframes thread-trace-destination {
+  0%, 58% { fill: var(--background-deep); }
+  72%, 100% { fill: currentColor; }
+}
+
+@keyframes thread-trace-signal {
+  0%, 42% { opacity: 0; transform: translateX(0); }
+  52% { opacity: 0.78; }
+  82% { opacity: 0.45; transform: translateX(94px); }
+  88%, 100% { opacity: 0; transform: translateX(94px); }
+}
+
+@media (max-width: 1180px) {
+  .trials-mobile-tabs button { min-width: 44px; min-height: 44px; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .thread-control {
+    --thread-magnetic-x: 0px !important;
+    --thread-magnetic-y: 0px !important;
+    --thread-content-x: 0px !important;
+    --thread-content-y: 0px !important;
+    transform: none !important;
+  }
+  .thread-control__content { transform: none !important; }
+  .thread-control.is-pressing:not(:disabled) { transform: translateY(1px) scale(0.988) !important; }
+  .trace-border path { stroke-dashoffset: 0.16; }
+  .thread-arrow__stem,
+  .thread-arrow__head { stroke-dashoffset: 0; }
+  :where(.record-row, .workflow-node, .evidence-matrix__row, .ablation-metrics-grid button, .error-case-list button, .lineage-factor, .contract-source-spans button) { transform: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thread-control {
+    --thread-magnetic-x: 0px !important;
+    --thread-magnetic-y: 0px !important;
+    --thread-content-x: 0px !important;
+    --thread-content-y: 0px !important;
+    transform: none !important;
+  }
+  .thread-control__content { transform: none !important; }
+  .thread-control.is-pressing:not(:disabled) { transform: translateY(1px) scale(0.988) !important; }
+  .thread-control.is-releasing { animation: none !important; }
+  .trace-border path { stroke-dashoffset: 0.16; }
+  .thread-arrow__stem { stroke-dashoffset: 0; }
+  .thread-arrow__head { stroke-dashoffset: 0; }
+  .thread-loader__geometry > i,
+  .thread-loader__geometry > b,
+  .thread-loader__geometry > em { animation: none !important; }
+  .thread-loader__geometry > i { background: currentColor; opacity: 0.78; }
+  .thread-loader__geometry > b { opacity: 0.58; transform: scaleX(1); }
+  .thread-loader__geometry > em { display: none; }
+  .thread-pulse { display: none; }
+  .thread-trace__signal,
+  .thread-trace__node--destination { animation: none !important; }
+  :where(.record-row, .workflow-node, .evidence-matrix__row, .ablation-metrics-grid button, .error-case-list button, .lineage-factor, .contract-source-spans button) { transform: none !important; }
+}
+
+@media print {
+  .trace-border,
+  .thread-control__connection,
+  .thread-pulse,
+  .thread-loader,
+  .threadline-route-transition { display: none !important; }
+  .thread-control,
+  .thread-control__content { transform: none !important; }
+}

@@ -1,0 +1,215 @@
+{
+  "artifact_version": "threadline-v1-evaluation/1.1.0",
+  "benchmark_id": "BENCH-8ED65F7BCC0B",
+  "dataset_content_hash": "8ed65f7bcc0b13410b4c52a43acef7826b6ca873ff8ee62ec89a569bbc48e0d0",
+  "generated_at": "2026-08-15T17:27:14.468714Z",
+  "calibration": {
+    "split_name": "calibration",
+    "case_count": 8,
+    "identity_ids": [
+      "SYN-ID-001",
+      "SYN-ID-002",
+      "SYN-ID-003",
+      "SYN-ID-004"
+    ],
+    "metrics": [
+      {
+        "metric_id": "candidate_top_1_recall",
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 4,
+        "definition": "Same-identity synthetic cases whose expected pair is ranked first with an allowed positive review classification. This is top-1 recall, not recall at five."
+      },
+      {
+        "metric_id": "top_1_precision_among_review_releases",
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 0,
+        "definition": "Evidence-contract-released positive top candidates that belong to same-identity synthetic cases. Release means eligible for authorized review, never identity confirmation."
+      },
+      {
+        "metric_id": "different_identity_withheld_rate",
+        "value": 100.0,
+        "numerator": 3,
+        "denominator": 3,
+        "definition": "Different-identity synthetic cases not released as positive review candidates."
+      },
+      {
+        "metric_id": "same_identity_contract_withheld_rate",
+        "value": 0.0,
+        "numerator": 0,
+        "denominator": 4,
+        "definition": "Same-identity synthetic cases withheld by the deterministic evidence contract."
+      },
+      {
+        "metric_id": "human_review_rate",
+        "value": 100.0,
+        "numerator": 8,
+        "denominator": 8,
+        "definition": "Cases routed to authorized human review."
+      },
+      {
+        "metric_id": "contract_rule_coverage",
+        "value": 55.556,
+        "numerator": 10,
+        "denominator": 18,
+        "definition": "Distinct deterministic evidence-contract rules exercised."
+      },
+      {
+        "metric_id": "replay_success_rate",
+        "value": 100.0,
+        "numerator": 8,
+        "denominator": 8,
+        "definition": "Cases producing exact deterministic replay manifests."
+      },
+      {
+        "metric_id": "audit_verification_success_rate",
+        "value": 100.0,
+        "numerator": 8,
+        "denominator": 8,
+        "definition": "Cases with a verified audit hash chain at release."
+      },
+      {
+        "metric_id": "whole_record_removal_decision_change_rate",
+        "value": 100.0,
+        "numerator": 8,
+        "denominator": 8,
+        "definition": "Cases where removing the entire first record in the top pair changed classification or top-pair identity. This is not evidence-span criticality."
+      }
+    ]
+  },
+  "holdout": {
+    "split_name": "holdout",
+    "case_count": 40,
+    "identity_ids": [
+      "SYN-ID-005",
+      "SYN-ID-006",
+      "SYN-ID-007",
+      "SYN-ID-008",
+      "SYN-ID-009",
+      "SYN-ID-010",
+      "SYN-ID-011",
+      "SYN-ID-012",
+      "SYN-ID-013",
+      "SYN-ID-014",
+      "SYN-ID-015",
+      "SYN-ID-016",
+      "SYN-ID-017",
+      "SYN-ID-018",
+      "SYN-ID-019",
+      "SYN-ID-020",
+      "SYN-ID-021",
+      "SYN-ID-022",
+      "SYN-ID-023",
+      "SYN-ID-024",
+      "SYN-ID-025",
+      "SYN-ID-026",
+      "SYN-ID-027",
+      "SYN-ID-028",
+      "SYN-ID-029",
+      "SYN-ID-030",
+      "SYN-ID-031",
+      "SYN-ID-032",
+      "SYN-ID-033",
+      "SYN-ID-034",
+      "SYN-ID-035",
+      "SYN-ID-036",
+      "SYN-ID-037",
+      "SYN-ID-038",
+      "SYN-ID-039",
+      "SYN-ID-040"
+    ],
+    "metrics": [
+      {
+        "metric_id": "candidate_top_1_recall",
+        "value": 11.111,
+        "numerator": 4,
+        "denominator": 36,
+        "definition": "Same-identity synthetic cases whose expected pair is ranked first with an allowed positive review classification. This is top-1 recall, not recall at five."
+      },
+      {
+        "metric_id": "top_1_precision_among_review_releases",
+        "value": 100.0,
+        "numerator": 3,
+        "denominator": 3,
+        "definition": "Evidence-contract-released positive top candidates that belong to same-identity synthetic cases. Release means eligible for authorized review, never identity confirmation."
+      },
+      {
+        "metric_id": "different_identity_withheld_rate",
+        "value": 100.0,
+        "numerator": 4,
+        "denominator": 4,
+        "definition": "Different-identity synthetic cases not released as positive review candidates."
+      },
+      {
+        "metric_id": "same_identity_contract_withheld_rate",
+        "value": 19.444,
+        "numerator": 7,
+        "denominator": 36,
+        "definition": "Same-identity synthetic cases withheld by the deterministic evidence contract."
+      },
+      {
+        "metric_id": "human_review_rate",
+        "value": 100.0,
+        "numerator": 40,
+        "denominator": 40,
+        "definition": "Cases routed to authorized human review."
+      },
+      {
+        "metric_id": "contract_rule_coverage",
+        "value": 55.556,
+        "numerator": 10,
+        "denominator": 18,
+        "definition": "Distinct deterministic evidence-contract rules exercised."
+      },
+      {
+        "metric_id": "replay_success_rate",
+        "value": 100.0,
+        "numerator": 40,
+        "denominator": 40,
+        "definition": "Cases producing exact deterministic replay manifests."
+      },
+      {
+        "metric_id": "audit_verification_success_rate",
+        "value": 100.0,
+        "numerator": 40,
+        "denominator": 40,
+        "definition": "Cases with a verified audit hash chain at release."
+      },
+      {
+        "metric_id": "whole_record_removal_decision_change_rate",
+        "value": 100.0,
+        "numerator": 40,
+        "denominator": 40,
+        "definition": "Cases where removing the entire first record in the top pair changed classification or top-pair identity. This is not evidence-span criticality."
+      }
+    ]
+  },
+  "identity_overlap_count": 0,
+  "risk_bound": {
+    "confidence_level": 0.95,
+    "method": "wilson_score_upper_bound",
+    "observed_unsafe_releases": 0,
+    "evaluated_cases": 40,
+    "negative_cases": 4,
+    "upper_bound_percent": 48.989,
+    "all_case_upper_bound_percent": 8.762,
+    "conditional_negative_upper_bound_percent": 48.989,
+    "target_percent": 10.0,
+    "target_status": "not_met",
+    "assumptions": [
+      "Cases are deterministic synthetic benchmark draws, not independent field observations.",
+      "The primary safety bound is conditional on different-identity cases, where an unsafe positive release is possible.",
+      "An all-held-out-case Wilson bound is reported separately and must not be presented as the conditional false-merge bound.",
+      "No identity appears in both calibration and holdout partitions."
+    ]
+  },
+  "limitations": [
+    "This is preliminary synthetic evidence and not a real-world safety guarantee.",
+    "Only four holdout cases are different-identity pairs; the conditional safety bound is therefore wide.",
+    "The generator has limited linguistic, institutional, and disaster-context coverage.",
+    "The held-out split is group-separated by synthetic identity but remains generated by the same benchmark code family.",
+    "Mock-provider outputs are deterministic workflow fixtures and are not model-performance measurements."
+  ],
+  "synthetic_only": true
+}

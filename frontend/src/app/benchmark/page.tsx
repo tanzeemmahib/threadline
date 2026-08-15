@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { AblationLab } from "@/components/evaluation/ablation-lab";
 import { BaselineArena } from "@/components/evaluation/baseline-arena";
 import { DatasetLab } from "@/components/evaluation/dataset-lab";
@@ -9,7 +8,9 @@ import { EvaluationRunConsole } from "@/components/evaluation/evaluation-run-con
 import { BenchmarkChart } from "@/components/benchmark-chart";
 import { SiteHeader } from "@/components/site-header";
 import { StatusPill } from "@/components/status-pill";
+import { ThreadLink } from "@/components/thread-motion";
 import { benchmarkMetrics, benchmarkSystems } from "@/data/mock-data";
+import { v1HeldOutEvidence } from "@/data/v1-evaluation";
 
 export const metadata: Metadata = {
   title: "Research and evaluation laboratory",
@@ -26,14 +27,31 @@ const featuredMetrics = [
 export default function BenchmarkPage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader active="evaluation" />
       <main id="main-content" className="evaluation-page">
         <section className="evaluation-hero shell" aria-labelledby="evaluation-title">
           <div><p className="eyebrow">Research laboratory / evaluation / failure analysis</p><h1 className="page-title" id="evaluation-title">Inspect the workflow by changing it.</h1><p className="body-large">Generate deterministic fictional cases, compare four systems, remove workflow stages, and trace every changed error back to its first divergence.</p></div>
-          <aside className="evaluation-disclaimer" role="note"><StatusPill tone="amber">Not measured</StatusPill><strong>Illustrative interface — awaiting measured benchmark output</strong><p>No number is a performance claim. Connected results must carry dataset, run, environment, and source metadata.</p></aside>
+          <aside className="evaluation-disclaimer" role="note"><StatusPill tone="amber">Evidence modes separated</StatusPill><strong>Saved results and interactive examples have different status</strong><p>The measured panels cite versioned artifacts. The laboratories and summary charts below remain illustrative until a run is connected.</p></aside>
         </section>
 
-        <nav className="research-index shell" aria-label="Evaluation laboratory sections"><a href="#dataset-lab">Dataset lab</a><a href="#baseline-arena">Baseline arena</a><a href="#ablation-lab">Ablation lab</a><a href="#error-workbench">Error analysis</a><a href="#run-console">Run console</a><a href="#metric-overview">Metric overview</a></nav>
+        <nav className="research-index shell" aria-label="Evaluation laboratory sections"><a href="#measured-evidence">Measured evidence</a><a href="#dataset-lab">Dataset lab</a><a href="#baseline-arena">Baseline arena</a><a href="#ablation-lab">Ablation lab</a><a href="#error-workbench">Error analysis</a><a href="#run-console">Run console</a><a href="#metric-overview">Metric overview</a></nav>
+
+        <section className="evaluation-section shell" id="measured-evidence" aria-labelledby="measured-evidence-title">
+          <div className="evaluation-section__heading">
+            <div><p className="eyebrow">Archived evaluation / held-out synthetic evidence</p><h2 className="section-title" id="measured-evidence-title">A measured safety snapshot, with its boundary visible.</h2></div>
+            <p>{v1HeldOutEvidence.label} {v1HeldOutEvidence.limitation}</p>
+          </div>
+          <div className="metric-catalog panel-subtle">
+            <h3><StatusPill tone="amber">Preliminary artifact</StatusPill> {v1HeldOutEvidence.benchmarkId}</h3>
+            <dl>
+              <div><dt>Held-out cases</dt><dd>{v1HeldOutEvidence.holdoutCases} synthetic cases in the versioned V1 evidence-contract artifact.</dd></div>
+              <div><dt>Different-identity cases</dt><dd>{v1HeldOutEvidence.differentIdentityWithheld.numerator} / {v1HeldOutEvidence.differentIdentityWithheld.denominator} were withheld; this is the full false-release opportunity set.</dd></div>
+              <div><dt>Released-review precision</dt><dd>{v1HeldOutEvidence.releasedReviewPrecision.numerator} / {v1HeldOutEvidence.releasedReviewPrecision.denominator} released review proposals were supported by the synthetic reference labels.</dd></div>
+              <div><dt>Candidate top-1 recall</dt><dd>{v1HeldOutEvidence.candidateTop1Recall.numerator} / {v1HeldOutEvidence.candidateTop1Recall.denominator} same-identity cases. This is deliberately not labelled recall@5.</dd></div>
+              <div><dt>Conditional 95% upper bound</dt><dd>{v1HeldOutEvidence.conditionalWilsonUpperPercent}% across {v1HeldOutEvidence.negativeCases} negative opportunities. The {v1HeldOutEvidence.targetPercent.toFixed(1)}% demonstration target was <strong>{v1HeldOutEvidence.targetStatus}</strong>.</dd></div>
+            </dl>
+          </div>
+        </section>
 
         <EvaluationSession>
           <DatasetLab />
@@ -50,7 +68,7 @@ export default function BenchmarkPage() {
           <div className="operations-table-wrap panel-subtle"><table className="operations-table"><caption>Illustrative operational placeholders — awaiting measured benchmark output</caption><thead><tr><th scope="col">System</th><th scope="col">Average latency</th><th scope="col">Model calls</th><th scope="col">Source</th></tr></thead><tbody>{benchmarkSystems.map((system) => <tr key={system.system_id}><th scope="row">{system.system_name}</th><td>{system.values.average_latency.toLocaleString()} ms</td><td>{system.values.model_calls}</td><td>Synthetic example output</td></tr>)}</tbody></table></div>
         </section>
 
-        <section className="evaluation-close shell"><div><p className="eyebrow">Methods before claims</p><h2 className="section-title">Inspect the workflow boundary and backend contracts.</h2></div><Link className="button-primary" href="/methodology">Open methodology <span aria-hidden="true">→</span></Link></section>
+        <section className="evaluation-close shell"><div><p className="eyebrow">Methods before claims</p><h2 className="section-title">Inspect the workflow boundary and backend contracts.</h2></div><ThreadLink variant="primary" bridge arrow="forward" href="/methodology">Open methodology</ThreadLink></section>
       </main>
     </>
   );

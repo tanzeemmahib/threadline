@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ConnectionState, ThreadInput } from "@/components/thread-motion";
 import { formatTimestamp, sourceTypeLabels } from "@/lib/formatting";
 import type { CandidateConnection, CandidateStatus, SourceRecord, SourceType } from "@/types";
 
@@ -57,7 +58,7 @@ export function RecordBrowser({
   return (
     <div className="record-browser">
       <header className="workspace-panel-header">
-        <div><span className="panel-kicker">Source stream</span><h1>Records</h1></div>
+        <div><span className="panel-kicker">Source stream</span><h2>Records</h2></div>
         <span>{filtered.length} shown</span>
       </header>
 
@@ -78,8 +79,15 @@ export function RecordBrowser({
       <form className="record-filters" onSubmit={(event) => event.preventDefault()}>
         <label className="search-field">
           <span className="sr-only">Search records</span>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg>
-          <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search records" type="search" />
+          <ThreadInput
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search records"
+            type="search"
+            state={query ? "inspecting" : "idle"}
+            wrapperClassName="search-field__thread-input"
+            leading={<svg style={{ position: "static", transform: "none" }} viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg>}
+          />
         </label>
         <div className="filter-grid">
           <label><span>Source</span><select value={source} onChange={(event) => setSource(event.target.value as "all" | SourceType)}>{sourceOptions.map((option) => <option value={option.value} key={option.value}>{option.label}</option>)}</select></label>
@@ -90,7 +98,7 @@ export function RecordBrowser({
 
       <div className="record-list" aria-live="polite">
         {filtered.length === 0 ? (
-          <div className="workspace-empty"><strong>No records match these filters.</strong><span>Clear a filter or broaden the search text.</span></div>
+          <div className="workspace-empty"><ConnectionState state="fragmented" label="No matching record connection found" /><strong>No records match these filters.</strong><span>Clear a filter or broaden the search text.</span></div>
         ) : filtered.map((record) => (
           <article className={`record-row ${selectedRecordIds.has(record.record_id) ? "is-related" : ""} ${record.record_id === selectedRecordId ? "is-selected" : ""} ${record.quarantined ? "is-quarantined" : ""}`} key={record.record_id}>
             <button className="record-row__select" type="button" onClick={() => onSelectRecord(record.record_id)} aria-pressed={record.record_id === selectedRecordId}>

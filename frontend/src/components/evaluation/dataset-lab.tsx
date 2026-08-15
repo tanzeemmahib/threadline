@@ -2,6 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { useEvaluationSession } from "@/components/evaluation/evaluation-session";
+import { ThreadButton, ThreadLoader } from "@/components/thread-motion";
 import { FALLBACK_NOTICE, MOCK_EVALUATION_LABEL, threadlineService } from "@/lib/api/client";
 import { defaultBenchmarkConfig, generateSyntheticBenchmark } from "@/lib/benchmark/generator";
 import type { SyntheticBenchmarkConfig } from "@/types";
@@ -89,11 +90,11 @@ export function DatasetLab() {
     <section className="research-lab-section" id="dataset-lab" aria-labelledby="dataset-lab-title">
       <header className="research-section-heading"><div><p className="eyebrow">Crisis dataset laboratory</p><h2 className="section-title" id="dataset-lab-title">Build a deterministic fictional benchmark.</h2></div><p>Fixed seed {config.seed}. Settings generate local templates only; the browser never calls an LLM.</p></header>
       <div className="dataset-lab-grid">
-        <form className="dataset-controls" onSubmit={(event) => event.preventDefault()}>
+        <form className="dataset-controls" aria-busy={busy !== null} onSubmit={(event) => event.preventDefault()}>
           <fieldset><legend>Languages</legend><div className="checkbox-row">{(["English", "Arabic", "French"] as const).map((language) => <label key={language}><input type="checkbox" checked={config.languages.includes(language)} onChange={() => toggleLanguage(language)} />{language}</label>)}</div></fieldset>
           <div className="range-control-grid">{rangeControls.map((control) => { const value = config[control.key] as number; return <label key={control.key}><span><strong>{control.label}</strong><output>{value}{control.suffix}</output></span><input aria-label={control.label} type="range" min={control.min} max={control.max} step={control.step ?? 1} value={value} onChange={(event) => updateNumber(control.key, Number(event.target.value))} /></label>; })}</div>
           <label className="seed-field"><span>Fixed seed</span><input type="number" value={config.seed} onChange={(event) => updateNumber("seed", Number(event.target.value))} /></label>
-          <div className="dataset-export-actions"><button className="button-secondary" type="button" onClick={() => downloadJson("threadline-benchmark-config.json", config)}>Export configuration JSON</button><button className="button-secondary" type="button" onClick={() => downloadJson("threadline-synthetic-records.json", dataset ?? { config, ...generated })}>Export records JSON</button><button className="button-primary" type="button" disabled={busy !== null} onClick={() => void generateBackendDataset()}>{busy === "generate" ? "Generating…" : "Generate backend dataset"}</button><button className="button-primary" type="button" disabled={!dataset || busy !== null} onClick={() => void runBackendBenchmark()}>{busy === "benchmark" ? "Running…" : "Run benchmark"}</button>{busy ? <button className="button-quiet" type="button" onClick={() => abortRef.current?.abort()}>Cancel</button> : null}</div>
+          <div className="dataset-export-actions"><ThreadButton variant="secondary" type="button" onClick={() => downloadJson("threadline-benchmark-config.json", config)}>Export configuration JSON</ThreadButton><ThreadButton variant="secondary" type="button" onClick={() => downloadJson("threadline-synthetic-records.json", dataset ?? { config, ...generated })}>Export records JSON</ThreadButton><ThreadButton variant="primary" type="button" disabled={busy !== null} onClick={() => void generateBackendDataset()}>{busy === "generate" ? <><ThreadLoader compact announce={false} />Generating…</> : "Generate backend dataset"}</ThreadButton><ThreadButton variant="primary" type="button" disabled={!dataset || busy !== null} onClick={() => void runBackendBenchmark()}>{busy === "benchmark" ? <><ThreadLoader compact announce={false} />Running…</> : "Run benchmark"}</ThreadButton>{busy ? <ThreadButton variant="danger" type="button" onClick={() => abortRef.current?.abort()}>Cancel</ThreadButton> : null}</div>
           <p className="ablation-run-status" role="status" aria-live="polite">{backendState}</p>
         </form>
         <div className="dataset-preview">

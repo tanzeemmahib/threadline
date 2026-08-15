@@ -1,6 +1,7 @@
 import { mockCaseData } from "@/data/mock-data";
 import type {
   AblationNodeId,
+  AuditIntegrityResult,
   AnalyzeRequest,
   AnalyzeResponse,
   BackendAblationRunResponse,
@@ -8,10 +9,14 @@ import type {
   BackendBenchmarkDataset,
   BackendBenchmarkRunResponse,
   BaselineRunResponse,
+  CounterfactualCertificate,
+  CounterfactualType,
+  EvidenceContract,
   ExportManifest,
   HealthResponse,
   JobStatus,
   ProviderMode,
+  ReplayCertificate,
   ReviewDecision,
   StoredResult,
   StoredResultSummary,
@@ -34,9 +39,12 @@ export interface RequestOptions {
 export interface ReviewReceipt {
   review_id: string;
   case_id: string;
+  candidate_id?: string | null;
   created_at: string;
   outcome: string;
   audit_event_id: string;
+  audit_chain_event_id?: string | null;
+  release_state: NonNullable<AnalyzeResponse["release_state"]>;
   safety_notice: string;
 }
 
@@ -142,6 +150,13 @@ export class ThreadlineApiClient {
     return this.request<AnalyzeRequest>("/api/v1/demo", {}, options);
   }
 
+  getV1DemoScenario(
+    scenario: "passing" | "blocked" | "review" | "rival",
+    options?: RequestOptions,
+  ): Promise<AnalyzeRequest> {
+    return this.request(`/api/v1/demo/v1/${scenario}`, {}, options);
+  }
+
   async analyzeRecords(payload: AnalyzeRequest, options?: RequestOptions): Promise<AnalyzeResponse> {
     if (!this.apiUrl) return mockCaseData;
     return this.request<AnalyzeResponse>("/api/v1/analyze", { method: "POST", body: JSON.stringify(payload) }, options);
@@ -189,6 +204,38 @@ export class ThreadlineApiClient {
     return this.request(`/api/v1/workflow-runs/${encodeURIComponent(workflowRunId)}`, {}, options);
   }
 
+  getEvidenceContract(contractId: string, options?: RequestOptions): Promise<EvidenceContract> {
+    return this.request(`/api/v1/contracts/${encodeURIComponent(contractId)}`, {}, options);
+  }
+
+  exportEvidenceContract(
+    workflowRunId: string,
+    contractId: string,
+    options?: RequestOptions,
+  ): Promise<EvidenceContract> {
+    return this.request(
+      `/api/v1/runs/${encodeURIComponent(workflowRunId)}/contracts/${encodeURIComponent(contractId)}/export`,
+      { method: "POST" },
+      options,
+    );
+  }
+
+  verifyAuditChain(workflowRunId: string, options?: RequestOptions): Promise<AuditIntegrityResult> {
+    return this.request(`/api/v1/runs/${encodeURIComponent(workflowRunId)}/audit/verify`, {}, options);
+  }
+
+  replayWorkflowRun(workflowRunId: string, options?: RequestOptions): Promise<ReplayCertificate> {
+    return this.request(`/api/v1/runs/${encodeURIComponent(workflowRunId)}/replay`, { method: "POST" }, options);
+  }
+
+  runCounterfactual(
+    workflowRunId: string,
+    payload: { candidate_id: string; counterfactual_type: CounterfactualType; evidence_span_id?: string; source_record_id?: string; claim_id?: string },
+    options?: RequestOptions,
+  ): Promise<CounterfactualCertificate> {
+    return this.request(`/api/v1/runs/${encodeURIComponent(workflowRunId)}/counterfactuals`, { method: "POST", body: JSON.stringify(payload) }, options);
+  }
+
   async submitReviewOutcome(caseId: string, decision: ReviewDecision, options?: RequestOptions): Promise<ReviewReceipt> {
     const aliases: Record<string, string> = {
       escalate_authorized_review: "escalate_for_authorized_review",
@@ -202,6 +249,12 @@ export class ThreadlineApiClient {
         outcome: aliases[decision.outcome] ?? decision.outcome,
         reviewer_id: decision.reviewer_role,
         notes: decision.notes,
+        rationale: decision.notes,
+        remaining_uncertainty: decision.remaining_uncertainty ?? [],
+        requested_evidence: decision.requested_evidence ?? [],
+        workflow_run_id: decision.workflow_run_id,
+        contract_id: decision.contract_id,
+        referenced_artifact_ids: decision.referenced_artifact_ids ?? [],
       }),
     }, options);
   }
@@ -246,5 +299,9 @@ export class ThreadlineApiClient {
   }
 }
 
-export const apiUrl = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "";
+// Same-origin by default through the Next.js rewrite so a clean local checkout
+// does not depend on a build-time public environment variable. Deployments may
+// still provide an absolute public API URL when their topology requires one.
+export const apiUrl =
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "/backend-api";
 export const threadlineService = new ThreadlineApiClient(apiUrl);

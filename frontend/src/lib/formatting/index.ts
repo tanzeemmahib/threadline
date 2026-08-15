@@ -5,8 +5,19 @@ export const sourceTypeLabels: Record<SourceType, string> = {
   shelter_record: "Shelter record",
   hospital_intake: "Hospital intake",
   evacuation_log: "Evacuation log",
+  transport_manifest: "Transport manifest",
+  missing_person_registry: "Missing-person registry",
+  field_team_note: "Field-team note",
+  translated_witness_statement: "Translated witness statement",
+  scanned_document_metadata: "Scanned-document metadata",
   translated_phone_submission: "Translated phone submission",
   volunteer_note: "Volunteer note",
+  family_tracing_report: "Family tracing report",
+  shelter_intake: "Shelter intake",
+  field_clinic_register: "Field clinic register",
+  evacuation_manifest: "Evacuation manifest",
+  aid_registration: "Aid registration",
+  translated_witness_note: "Translated witness note",
 };
 
 export const statusLabels: Record<CompatibilityStatus, string> = {

@@ -4,7 +4,7 @@
 .evaluation-hero .page-title, .methodology-hero .page-title { max-width: 16ch; }
 .evaluation-hero .body-large, .methodology-hero .body-large { max-width: 48rem; margin: 0; }
 .evaluation-disclaimer, .methodology-boundary { display: grid; align-content: start; gap: 0.8rem; padding: 1.2rem; }
-.evaluation-disclaimer strong, .methodology-boundary strong { font-family: Georgia, serif; font-size: 1.25rem; font-weight: 400; line-height: 1.3; }
+.evaluation-disclaimer strong, .methodology-boundary strong { font-family: var(--font-sans); font-size: 1.25rem; font-weight: 560; line-height: 1.3; }
 .evaluation-disclaimer p, .methodology-boundary p { margin: 0; color: var(--text-secondary); font-size: 0.76rem; line-height: 1.6; }
 
 .evaluation-section { padding-block: clamp(4.5rem, 8vw, 7rem); border-top: 1px solid var(--border); }
@@ -50,7 +50,7 @@
 .output-card { overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
 .output-card > header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem; border-bottom: 1px solid var(--border); }
 .output-card > header > span { font-size: 0.8rem; font-weight: 700; }
-.output-card blockquote { min-height: 9.5rem; margin: 0; padding: 1.2rem; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-family: Georgia, serif; font-size: 1.05rem; line-height: 1.6; }
+.output-card blockquote { min-height: 9.5rem; margin: 0; padding: 1.2rem; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-family: var(--font-sans); font-size: 1.05rem; line-height: 1.6; }
 .structured-output { min-height: 9.5rem; display: grid; align-content: center; gap: 0.4rem; padding: 1.2rem; border-bottom: 1px solid var(--border); background: var(--cyan-soft); }
 .structured-output span { color: var(--cyan); font-family: var(--font-mono); font-size: 0.58rem; text-transform: uppercase; }
 .structured-output strong { font-family: var(--font-mono); font-size: 0.82rem; }
@@ -86,4 +86,3 @@
   .example-interpretation span { max-width: none; text-align: left; }
   .evaluation-close, .methodology-close { align-items: stretch; flex-direction: column; }
 }
-

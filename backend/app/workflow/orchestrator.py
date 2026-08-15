@@ -12,13 +12,19 @@ from app.schemas.models import (
     AnalysisSummary,
     AnalyzeRequest,
     AnalyzeResponse,
+    AuditIntegrityStatus,
     Classification,
+    ContractReleaseStatus,
     NormalizedRecord,
+    ReleaseState,
     ValidationResult,
     WorkflowTrace,
     WorkflowTraceDetail,
 )
 from app.services.audit import AuditBuilder
+from app.services.audit_chain import build_analysis_audit_chain, verify_audit_chain
+from app.services.evidence_contracts import build_evidence_contracts
+from app.services.replay import build_replay_manifest
 from app.workflow.base import NodeOutcome, WorkflowNode
 from app.workflow.context import WorkflowContext
 from app.workflow.registry import disableable_node_ids, workflow_nodes
@@ -170,7 +176,103 @@ class WorkflowOrchestrator:
                 len(record.detected_instructions) for record in context.records
             ),
         )
-        return AnalyzeResponse(
+        created_at = details[-1].completed_at if details else datetime.now(UTC)
+        routing_inputs = {
+            candidate.candidate_id: {
+                "hard_conflict_ids": [
+                    conflict.conflict_id
+                    for conflict in candidate.conflicts
+                    if conflict.severity == "hard"
+                ]
+            }
+            for candidate in context.candidates
+        }
+        contract_kwargs = {
+            "case_id": case_id,
+            "candidates": context.candidates,
+            "records": context.records,
+            "source_records": request.records,
+            "review_routing_inputs": routing_inputs,
+            "created_at": created_at,
+            "workflow_node_ids": tuple(item.node_id for item in details),
+            "block_hard_conflicts": True,
+        }
+        contracts = build_evidence_contracts(**contract_kwargs)
+        audit_chain = build_analysis_audit_chain(
+            workflow_run_id=workflow_run_id,
+            case_id=case_id,
+            record_ids=[record.record_id for record in request.records],
+            traces=details,
+            legacy_events=context.audit.events,
+            candidates=context.candidates,
+            contracts=contracts,
+            created_at=created_at,
+        )
+        integrity = verify_audit_chain(workflow_run_id, audit_chain)
+        # Re-evaluate once against the now-verifiable chain. The second chain is
+        # authoritative and remains deterministic because every timestamp is
+        # derived from the workflow trace in mock mode.
+        contracts = build_evidence_contracts(**contract_kwargs, audit_integrity=integrity)
+        audit_chain = build_analysis_audit_chain(
+            workflow_run_id=workflow_run_id,
+            case_id=case_id,
+            record_ids=[record.record_id for record in request.records],
+            traces=details,
+            legacy_events=context.audit.events,
+            candidates=context.candidates,
+            contracts=contracts,
+            created_at=created_at,
+        )
+        integrity = verify_audit_chain(workflow_run_id, audit_chain)
+        if not integrity.valid or integrity.status != AuditIntegrityStatus.verified:
+            # A failure in the authoritative second chain must be reflected in
+            # the contract itself, not only in the aggregate response flag.
+            contracts = build_evidence_contracts(
+                **contract_kwargs, audit_integrity=integrity
+            )
+            audit_chain = build_analysis_audit_chain(
+                workflow_run_id=workflow_run_id,
+                case_id=case_id,
+                record_ids=[record.record_id for record in request.records],
+                traces=details,
+                legacy_events=context.audit.events,
+                candidates=context.candidates,
+                contracts=contracts,
+                created_at=created_at,
+            )
+            integrity = verify_audit_chain(workflow_run_id, audit_chain)
+        for contract in contracts:
+            contract.audit_chain_status = integrity.model_dump(mode="json")
+        released = (
+            bool(contracts)
+            and all(contract.release_allowed for contract in contracts)
+            and integrity.valid
+            and integrity.status == AuditIntegrityStatus.verified
+        )
+        contract_ids = [contract.contract_id for contract in contracts]
+        blocking_rule_ids = sorted(
+            {
+                violation.rule_id
+                for contract in contracts
+                for violation in contract.violations
+                if violation.blocks_release
+            }
+        )
+        release_state = (
+            ReleaseState(
+                state="authorized_review_required",
+                contract_ids=contract_ids,
+                authorized_review_required=True,
+            )
+            if released
+            else ReleaseState(
+                state="contract_blocked",
+                contract_ids=contract_ids,
+                blocking_rule_ids=blocking_rule_ids,
+                authorized_review_required=True,
+            )
+        )
+        response = AnalyzeResponse(
             case_id=case_id,
             workflow_run_id=workflow_run_id,
             status=status,
@@ -181,8 +283,25 @@ class WorkflowOrchestrator:
             workflow_trace=compact if request.options.include_workflow_trace else [],
             workflow_trace_details=details if request.options.include_workflow_trace else [],
             audit_events=context.audit.events,
-            operational={"model_calls": context.model_calls, "retries": context.retries},
+            audit_chain_events=audit_chain,
+            audit_integrity=integrity,
+            evidence_contract=contracts[0] if contracts else None,
+            evidence_contracts=contracts,
+            contract_release_status=(
+                ContractReleaseStatus.released
+                if released
+                else ContractReleaseStatus.withheld
+            ),
+            release_state=release_state,
+            operational={
+                "model_calls": context.model_calls,
+                "retries": context.retries,
+                "linkage_decisions": len(context.linkage_decisions),
+                "deterministic_pipeline": True,
+            },
         )
+        response.replay_manifest = build_replay_manifest(request, response)
+        return response
 
     @staticmethod
     def _state_summary(context: WorkflowContext) -> str:

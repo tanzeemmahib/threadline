@@ -4,7 +4,7 @@ from time import perf_counter
 from uuid import uuid4
 
 from app.baselines.fuzzy_matcher import run_fuzzy
-from app.baselines.single_call import run_single_call
+from app.baselines.single_call import build_input_manifest, run_single_call
 from app.config import Settings
 from app.providers.base import ModelProvider
 from app.schemas.models import AnalyzeRequest, BaselineRunResponse, Classification, SystemOutput
@@ -17,7 +17,9 @@ class BaselineRunner:
         self.provider = provider
 
     async def run(self, request: AnalyzeRequest) -> BaselineRunResponse:
+        input_manifest = build_input_manifest(request)
         fuzzy = run_fuzzy(request)
+        fuzzy.output["input_manifest"] = input_manifest
         generic = await run_single_call(request, self.provider, structured=False)
         structured = await run_single_call(request, self.provider, structured=True)
         started = perf_counter()
@@ -55,6 +57,14 @@ class BaselineRunner:
                     record.quarantined
                     for record in workflow.records
                     if record.detected_instructions
+                ),
+                "provider_mode": self.provider.mode,
+                "provider_model": self.provider.model_name,
+                "input_manifest": input_manifest,
+                "evaluation_warning": (
+                    "Deterministic mock replay - not model performance."
+                    if self.provider.mode == "mock"
+                    else "Measured provider evaluation."
                 ),
             },
             duration_ms=round((perf_counter() - started) * 1000, 3),

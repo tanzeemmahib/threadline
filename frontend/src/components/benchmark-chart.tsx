@@ -1,6 +1,6 @@
 import type { BenchmarkMetric, BenchmarkSystemResult } from "@/types";
 
-const colors = ["#778b97", "#d9857d", "#e1b86c", "#67c8d4"];
+const colors = ["#8f887d", "#9a4d36", "#b79552", "#87947b"];
 
 export function BenchmarkChart({
   metric,

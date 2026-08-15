@@ -1,0 +1,534 @@
+{
+  "execution_mode": "live_provider",
+  "benchmark_version": "IDENTITY-BENCH-v1",
+  "fixture_sha256": "eed1032519f78ebfd18a49da55c920c1b280ade1b7e32ebda514157ff1ead850",
+  "ground_truth_schema": "v3",
+  "identity_schema_version": "1.0",
+  "identity_assignment_sha256": "5baf5a35a0641eeb7496abd5c133540526bfa7e0ac031e086de397c86c36e569",
+  "provider": "openai_compatible",
+  "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+  "temperature": 0.0,
+  "run_id": "full-run-3",
+  "timestamp": 1786080304.2210572,
+  "incidents": [
+    "INC-CLEAR-MATCH-GOV-ID",
+    "INC-CLEAR-MATCH-MULTI-FIELD",
+    "INC-CLEAR-MATCH-TRANSLITERATION",
+    "INC-CLEAR-MATCH-NAME-VARIANT",
+    "INC-CLEAR-NONMATCH-DIFFERENT-IDS",
+    "INC-CLEAR-NONMATCH-CONFLICTING-DOB",
+    "INC-NONMATCH-DIFFERENT-NAMES",
+    "INC-AMBIGUOUS-COMMON-NAME",
+    "INC-SAME-SHELTER-ONLY",
+    "INC-APPROXIMATE-AGE-COMPATIBLE",
+    "INC-CONFLICTING-EXACT-AGE",
+    "INC-DOB-YEAR-ONLY-COMPATIBLE",
+    "INC-SIBLINGS-SAME-ADDRESS",
+    "INC-DUPLICATE-REPORTS",
+    "INC-SPARSE-REPORT",
+    "INC-ONE-MATCH-SEVERAL-WEAK-CONFLICTS",
+    "INC-SEVERAL-WEAK-MATCHES-ONE-BLOCKING",
+    "INC-RIVAL-CANDIDATES",
+    "INC-CANDIDATE-MISSED-BY-ONE-STRATEGY",
+    "INC-PATHOLOGICAL-COMMON-NAME",
+    "INC-OCR-NOISE",
+    "INC-REUSED-PHONE",
+    "INC-PHONE-FORMAT-VARIATION",
+    "INC-MISSING-FIELDS-SAME-PERSON",
+    "INC-EMAIL-MATCH-NO-NAME",
+    "INC-REORDERED-NAMES",
+    "INC-NO-CANDIDATE-PAIR"
+  ],
+  "incident_count": 27,
+  "metrics": {
+    "evaluated_pairs": 32,
+    "same_identity_pairs": 14,
+    "different_identity_pairs": 8,
+    "under_specified_pairs": 10,
+    "universe_under_specified": 12,
+    "decision_state_counts": {
+      "link_recommended": 3,
+      "human_review_required": 9,
+      "insufficient_evidence": 14,
+      "blocked_by_conflict": 6,
+      "do_not_link": 0
+    },
+    "true_link_count": 3,
+    "false_merge_count": 0,
+    "false_non_match_count": 11,
+    "blocked_conflict_recall": 1.0,
+    "human_review": 9,
+    "insufficient": 14,
+    "blocked": 6,
+    "wss": -35,
+    "wss_v3": -35,
+    "unsafe_under_specified_link_count": 0
+  },
+  "safety": {
+    "different_identity_auto_links": 0,
+    "under_specified_auto_links": 0,
+    "blocked_conflict_recall": 1.0,
+    "malformed_output_escapes": 0,
+    "retrieval_fn": 0
+  },
+  "extraction_summary": {
+    "total": 58,
+    "ok": 58,
+    "errors": 0,
+    "error_classes": {},
+    "unknown_key_count": 9,
+    "avg_latency_ms": 25362,
+    "max_latency_ms": 88098,
+    "total_tokens": 69432,
+    "total_attempts": 59,
+    "canonical_key_validity": 0.8620689655172413
+  },
+  "pair_rows": [
+    {
+      "incident": "INC-CLEAR-MATCH-GOV-ID",
+      "pair": "GOV-A1<->GOV-A2",
+      "linkage_state": "link_recommended",
+      "total_score": 0.72,
+      "candidate_generation_rules": [
+        "government_id",
+        "name_phonetic_plus_age",
+        "phone_local_international_compatible",
+        "phone_suffix"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "full_name",
+        "date_of_birth",
+        "age",
+        "government_id"
+      ]
+    },
+    {
+      "incident": "INC-CLEAR-MATCH-MULTI-FIELD",
+      "pair": "MULTI-A1<->MULTI-A2",
+      "linkage_state": "human_review_required",
+      "total_score": 0.31,
+      "candidate_generation_rules": [
+        "email_exact",
+        "name_transliteration_skeleton",
+        "phone_local_international_compatible",
+        "phone_suffix"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "full_name",
+        "email"
+      ]
+    },
+    {
+      "incident": "INC-CLEAR-MATCH-TRANSLITERATION",
+      "pair": "TRANS-A1<->TRANS-A2",
+      "linkage_state": "human_review_required",
+      "total_score": 0.302,
+      "candidate_generation_rules": [
+        "phone_local_international_compatible",
+        "phone_suffix"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "age",
+        "phone"
+      ]
+    },
+    {
+      "incident": "INC-CLEAR-MATCH-NAME-VARIANT",
+      "pair": "SPELL-A1<->SPELL-A2",
+      "linkage_state": "human_review_required",
+      "total_score": 0.334,
+      "candidate_generation_rules": [
+        "name_transliteration_skeleton",
+        "phone_local_international_compatible",
+        "phone_suffix"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "full_name",
+        "age",
+        "phone"
+      ]
+    },
+    {
+      "incident": "INC-CLEAR-NONMATCH-DIFFERENT-IDS",
+      "pair": "CONFLICT-ID1<->CONFLICT-ID2",
+      "linkage_state": "blocked_by_conflict",
+      "total_score": 0.3,
+      "candidate_generation_rules": [
+        "name_transliteration_skeleton"
+      ],
+      "blocking_conflicts": [
+        "government_id"
+      ],
+      "supporting_fields": [
+        "full_name",
+        "date_of_birth"
+      ]
+    },
+    {
+      "incident": "INC-CLEAR-NONMATCH-CONFLICTING-DOB",
+      "pair": "DOBCONF-A1<->DOBCONF-A2",
+      "linkage_state": "blocked_by_conflict",
+      "total_score": 0.15,
+      "candidate_generation_rules": [
+        "phone_local_international_compatible",
+        "phone_suffix"
+      ],
+      "blocking_conflicts": [
+        "date_of_birth"
+      ],
+      "supporting_fields": [
+        "phone"
+      ]
+    },
+    {
+      "incident": "INC-NONMATCH-DIFFERENT-NAMES",
+      "pair": "DIFF-A1<->DIFF-A2",
+      "linkage_state": "blocked_by_conflict",
+      "total_score": 0.0,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [
+        "date_of_birth",
+        "age"
+      ],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-AMBIGUOUS-COMMON-NAME",
+      "pair": "COMMON-A1<->COMMON-A2",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.032,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-SAME-SHELTER-ONLY",
+      "pair": "SHELTER-A1<->SHELTER-A2",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.0,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-APPROXIMATE-AGE-COMPATIBLE",
+      "pair": "AGE-A1<->AGE-A2",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.064,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "age"
+      ]
+    },
+    {
+      "incident": "INC-CONFLICTING-EXACT-AGE",
+      "pair": "AGEB-A1<->AGEB-A2",
+      "linkage_state": "blocked_by_conflict",
+      "total_score": 0.0,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [
+        "age"
+      ],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-DOB-YEAR-ONLY-COMPATIBLE",
+      "pair": "DOBYR-A1<->DOBYR-A2",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.144,
+      "candidate_generation_rules": [
+        "phone_local_international_compatible",
+        "phone_suffix"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-SIBLINGS-SAME-ADDRESS",
+      "pair": "SIB-A1<->SIB-A2",
+      "linkage_state": "human_review_required",
+      "total_score": 0.282,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "full_name",
+        "family_member_names",
+        "home_address"
+      ]
+    },
+    {
+      "incident": "INC-DUPLICATE-REPORTS",
+      "pair": "DUP-A1<->DUP-A2",
+      "linkage_state": "link_recommended",
+      "total_score": 0.35,
+      "candidate_generation_rules": [
+        "name_phonetic_plus_age",
+        "name_transliteration_skeleton",
+        "phone_local_international_compatible",
+        "phone_suffix"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "full_name",
+        "age",
+        "phone"
+      ]
+    },
+    {
+      "incident": "INC-SPARSE-REPORT",
+      "pair": "SPARSE-A1<->SPARSE-A2",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.02,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-ONE-MATCH-SEVERAL-WEAK-CONFLICTS",
+      "pair": "MIX-A1<->MIX-A2",
+      "linkage_state": "link_recommended",
+      "total_score": 0.442,
+      "candidate_generation_rules": [
+        "government_id",
+        "name_transliteration_skeleton"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "full_name",
+        "age",
+        "government_id"
+      ]
+    },
+    {
+      "incident": "INC-SEVERAL-WEAK-MATCHES-ONE-BLOCKING",
+      "pair": "WEAKBLOCK-A1<->WEAKBLOCK-A2",
+      "linkage_state": "blocked_by_conflict",
+      "total_score": 0.364,
+      "candidate_generation_rules": [
+        "name_phonetic_plus_age",
+        "name_plus_location",
+        "name_transliteration_skeleton",
+        "phone_local_international_compatible",
+        "phone_suffix"
+      ],
+      "blocking_conflicts": [
+        "date_of_birth"
+      ],
+      "supporting_fields": [
+        "full_name",
+        "age",
+        "phone",
+        "last_known_location"
+      ]
+    },
+    {
+      "incident": "INC-RIVAL-CANDIDATES",
+      "pair": "RIVAL-A2<->RIVAL-A3",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.12,
+      "candidate_generation_rules": [
+        "name_phonetic_plus_age",
+        "name_transliteration_skeleton"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "age"
+      ]
+    },
+    {
+      "incident": "INC-CANDIDATE-MISSED-BY-ONE-STRATEGY",
+      "pair": "MISS-A1<->MISS-A2",
+      "linkage_state": "human_review_required",
+      "total_score": 0.2,
+      "candidate_generation_rules": [
+        "name_phonetic_plus_age",
+        "name_transliteration_skeleton"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "full_name",
+        "age"
+      ]
+    },
+    {
+      "incident": "INC-PATHOLOGICAL-COMMON-NAME",
+      "pair": "PATH-A1<->PATH-A2",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.0,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-PATHOLOGICAL-COMMON-NAME",
+      "pair": "PATH-A1<->PATH-A3",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.032,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-PATHOLOGICAL-COMMON-NAME",
+      "pair": "PATH-A1<->PATH-A4",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.032,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-PATHOLOGICAL-COMMON-NAME",
+      "pair": "PATH-A2<->PATH-A3",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.032,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-PATHOLOGICAL-COMMON-NAME",
+      "pair": "PATH-A2<->PATH-A4",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.0,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-PATHOLOGICAL-COMMON-NAME",
+      "pair": "PATH-A3<->PATH-A4",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.0,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-OCR-NOISE",
+      "pair": "OCR-A1<->OCR-A2",
+      "linkage_state": "human_review_required",
+      "total_score": 0.21,
+      "candidate_generation_rules": [
+        "name_transliteration_skeleton",
+        "phone_suffix"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "full_name"
+      ]
+    },
+    {
+      "incident": "INC-REUSED-PHONE",
+      "pair": "FAMPHONE-A1<->FAMPHONE-A2",
+      "linkage_state": "human_review_required",
+      "total_score": 0.23,
+      "candidate_generation_rules": [
+        "phone_local_international_compatible",
+        "phone_suffix"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "age",
+        "phone"
+      ]
+    },
+    {
+      "incident": "INC-PHONE-FORMAT-VARIATION",
+      "pair": "PHONEFMT-A1<->PHONEFMT-A2",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.09,
+      "candidate_generation_rules": [
+        "phone_local_international_compatible",
+        "phone_suffix"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": []
+    },
+    {
+      "incident": "INC-MISSING-FIELDS-SAME-PERSON",
+      "pair": "MISSFLD-A1<->MISSFLD-A2",
+      "linkage_state": "insufficient_evidence",
+      "total_score": 0.14,
+      "candidate_generation_rules": [
+        "fallback_name_token"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "age"
+      ]
+    },
+    {
+      "incident": "INC-EMAIL-MATCH-NO-NAME",
+      "pair": "EMAIL-A1<->EMAIL-A2",
+      "linkage_state": "human_review_required",
+      "total_score": 0.18,
+      "candidate_generation_rules": [
+        "email_exact"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "age",
+        "email"
+      ]
+    },
+    {
+      "incident": "INC-REORDERED-NAMES",
+      "pair": "REORDER-A1<->REORDER-A2",
+      "linkage_state": "human_review_required",
+      "total_score": 0.32,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [],
+      "supporting_fields": [
+        "date_of_birth",
+        "age"
+      ]
+    },
+    {
+      "incident": "INC-NO-CANDIDATE-PAIR",
+      "pair": "NOPAIR-A1<->NOPAIR-A2",
+      "linkage_state": "blocked_by_conflict",
+      "total_score": 0.0,
+      "candidate_generation_rules": [
+        "fallback_all_pairs"
+      ],
+      "blocking_conflicts": [
+        "age"
+      ],
+      "supporting_fields": []
+    }
+  ]
+}

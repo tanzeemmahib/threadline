@@ -57,7 +57,11 @@ def test_name_normalization_preserves_original_variant() -> None:
     original = "يوسف الحسن"
     variants = name_variants(original)
     assert variants[0] == original
-    assert normalize_name(original) == "yusuf hassan"
+    # Arabic names are transliterated using consonant-skeleton mapping.
+    # "يوسف الحسن" → consonant skeleton "ywsf alhsn" (spaces preserved)
+    # The old ARABIC_VARIANTS dict (yusuf hassan) is replaced by the
+    # deterministic consonant-skeleton approach.
+    assert normalize_name(original) == "ywsf alhsn"
 
 
 def test_privacy_redaction() -> None:

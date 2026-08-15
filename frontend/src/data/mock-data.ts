@@ -5,6 +5,7 @@ import type {
   BenchmarkSystemResult,
   CandidateConnection,
   CaseData,
+  EvidenceContract,
   Incident,
   SourceRecord,
   WorkflowNode,
@@ -34,15 +35,21 @@ function createRecord(seed: RecordSeed): SourceRecord {
     ...record,
     evidence_spans: spans.map((span) => {
       const start = seed.text.indexOf(span.excerpt);
+      const field = seed.fields.find((item) => item.source_span_id === span.id);
       return {
         span_id: span.id,
         record_id: seed.record_id,
+        quote: span.excerpt,
         start: Math.max(0, start),
         end: Math.max(0, start) + span.excerpt.length,
         text: span.excerpt,
         field: span.field,
+        certainty: field?.certainty ?? "exact",
+        extraction_method: "synthetic_fixture",
         extraction_status: span.status ?? "extracted",
         normalization_note: span.note,
+        valid: start >= 0,
+        validation_error: start >= 0 ? null : "Fixture excerpt was not found.",
       };
     }),
   };
@@ -463,6 +470,9 @@ export const mockCaseData: CaseData = {
   incident,
   records: sourceRecords,
   candidates: candidateConnections,
+  evidence_contract: fixtureEvidenceContract(),
+  evidence_contracts: [fixtureEvidenceContract()],
+  contract_release_status: "released",
   workflow_trace: workflowNodes,
   audit_events: auditEvents,
   summary: {
@@ -474,3 +484,40 @@ export const mockCaseData: CaseData = {
     quarantined_instructions: 2,
   },
 };
+
+function fixtureEvidenceContract(): EvidenceContract {
+  const candidate = candidateConnections[0];
+  const spans = sourceRecords
+    .filter((record) => [candidate.record_a_id, candidate.record_b_id].includes(record.record_id))
+    .flatMap((record) => record.evidence_spans)
+    .slice(0, 4);
+  return {
+    contract_id: "CONTRACT-FIXTURE-MATCH-001",
+    case_id: "CASE-001",
+    candidate_id: candidate.candidate_id,
+    classification: "possible_candidate",
+    contract_status: "passed",
+    release_allowed: true,
+    claims: spans.map((span) => ({
+      claim_id: `CLAIM-FIXTURE-${span.span_id}`,
+      candidate_id: candidate.candidate_id,
+      claim_type: "extracted_fact",
+      claim_text: `${span.field}: ${span.text}`,
+      source_record_ids: [span.record_id],
+      source_spans: [span],
+      certainty_basis: { [span.span_id]: span.certainty },
+      generated_by_node: "extract",
+      supported: true,
+      support_reason: "Exact quote and offsets resolve to immutable synthetic source text.",
+      violations: [],
+    })),
+    violations: [],
+    contradictions_considered: [],
+    rivals_considered: candidate.rivals.map((rival) => rival.record_id),
+    decision_critical_evidence: [],
+    audit_chain_status: {},
+    created_at: "2026-04-18T22:03:00Z",
+    verifier_version: "threadline-evidence-contracts/1.0.0",
+    safety_notice: "THREADLINE proposes candidate record connections for authorized human review and does not autonomously determine identity.",
+  };
+}

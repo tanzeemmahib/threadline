@@ -1,5 +1,7 @@
 # THREADLINE — Reverie Hacks 2026 submission brief
 
+> **Primary 2026 judge path:** use the current [three-minute demo script](reverie-demo-script.md), [Prompt Lab comparison](reverie-prompt-comparison.md), and [ML-track documentation](reverie-ml-track-documentation.md). Older workspace-tour materials are retained only as legacy technical references.
+
 ## Project description
 
 THREADLINE is an experimental safety and review layer for proposed record connections. It preserves exact provenance, challenges each hypothesis with contradictions and rival candidates, and deterministically withholds outputs that are not safe for authorized human review.
@@ -9,7 +11,7 @@ The central demonstration is:
 > Same records. Same deterministic mock model. Different workflow.  
 > A single prompt reaches a conclusion. THREADLINE preserves the evidence, exposes the contradiction, and withholds what cannot be proven.
 
-The deterministic mock in Judge Mode is an offline, reproducible workflow-behavior fixture. It is not a claim about live-model performance. Archived live-provider measurements are presented separately, and a live same-model single-prompt comparison has not been measured.
+The deterministic mock in Judge Mode is an offline, reproducible workflow-behavior fixture. It is not a claim about live-model performance. Archived live-provider measurements are presented separately, and a frozen same-model live comparison (18/18 runs completed) is presented separately with mixed outcomes and no superiority claim.
 
 THREADLINE is a synthetic research demonstration. It is not a production registry, a public search engine, an identification system, a facial-recognition product, a replacement for humanitarian organizations, or evidence of real-world humanitarian validation. It never confirms identity or autonomously merges people.
 
@@ -21,22 +23,20 @@ THREADLINE tests a narrow ML-safety question: can a prompt-engineered workflow m
 
 ## Judge path
 
-The primary route is `/demo`. Its eight scenes are designed to complete in under four minutes:
+The primary route is `/demo?demo=guided`. Its six scenes are designed to complete in under three minutes with narration:
 
-1. **Fragmented records** — a family report and an intake record show compatible fragments without an identity conclusion.
-2. **Single-prompt baseline** — a reasonable one-call fixture returns a plausible candidate for review from the same evidence.
-3. **Evidence extraction** — each claim exposes its exact source span, original value, normalized value, category, independence status, and uncertainty.
-4. **Contradiction challenge** — a soft date conflict and a material location/timeline conflict interrupt the proposed connection.
-5. **Rival candidate** — an alternative candidate remains plausible.
-6. **Evidence contract** — deterministic rules withhold release because material location evidence remains unresolved.
-7. **Human review** — the case is handed to an authorized reviewer without a success treatment.
-8. **Measured comparison** — the deterministic replay and archived live-provider evidence are clearly separated.
+1. **Human stakes** — three synthetic record summaries establish `FAMILY-018`, `SHELTER-204`, and the plausible `HOSPITAL-052` rival without an identity conclusion.
+2. **One-shot baseline** — a reasonable deterministic one-call replay receives the same complete packet and returns a plausible candidate without exact citations or explicit rival contradiction.
+3. **Source-cited extraction** — structured factors link to exact quoted spans, offsets, and substring validation while deterministic representations remain separate from original evidence.
+4. **Supported thread** — `FAMILY-018 ↔ SHELTER-204` becomes a possible connection eligible only for authorized human review.
+5. **Conflict gate** — direct age evidence and deterministic timeline/material-conflict rules block candidate pairs involving `HOSPITAL-052`; the model cannot override the gate.
+6. **Measured proof** — the supported and blocked outcomes remain beside input/evidence hashes, contract identifiers, archived Prompt V2 counts, and explicit synthetic limits.
 
-Landing-page actions use the exact labels **Run the evidence challenge** and **Explore the technical workspace**. Judge Mode supports Start, Next, Back, Reset, source opening, technical-evidence access, keyboard navigation, touch, and reduced motion.
+The landing-page actions are **Run the evidence case** and **Compare the prompts**. Judge Mode supports direct scene selection, Next, Back, Reset, exact-source opening, keyboard navigation, touch, and reduced motion. `/prompt-lab` is the technical deep dive. The older persisted workspace tour remains available only as a legacy technical reference.
 
 ## Technical workflow
 
-The implementation contains twelve workflow nodes grouped into seven readable stages in the [submission workflow diagram](submission/threadline-workflow.svg):
+The implementation is summarized as seven readable stages in the current [Reverie workflow diagram](reverie-ml-workflow.svg):
 
 1. Human incident configuration and record intake
 2. Untrusted-text quarantine and LLM extraction
@@ -94,7 +94,7 @@ These counts show the behavior encoded by the fixed fixtures and rules. They do 
 
 ### Archived live-provider extraction evidence
 
-One archived Prompt V2 run used an OpenAI-compatible provider with `Qwen/Qwen3-30B-A3B-Instruct-2507`, temperature 0, and the synthetic identity benchmark. It is extraction-focused and has no live same-model one-prompt comparator.
+One archived Prompt V2 run used an OpenAI-compatible provider with `Qwen/Qwen3-30B-A3B-Instruct-2507`, temperature 0, and the synthetic identity benchmark. It is extraction-focused and has no live same-model one-prompt comparator. A separate frozen preregistered same-model comparison (spec `THREADLINE-REVERIE-LIVE-EVAL-V1.1`) did run both systems live on identical inputs; see `docs/reverie-ml-track-documentation.md` and the published artifact under `backend/data/reverie_live_evaluation_v1_1/`.
 
 | Measure | Archived result |
 | --- | ---: |
@@ -139,14 +139,15 @@ See [Data responsibility and threat model](submission/data-responsibility.md) fo
 
 ## Reproduction and artifacts
 
-- [Submission package index](submission/README.md)
-- [Four-minute demo script](submission/demo-script.md)
-- [Workflow and node documentation](submission/workflow-node-documentation.md)
+- [Reverie submission checklist](reverie-submission-checklist.md)
+- [Three-minute Reverie demo script](reverie-demo-script.md)
+- [Prompt comparison](reverie-prompt-comparison.md)
+- [ML-track workflow and node documentation](reverie-ml-track-documentation.md)
+- [Editable Reverie workflow SVG](reverie-ml-workflow.svg)
+- [Reverie workflow PNG](reverie-ml-workflow.png)
+- [Machine-readable Prompt Lab evidence](submission/reverie-prompt-lab.json)
 - [Reproduction instructions](submission/reproduction.md)
-- [Editable workflow SVG](submission/threadline-workflow.svg)
-- [Submission workflow PNG](submission/threadline-workflow.png)
-- [Workflow/node documentation PDF](submission/workflow-node-documentation.pdf)
-- [Comparison and samples PDF](submission/comparison-samples.pdf)
+- [Legacy technical workspace package](submission/README.md)
 
 The deterministic demo requires no network connection or provider credentials and is explicitly labelled as a synthetic replay. Optional connected-provider runs require credentials and must be reported separately.
 
@@ -154,7 +155,7 @@ The deterministic demo requires no network connection or provider credentials an
 
 - All records and cases are synthetic; there has been no operational humanitarian validation.
 - The 21-case deterministic harness is too small to support broad safety or performance claims.
-- The one archived live-provider run does not include a live same-model single-prompt comparator or approximate monetary cost.
+- The frozen live same-model comparison completed 18/18 runs but is small and mixed: the structured one-shot was outcome-acceptable in 9/9 runs while emitting 45 invalid citations, and THREADLINE emitted 0 invalid citations while abstaining on 6/9 runs. No superiority claim is made from three synthetic cases; approximate monetary cost and confidence intervals remain not measured.
 - Selected workflow ablations do not change primary metrics on the current fixed harness.
 - The release contract encodes research rules, not a validated humanitarian decision policy.
 - The prototype lacks the privacy, security, governance, and organizational controls required for production use.

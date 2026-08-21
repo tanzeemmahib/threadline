@@ -6,19 +6,25 @@ import test from "node:test";
 const read = (path) => readFile(new URL(path, import.meta.url), "utf8");
 
 test("all required routes exist with descriptive page content", async () => {
-  const routes = await Promise.all([
+  const [routes, landing] = await Promise.all([
+    Promise.all([
     read("../src/app/page.tsx"),
     read("../src/app/workspace/page.tsx"),
     read("../src/app/benchmark/page.tsx"),
     read("../src/app/trials/page.tsx"),
     read("../src/app/methodology/page.tsx"),
+    read("../src/app/prompt-lab/page.tsx"),
+    ]),
+    read("../src/components/reverie-landing.tsx"),
   ]);
-  assert.match(routes[0], /Reconnect the record/);
-  assert.match(routes[0], /Preserve the uncertainty/);
+  assert.match(landing, /Connect the records/);
+  assert.match(landing, /Never guess the person/);
+  assert.match(landing, /Synthetic research demonstration/);
   assert.match(routes[1], /WorkspaceShell/);
   assert.match(routes[2], /awaiting measured benchmark output/);
   assert.match(routes[3], /TrialsLab/);
   assert.match(routes[4], /Node-by-node reasoning/);
+  assert.match(routes[5], /PromptLab/);
 });
 
 test("synthetic dataset is deterministic and contains required safety cases", async () => {
@@ -47,12 +53,12 @@ test("cyclone demo covers the fail-closed end-to-end journey", async () => {
   assert.match(guide, /Record the disposition/);
 });
 
-test("judge mode presents eight evidence scenes with artifact-scoped controls", async () => {
+test("legacy technical workspace tour retains its artifact-scoped controls", async () => {
   const [guide, evidence, workspace, landing, styles, header, globals] = await Promise.all([
     read("../src/components/workspace/guided-demo.tsx"),
     read("../src/data/judge-evidence.ts"),
     read("../src/components/workspace/workspace-shell.tsx"),
-    read("../src/components/landing-story.tsx"),
+    read("../src/components/reverie-landing.tsx"),
     read("../src/app/workspace.css"),
     read("../src/components/site-header.tsx"),
     read("../src/app/globals.css"),
@@ -66,13 +72,14 @@ test("judge mode presents eight evidence scenes with artifact-scoped controls", 
   assert.match(evidence, /4 \/ 4 different-identity cases withheld/);
   assert.match(evidence, /0 \/ 8 evaluated different-identity pairs false-merged/);
   assert.doesNotMatch(evidence, /8\.762%/);
-  assert.match(landing, /Run the evidence challenge/);
-  assert.match(landing, /Explore the technical workspace/);
+  assert.match(landing, /Run the evidence case/);
+  assert.match(landing, /Compare the prompts/);
   assert.match(styles, /\.guided-demo--judge/);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)/);
-  for (const primary of ["Guided Case", "Workspace", "Evaluation"]) assert.match(header, new RegExp(`>${primary}<`));
+  for (const primary of ["Guided Case", "Prompt Lab", "Workspace", "Evaluation"]) assert.match(header, new RegExp(`>${primary}<`));
   assert.match(header, /<details className="site-nav__technical"/);
-  assert.match(header, /<summary[^>]*>Technical evidence<\/summary>/);
+  assert.match(header, /site-nav__technical-label--full">Technical evidence<\/span>/);
+  assert.match(header, /site-nav__technical-label--compact">Technical<\/span>/);
   for (const technical of ["Trials", "Methodology"]) assert.match(header, new RegExp(`>${technical}<`));
   assert.match(globals, /\.site-nav__technical-menu/);
 });
@@ -154,6 +161,7 @@ test("review UI excludes autonomous identity confirmation language", async () =>
 test("premium investigation flow exposes real lineage contradiction and contract states", async () => {
   const sources = await Promise.all([
     read("../src/app/page.tsx"),
+    read("../src/components/reverie-landing.tsx"),
     read("../src/components/workspace/workspace-shell.tsx"),
     read("../src/components/workspace/evidence-lineage.tsx"),
     read("../src/components/workspace/contradiction-workspace.tsx"),
@@ -161,7 +169,7 @@ test("premium investigation flow exposes real lineage contradiction and contract
     read("../src/components/workspace/guided-demo.tsx"),
   ]);
   const productSource = sources.join("\n");
-  for (const label of ["Trace a Synthetic Case", "Candidate claim", "Normalized claim", "Extracted evidence", "Exact source span", "Rival explanations", "Run Evidence Contract", "Validating Evidence…", "Resolve Contract Violations", "Send to Authorized Review", "Record Authorized Decision"]) {
+  for (const label of ["Run the evidence case", "Candidate claim", "Normalized claim", "Extracted evidence", "Exact source span", "Rival explanations", "Run Evidence Contract", "Validating Evidence…", "Resolve Contract Violations", "Send to Authorized Review", "Record Authorized Decision"]) {
     assert.match(productSource, new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
   }
   for (const forbidden of ["AI Match Confirmed", "Identity Confirmed", "Person Found", "Guaranteed Match", "Autonomous Verification"]) {

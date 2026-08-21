@@ -1,6 +1,6 @@
 # THREADLINE submission evidence
 
-Release status: verified — see FINAL_RELEASE_REPORT.md for the recorded release matrix  
+Release status: **dirty-worktree draft verified; clean-commit CI pending** — see [`../reverie-release.md`](../reverie-release.md) and the generated [`reverie-release-manifest.json`](reverie-release-manifest.json)
 Scope: fictional identities; synthetic research demonstration only
 
 > Same records. Same deterministic mock model. Different workflow. A single prompt reaches a conclusion. THREADLINE preserves the evidence, exposes the contradiction, and withholds what cannot be proven.
@@ -13,9 +13,12 @@ It is not a production registry, a public people-search system, facial recogniti
 
 1. Run the offline proof: `../../scripts/run-v1-demo.ps1`.
 2. Open `http://127.0.0.1:3000/demo?demo=guided`.
-3. Follow [the four-minute demo script](demo-script.md).
-4. Read [the benchmark report](benchmark-report.md).
-5. Inspect [the workflow diagram](threadline-workflow.png) and [editable SVG](threadline-workflow.svg).
+3. Follow [the Reverie three-minute demo script](../reverie-demo-script.md).
+4. Open `http://127.0.0.1:3000/prompt-lab` and inspect the [machine-readable Prompt Lab artifact](reverie-prompt-lab.json).
+5. Read the [Reverie prompt comparison](../reverie-prompt-comparison.md) and [ML-track node documentation](../reverie-ml-track-documentation.md).
+6. Inspect the [Reverie workflow PNG](../reverie-ml-workflow.png) and [editable SVG](../reverie-ml-workflow.svg).
+
+The original four-minute script and compact implementation diagram remain below as technical reference; the Reverie path above is the primary submission narrative.
 
 No model credential or network connection is required for this path. The interface labels it **Deterministic mock replay - not model performance**.
 
@@ -23,6 +26,7 @@ No model credential or network connection is required for this path. The interfa
 
 ### Measured and machine-readable
 
+- [Reverie Prompt Lab artifact](reverie-prompt-lab.json) - three identical-input case comparisons plus locked V1/V2/V3 prompt evidence.
 - [Benchmark report](benchmark-report.md) - answer-first comparison, ablations, counterfactual, caveats, and reproduction.
 - [Results JSON](results.json) - compact deterministic comparison and separately labeled archived live-provider evidence.
 - [Results CSV](results.csv) - metric rows with formulas, numerators, and denominators.
@@ -38,13 +42,28 @@ No model credential or network connection is required for this path. The interfa
 
 ### Demo and reproduction
 
-- [Four-minute demo script](demo-script.md) - synchronized to the eight-scene Judge Mode.
+- [Legacy four-minute workspace-tour script](demo-script.md) - retained only as a technical reference for the earlier eight-scene flow.
 - [Reproduction guide](reproduction.md) - dependency setup, offline proof, evidence generation, checks, and cold start.
+
+### Final browser captures
+
+- [Desktop landing](../product-screenshots/reverie/desktop-landing.png)
+- [Supported review-only thread](../product-screenshots/reverie/desktop-supported-thread.png)
+- [Deterministically blocked rival](../product-screenshots/reverie/desktop-blocked-rival.png)
+- [Measured proof](../product-screenshots/reverie/desktop-measured-proof.png)
+- [Prompt Lab](../product-screenshots/reverie/desktop-prompt-lab.png)
+- [Technical workspace](../product-screenshots/reverie/desktop-workspace.png)
+- [390 px landing](../product-screenshots/reverie/mobile-landing-390.png)
+- [390 px evidence case](../product-screenshots/reverie/mobile-evidence-case-390.png)
 
 ### Print-ready files
 
-- [Comparison and samples PDF](comparison-samples.pdf) - compact judge-facing evidence summary.
-- [Workflow node documentation PDF](workflow-node-documentation.pdf) - printable architecture and safety reference.
+- [One-page evidence summary](../../output/pdf/threadline-reverie-evidence-summary.pdf) - compact case, prompt-promotion, safety-boundary, and reproduction proof.
+- [Reverie workflow PDF](../../output/pdf/threadline-reverie-workflow.pdf) - full-page seven-stage workflow.
+- [Prompt comparison PDF](../../output/pdf/threadline-reverie-prompt-comparison.pdf) - printable same-input comparison and prompt iteration report.
+- [ML-track documentation PDF](../../output/pdf/threadline-reverie-ml-track-documentation.pdf) - printable node and safety-boundary reference.
+
+The older `comparison-samples.pdf` and `workflow-node-documentation.pdf` predate the current Reverie six-scene package. They remain legacy technical derivatives and are not primary upload artifacts.
 
 PDFs are derived presentation artifacts. The Markdown, JSON, CSV, raw outputs, and editable SVG remain the auditable sources.
 
@@ -105,5 +124,7 @@ The submission also cites the ICRC [Handbook on Data Protection in Humanitarian 
 - No operational humanitarian organization has validated THREADLINE.
 
 ## Final release gate
+
+Use the single [Reverie release procedure](../reverie-release.md). The generated manifest is content-addressed and the CI workflow starts from a clean checkout. A dirty-worktree manifest is a draft and must not be represented as a commit-complete release.
 
 Before upload, the release owner must record exact results for backend tests, deterministic validators, frontend tests, typecheck, lint, production build, integration smoke, cold start, desktop/mobile browser inspection, reduced motion, PDF page inspection, and broken-link checks. Any failure remains a named limitation; it must not be hidden or converted into a pass.

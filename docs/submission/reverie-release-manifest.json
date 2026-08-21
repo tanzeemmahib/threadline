@@ -1,0 +1,599 @@
+{
+  "check_digest_sha256": "35176c7b2c66ddc7d6bcda1fae20c56d8088607998f69337eeb3065a4a928af4",
+  "checks": [
+    {
+      "check_id": "regenerate_prompt_lab",
+      "status": "passed"
+    },
+    {
+      "check_id": "evidence_summary_markdown",
+      "status": "passed"
+    },
+    {
+      "check_id": "build_pdfs",
+      "status": "passed"
+    },
+    {
+      "check_id": "required_files",
+      "status": "passed"
+    },
+    {
+      "check_id": "prompt_lab_artifact",
+      "status": "passed"
+    },
+    {
+      "check_id": "live_evaluation_artifacts",
+      "status": "passed"
+    },
+    {
+      "check_id": "workflow_derivatives",
+      "status": "passed"
+    },
+    {
+      "check_id": "local_links",
+      "status": "passed"
+    },
+    {
+      "check_id": "secret_scan",
+      "status": "passed"
+    },
+    {
+      "check_id": "pytest_reverie",
+      "status": "passed"
+    },
+    {
+      "check_id": "pytest_reverie_live",
+      "status": "passed"
+    },
+    {
+      "check_id": "pytest_submission",
+      "status": "passed"
+    },
+    {
+      "check_id": "pytest_extraction_contract",
+      "status": "passed"
+    },
+    {
+      "check_id": "deterministic_validator",
+      "status": "passed"
+    },
+    {
+      "check_id": "ruff_submission_scope",
+      "status": "passed"
+    },
+    {
+      "check_id": "ruff_format_submission_scope",
+      "status": "passed"
+    },
+    {
+      "check_id": "mypy_submission_scope",
+      "status": "passed"
+    },
+    {
+      "check_id": "ruff_release_tools",
+      "status": "passed"
+    },
+    {
+      "check_id": "ruff_format_release_tools",
+      "status": "passed"
+    },
+    {
+      "check_id": "api_integration_smoke",
+      "status": "passed"
+    },
+    {
+      "check_id": "frontend_tests",
+      "status": "passed"
+    },
+    {
+      "check_id": "frontend_typecheck",
+      "status": "passed"
+    },
+    {
+      "check_id": "frontend_lint",
+      "status": "passed"
+    },
+    {
+      "check_id": "frontend_build",
+      "status": "passed"
+    },
+    {
+      "check_id": "frontend_golden_e2e",
+      "status": "passed"
+    }
+  ],
+  "content_digest_sha256": "e1ba7f85efa323e10e3e4e93fba415626c11ab28fcf8417819b27947e240b47a",
+  "decision_boundary": "possible record connections for authorized human review only",
+  "files": [
+    {
+      "bytes": 3152,
+      "media_type": "application/octet-stream",
+      "path": ".github/workflows/reverie-release.yml",
+      "role": "release_support",
+      "sha256": "e2e1d08467381d542a7cd813bde8c00c9019908894868ccff4f50761c48a1d93"
+    },
+    {
+      "bytes": 1090,
+      "media_type": "application/octet-stream",
+      "path": "LICENSE",
+      "role": "release_support",
+      "sha256": "0456c1b7f6fd602f6b916d14638ab1b3ade8e9b31a749db8814d611e8ddad94c"
+    },
+    {
+      "bytes": 16278,
+      "media_type": "text/markdown",
+      "path": "README.md",
+      "role": "human_readable_documentation",
+      "sha256": "0d5b1c2cf38897970d71cdeb2957de062403bd165c11b07923ad4e4daeb884ad"
+    },
+    {
+      "bytes": 2664,
+      "media_type": "text/x-python",
+      "path": "backend/app/api/routes/reverie.py",
+      "role": "release_support",
+      "sha256": "ae3c4265415b8d406566ca14cddd0d0efbae0c52d9efad730c752ba06741ed93"
+    },
+    {
+      "bytes": 1847,
+      "media_type": "text/x-python",
+      "path": "backend/app/baselines/reverie_one_shot.py",
+      "role": "release_support",
+      "sha256": "7d2bb2554539f19f960088d0afd8271361202fa118762d32918206c5b75e95bb"
+    },
+    {
+      "bytes": 34500,
+      "media_type": "text/x-python",
+      "path": "backend/app/evaluation/reverie_live.py",
+      "role": "release_support",
+      "sha256": "ed23aff846d9fcdccda34df3f15e4298f096a627807118647c22357295ac40df"
+    },
+    {
+      "bytes": 1869,
+      "media_type": "text/plain",
+      "path": "backend/app/prompts/templates/reverie_one_shot.v1.txt",
+      "role": "release_support",
+      "sha256": "9e073270415face7e5095394024bbb4b91453069a0a3c90d7765398c2ffdbe94"
+    },
+    {
+      "bytes": 17484,
+      "media_type": "text/x-python",
+      "path": "backend/app/schemas/reverie_evaluation.py",
+      "role": "release_support",
+      "sha256": "342a5ab22c809603e0259d8509a7818e2adc619978c3e77d25d0bea3ac55b368"
+    },
+    {
+      "bytes": 2826554,
+      "media_type": "application/json",
+      "path": "backend/data/reverie_live_evaluation_v1_1/raw-provider-calls.json",
+      "role": "sanitized_live_provider_recorder",
+      "sha256": "410856646b0f201a651b68ec66109077c12b384b0e787af586b667427d2d3a1e"
+    },
+    {
+      "bytes": 4300337,
+      "media_type": "application/json",
+      "path": "backend/data/reverie_live_evaluation_v1_1/results.json",
+      "role": "authoritative_live_same_model_comparison",
+      "sha256": "00ead5b5f303a57805a8f997e5bb682d504114772733686efc3ddf5ffcaffa5d"
+    },
+    {
+      "bytes": 19516,
+      "media_type": "application/json",
+      "path": "backend/fixtures/reverie_live_evaluation_v1.json",
+      "role": "release_support",
+      "sha256": "dccfb17115077a2869f88d00466825bf9b85d3969ae32aabcf2c3e1a5b811c99"
+    },
+    {
+      "bytes": 22874,
+      "media_type": "application/json",
+      "path": "backend/fixtures/reverie_live_evaluation_v1_1.json",
+      "role": "frozen_live_evaluation_spec",
+      "sha256": "458279a9595b79e3785af7004cf68a93223fde21e0934b4c432525bebdc786a1"
+    },
+    {
+      "bytes": 9499,
+      "media_type": "text/x-python",
+      "path": "backend/scripts/build_reverie_live_spec_v1_1.py",
+      "role": "release_support",
+      "sha256": "609cd6fc44acb65702faab7649576d8d1a7051e4d66c877cb84badd5c410554b"
+    },
+    {
+      "bytes": 26199,
+      "media_type": "text/x-python",
+      "path": "backend/scripts/build_reverie_prompt_lab.py",
+      "role": "release_support",
+      "sha256": "bfcd4b4f98da2b75bc137ff7c2bf3aad7784ac988595e30bb80081f8c7b2d4fc"
+    },
+    {
+      "bytes": 4061,
+      "media_type": "text/x-python",
+      "path": "backend/scripts/run_reverie_live_evaluation.py",
+      "role": "release_support",
+      "sha256": "fa0f0eaaa93b259737428f8d2d41f01b6a366541b5dae92da870b4101636cf72"
+    },
+    {
+      "bytes": 14239,
+      "media_type": "text/x-python",
+      "path": "backend/tests/test_reverie_live_evaluation.py",
+      "role": "release_support",
+      "sha256": "bab1581460b2cbc4248a9744a3e94dc15c78afba15c4dad2fd23dc3bb430133f"
+    },
+    {
+      "bytes": 7851,
+      "media_type": "text/x-python",
+      "path": "backend/tests/test_reverie_prompt_lab.py",
+      "role": "release_support",
+      "sha256": "1a19df502a81f2242c3223980c400cfc7a33369f261a9ff41c6cfa1e2ae2b003"
+    },
+    {
+      "bytes": 2116,
+      "media_type": "text/markdown",
+      "path": "deploy/README.md",
+      "role": "human_readable_documentation",
+      "sha256": "10ea23385adc7750d9438766d7063b53bb63439dc1164a14403f10af1252e118"
+    },
+    {
+      "bytes": 1634,
+      "media_type": "application/octet-stream",
+      "path": "deploy/compose.demo.yml",
+      "role": "release_support",
+      "sha256": "dcc26f4950b5c0d8b04c911d5e5b5b42c96b2a03a24421132d4ea2195747a5fc"
+    },
+    {
+      "bytes": 13111,
+      "media_type": "text/markdown",
+      "path": "docs/hackathon-submission.md",
+      "role": "human_readable_documentation",
+      "sha256": "55e246d2e32458b50dbc4493e54b96e7854bb622c7540b3f38440b12c3f441b1"
+    },
+    {
+      "bytes": 81049,
+      "media_type": "image/png",
+      "path": "docs/product-screenshots/reverie/desktop-blocked-rival.png",
+      "role": "rendered_product_capture",
+      "sha256": "de05567124cd6a512b20bede3bc4beb814f13caada629ed915e51ebaf5d4f87f"
+    },
+    {
+      "bytes": 62968,
+      "media_type": "image/png",
+      "path": "docs/product-screenshots/reverie/desktop-evidence-case-opening.png",
+      "role": "rendered_product_capture",
+      "sha256": "9cc551222333b1ea3d2f8ead9af6819b000d415c8e7a76fc7fc475e1f7509bd2"
+    },
+    {
+      "bytes": 90807,
+      "media_type": "image/png",
+      "path": "docs/product-screenshots/reverie/desktop-landing.png",
+      "role": "rendered_product_capture",
+      "sha256": "c70798b47ec00661cb92e69aee13a63bc23060f766cadf9c55eb34a3337291bf"
+    },
+    {
+      "bytes": 94874,
+      "media_type": "image/png",
+      "path": "docs/product-screenshots/reverie/desktop-measured-proof.png",
+      "role": "rendered_product_capture",
+      "sha256": "f1d98c883c7a16efbfb2dbd196e61df07929e7d0456da5a42097b46e321fe514"
+    },
+    {
+      "bytes": 111574,
+      "media_type": "image/png",
+      "path": "docs/product-screenshots/reverie/desktop-prompt-lab.png",
+      "role": "rendered_product_capture",
+      "sha256": "1388dc7cbccd043892560cc80fa244848edb1a6248c76263a16087274d0dca30"
+    },
+    {
+      "bytes": 83428,
+      "media_type": "image/png",
+      "path": "docs/product-screenshots/reverie/desktop-supported-thread.png",
+      "role": "rendered_product_capture",
+      "sha256": "5348e1e0900cf5fe4b121fba0c36f86792c82727f86d55d8b1219b223d88997e"
+    },
+    {
+      "bytes": 136903,
+      "media_type": "image/png",
+      "path": "docs/product-screenshots/reverie/desktop-workspace.png",
+      "role": "rendered_product_capture",
+      "sha256": "a1a14edcde5315f460b72e409d24382a99ff07e131facbd5831b880aa9e0d360"
+    },
+    {
+      "bytes": 38028,
+      "media_type": "image/png",
+      "path": "docs/product-screenshots/reverie/mobile-evidence-case-390.png",
+      "role": "rendered_product_capture",
+      "sha256": "169f8bbce9ac2045b75434fd8749cca018cf7f10c073e93525c07cb78485d834"
+    },
+    {
+      "bytes": 45001,
+      "media_type": "image/png",
+      "path": "docs/product-screenshots/reverie/mobile-landing-390.png",
+      "role": "rendered_product_capture",
+      "sha256": "e7d512f7b125e5275012e00fb6c10e063ad99848c5a524cc166f032c593c4e5c"
+    },
+    {
+      "bytes": 48123,
+      "media_type": "image/png",
+      "path": "docs/product-screenshots/reverie/mobile-prompt-lab-390.png",
+      "role": "rendered_product_capture",
+      "sha256": "729ce3508398f637814ea4e92cc3e3e9b0a518e2f78cd7eb497c2c6663e7b327"
+    },
+    {
+      "bytes": 45720,
+      "media_type": "image/png",
+      "path": "docs/product-screenshots/reverie/mobile-workspace-390.png",
+      "role": "rendered_product_capture",
+      "sha256": "ea6e8dc6f55e1dbec5d511a8aedaf72238a7f70c29b143988f771c445f45a2b9"
+    },
+    {
+      "bytes": 8109,
+      "media_type": "text/markdown",
+      "path": "docs/reverie-demo-script.md",
+      "role": "human_readable_documentation",
+      "sha256": "579ca0a37433c8bc11b7174f4b5f79c69da68b1ebab7e1eb986ad6605f13f8b1"
+    },
+    {
+      "bytes": 4205,
+      "media_type": "text/markdown",
+      "path": "docs/reverie-evidence-summary.md",
+      "role": "human_readable_documentation",
+      "sha256": "2f99652abcec906cce517a5a2d1b2e342f74136fe38d505ad9dfab29fcd4ab45"
+    },
+    {
+      "bytes": 8189,
+      "media_type": "text/markdown",
+      "path": "docs/reverie-judge-qa.md",
+      "role": "human_readable_documentation",
+      "sha256": "b293d3c17476b22d3bdf4a46cafa33fbd55e3c9e3a9e61c84d36204cf94c5cc8"
+    },
+    {
+      "bytes": 18081,
+      "media_type": "text/markdown",
+      "path": "docs/reverie-ml-track-documentation.md",
+      "role": "human_readable_documentation",
+      "sha256": "77508996fe2bc7ad6bec2771466a61a007d21e94d71d258dbb820770f10e2844"
+    },
+    {
+      "bytes": 201213,
+      "media_type": "image/png",
+      "path": "docs/reverie-ml-workflow.png",
+      "role": "raster_derivative",
+      "sha256": "c9a7f1e7bddd943637cdd3a988aef8be95aa3b9da7582fe0b22abc74717aff2a"
+    },
+    {
+      "bytes": 12351,
+      "media_type": "image/svg+xml",
+      "path": "docs/reverie-ml-workflow.svg",
+      "role": "editable_vector",
+      "sha256": "c6c03ebebbde6987f94defea2510c3eafcf600485b436bf40bc13f40133c034b"
+    },
+    {
+      "bytes": 11327,
+      "media_type": "text/markdown",
+      "path": "docs/reverie-prompt-comparison.md",
+      "role": "human_readable_documentation",
+      "sha256": "8e2b24bde29447fdc09451a20c9ee3903097bf06bfc628cd5752ee935f1a06cd"
+    },
+    {
+      "bytes": 5226,
+      "media_type": "text/markdown",
+      "path": "docs/reverie-release.md",
+      "role": "human_readable_documentation",
+      "sha256": "dd5a1a5ab033406bc880cba33ed21a72e4cc178a33e7ff658d52e6adf98e6722"
+    },
+    {
+      "bytes": 9998,
+      "media_type": "text/markdown",
+      "path": "docs/reverie-submission-checklist.md",
+      "role": "human_readable_documentation",
+      "sha256": "5d997f41e82edbc21ffd6a65c7516e25b2e80e5c6078e34314230adcbdd1f716"
+    },
+    {
+      "bytes": 8811,
+      "media_type": "text/markdown",
+      "path": "docs/submission/README.md",
+      "role": "human_readable_documentation",
+      "sha256": "7bda7875de0daa4dc31d364d340a1066dd563aa8af0289d4dee44fa537bb5048"
+    },
+    {
+      "bytes": 26983,
+      "media_type": "application/json",
+      "path": "docs/submission/ablation-counterfactual.json",
+      "role": "release_support",
+      "sha256": "c28a99aa6fd7dd250562c607dc162c638ded110ecad2f3af866039d195705c28"
+    },
+    {
+      "bytes": 3108,
+      "media_type": "text/markdown",
+      "path": "docs/submission/benchmark-report.md",
+      "role": "human_readable_documentation",
+      "sha256": "90c3c2be8febeeedb1455aae4514f936e5c64bec1609797e8ab862a6fd10dd9f"
+    },
+    {
+      "bytes": 10759,
+      "media_type": "text/markdown",
+      "path": "docs/submission/data-responsibility.md",
+      "role": "human_readable_documentation",
+      "sha256": "4181cfc89ef5b81c07a3eb9b46eef1a51097852cab14538967feb9799366e63e"
+    },
+    {
+      "bytes": 324128,
+      "media_type": "application/json",
+      "path": "docs/submission/raw-outputs.json",
+      "role": "authoritative_raw_outputs",
+      "sha256": "dff7dd8d2cc8318a6904b4dd4d2ec2381e9eefaf5b3295e0161d62f65398527a"
+    },
+    {
+      "bytes": 7747,
+      "media_type": "text/markdown",
+      "path": "docs/submission/reproduction.md",
+      "role": "human_readable_documentation",
+      "sha256": "5a26168944657df4700564f1a35bbec9eef11ee4ca1dddeceff90d3a4facc6ee"
+    },
+    {
+      "bytes": 8240,
+      "media_type": "text/csv",
+      "path": "docs/submission/results.csv",
+      "role": "authoritative_benchmark_summary",
+      "sha256": "bb3d991e22159de2a3bbdd5cd6c69668fe4999bcbcf5816a3db411cb6f7e58db"
+    },
+    {
+      "bytes": 46087,
+      "media_type": "application/json",
+      "path": "docs/submission/results.json",
+      "role": "authoritative_benchmark_summary",
+      "sha256": "f7d1b9c1c640f53c2b1a76853d2ef108c026f8fd3e934cf0a95de95387b10ee1"
+    },
+    {
+      "bytes": 125767,
+      "media_type": "application/json",
+      "path": "docs/submission/reverie-live-evaluation-manifest.json",
+      "role": "live_evaluation_publication_manifest",
+      "sha256": "a4ca5a205390e1d0422ece1ddd49a7af97c7debe63f453524c9904d5d0ee20a4"
+    },
+    {
+      "bytes": 4300337,
+      "media_type": "application/json",
+      "path": "docs/submission/reverie-live-evaluation-results.json",
+      "role": "authoritative_live_same_model_comparison",
+      "sha256": "00ead5b5f303a57805a8f997e5bb682d504114772733686efc3ddf5ffcaffa5d"
+    },
+    {
+      "bytes": 219415,
+      "media_type": "application/json",
+      "path": "docs/submission/reverie-prompt-lab.json",
+      "role": "authoritative_machine_evidence",
+      "sha256": "9d6aab126a610927b6aa24bb7c95ed8af03b52b85669a5adf79787e184fbcc83"
+    },
+    {
+      "bytes": 7378,
+      "media_type": "video/vnd.dlna.mpeg-tts",
+      "path": "frontend/e2e/reverie-golden.spec.ts",
+      "role": "release_support",
+      "sha256": "e07dfeee0f19d9b1f4475ba04d90fff3bb25a4cf78dfd6a59d9cffb7493d96bf"
+    },
+    {
+      "bytes": 241315,
+      "media_type": "application/json",
+      "path": "frontend/package-lock.json",
+      "role": "release_support",
+      "sha256": "ea1714326ae3390e266b7d7b3d976016663cd81eeffa1e9b12c83b13a302a0a1"
+    },
+    {
+      "bytes": 800,
+      "media_type": "application/json",
+      "path": "frontend/package.json",
+      "role": "release_support",
+      "sha256": "14c67d32860623120eb4fec8690bb2f257ca59ef164475f970e85bd969d8a3d8"
+    },
+    {
+      "bytes": 706,
+      "media_type": "video/vnd.dlna.mpeg-tts",
+      "path": "frontend/playwright.config.ts",
+      "role": "release_support",
+      "sha256": "355883da372021ccba31434ed91d3dc27616590da67f554d6d4cce9b2affe520"
+    },
+    {
+      "bytes": 7047,
+      "media_type": "application/pdf",
+      "path": "output/pdf/threadline-reverie-evidence-summary.pdf",
+      "role": "print_derivative",
+      "sha256": "5792d0a48e4c3abb45bcf5ef38f2b25263cba07768c4adc766e183a4f30f07d4"
+    },
+    {
+      "bytes": 25098,
+      "media_type": "application/pdf",
+      "path": "output/pdf/threadline-reverie-ml-track-documentation.pdf",
+      "role": "print_derivative",
+      "sha256": "7e61c0a237ac3f8e511365378ee679ab33b74549597a7b99ff21fa3ad95276ac"
+    },
+    {
+      "bytes": 17687,
+      "media_type": "application/pdf",
+      "path": "output/pdf/threadline-reverie-prompt-comparison.pdf",
+      "role": "print_derivative",
+      "sha256": "2545ef0e10cef5e64cb2e14eec45da62c481540a9936cf54e06b635ccb1a53a5"
+    },
+    {
+      "bytes": 171718,
+      "media_type": "application/pdf",
+      "path": "output/pdf/threadline-reverie-workflow.pdf",
+      "role": "print_derivative",
+      "sha256": "1ff87e621cac9d88f5088fc584e6afcd765d94d7066b7e0a8403be49b38a9777"
+    },
+    {
+      "bytes": 2146,
+      "media_type": "application/octet-stream",
+      "path": "scripts/reverie-release.ps1",
+      "role": "release_support",
+      "sha256": "ae307a6bebef58158f1b32790de4a9c969b606ff1fcc460e955f2bfe256226da"
+    },
+    {
+      "bytes": 993,
+      "media_type": "application/x-sh",
+      "path": "scripts/reverie-release.sh",
+      "role": "release_support",
+      "sha256": "4bda3abee8ebb0130f6b0ef47b9e3bea733e493197e3d473bbbeb085a9730f2f"
+    },
+    {
+      "bytes": 57019,
+      "media_type": "text/x-python",
+      "path": "scripts/reverie_release.py",
+      "role": "release_support",
+      "sha256": "e32e40deec49bb2af6ed8e2fbd8bcc82a564c1c51781c504351b276ae0bcf0a4"
+    }
+  ],
+  "known_limits": [
+    "Synthetic fixtures only; no operational humanitarian validation.",
+    "Archived Prompt V1/V2/V3 live-provider results are single runs, not repeatability evidence.",
+    "Zero observed false merges uses a denominator of 8 different-identity opportunities in the archived Prompt V2 run.",
+    "The public full-stack application is not deployment-ready: authentication and production governance are absent.",
+    "The published same-model comparison contains 3 synthetic cases x 3 repetitions; it remains a small synthetic experiment, not operational validation."
+  ],
+  "live_same_model_comparison": {
+    "cases": 3,
+    "expected_system_runs": 18,
+    "pinned_sources": 30,
+    "publication_manifest_sha256": "a4ca5a205390e1d0422ece1ddd49a7af97c7debe63f453524c9904d5d0ee20a4",
+    "published_files": [
+      "backend/data/reverie_live_evaluation_v1_1/results.json",
+      "backend/data/reverie_live_evaluation_v1_1/raw-provider-calls.json",
+      "docs/submission/reverie-live-evaluation-results.json",
+      "docs/submission/reverie-live-evaluation-manifest.json"
+    ],
+    "recorder_sha256": "410856646b0f201a651b68ec66109077c12b384b0e787af586b667427d2d3a1e",
+    "repetitions": 3,
+    "results_sha256": "00ead5b5f303a57805a8f997e5bb682d504114772733686efc3ddf5ffcaffa5d",
+    "spec_path": "backend/fixtures/reverie_live_evaluation_v1_1.json",
+    "spec_sha256": "458279a9595b79e3785af7004cf68a93223fde21e0934b4c432525bebdc786a1",
+    "status": "complete",
+    "systems": 2
+  },
+  "manual_gates": {
+    "keyboard_focus_screen_reader_review": "not_automated_by_release_command",
+    "pdf_visual_review": "required_after_each_generated_revision",
+    "public_deployment": "not_performed_or_claimed"
+  },
+  "release_id": "THREADLINE-REVERIE-2026",
+  "repository": {
+    "change_count": 142,
+    "commit": "85b01bfe8da01ecb014b82586bbcaba0d4159a3b",
+    "commit_timestamp": "2026-08-15T15:38:50-07:00",
+    "working_tree_clean": false
+  },
+  "routes": [
+    "/",
+    "/demo?demo=guided",
+    "/prompt-lab",
+    "/demo?workspace=1"
+  ],
+  "schema_version": "threadline-reverie-release/1.0.0",
+  "synthetic_only": true,
+  "toolchain": {
+    "dependency_locks": [
+      "backend/requirements.txt",
+      "backend/requirements-dev.txt",
+      "docs/requirements.txt",
+      "frontend/package-lock.json"
+    ],
+    "node": "20.x in CI",
+    "python": ">=3.11"
+  }
+}

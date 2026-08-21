@@ -16,8 +16,11 @@ import "./evaluation.css";
 import "./methodology.css";
 import "./research.css";
 import "./trials.css";
+import "./prompt-lab.css";
 import "./archive-theme.css";
 import "./thread-motion.css";
+import "./reverie-landing.css";
+import "./reverie-demo.css";
 import "./print.css";
 
 export const metadata: Metadata = {

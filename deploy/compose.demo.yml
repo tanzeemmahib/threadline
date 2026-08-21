@@ -1,0 +1,54 @@
+name: threadline-synthetic-demo
+
+services:
+  backend:
+    image: python:3.11-slim
+    working_dir: /workspace/backend
+    command: >-
+      sh -c "pip install --disable-pip-version-check -r requirements.txt &&
+      python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    environment:
+      LLM_PROVIDER: mock
+      THREADLINE_PROVIDER_MODE: mock
+      THREADLINE_DATABASE_PATH: /state/threadline.db
+      THREADLINE_EXPORT_DIRECTORY: /state/exports
+      FRONTEND_ORIGINS: http://127.0.0.1:3000
+    volumes:
+      - ..:/workspace:ro
+      - threadline-state:/state
+    ports:
+      - "127.0.0.1:8010:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  frontend:
+    image: node:20-bookworm-slim
+    working_dir: /workspace/frontend
+    command: >-
+      sh -c "npm ci && npm run build &&
+      npm run start -- --hostname 0.0.0.0 --port 3000"
+    environment:
+      NODE_ENV: production
+      THREADLINE_BACKEND_URL: http://backend:8000
+    volumes:
+      - ..:/workspace:ro
+      - frontend-node-modules:/workspace/frontend/node_modules
+      - frontend-next:/workspace/frontend/.next
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  threadline-state:
+  frontend-node-modules:
+  frontend-next:

@@ -1,13 +1,15 @@
 # THREADLINE four-minute judge demo
 
+> **Superseded recording script:** use [`../reverie-demo-script.md`](../reverie-demo-script.md) for the current six-beat, under-three-minute Reverie narrative. This document is retained only as a detailed reference for the earlier eight-scene flow.
+
 Target duration: `3:45-3:55`  
-Route: `http://127.0.0.1:3000/demo?demo=guided`  
+Legacy route: `http://127.0.0.1:3000/demo?workspace=1&demo=guided`
 Case: `CASE-CYCLONE-ILYRA-001` - fictional identities and locations
 
 ## Before recording
 
 1. Start the deterministic local demo. No API key or network is required.
-2. Open the route in a fresh browser window at 1440 x 900 or larger.
+2. Open the legacy route above directly in a fresh browser window at 1440 x 900 or larger. The primary landing page now opens the current six-scene Reverie case instead.
 3. Confirm the page labels the run **Deterministic mock replay - not model performance**.
 4. Confirm the controls are visible: **Open source**, **View technical evidence**, **Back**, **Next**, **Reset**, and **Exit guided case**.
 5. Press **Reset**, then **Start evidence challenge**.
@@ -17,7 +19,7 @@ Case: `CASE-CYCLONE-ILYRA-001` - fictional identities and locations
 
 ### 0:00-0:15 - Landing and scope
 
-**Action:** Start on the landing page. Select **Run the evidence challenge**.
+**Action:** Open the legacy workspace-tour route above directly and select **Start evidence challenge**. The current landing CTA does not open this historical flow.
 
 **Say:**
 

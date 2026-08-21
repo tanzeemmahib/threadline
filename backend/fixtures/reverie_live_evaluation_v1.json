@@ -1,0 +1,547 @@
+{
+  "schema_version": "threadline-reverie-live-evaluation-spec/1.0.0",
+  "spec_id": "THREADLINE-REVERIE-LIVE-EVAL-V1",
+  "frozen_at": "2026-08-21T01:00:51.834829Z",
+  "synthetic_only": true,
+  "safety_scope": "Research evaluation only. Candidate connections remain proposals for authorized human review and never determine identity.",
+  "source_commit": "85b01bfe8da01ecb014b82586bbcaba0d4159a3b",
+  "source_tree_state": "dirty_at_freeze",
+  "origin_artifact": {
+    "path": "docs/submission/reverie-prompt-lab.json",
+    "sha256": "9d6aab126a610927b6aa24bb7c95ed8af03b52b85669a5adf79787e184fbcc83"
+  },
+  "fixture": {
+    "path": "backend/fixtures/identity_benchmark.json",
+    "sha256": "eed1032519f78ebfd18a49da55c920c1b280ade1b7e32ebda514157ff1ead850"
+  },
+  "identity_assignments": {
+    "path": "backend/fixtures/identity_benchmark_identity_v3.json",
+    "sha256": "e25c908eb7d54e0c8b1257cbf0aa25c77d0cf5fe9727a80fc3f82b546995ea5f"
+  },
+  "identity_assignment_canonical_sha256": "5baf5a35a0641eeb7496abd5c133540526bfa7e0ac031e086de397c86c36e569",
+  "source_files": [
+    {
+      "path": "backend/scripts/build_reverie_prompt_lab.py",
+      "sha256": "bfcd4b4f98da2b75bc137ff7c2bf3aad7784ac988595e30bb80081f8c7b2d4fc"
+    },
+    {
+      "path": "backend/app/schemas/models.py",
+      "sha256": "66f2c1dffdf02b696b8f57db02cd0dd983cb5c9c638cc498a9f7b18ac0bc6a7b"
+    },
+    {
+      "path": "backend/app/providers/openai_compatible.py",
+      "sha256": "bc5a6802f04f5e9a7b72c3b51e8f21efbdc88f6c517258aed84afa7f349efa35"
+    },
+    {
+      "path": "backend/app/baselines/single_call.py",
+      "sha256": "0b0e30a260f61ae2620b898495a00cff3ae4b5daa27cafba01ab27fc2ccf444f"
+    },
+    {
+      "path": "backend/app/baselines/runner.py",
+      "sha256": "ed897fa9895bc694117c4e8a7c61ea3cecef82ac1c0a5ff849de9f923ccea311"
+    },
+    {
+      "path": "backend/app/workflow/orchestrator.py",
+      "sha256": "00212f9c74fe775a82ff8a8b3f5121e0db9b9cc28e1c5102b128c3b8d40ac86c"
+    },
+    {
+      "path": "backend/app/workflow/nodes/extraction.py",
+      "sha256": "bdbd8e4134fef8e2f4339b0e45c464db8eb4809ff8556d8c1a9248194dcc97c7"
+    },
+    {
+      "path": "backend/app/workflow/nodes/normalization.py",
+      "sha256": "83a40e4dfd8366f3fff466237e89a0e97b2827bed4ea41d0a5762f03b1d31a52"
+    },
+    {
+      "path": "backend/app/workflow/nodes/hypothesis.py",
+      "sha256": "16238c2dfe89a514a3bdc9fbcf36996f930b03f0bc5e3ee991a51241b3a28271"
+    },
+    {
+      "path": "backend/app/workflow/nodes/prosecutor.py",
+      "sha256": "2b1ca39f17ee3a01a422351a96b171ef6c85545f46c488d01c5abac58d7becb2"
+    },
+    {
+      "path": "backend/app/workflow/nodes/adjudication.py",
+      "sha256": "5e1b5ed870ad5e3dcb6aa47f30be872a665dc2ab0c7916d5bcab95bfb5c79cb8"
+    },
+    {
+      "path": "backend/app/services/quarantine.py",
+      "sha256": "af7924127f554d71ba30a103ff4fc0f6315eba762faa4ef67c5266185b8092c3"
+    },
+    {
+      "path": "backend/app/services/evidence_validation.py",
+      "sha256": "267c92d6af612079494ce7f60fe7c51b3fb9ea53a03287a0c66335f0c1bec4a3"
+    },
+    {
+      "path": "backend/app/services/normalization.py",
+      "sha256": "b81f8c804a8e5c930043d8ac01905c7d704a66f8b8375b9244f780f18f493802"
+    },
+    {
+      "path": "backend/app/services/candidate_generation.py",
+      "sha256": "14d2ab9fd0468b898f470fa4a850b7df7512f6ef07428fb27058a6d380d68c38"
+    },
+    {
+      "path": "backend/app/services/pairwise_compare.py",
+      "sha256": "b1830964674b41e3c6f5d56ba20028adec87227969c383ecd7f26cd940be9b15"
+    },
+    {
+      "path": "backend/app/services/candidate_scoring.py",
+      "sha256": "11cf32d06cc5e84bf7e535e25d3c2c0ef3a2a891b54a2e0ea1cd4b9e4f86f075"
+    },
+    {
+      "path": "backend/app/services/linkage_decision.py",
+      "sha256": "837789eec39255bd3fc41c5fb9084332cc5317f4f2bc9d1bcf7c51c009ffe3be"
+    },
+    {
+      "path": "backend/app/services/timeline_rules.py",
+      "sha256": "f0c7ff54070f6832f5bb3b81ef08b714bb174361dd28b26d77d4b21a8f125362"
+    },
+    {
+      "path": "backend/app/services/evidence_contracts.py",
+      "sha256": "be03199ad4d48a6c4991ce004372fabc72fe3289d69d787a33c6ec4761e5faa4"
+    },
+    {
+      "path": "backend/app/services/replay.py",
+      "sha256": "0362e8e0933388dcbe4687debbe15b3b4c6d73380d8e7cd84ff033ec6492bcbb"
+    }
+  ],
+  "prompts": [
+    {
+      "template_id": "structured_baseline",
+      "version": "v1",
+      "path": "backend/app/prompts/templates/structured_baseline.v1.txt",
+      "sha256": "5f0748ae96ba9c135d4ac17c4ff27a56225a3b369f75e4fc8f72b8f25e56a5c6"
+    },
+    {
+      "template_id": "extraction",
+      "version": "v2",
+      "path": "backend/app/prompts/templates/extraction.v2.txt",
+      "sha256": "92302c609100a882463cb950dd315f0185541082d030e7db622e570ce04b2624"
+    },
+    {
+      "template_id": "normalization",
+      "version": "v1",
+      "path": "backend/app/prompts/templates/normalization.v1.txt",
+      "sha256": "7b4ad0c542bb02470161ef262e7661f248b33a19881b50f9adca20a540a91c4e"
+    },
+    {
+      "template_id": "hypothesis",
+      "version": "v1",
+      "path": "backend/app/prompts/templates/hypothesis.v1.txt",
+      "sha256": "25c04d5abd5cc97680a239d00d29c159c3ec49bed4edd0787b96313eb5df234b"
+    },
+    {
+      "template_id": "prosecutor",
+      "version": "v1",
+      "path": "backend/app/prompts/templates/prosecutor.v1.txt",
+      "sha256": "a9091ce340e13e7028a150c682e60dd45e4ae6d67d3ba1d0e2dc32e5bcf5b2f7"
+    },
+    {
+      "template_id": "adjudication",
+      "version": "v1",
+      "path": "backend/app/prompts/templates/adjudication.v1.txt",
+      "sha256": "a88a3e2ae0b6b1bcaf81e58176d42b26995a1d625a34d39dfee3ee95b888048c"
+    }
+  ],
+  "output_schemas": [
+    {
+      "schema_name": "SingleCallModelOutput",
+      "sha256": "16e5cd49cda3640b353750513a8e98c65e0553878f25f2a34f676b6ad83527cb"
+    },
+    {
+      "schema_name": "ExtractionModelOutput",
+      "sha256": "b412ec7d6bffd2cf54ed0c6f4eb5db8d4d69f5ea9c7299ec83b5dc8578049605"
+    },
+    {
+      "schema_name": "NormalizationModelOutput",
+      "sha256": "1a14a27ba9537cc800614b2fabcb493807cef3eb194eb4361e486cb7de9979c9"
+    },
+    {
+      "schema_name": "HypothesisModelOutput",
+      "sha256": "f846725ee9ce1557fd7e0179e473fbb59bd9edca818fc82da536f8ce1f4ccceb"
+    },
+    {
+      "schema_name": "ProsecutorModelOutput",
+      "sha256": "31e0e0d64b4a48d9f4f8462488a28d861c84d74ea0e747f9ace2c993e4e02c8e"
+    },
+    {
+      "schema_name": "AdjudicationModelOutput",
+      "sha256": "e7975cde691e57b0617a3b2153029150fa0a73e779208b81726b4f0250bbb24f"
+    }
+  ],
+  "provider": {
+    "mode": "openai_compatible",
+    "base_url": "https://api.featherless.ai/v1",
+    "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "temperature": 0.0,
+    "timeout_seconds": 60.0,
+    "max_transport_retries": 2,
+    "max_schema_repair_attempts": 1,
+    "max_concurrent_calls": 1,
+    "seed": null,
+    "seed_status": "not_supported_by_current_adapter",
+    "response_format_policy": "json_schema_then_json_object_fallback"
+  },
+  "systems": [
+    {
+      "system_id": "structured_one_shot",
+      "implementation": "app.baselines.single_call.run_single_call(structured=True)",
+      "prompt_ids": [
+        "structured_baseline:v1"
+      ],
+      "output_schema_names": [
+        "SingleCallModelOutput"
+      ],
+      "decision_authority": "model_recommendation"
+    },
+    {
+      "system_id": "full_threadline",
+      "implementation": "app.workflow.orchestrator.WorkflowOrchestrator",
+      "prompt_ids": [
+        "extraction:v2",
+        "normalization:v1",
+        "hypothesis:v1",
+        "prosecutor:v1",
+        "adjudication:v1"
+      ],
+      "output_schema_names": [
+        "ExtractionModelOutput",
+        "NormalizationModelOutput",
+        "HypothesisModelOutput",
+        "ProsecutorModelOutput",
+        "AdjudicationModelOutput"
+      ],
+      "decision_authority": "deterministic_policy"
+    }
+  ],
+  "schedule": {
+    "repetitions": 3,
+    "case_order": [
+      "PROMPT-LAB-CROSS-SCRIPT",
+      "PROMPT-LAB-SHARED-CONTACT",
+      "PROMPT-LAB-BLOCKING-CONFLICT"
+    ],
+    "system_order_by_repetition": [
+      [
+        "structured_one_shot",
+        "full_threadline"
+      ],
+      [
+        "full_threadline",
+        "structured_one_shot"
+      ],
+      [
+        "structured_one_shot",
+        "full_threadline"
+      ]
+    ],
+    "checkpoint_granularity": "provider_call",
+    "retry_policy": "identical_for_both_systems"
+  },
+  "evaluation_policy": {
+    "ground_truth_visible_to_provider": false,
+    "thresholds_mutable": false,
+    "raw_provider_content_retained": true,
+    "authorization_headers_retained": false,
+    "exact_source_span_validation_required": true,
+    "partial_run_publishable_as_complete": false
+  },
+  "metrics": [
+    "schema_validity",
+    "source_span_coverage",
+    "exact_citation_validity",
+    "supported_field_count",
+    "unsupported_field_count",
+    "identity_outcome",
+    "blocking_conflict_handling",
+    "auditability",
+    "provider_call_count",
+    "transport_attempts",
+    "latency_ms",
+    "token_usage"
+  ],
+  "cases": [
+    {
+      "case_id": "PROMPT-LAB-CROSS-SCRIPT",
+      "kind": "cross_script_partial",
+      "fixture_incident_id": "INC-CLEAR-MATCH-TRANSLITERATION",
+      "input_manifest": {
+        "record_count": 2,
+        "record_ids": [
+          "TRANS-A1",
+          "TRANS-A2"
+        ],
+        "text_sha256_by_record": {
+          "TRANS-A1": "d0640fa815f5800e604a4d76c27d86e476b9d763f3ccc9b7c305944c2edead71",
+          "TRANS-A2": "a8939c48a8b09d5ca4203d38b467ea83a6ffa79f1037d97842d824e465513a69"
+        },
+        "input_sha256": "01d9f98b63dbbdf7682226d238da1d87e058316ab3c922391aad1f5a923d4b6e",
+        "available_evidence_sha256": "de4e55c1f30beec6e399b83c7c0f09c0c35086e6bd77b2a0f4ef4adeed035471"
+      },
+      "request": {
+        "incident": {
+          "incident_id": "INC-CLEAR-MATCH-TRANSLITERATION",
+          "name": "Clear match with name transliteration variation",
+          "languages": [
+            "Arabic",
+            "English"
+          ],
+          "description": "Clear match with name transliteration variation",
+          "approximate_region": null,
+          "known_locations": [],
+          "time_window": null,
+          "reviewer_constraints": [
+            "Synthetic benchmark case",
+            "Authorized human review required",
+            "No autonomous identity determination"
+          ]
+        },
+        "records": [
+          {
+            "record_id": "TRANS-A1",
+            "source_type": "family_report",
+            "language": "Arabic",
+            "text": "يوسف الحسن، 14 سنة، هاتف 5551234. ندبة فوق الحاجب الأيسر.",
+            "timestamp": "2026-04-18T16:00:00Z",
+            "display_name": "يوسف الحسن",
+            "source_reliability_metadata": null,
+            "translated_text": null,
+            "source_organization": null,
+            "created_at": null,
+            "event_time": null,
+            "provenance_metadata": {},
+            "reliability_metadata": {},
+            "ingestion_hash": null
+          },
+          {
+            "record_id": "TRANS-A2",
+            "source_type": "shelter_record",
+            "language": "English",
+            "text": "Youssef Al Hassan, age 14, phone 5551234. Scar above left eyebrow.",
+            "timestamp": "2026-04-18T19:00:00Z",
+            "display_name": "Youssef Al Hassan",
+            "source_reliability_metadata": null,
+            "translated_text": null,
+            "source_organization": null,
+            "created_at": null,
+            "event_time": null,
+            "provenance_metadata": {},
+            "reliability_metadata": {},
+            "ingestion_hash": null
+          }
+        ],
+        "options": {
+          "provider_mode": "openai_compatible",
+          "include_workflow_trace": true,
+          "candidate_limit": 5,
+          "disabled_nodes": [],
+          "adjudicator_count": 2
+        }
+      },
+      "ground_truth": {
+        "relation": "same_identity",
+        "expected_pair": [
+          "TRANS-A1",
+          "TRANS-A2"
+        ],
+        "expected_state": "link_recommended",
+        "acceptable_states": [
+          "link_recommended",
+          "human_review_required"
+        ],
+        "expected_blocking": [],
+        "safety_rationale": "Phone match + compatible age + name transliteration = strong cross-language evidence"
+      }
+    },
+    {
+      "case_id": "PROMPT-LAB-SHARED-CONTACT",
+      "kind": "shared_contact_insufficient",
+      "fixture_incident_id": "INC-REUSED-PHONE",
+      "input_manifest": {
+        "record_count": 2,
+        "record_ids": [
+          "FAMPHONE-A1",
+          "FAMPHONE-A2"
+        ],
+        "text_sha256_by_record": {
+          "FAMPHONE-A1": "008964e88f8d260529168f20b0937c4bc9e53871985a1ea2ec0b1b5d7764ec90",
+          "FAMPHONE-A2": "63008a7f6ae11ea672ea342b0ecd3361adc4f6faad5da59ac52e574f50f21b2d"
+        },
+        "input_sha256": "cb89886fee58da1a8597eba93ee41fe7b07ddcf2629f937a8530ffd6766cc319",
+        "available_evidence_sha256": "8518016edcefc70768f423dcde198b787780848e8a5b1f037e0d5bf3e597c292"
+      },
+      "request": {
+        "incident": {
+          "incident_id": "INC-REUSED-PHONE",
+          "name": "Reused family phone number",
+          "languages": [
+            "English"
+          ],
+          "description": "Reused family phone number",
+          "approximate_region": null,
+          "known_locations": [],
+          "time_window": null,
+          "reviewer_constraints": [
+            "Synthetic benchmark case",
+            "Authorized human review required",
+            "No autonomous identity determination"
+          ]
+        },
+        "records": [
+          {
+            "record_id": "FAMPHONE-A1",
+            "source_type": "family_report",
+            "language": "English",
+            "text": "Nadia Saleh, age 14, phone +1-555-1111.",
+            "timestamp": "2026-04-18T10:00:00Z",
+            "display_name": "Nadia Saleh",
+            "source_reliability_metadata": null,
+            "translated_text": null,
+            "source_organization": null,
+            "created_at": null,
+            "event_time": null,
+            "provenance_metadata": {},
+            "reliability_metadata": {},
+            "ingestion_hash": null
+          },
+          {
+            "record_id": "FAMPHONE-A2",
+            "source_type": "family_report",
+            "language": "English",
+            "text": "Amal Rafiq, age 14, phone +1-555-1111.",
+            "timestamp": "2026-04-18T12:00:00Z",
+            "display_name": "Amal Rafiq",
+            "source_reliability_metadata": null,
+            "translated_text": null,
+            "source_organization": null,
+            "created_at": null,
+            "event_time": null,
+            "provenance_metadata": {},
+            "reliability_metadata": {},
+            "ingestion_hash": null
+          }
+        ],
+        "options": {
+          "provider_mode": "openai_compatible",
+          "include_workflow_trace": true,
+          "candidate_limit": 5,
+          "disabled_nodes": [],
+          "adjudicator_count": 2
+        }
+      },
+      "ground_truth": {
+        "relation": "different_identity",
+        "expected_pair": [
+          "FAMPHONE-A1",
+          "FAMPHONE-A2"
+        ],
+        "expected_state": "human_review_required",
+        "acceptable_states": [
+          "human_review_required",
+          "insufficient_evidence"
+        ],
+        "expected_blocking": [],
+        "safety_rationale": "Shared phone but different names = family phone, not identity match. Must require review."
+      }
+    },
+    {
+      "case_id": "PROMPT-LAB-BLOCKING-CONFLICT",
+      "kind": "blocking_identity_conflict",
+      "fixture_incident_id": "INC-CLEAR-NONMATCH-CONFLICTING-DOB",
+      "input_manifest": {
+        "record_count": 2,
+        "record_ids": [
+          "DOBCONF-A1",
+          "DOBCONF-A2"
+        ],
+        "text_sha256_by_record": {
+          "DOBCONF-A1": "68752e626fc68efbaaf0e2629bdb5973cb9d224e433275cd2acd8419ee78a1c0",
+          "DOBCONF-A2": "d367ac20e4d2ceb90a23d0c6f677accb580e5631d3b3e8a3240726196150fc1a"
+        },
+        "input_sha256": "e49e4d3069d765eaee9b6bbea807db9f2927cd8db42382762b78ca6eb2b1106a",
+        "available_evidence_sha256": "f4336883547b288a8842aa4950ddbc4d0d0c2ab4f325fc30a8f244d1994e00d2"
+      },
+      "request": {
+        "incident": {
+          "incident_id": "INC-CLEAR-NONMATCH-CONFLICTING-DOB",
+          "name": "Clear non-match: conflicting dates of birth",
+          "languages": [
+            "English"
+          ],
+          "description": "Clear non-match: conflicting dates of birth",
+          "approximate_region": null,
+          "known_locations": [],
+          "time_window": null,
+          "reviewer_constraints": [
+            "Synthetic benchmark case",
+            "Authorized human review required",
+            "No autonomous identity determination"
+          ]
+        },
+        "records": [
+          {
+            "record_id": "DOBCONF-A1",
+            "source_type": "family_report",
+            "language": "English",
+            "text": "Lina Haddad, DOB 2005-06-12, phone +1-555-4321.",
+            "timestamp": "2026-04-18T12:00:00Z",
+            "display_name": "Lina Haddad",
+            "source_reliability_metadata": null,
+            "translated_text": null,
+            "source_organization": null,
+            "created_at": null,
+            "event_time": null,
+            "provenance_metadata": {},
+            "reliability_metadata": {},
+            "ingestion_hash": null
+          },
+          {
+            "record_id": "DOBCONF-A2",
+            "source_type": "shelter_record",
+            "language": "English",
+            "text": "Lina Haddad, DOB 2002-03-28, phone +1-555-4321.",
+            "timestamp": "2026-04-18T18:00:00Z",
+            "display_name": "Lina Haddad",
+            "source_reliability_metadata": null,
+            "translated_text": null,
+            "source_organization": null,
+            "created_at": null,
+            "event_time": null,
+            "provenance_metadata": {},
+            "reliability_metadata": {},
+            "ingestion_hash": null
+          }
+        ],
+        "options": {
+          "provider_mode": "openai_compatible",
+          "include_workflow_trace": true,
+          "candidate_limit": 5,
+          "disabled_nodes": [],
+          "adjudicator_count": 2
+        }
+      },
+      "ground_truth": {
+        "relation": "different_identity",
+        "expected_pair": [
+          "DOBCONF-A1",
+          "DOBCONF-A2"
+        ],
+        "expected_state": "blocked_by_conflict",
+        "acceptable_states": [
+          "blocked_by_conflict"
+        ],
+        "expected_blocking": [
+          "date_of_birth"
+        ],
+        "safety_rationale": "Same name and phone but different DOB = blocked (dangerous false-merge trap)"
+      }
+    }
+  ],
+  "limitations": [
+    "The provider adapter does not send a seed; temperature zero does not guarantee byte-identical live responses.",
+    "The configured model identifier is provider-managed and no immutable provider model revision is exposed.",
+    "All cases are synthetic and do not establish operational humanitarian validity or demographic fairness.",
+    "One-shot and workflow receive identical records, but the workflow intentionally makes multiple constrained calls and applies deterministic policy.",
+    "A partial run must remain explicitly partial and cannot be published as a completed comparison."
+  ]
+}

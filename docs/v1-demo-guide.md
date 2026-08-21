@@ -31,11 +31,11 @@ passing_workspace=http://127.0.0.1:3000/workspace?run=...
 blocked_workspace=http://127.0.0.1:3000/workspace?run=...
 ```
 
-## Primary judge sequence
+## Primary Reverie judge sequence
 
-Open `http://127.0.0.1:3000/demo?demo=guided` and use the eight-scene evidence challenge documented in `docs/submission/demo-script.md`. It compares the same fictional record packet under a deterministic single-prompt replay and the full workflow, opens exact spans, retains conflicts and a rival, shows the release contract, and ends at authorized human review.
+Open `http://127.0.0.1:3000/demo?demo=guided` and use the current six-scene evidence case documented in [`docs/reverie-demo-script.md`](reverie-demo-script.md). It compares the same fictional record packet under a deterministic one-shot replay and the full workflow, opens exact spans, reconstructs `FAMILY-018 ↔ SHELTER-204` only as a possible connection for authorized review, and blocks the plausible `HOSPITAL-052` rival under deterministic age/timeline rules.
 
-The persisted API paths below are a deeper technical fallback, not the primary four-minute story.
+The persisted workspace tour and API paths below are legacy technical fallbacks. They remain useful for inspecting contracts, audit verification, replay, and counterfactual behavior, but they are not the primary Reverie narrative or recording path.
 
 1. Open the passing workspace URL. Show the exact source spans, the 18 rule outcomes, valid audit event count and terminal hash, exact replay status, source-removal certificate, and lineage path.
 2. Open the blocked URL. The double-border withheld header, absent classification, critical hard-conflict policy rule, and remediation replace persuasive recommendation content.

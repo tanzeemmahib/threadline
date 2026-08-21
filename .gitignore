@@ -141,3 +141,21 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# THREADLINE durable runtime artifacts
+backend/data/threadline.db
+backend/data/threadline.db-*
+backend/data/exports/
+backend/benchmark_output/
+
+# Local agent, validation, and desktop runtime state
+.agents/
+.freebuff/
+.demo-qa/
+.pytest-*-temp/
+.pytest-*/
+.pytest_cache/
+backend/.pytest_cache/
+backend/.pytest-*/
+backend/.test-tmp/
+skills-lock.json

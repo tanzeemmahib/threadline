@@ -1,0 +1,98 @@
+name: Reverie submission release
+
+on:
+  pull_request:
+    paths:
+      - "backend/app/api/routes/reverie.py"
+      - "backend/app/baselines/reverie_one_shot.py"
+      - "backend/app/evaluation/reverie_live.py"
+      - "backend/app/prompts/**"
+      - "backend/app/schemas/reverie_evaluation.py"
+      - "backend/data/reverie_live_evaluation_v1_1/**"
+      - "backend/fixtures/**"
+      - "backend/scripts/build_reverie_live_spec_v1_1.py"
+      - "backend/scripts/build_reverie_prompt_lab.py"
+      - "backend/scripts/run_reverie_live_evaluation.py"
+      - "backend/tests/test_reverie_live_evaluation.py"
+      - "backend/tests/test_reverie_prompt_lab.py"
+      - "docs/reverie-*"
+      - "docs/submission/**"
+      - "frontend/src/app/prompt-lab/**"
+      - "frontend/src/components/prompt-lab/**"
+      - "frontend/src/components/reverie-*"
+      - "frontend/src/lib/reverie-evidence.ts"
+      - "frontend/e2e/reverie-golden.spec.ts"
+      - "frontend/playwright.config.ts"
+      - "frontend/package*.json"
+      - "frontend/tests/**"
+      - "scripts/reverie-release.*"
+      - "scripts/reverie_release.py"
+      - ".github/workflows/reverie-release.yml"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Offline submission verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      LLM_PROVIDER: mock
+      THREADLINE_PROVIDER_MODE: mock
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout clean source
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            backend/requirements-dev.txt
+            docs/requirements.txt
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install pinned release dependencies
+        run: |
+          python -m pip install -r backend/requirements-dev.txt -r docs/requirements.txt
+          npm ci --prefix frontend
+
+      - name: Install Playwright Chromium
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+
+      - name: Run authoritative offline release check
+        run: bash scripts/reverie-release.sh --check --no-package
+
+      - name: Fail on generated-artifact drift
+        run: |
+          git diff --exit-code -- \
+            docs/submission/reverie-prompt-lab.json \
+            backend/fixtures/reverie_live_evaluation_v1_1.json \
+            docs/reverie-ml-workflow.svg \
+            docs/reverie-ml-workflow.png \
+            output/pdf
+
+      - name: Upload judge-facing release evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: threadline-reverie-release-evidence
+          if-no-files-found: error
+          path: |
+            docs/submission/reverie-release-manifest.json
+            output/pdf/*.pdf
+            docs/reverie-ml-workflow.svg
+            docs/reverie-ml-workflow.png

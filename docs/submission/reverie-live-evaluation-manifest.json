@@ -1,0 +1,2964 @@
+{
+  "artifact_id": "THREADLINE-REVERIE-LIVE-EVAL-RESULTS-V1.1",
+  "raw_provider_recorder": {
+    "contains_credentials": false,
+    "logical_call_count": 91,
+    "logical_call_status_counts": {
+      "error": 3,
+      "ok": 88
+    },
+    "logical_calls": [
+      {
+        "error": null,
+        "logical_call_id": "CALL-05E0095E20B7B9A22E661C24",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-05E0095E20B7B9A22E661C24-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-069AEBE0B335909567E9E67A",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-069AEBE0B335909567E9E67A-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-0CFBDB1302E5568D6653D35C",
+        "response_schema_name": "HypothesisModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "hypothesis",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-0CFBDB1302E5568D6653D35C-TRANSPORT-01",
+          "CALL-0CFBDB1302E5568D6653D35C-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-0F3136A4B048B7917199DD5D",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-0F3136A4B048B7917199DD5D-TRANSPORT-01",
+          "CALL-0F3136A4B048B7917199DD5D-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-0F5E3AC694D69CED7E58B2AD",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-0F5E3AC694D69CED7E58B2AD-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-15EEF4B6C18EA4C2E35C6CE7",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-15EEF4B6C18EA4C2E35C6CE7-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-1691B7D479372D0CD49351DC",
+        "response_schema_name": "ReverieOneShotModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:structured_one_shot",
+        "template_id": "reverie_one_shot",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-1691B7D479372D0CD49351DC-TRANSPORT-01",
+          "CALL-1691B7D479372D0CD49351DC-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-18DD80B49CCA5C73DAA9976F",
+        "response_schema_name": "HypothesisModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "hypothesis",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-18DD80B49CCA5C73DAA9976F-TRANSPORT-01",
+          "CALL-18DD80B49CCA5C73DAA9976F-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-1D4F14D99B043A27465E5985",
+        "response_schema_name": "ReverieOneShotModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-BLOCKING-CONFLICT:structured_one_shot",
+        "template_id": "reverie_one_shot",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-1D4F14D99B043A27465E5985-TRANSPORT-01",
+          "CALL-1D4F14D99B043A27465E5985-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-1F177B54D4EB02267072E982",
+        "response_schema_name": "HypothesisModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "hypothesis",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-1F177B54D4EB02267072E982-TRANSPORT-01",
+          "CALL-1F177B54D4EB02267072E982-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-2005A7E4625EFE5E479BE84D",
+        "response_schema_name": "HypothesisModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "hypothesis",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-2005A7E4625EFE5E479BE84D-TRANSPORT-01",
+          "CALL-2005A7E4625EFE5E479BE84D-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-22C0B67A70D951A5D221E835",
+        "response_schema_name": "ProsecutorModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "prosecutor",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-22C0B67A70D951A5D221E835-TRANSPORT-01",
+          "CALL-22C0B67A70D951A5D221E835-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-23B140B260BC85486D45CA0F",
+        "response_schema_name": "ReverieOneShotModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-BLOCKING-CONFLICT:structured_one_shot",
+        "template_id": "reverie_one_shot",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-23B140B260BC85486D45CA0F-TRANSPORT-01",
+          "CALL-23B140B260BC85486D45CA0F-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-2651C3261983E828BB7EEB67",
+        "response_schema_name": "ProsecutorModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "prosecutor",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-2651C3261983E828BB7EEB67-TRANSPORT-01",
+          "CALL-2651C3261983E828BB7EEB67-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-27F86C2337C3753549050A2A",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-27F86C2337C3753549050A2A-TRANSPORT-01",
+          "CALL-27F86C2337C3753549050A2A-TRANSPORT-02",
+          "CALL-27F86C2337C3753549050A2A-TRANSPORT-03"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-2C168EF79EE18878E2624BD1",
+        "response_schema_name": "ProsecutorModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "prosecutor",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-2C168EF79EE18878E2624BD1-TRANSPORT-01",
+          "CALL-2C168EF79EE18878E2624BD1-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-2D0F939DA1445A9DCB425FEC",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-2D0F939DA1445A9DCB425FEC-TRANSPORT-01",
+          "CALL-2D0F939DA1445A9DCB425FEC-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-2E22B8318C1FAA9711B666A7",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-2E22B8318C1FAA9711B666A7-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-2F03682FC3C5076C5CDF67DF",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-2F03682FC3C5076C5CDF67DF-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-30212728846B849C998432BF",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-30212728846B849C998432BF-TRANSPORT-01",
+          "CALL-30212728846B849C998432BF-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-31027D739BAADA1A8174F1E7",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-31027D739BAADA1A8174F1E7-TRANSPORT-01",
+          "CALL-31027D739BAADA1A8174F1E7-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-311D3E1179B5D7CDA15674C2",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-311D3E1179B5D7CDA15674C2-TRANSPORT-01",
+          "CALL-311D3E1179B5D7CDA15674C2-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-316A32B694FE2534FA301BCF",
+        "response_schema_name": "ReverieOneShotModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-CROSS-SCRIPT:structured_one_shot",
+        "template_id": "reverie_one_shot",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-316A32B694FE2534FA301BCF-TRANSPORT-01",
+          "CALL-316A32B694FE2534FA301BCF-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-33BE6167ADD056B87A527B72",
+        "response_schema_name": "ProsecutorModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "prosecutor",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-33BE6167ADD056B87A527B72-TRANSPORT-01",
+          "CALL-33BE6167ADD056B87A527B72-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-33DB0FBA0508A3A278F4A402",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-33DB0FBA0508A3A278F4A402-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-3B57277BA8A6CE4B2CE724F3",
+        "response_schema_name": "ReverieOneShotModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-CROSS-SCRIPT:structured_one_shot",
+        "template_id": "reverie_one_shot",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-3B57277BA8A6CE4B2CE724F3-TRANSPORT-01",
+          "CALL-3B57277BA8A6CE4B2CE724F3-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-3E6A688ED69627BE909877D5",
+        "response_schema_name": "HypothesisModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "hypothesis",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-3E6A688ED69627BE909877D5-TRANSPORT-01",
+          "CALL-3E6A688ED69627BE909877D5-TRANSPORT-02",
+          "CALL-3E6A688ED69627BE909877D5-TRANSPORT-03"
+        ]
+      },
+      {
+        "error": {
+          "error_class": "ProviderFailure",
+          "error_code": "MODEL_RESPONSE_SCHEMA_FAILURE",
+          "http_status": null,
+          "message": "Model response failed schema validation and repair: 9 validation errors for AdjudicationModelOutput\nreasons\n  Field required [type=missing, input_value={'candidate_id': 'MATCH-0...insufficient_evidence']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nunresolved_issues\n  Field required [type=missing, input_value={'candidate_id': 'MATCH-0...insufficient_evidence']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nhard_conflict_count\n  Field required [type=missing, input_value={'candidate_id': 'MATCH-0...insufficient_evidence']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nevidence_coverage\n  Field required [type=missing, input_value={'candidate_id': 'MATCH-0...insufficient_evidence']}, input_type=dic\n... (truncated)",
+          "raw_body": null,
+          "retryable": false
+        },
+        "logical_call_id": "CALL-43D848D50EBCC47357ACFAB8",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "error",
+        "system_run_id": "REP-03:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-43D848D50EBCC47357ACFAB8-TRANSPORT-01",
+          "CALL-43D848D50EBCC47357ACFAB8-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-4558A4316E0C47640FAF689D",
+        "response_schema_name": "ProsecutorModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "prosecutor",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-4558A4316E0C47640FAF689D-TRANSPORT-01",
+          "CALL-4558A4316E0C47640FAF689D-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-48A2DB0B17BBDEA56EF115D0",
+        "response_schema_name": "ProsecutorModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "prosecutor",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-48A2DB0B17BBDEA56EF115D0-TRANSPORT-01",
+          "CALL-48A2DB0B17BBDEA56EF115D0-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-49E3EC21302C0D89FFCBA401",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-49E3EC21302C0D89FFCBA401-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-51B12BE56775F014BD146B81",
+        "response_schema_name": "HypothesisModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "hypothesis",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-51B12BE56775F014BD146B81-TRANSPORT-01",
+          "CALL-51B12BE56775F014BD146B81-TRANSPORT-02",
+          "CALL-51B12BE56775F014BD146B81-TRANSPORT-03"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-532232DCCE6C47C8912D3700",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-532232DCCE6C47C8912D3700-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-54C7103B3B311F0925B75364",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-54C7103B3B311F0925B75364-TRANSPORT-01",
+          "CALL-54C7103B3B311F0925B75364-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-56CD8AFCF2213C2063B12525",
+        "response_schema_name": "ProsecutorModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "prosecutor",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-56CD8AFCF2213C2063B12525-TRANSPORT-01",
+          "CALL-56CD8AFCF2213C2063B12525-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-584365D4C7B24DE0D5C81C8B",
+        "response_schema_name": "HypothesisModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "hypothesis",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-584365D4C7B24DE0D5C81C8B-TRANSPORT-01",
+          "CALL-584365D4C7B24DE0D5C81C8B-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-5D274CA9C40E15F965A535F5",
+        "response_schema_name": "HypothesisModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "hypothesis",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-5D274CA9C40E15F965A535F5-TRANSPORT-01",
+          "CALL-5D274CA9C40E15F965A535F5-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-5F3B70980C8FB4EBFF78FD9C",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-5F3B70980C8FB4EBFF78FD9C-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-632615DB5E7623E8F862AF09",
+        "response_schema_name": "ProsecutorModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "prosecutor",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-632615DB5E7623E8F862AF09-TRANSPORT-01",
+          "CALL-632615DB5E7623E8F862AF09-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-64F956A3E5B675CE5BB03AD3",
+        "response_schema_name": "HypothesisModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "hypothesis",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-64F956A3E5B675CE5BB03AD3-TRANSPORT-01",
+          "CALL-64F956A3E5B675CE5BB03AD3-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-65C07F105A199F150E3E3678",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-65C07F105A199F150E3E3678-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-67A91D64760B17E74B94010B",
+        "response_schema_name": "ReverieOneShotModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-CROSS-SCRIPT:structured_one_shot",
+        "template_id": "reverie_one_shot",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-67A91D64760B17E74B94010B-TRANSPORT-01",
+          "CALL-67A91D64760B17E74B94010B-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-67AB5701999B082E79771816",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-67AB5701999B082E79771816-TRANSPORT-01",
+          "CALL-67AB5701999B082E79771816-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-67CD44BF354494BD137709BB",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-67CD44BF354494BD137709BB-TRANSPORT-01",
+          "CALL-67CD44BF354494BD137709BB-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-6BDE4D2EF555E9023E844845",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-6BDE4D2EF555E9023E844845-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-6D2401D41F32FBC53705C6A0",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-6D2401D41F32FBC53705C6A0-TRANSPORT-01",
+          "CALL-6D2401D41F32FBC53705C6A0-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-7022DF0CDD43619E9174370A",
+        "response_schema_name": "ProsecutorModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "prosecutor",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-7022DF0CDD43619E9174370A-TRANSPORT-01",
+          "CALL-7022DF0CDD43619E9174370A-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-71358BB06E16856F7F363241",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-71358BB06E16856F7F363241-TRANSPORT-01",
+          "CALL-71358BB06E16856F7F363241-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-72695EB27C57E86F4AC98897",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-72695EB27C57E86F4AC98897-TRANSPORT-01",
+          "CALL-72695EB27C57E86F4AC98897-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-7A3BF820F9AB9BAB59E58DB2",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-7A3BF820F9AB9BAB59E58DB2-TRANSPORT-01",
+          "CALL-7A3BF820F9AB9BAB59E58DB2-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-7DE7C5526257BF3F971B655A",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-7DE7C5526257BF3F971B655A-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-7E5169442ADC55C90E61A8B8",
+        "response_schema_name": "ReverieOneShotModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-SHARED-CONTACT:structured_one_shot",
+        "template_id": "reverie_one_shot",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-7E5169442ADC55C90E61A8B8-TRANSPORT-01",
+          "CALL-7E5169442ADC55C90E61A8B8-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-7F8150B519DD3018A4664C90",
+        "response_schema_name": "HypothesisModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "hypothesis",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-7F8150B519DD3018A4664C90-TRANSPORT-01",
+          "CALL-7F8150B519DD3018A4664C90-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-802B268681D82DB98F7B49A5",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-802B268681D82DB98F7B49A5-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": {
+          "error_class": "ProviderFailure",
+          "error_code": "MODEL_RESPONSE_SCHEMA_FAILURE",
+          "http_status": null,
+          "message": "Model response failed schema validation and repair: 9 validation errors for AdjudicationModelOutput\nreasons\n  Field required [type=missing, input_value={'candidate_id': 'MATCH-0...ified as missing_both']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nunresolved_issues\n  Field required [type=missing, input_value={'candidate_id': 'MATCH-0...ified as missing_both']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nhard_conflict_count\n  Field required [type=missing, input_value={'candidate_id': 'MATCH-0...ified as missing_both']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nevidence_coverage\n  Field required [type=missing, input_value={'candidate_id': 'MATCH-0...ified as missing_both']}, input_type=dic\n... (truncated)",
+          "raw_body": null,
+          "retryable": false
+        },
+        "logical_call_id": "CALL-82ECE77E75A859D8CBA6E9D6",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "error",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-82ECE77E75A859D8CBA6E9D6-TRANSPORT-01",
+          "CALL-82ECE77E75A859D8CBA6E9D6-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-84802634D77A2DC5B8621111",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-84802634D77A2DC5B8621111-TRANSPORT-01",
+          "CALL-84802634D77A2DC5B8621111-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-86E120020956337D0FE76F5D",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-86E120020956337D0FE76F5D-TRANSPORT-01",
+          "CALL-86E120020956337D0FE76F5D-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-86F49F9DB2C7E41408983A54",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-86F49F9DB2C7E41408983A54-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-8AED6F077D7D833F702CF1E2",
+        "response_schema_name": "HypothesisModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "hypothesis",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-8AED6F077D7D833F702CF1E2-TRANSPORT-01",
+          "CALL-8AED6F077D7D833F702CF1E2-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-8B016CA894A69292161F329E",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-8B016CA894A69292161F329E-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-8D973508AC943F5FE8D05E50",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-8D973508AC943F5FE8D05E50-TRANSPORT-01",
+          "CALL-8D973508AC943F5FE8D05E50-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-98EE513DE5B313756A41EE53",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-98EE513DE5B313756A41EE53-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-9D6FD37C2217885C2A690621",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-9D6FD37C2217885C2A690621-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-A488EDF4221C1EFD2BEB0278",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-A488EDF4221C1EFD2BEB0278-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-A5E4AD8F99986586087CDE62",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-A5E4AD8F99986586087CDE62-TRANSPORT-01",
+          "CALL-A5E4AD8F99986586087CDE62-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-ACDD2C7911F1F5EBE6B3A8C5",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-ACDD2C7911F1F5EBE6B3A8C5-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-B586DE74AD3B013995A1F0AF",
+        "response_schema_name": "HypothesisModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "hypothesis",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-B586DE74AD3B013995A1F0AF-TRANSPORT-01",
+          "CALL-B586DE74AD3B013995A1F0AF-TRANSPORT-02",
+          "CALL-B586DE74AD3B013995A1F0AF-TRANSPORT-03"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-B5D88D4B6DE9D5D071B2EFEB",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-B5D88D4B6DE9D5D071B2EFEB-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-BA05FD68E38B06502E8FA00C",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-BA05FD68E38B06502E8FA00C-TRANSPORT-01",
+          "CALL-BA05FD68E38B06502E8FA00C-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-C2965E0B2224B2B8E41C9218",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-C2965E0B2224B2B8E41C9218-TRANSPORT-01",
+          "CALL-C2965E0B2224B2B8E41C9218-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-C849B62C5632F7B250BDAB29",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-C849B62C5632F7B250BDAB29-TRANSPORT-01",
+          "CALL-C849B62C5632F7B250BDAB29-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-CA627D2A911F71C2CBB5F5A1",
+        "response_schema_name": "ProsecutorModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "prosecutor",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-CA627D2A911F71C2CBB5F5A1-TRANSPORT-01",
+          "CALL-CA627D2A911F71C2CBB5F5A1-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-CDBA668CB274DCF1AA602ED8",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-CDBA668CB274DCF1AA602ED8-TRANSPORT-01",
+          "CALL-CDBA668CB274DCF1AA602ED8-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-CE3226772DB93524D4C22D3B",
+        "response_schema_name": "ProsecutorModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "prosecutor",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-CE3226772DB93524D4C22D3B-TRANSPORT-01",
+          "CALL-CE3226772DB93524D4C22D3B-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-D9D0603EDB7CA8B1606277D1",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-D9D0603EDB7CA8B1606277D1-TRANSPORT-01",
+          "CALL-D9D0603EDB7CA8B1606277D1-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-DA8D8AA64F24D616ABA9523F",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-DA8D8AA64F24D616ABA9523F-TRANSPORT-01",
+          "CALL-DA8D8AA64F24D616ABA9523F-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-DCB5EF4729C875FF7832347D",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-DCB5EF4729C875FF7832347D-TRANSPORT-01",
+          "CALL-DCB5EF4729C875FF7832347D-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-E16C40C1D2A9127A27E49DDC",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-E16C40C1D2A9127A27E49DDC-TRANSPORT-01",
+          "CALL-E16C40C1D2A9127A27E49DDC-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-E3EC824AAFF3B072141729DD",
+        "response_schema_name": "ProsecutorModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "prosecutor",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-E3EC824AAFF3B072141729DD-TRANSPORT-01",
+          "CALL-E3EC824AAFF3B072141729DD-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-E3F900261884F59CAECDEDE7",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-E3F900261884F59CAECDEDE7-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-E4627EFA00D731889E4B421F",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-E4627EFA00D731889E4B421F-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": {
+          "error_class": "ProviderFailure",
+          "error_code": "MODEL_RESPONSE_SCHEMA_FAILURE",
+          "http_status": null,
+          "message": "Model response failed schema validation and repair: 9 validation errors for AdjudicationModelOutput\nreasons\n  Field required [type=missing, input_value={'candidate_id': 'MATCH-0...r_names, home_address']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nunresolved_issues\n  Field required [type=missing, input_value={'candidate_id': 'MATCH-0...r_names, home_address']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nhard_conflict_count\n  Field required [type=missing, input_value={'candidate_id': 'MATCH-0...r_names, home_address']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nevidence_coverage\n  Field required [type=missing, input_value={'candidate_id': 'MATCH-0...r_names, home_address']}, input_type=dic\n... (truncated)",
+          "raw_body": null,
+          "retryable": false
+        },
+        "logical_call_id": "CALL-E656F709BDF3CEDB50E4BD05",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "error",
+        "system_run_id": "REP-02:PROMPT-LAB-SHARED-CONTACT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-E656F709BDF3CEDB50E4BD05-TRANSPORT-01",
+          "CALL-E656F709BDF3CEDB50E4BD05-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-E89CCE0BBB9AA0DD31FDF592",
+        "response_schema_name": "ReverieOneShotModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-SHARED-CONTACT:structured_one_shot",
+        "template_id": "reverie_one_shot",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-E89CCE0BBB9AA0DD31FDF592-TRANSPORT-01",
+          "CALL-E89CCE0BBB9AA0DD31FDF592-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-E9798B9692A0F2CF0FAC6287",
+        "response_schema_name": "ReverieOneShotModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-BLOCKING-CONFLICT:structured_one_shot",
+        "template_id": "reverie_one_shot",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-E9798B9692A0F2CF0FAC6287-TRANSPORT-01",
+          "CALL-E9798B9692A0F2CF0FAC6287-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-EBDA8501FA16918B7EA9DF59",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-01:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-EBDA8501FA16918B7EA9DF59-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-ECA25487847209A1FE980ACC",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-ECA25487847209A1FE980ACC-TRANSPORT-01",
+          "CALL-ECA25487847209A1FE980ACC-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-ECC51A1D1C889AB5D105B092",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-ECC51A1D1C889AB5D105B092-TRANSPORT-01",
+          "CALL-ECC51A1D1C889AB5D105B092-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-ED75CEDB59EC7CEFE06FCA0F",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-ED75CEDB59EC7CEFE06FCA0F-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-F3D188D83B6A672F3A76F5B5",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-03:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-F3D188D83B6A672F3A76F5B5-TRANSPORT-01"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-FA33439E2EC45BCA0E5CA8E5",
+        "response_schema_name": "ExtractionModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-BLOCKING-CONFLICT:full_threadline",
+        "template_id": "extraction",
+        "template_version": "v2",
+        "transport_attempt_ids": [
+          "CALL-FA33439E2EC45BCA0E5CA8E5-TRANSPORT-01",
+          "CALL-FA33439E2EC45BCA0E5CA8E5-TRANSPORT-02"
+        ]
+      },
+      {
+        "error": null,
+        "logical_call_id": "CALL-FAA531C99A8210A6CA411E10",
+        "response_schema_name": "AdjudicationModelOutput",
+        "status": "ok",
+        "system_run_id": "REP-02:PROMPT-LAB-CROSS-SCRIPT:full_threadline",
+        "template_id": "adjudication",
+        "template_version": "v1",
+        "transport_attempt_ids": [
+          "CALL-FAA531C99A8210A6CA411E10-TRANSPORT-01",
+          "CALL-FAA531C99A8210A6CA411E10-TRANSPORT-02"
+        ]
+      }
+    ],
+    "path": "backend/data/reverie_live_evaluation_v1_1/raw-provider-calls.json",
+    "sha256": "410856646b0f201a651b68ec66109077c12b384b0e787af586b667427d2d3a1e",
+    "transport_attempt_count": 160,
+    "transport_attempt_status_counts": {
+      "error": 23,
+      "ok": 137
+    },
+    "transport_attempts": [
+      {
+        "attempt_id": "CALL-316A32B694FE2534FA301BCF-TRANSPORT-01",
+        "duration_ms": 15452.239,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-316A32B694FE2534FA301BCF",
+        "request_sha256": "38686a918c36720b75eadb93bcf347c91a65b3958ea86587d0b04e6fe323c59d",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-316A32B694FE2534FA301BCF-TRANSPORT-02",
+        "duration_ms": 29114.397,
+        "error": null,
+        "logical_call_id": "CALL-316A32B694FE2534FA301BCF",
+        "request_sha256": "7a1438e4e4cd039d4d3a4d5925db1029242c6a799b4ca6295b68e45b64a3e2a4",
+        "response_sha256": "41e158c94868b753d42a2606e0d08e98473ea85d08178144bacdbc79aa2c56e0",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-CDBA668CB274DCF1AA602ED8-TRANSPORT-01",
+        "duration_ms": 14858.345,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-CDBA668CB274DCF1AA602ED8",
+        "request_sha256": "288db5f7210cdd70e17430d4c3cfc7d8e0fdbb8a2a8aa20a5b64e939f25407b7",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-CDBA668CB274DCF1AA602ED8-TRANSPORT-02",
+        "duration_ms": 33379.577,
+        "error": null,
+        "logical_call_id": "CALL-CDBA668CB274DCF1AA602ED8",
+        "request_sha256": "edad466be09c57c9d59d3a4cbfde0552920f8221994e1f1ae3cdd478dc72ebc5",
+        "response_sha256": "7bd3ee6a736c03f82141c64f576b6bd25e2d168d55b9aea0c4e9b9bc273459cf",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-532232DCCE6C47C8912D3700-TRANSPORT-01",
+        "duration_ms": 29641.652,
+        "error": null,
+        "logical_call_id": "CALL-532232DCCE6C47C8912D3700",
+        "request_sha256": "8444a16cc93f6a6ea4d81c4ae3e1513a45c43386092561361d1c256c480788fa",
+        "response_sha256": "56ccc6a921a27a094a87bece34f056f02fed4fdb49d4e16aafa04fdf7d6fb99a",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-98EE513DE5B313756A41EE53-TRANSPORT-01",
+        "duration_ms": 27664.044,
+        "error": null,
+        "logical_call_id": "CALL-98EE513DE5B313756A41EE53",
+        "request_sha256": "3064927f3d4146ea8517087e64185fa1e27ee790b0adb22bfbdf9bb267ef072e",
+        "response_sha256": "e8d46b68a6b6946e33029a83afaa621b067652cd6e933203e62564e2e197b0a4",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-2E22B8318C1FAA9711B666A7-TRANSPORT-01",
+        "duration_ms": 33422.94,
+        "error": null,
+        "logical_call_id": "CALL-2E22B8318C1FAA9711B666A7",
+        "request_sha256": "664155c2f492dddacf8bd365e06b42debe8e4f60c8d6f787d30459bb6d005b5b",
+        "response_sha256": "a55912d819e906bf3c6a6ec93bc6aac3d1f1411cf99aad7bccab87ea40620143",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-7F8150B519DD3018A4664C90-TRANSPORT-01",
+        "duration_ms": 12250.192,
+        "error": null,
+        "logical_call_id": "CALL-7F8150B519DD3018A4664C90",
+        "request_sha256": "fa1777db481ccfadba7fa512822ecbd39a9b978e75b5dd1494871cc3f33c22cd",
+        "response_sha256": "9214bd294e6c0c074f90ae3ec23619c9e9c34280e60b14e1ef957d1eb9017425",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-7F8150B519DD3018A4664C90-TRANSPORT-02",
+        "duration_ms": 8000.851,
+        "error": null,
+        "logical_call_id": "CALL-7F8150B519DD3018A4664C90",
+        "request_sha256": "79dbe65d9af3ebaff469ce6c69d10ca955ec0ac095f31f75854a938069ddfcfa",
+        "response_sha256": "79fdfb7dd5adfe4e9d1113d11fad354504a604635ea48fd705a62a85580dbe8e",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-E3EC824AAFF3B072141729DD-TRANSPORT-01",
+        "duration_ms": 11429.427,
+        "error": null,
+        "logical_call_id": "CALL-E3EC824AAFF3B072141729DD",
+        "request_sha256": "4949bb2f778ec75e48579e556dbd7cdd953d58b693e90e1f58ce6e81f174d4f3",
+        "response_sha256": "68e7ee4e3d64ee0ff8d77ca2acbf91050d9fc189ddee1a0b4e98bccd0adac9dd",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-E3EC824AAFF3B072141729DD-TRANSPORT-02",
+        "duration_ms": 11052.625,
+        "error": null,
+        "logical_call_id": "CALL-E3EC824AAFF3B072141729DD",
+        "request_sha256": "98eddba38e9bc49314b162b594da4df48693d1c01893701a9093aa59a0ef6cc0",
+        "response_sha256": "4b4fa29be68c5d4c321e1898dd48d950b319a0c58d83b80add00d2284a92414f",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-71358BB06E16856F7F363241-TRANSPORT-01",
+        "duration_ms": 11485.087,
+        "error": null,
+        "logical_call_id": "CALL-71358BB06E16856F7F363241",
+        "request_sha256": "f46ed9bab72bf674054ad7d327c9f8db53cb8e4ff3bd9f83415f6d5123351285",
+        "response_sha256": "f162885a3461814558ba9cd696670e32665ea26798494c3d9255aa678b1f5dfb",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-71358BB06E16856F7F363241-TRANSPORT-02",
+        "duration_ms": 12250.202,
+        "error": null,
+        "logical_call_id": "CALL-71358BB06E16856F7F363241",
+        "request_sha256": "c34571a342bee3d14411aa088aa35fc09dae280d6d6a7d007dfba2540e52f0ec",
+        "response_sha256": "d092bd2b17d97ac54e018ff7ce79ef221bb707c3541d0a6be3045d8de0cbfa3b",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-8D973508AC943F5FE8D05E50-TRANSPORT-01",
+        "duration_ms": 11516.329,
+        "error": null,
+        "logical_call_id": "CALL-8D973508AC943F5FE8D05E50",
+        "request_sha256": "f46ed9bab72bf674054ad7d327c9f8db53cb8e4ff3bd9f83415f6d5123351285",
+        "response_sha256": "05e542fbfd26d4b96f93d9bffb2c472324d696f7d4ed0e602884c191c80988d5",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-8D973508AC943F5FE8D05E50-TRANSPORT-02",
+        "duration_ms": 11490.173,
+        "error": null,
+        "logical_call_id": "CALL-8D973508AC943F5FE8D05E50",
+        "request_sha256": "aa2e7b27057109f67b9fedc95ad4d37647ea12ad8a3c55be696af63a7b3e2920",
+        "response_sha256": "b336c981d5022464fc3a7f4a9dca1d384d8aab2353f14971b127186985df3957",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-7E5169442ADC55C90E61A8B8-TRANSPORT-01",
+        "duration_ms": 14790.35,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-7E5169442ADC55C90E61A8B8",
+        "request_sha256": "9f0ae7dd09e58d0f5380a0b1106d951df3d3e816a019df81803f3c14dde45142",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-7E5169442ADC55C90E61A8B8-TRANSPORT-02",
+        "duration_ms": 25202.015,
+        "error": null,
+        "logical_call_id": "CALL-7E5169442ADC55C90E61A8B8",
+        "request_sha256": "1688c15bf00bdf4abf7875a8f31ca8bc0bc2236713a8e69d883ff1588e14daf8",
+        "response_sha256": "9bc90debeff1a7ae3c7380d53af7d30e16ff9fe19ebf1e5adb4f7f9bfcdb677d",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-C849B62C5632F7B250BDAB29-TRANSPORT-01",
+        "duration_ms": 14897.536,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-C849B62C5632F7B250BDAB29",
+        "request_sha256": "1a3a2b2081680c0ee9817cac17a21d9a008598c1fd401954859b5921580001aa",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-C849B62C5632F7B250BDAB29-TRANSPORT-02",
+        "duration_ms": 27313.778,
+        "error": null,
+        "logical_call_id": "CALL-C849B62C5632F7B250BDAB29",
+        "request_sha256": "6d2a76ad3179efa7719f4e84264b498965891697290e39110342dbb026e5e76d",
+        "response_sha256": "4fa76ca718ee69a167bafab28171d2d5b49cc73f4cb3f7ff6e029e0c75645f0e",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-0F5E3AC694D69CED7E58B2AD-TRANSPORT-01",
+        "duration_ms": 25836.709,
+        "error": null,
+        "logical_call_id": "CALL-0F5E3AC694D69CED7E58B2AD",
+        "request_sha256": "2cf485228d1dc6a15bccc19032d0bef60602789e021ec23bf38aa1ebbc383088",
+        "response_sha256": "85d524b5e7d186e78604b070377b7d5069f9fef70fa9c2f35b3933814ead3f8a",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-49E3EC21302C0D89FFCBA401-TRANSPORT-01",
+        "duration_ms": 24816.269,
+        "error": null,
+        "logical_call_id": "CALL-49E3EC21302C0D89FFCBA401",
+        "request_sha256": "06c430ec246a5c948068b4c05ac56f907612b5656988eb2d1571f8dbc3769665",
+        "response_sha256": "edda5b6a35c98b6caa1b354de2282d9bc37baef1f628c77ef005724a6c0fdbeb",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-86F49F9DB2C7E41408983A54-TRANSPORT-01",
+        "duration_ms": 26420.2,
+        "error": null,
+        "logical_call_id": "CALL-86F49F9DB2C7E41408983A54",
+        "request_sha256": "a339d51153d4365efc925f53e743b3c07916d7470a003644866315bee9ee0cd6",
+        "response_sha256": "faf75a729ffbbff5b90ed307a7ab52427e1b8bc0b236d763d7ba6d38d480fbc6",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-2005A7E4625EFE5E479BE84D-TRANSPORT-01",
+        "duration_ms": 17144.391,
+        "error": null,
+        "logical_call_id": "CALL-2005A7E4625EFE5E479BE84D",
+        "request_sha256": "8304789fbec7e6d71095be0d747633b4aeed35403c3d4027a8625e8f1c50275f",
+        "response_sha256": "65855c5e5ad4fe5a2a2e1f006d30c116bb275c31082e772596d2f74e9fd172de",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-2005A7E4625EFE5E479BE84D-TRANSPORT-02",
+        "duration_ms": 5531.71,
+        "error": null,
+        "logical_call_id": "CALL-2005A7E4625EFE5E479BE84D",
+        "request_sha256": "bc4f29b337b58c7ebee60f6fcd10d77ffbe9f63290e51a55aa322542f4f41027",
+        "response_sha256": "d12a4e9cb592a29e8c0cfd846a2579822b5f308738f625a3c36bea603ca6281a",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-2C168EF79EE18878E2624BD1-TRANSPORT-01",
+        "duration_ms": 10037.774,
+        "error": null,
+        "logical_call_id": "CALL-2C168EF79EE18878E2624BD1",
+        "request_sha256": "73e4e5630713c312b6549c5fa8bc8f6850188b823200c3fdfcbadc9c4bda27d9",
+        "response_sha256": "ea63c2a2421ff7d9578ca48da764788fbcc65d48e955195d52a4f1dcf5547c24",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-2C168EF79EE18878E2624BD1-TRANSPORT-02",
+        "duration_ms": 9733.84,
+        "error": null,
+        "logical_call_id": "CALL-2C168EF79EE18878E2624BD1",
+        "request_sha256": "660b152a248b8aef3303b3e30c3fafcca6a5aaf39a4e0176f9900a4c91ff7e7a",
+        "response_sha256": "49ac933fad222b6dafce7417c2ac8e3e9f53cb2bd72f7e2c1bc2febdfd7c5012",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-30212728846B849C998432BF-TRANSPORT-01",
+        "duration_ms": 8052.8,
+        "error": null,
+        "logical_call_id": "CALL-30212728846B849C998432BF",
+        "request_sha256": "a8103ff130a294c8d74f38b552c25c81e05326b93aa5b1eca845bab3f765901c",
+        "response_sha256": "d3a83a8d1b1aed378ea2c8f22a9a86bb8e5f7b2e4fafd72cd2abc48c11530ded",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-30212728846B849C998432BF-TRANSPORT-02",
+        "duration_ms": 11072.303,
+        "error": null,
+        "logical_call_id": "CALL-30212728846B849C998432BF",
+        "request_sha256": "1c4cc7337c58e3c382d7b13aae945bacaf728da7c7a15005a67f0c96e259178c",
+        "response_sha256": "629c74a65071b23a0293f8baa4d8a1281eb13b1a43c9ee35c45e0c05165414c2",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-2D0F939DA1445A9DCB425FEC-TRANSPORT-01",
+        "duration_ms": 6765.199,
+        "error": null,
+        "logical_call_id": "CALL-2D0F939DA1445A9DCB425FEC",
+        "request_sha256": "a8103ff130a294c8d74f38b552c25c81e05326b93aa5b1eca845bab3f765901c",
+        "response_sha256": "ba6bb30dca70edb1a7d47454280bc0ae929548b85d8ae3ae5b460768996333e5",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-2D0F939DA1445A9DCB425FEC-TRANSPORT-02",
+        "duration_ms": 4117.988,
+        "error": null,
+        "logical_call_id": "CALL-2D0F939DA1445A9DCB425FEC",
+        "request_sha256": "ad8d0d9378dafcaf70322323f2b2fed73467029d0f558c064df94d8b7e108ec2",
+        "response_sha256": "2820ad9db8c6fb1b60a6d479d0d7d9f47288ea5a8231ea6e86c32c9a46d715dd",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-E9798B9692A0F2CF0FAC6287-TRANSPORT-01",
+        "duration_ms": 15296.283,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-E9798B9692A0F2CF0FAC6287",
+        "request_sha256": "e864dd1f4f474f73cca6eb870bceeb36164eebf830c53205d11dcae889eec56d",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-E9798B9692A0F2CF0FAC6287-TRANSPORT-02",
+        "duration_ms": 20041.009,
+        "error": null,
+        "logical_call_id": "CALL-E9798B9692A0F2CF0FAC6287",
+        "request_sha256": "c6c40a8fae94f689278a90c16492349434f48f62f51fe28a38db50fdd64f2fe2",
+        "response_sha256": "e89f242a9f2d389042ea2e422a83463d883586479ec64372677f0b113f703362",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-67CD44BF354494BD137709BB-TRANSPORT-01",
+        "duration_ms": 14948.1,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-67CD44BF354494BD137709BB",
+        "request_sha256": "c7e23fc4ea15a06719c577fe4cee537a1be137431ae3a5a8857a8afdf4440d6b",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-67CD44BF354494BD137709BB-TRANSPORT-02",
+        "duration_ms": 27256.917,
+        "error": null,
+        "logical_call_id": "CALL-67CD44BF354494BD137709BB",
+        "request_sha256": "bc984c1766c3bdadf97a78082aae063ae5028a9662a284f6a9499d91ebd23a67",
+        "response_sha256": "7d4eb23621924ab6a64cc5e64bb4c457aa25ecf5bfecc066c2f18327a3c92f33",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-EBDA8501FA16918B7EA9DF59-TRANSPORT-01",
+        "duration_ms": 29290.755,
+        "error": null,
+        "logical_call_id": "CALL-EBDA8501FA16918B7EA9DF59",
+        "request_sha256": "7087a40e2fd3df5eaff25887095e9126a2aa3d61d0e6d3b99354aadc49cbf724",
+        "response_sha256": "7a7b3b369dfbb24566868b9e1da7dd9590e08c6491485533d0f2dadc71ad6091",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-E3F900261884F59CAECDEDE7-TRANSPORT-01",
+        "duration_ms": 25934.839,
+        "error": null,
+        "logical_call_id": "CALL-E3F900261884F59CAECDEDE7",
+        "request_sha256": "0414319b1377b10920b37a3edb873f5c8c840764a44b008a4c8754087b9109b7",
+        "response_sha256": "ad4a45bdb7dba6cf883bf760311665648e6984a6a725d6e59b25651305988c8a",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-9D6FD37C2217885C2A690621-TRANSPORT-01",
+        "duration_ms": 34170.072,
+        "error": null,
+        "logical_call_id": "CALL-9D6FD37C2217885C2A690621",
+        "request_sha256": "a37db04021a3dfc619cef7d6836ceb67ee7e3db8e9f77089508d1819dd851eb3",
+        "response_sha256": "399174580e0765e6b709217855355ed25a15dd52c0bb3d236d447befcbcaa956",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-18DD80B49CCA5C73DAA9976F-TRANSPORT-01",
+        "duration_ms": 20532.024,
+        "error": null,
+        "logical_call_id": "CALL-18DD80B49CCA5C73DAA9976F",
+        "request_sha256": "a34a80432120f03f05c03e19e834d3ceadf0e1cd7e6675d638c27b056acefb52",
+        "response_sha256": "76100836c64832ea7c58bd0b8e5f6efc8b36d6879f3b0efea54e81024f0f4426",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-18DD80B49CCA5C73DAA9976F-TRANSPORT-02",
+        "duration_ms": 26875.748,
+        "error": null,
+        "logical_call_id": "CALL-18DD80B49CCA5C73DAA9976F",
+        "request_sha256": "5fae28bcc63d5beb63e05ecdcb34ebb7d513b0ac25e1970da189b0173657f361",
+        "response_sha256": "a26878f1bae778dec05376b45616e2ac290bc87e835061ece8bf275525147434",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-4558A4316E0C47640FAF689D-TRANSPORT-01",
+        "duration_ms": 11587.997,
+        "error": null,
+        "logical_call_id": "CALL-4558A4316E0C47640FAF689D",
+        "request_sha256": "c20c4fb8bcd96451abc0330591f4a14bbe63031969bd1a1c7b52ec4538212e3b",
+        "response_sha256": "7d3f004449bb1ca82c8d57961ad876076fab71b9f83578540b0653fcbc5e59a2",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-4558A4316E0C47640FAF689D-TRANSPORT-02",
+        "duration_ms": 10727.414,
+        "error": null,
+        "logical_call_id": "CALL-4558A4316E0C47640FAF689D",
+        "request_sha256": "a1b8be4cbdfc3d95b8fc8745dc1096aab52405fbc96f1a89dda8a3076ab3452a",
+        "response_sha256": "d59418427d83110eac14434ce011d6fdda29c72489b98972ce9cf6c4e07fcd13",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-C2965E0B2224B2B8E41C9218-TRANSPORT-01",
+        "duration_ms": 13559.403,
+        "error": null,
+        "logical_call_id": "CALL-C2965E0B2224B2B8E41C9218",
+        "request_sha256": "b71f7bcee0854d61cf987403286de60d350b93b27264cf29649d19e27d15f373",
+        "response_sha256": "eb6411ed41165bd67e9453b56afd9205f36ed5767651c03a316fb18ec0a3eed9",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-C2965E0B2224B2B8E41C9218-TRANSPORT-02",
+        "duration_ms": 14737.607,
+        "error": null,
+        "logical_call_id": "CALL-C2965E0B2224B2B8E41C9218",
+        "request_sha256": "f3f20c8657aacb888612dbe48475f52ad822d2655788c309a2c02a8a3030df38",
+        "response_sha256": "3f82c855d539d088b98e587821122302de4de5851a8e393ab4d9623f685db1e7",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-67AB5701999B082E79771816-TRANSPORT-01",
+        "duration_ms": 14531.674,
+        "error": null,
+        "logical_call_id": "CALL-67AB5701999B082E79771816",
+        "request_sha256": "b71f7bcee0854d61cf987403286de60d350b93b27264cf29649d19e27d15f373",
+        "response_sha256": "a67096fd738ba827488643b4c1a39323ac129c08f3c4c51b7176ec267f043d37",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-67AB5701999B082E79771816-TRANSPORT-02",
+        "duration_ms": 14067.567,
+        "error": null,
+        "logical_call_id": "CALL-67AB5701999B082E79771816",
+        "request_sha256": "108e0ab9d371f84867b4856c4f9226249925793465846f2c52d3d6d9b6c8be27",
+        "response_sha256": "588240595d4a54c0eb191f9ed0ff16afd4e915b1f02874e336b8deb0e964ab9d",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-6D2401D41F32FBC53705C6A0-TRANSPORT-01",
+        "duration_ms": 16141.584,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-6D2401D41F32FBC53705C6A0",
+        "request_sha256": "288db5f7210cdd70e17430d4c3cfc7d8e0fdbb8a2a8aa20a5b64e939f25407b7",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-6D2401D41F32FBC53705C6A0-TRANSPORT-02",
+        "duration_ms": 26502.264,
+        "error": null,
+        "logical_call_id": "CALL-6D2401D41F32FBC53705C6A0",
+        "request_sha256": "edad466be09c57c9d59d3a4cbfde0552920f8221994e1f1ae3cdd478dc72ebc5",
+        "response_sha256": "83d0fc4e47252e16dd81cd9d74ec336c4e151a74a73a6e07d14a09e8b2c2f3cb",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-A488EDF4221C1EFD2BEB0278-TRANSPORT-01",
+        "duration_ms": 27836.873,
+        "error": null,
+        "logical_call_id": "CALL-A488EDF4221C1EFD2BEB0278",
+        "request_sha256": "8444a16cc93f6a6ea4d81c4ae3e1513a45c43386092561361d1c256c480788fa",
+        "response_sha256": "ba62b88169e101774f17bd878c1dcefb03b84db8ef9a88b087fd0c9bf43d15fa",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-27F86C2337C3753549050A2A-TRANSPORT-01",
+        "duration_ms": null,
+        "error": {
+          "error_class": "ProcessInterrupted",
+          "error_code": "TRANSPORT_ATTEMPT_INTERRUPTED",
+          "http_status": null,
+          "message": "Transport attempt interrupted by process termination during the interrupted 6/18 run; reconciled as a recorded error on resume and preserved in the attempt history.",
+          "raw_body": null,
+          "retryable": true
+        },
+        "logical_call_id": "CALL-27F86C2337C3753549050A2A",
+        "request_sha256": "3064927f3d4146ea8517087e64185fa1e27ee790b0adb22bfbdf9bb267ef072e",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-3B57277BA8A6CE4B2CE724F3-TRANSPORT-01",
+        "duration_ms": 16046.048,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-3B57277BA8A6CE4B2CE724F3",
+        "request_sha256": "38686a918c36720b75eadb93bcf347c91a65b3958ea86587d0b04e6fe323c59d",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-3B57277BA8A6CE4B2CE724F3-TRANSPORT-02",
+        "duration_ms": 28359.512,
+        "error": null,
+        "logical_call_id": "CALL-3B57277BA8A6CE4B2CE724F3",
+        "request_sha256": "7a1438e4e4cd039d4d3a4d5925db1029242c6a799b4ca6295b68e45b64a3e2a4",
+        "response_sha256": "5f494d6c32a4e16cdc3860276c531afea0c9ed77f06952998053fd6ae3669589",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-86E120020956337D0FE76F5D-TRANSPORT-01",
+        "duration_ms": 14633.803,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-86E120020956337D0FE76F5D",
+        "request_sha256": "1a3a2b2081680c0ee9817cac17a21d9a008598c1fd401954859b5921580001aa",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-86E120020956337D0FE76F5D-TRANSPORT-02",
+        "duration_ms": 28125.339,
+        "error": null,
+        "logical_call_id": "CALL-86E120020956337D0FE76F5D",
+        "request_sha256": "6d2a76ad3179efa7719f4e84264b498965891697290e39110342dbb026e5e76d",
+        "response_sha256": "f42bdd9db31f6906e94d5fb55e5fdfa046d1edf669814c09969a4842a04e8476",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-8B016CA894A69292161F329E-TRANSPORT-01",
+        "duration_ms": 26401.817,
+        "error": null,
+        "logical_call_id": "CALL-8B016CA894A69292161F329E",
+        "request_sha256": "2cf485228d1dc6a15bccc19032d0bef60602789e021ec23bf38aa1ebbc383088",
+        "response_sha256": "04032d5c5bb2a907bc14fb6cbda2bde03824c19d67552b508f29897a9b4f4a17",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-B5D88D4B6DE9D5D071B2EFEB-TRANSPORT-01",
+        "duration_ms": 25139.433,
+        "error": null,
+        "logical_call_id": "CALL-B5D88D4B6DE9D5D071B2EFEB",
+        "request_sha256": "06c430ec246a5c948068b4c05ac56f907612b5656988eb2d1571f8dbc3769665",
+        "response_sha256": "9d94c07c3d6503266aa2ff26c42ab45507522edeca76631fcf1d4783d3d7096f",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-5F3B70980C8FB4EBFF78FD9C-TRANSPORT-01",
+        "duration_ms": 26598.489,
+        "error": null,
+        "logical_call_id": "CALL-5F3B70980C8FB4EBFF78FD9C",
+        "request_sha256": "a339d51153d4365efc925f53e743b3c07916d7470a003644866315bee9ee0cd6",
+        "response_sha256": "26d0950828b256e0649040752e1a841027444d904c966eda448f6aa976533191",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-1F177B54D4EB02267072E982-TRANSPORT-01",
+        "duration_ms": 22040.849,
+        "error": null,
+        "logical_call_id": "CALL-1F177B54D4EB02267072E982",
+        "request_sha256": "ba74341eff2fde369d567422746614ba562a74532f1963d624fb6fc15e706130",
+        "response_sha256": "499635f8339cfaaff6a89d4740a04d181c81c533916466b4ee8e568344250122",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-1F177B54D4EB02267072E982-TRANSPORT-02",
+        "duration_ms": 31763.125,
+        "error": null,
+        "logical_call_id": "CALL-1F177B54D4EB02267072E982",
+        "request_sha256": "2d4def7a46fe2001969bf44d4575f5b673591c645690a3df6f53b5a21305f203",
+        "response_sha256": "3fbff9ed647d58e5ec33764a3312a35589bafc15674646f6b12ff07bb94593e6",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-CE3226772DB93524D4C22D3B-TRANSPORT-01",
+        "duration_ms": 12378.982,
+        "error": null,
+        "logical_call_id": "CALL-CE3226772DB93524D4C22D3B",
+        "request_sha256": "69fee57bde2d94baf451cb2d7ef9d55f5d200db4baa8d67d78716cf46f927200",
+        "response_sha256": "aaaf98b1879eb077cf7ab0e522fcfe1902a2c350ea0365c6ed5d9ddef58f2069",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-CE3226772DB93524D4C22D3B-TRANSPORT-02",
+        "duration_ms": 12683.402,
+        "error": null,
+        "logical_call_id": "CALL-CE3226772DB93524D4C22D3B",
+        "request_sha256": "6797122f61d27f19efca27e1b86dd71e59cfea9a41aa7d722730bca4b8439294",
+        "response_sha256": "8b3c08ff9e9cee3da6fedf900248658029791c5d906ad661255e4d1ee0c41d06",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-72695EB27C57E86F4AC98897-TRANSPORT-01",
+        "duration_ms": 13732.44,
+        "error": null,
+        "logical_call_id": "CALL-72695EB27C57E86F4AC98897",
+        "request_sha256": "e888ee22d068dff06eb4cee9a0fd3460dd3fcdef211e39cb4e73186aa5d3f9dd",
+        "response_sha256": "99945d611ecb08a618084943de25935d3853c55729e6c67b217e85a59d3195c3",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-72695EB27C57E86F4AC98897-TRANSPORT-02",
+        "duration_ms": 11828.046,
+        "error": null,
+        "logical_call_id": "CALL-72695EB27C57E86F4AC98897",
+        "request_sha256": "9a8d3aa3f9dc069551b20999d035ca746880b3a23f2c6db8866860590d2e5176",
+        "response_sha256": "63a2270794753e9bbe8f28fd4fd7444902eda8186451cd777db1abf77c1680ab",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-82ECE77E75A859D8CBA6E9D6-TRANSPORT-01",
+        "duration_ms": 12696.332,
+        "error": null,
+        "logical_call_id": "CALL-82ECE77E75A859D8CBA6E9D6",
+        "request_sha256": "e888ee22d068dff06eb4cee9a0fd3460dd3fcdef211e39cb4e73186aa5d3f9dd",
+        "response_sha256": "a5ea101df49533fb1bf317c15b9a41af115b7e3ea23de21ca33d83eeb8638c73",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-82ECE77E75A859D8CBA6E9D6-TRANSPORT-02",
+        "duration_ms": 11631.66,
+        "error": null,
+        "logical_call_id": "CALL-82ECE77E75A859D8CBA6E9D6",
+        "request_sha256": "ed6295e2a9ce06e42181c13db55bb05c34fd0ee72b372d9296ee0190086ce9a7",
+        "response_sha256": "027cd28edaabb4c7f216e63dfff4181577f7d98e988e7692d0194c55fb7498a5",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-1691B7D479372D0CD49351DC-TRANSPORT-01",
+        "duration_ms": 15369.831,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-1691B7D479372D0CD49351DC",
+        "request_sha256": "9f0ae7dd09e58d0f5380a0b1106d951df3d3e816a019df81803f3c14dde45142",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-1691B7D479372D0CD49351DC-TRANSPORT-02",
+        "duration_ms": 25972.046,
+        "error": null,
+        "logical_call_id": "CALL-1691B7D479372D0CD49351DC",
+        "request_sha256": "1688c15bf00bdf4abf7875a8f31ca8bc0bc2236713a8e69d883ff1588e14daf8",
+        "response_sha256": "535a6caae4b75a73de096083dc3064cbad0e562b2b48106d2dbbc193ff8f22ad",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-FA33439E2EC45BCA0E5CA8E5-TRANSPORT-01",
+        "duration_ms": 14791.809,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-FA33439E2EC45BCA0E5CA8E5",
+        "request_sha256": "c7e23fc4ea15a06719c577fe4cee537a1be137431ae3a5a8857a8afdf4440d6b",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-FA33439E2EC45BCA0E5CA8E5-TRANSPORT-02",
+        "duration_ms": 27098.884,
+        "error": null,
+        "logical_call_id": "CALL-FA33439E2EC45BCA0E5CA8E5",
+        "request_sha256": "bc984c1766c3bdadf97a78082aae063ae5028a9662a284f6a9499d91ebd23a67",
+        "response_sha256": "cb4b723ac157be8e267c8be2a5a93de36391c360c6754f9ef8985d23971867b2",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-802B268681D82DB98F7B49A5-TRANSPORT-01",
+        "duration_ms": 28293.547,
+        "error": null,
+        "logical_call_id": "CALL-802B268681D82DB98F7B49A5",
+        "request_sha256": "26c9104b6e16df7ad9e7823104fa5f39a8be75869a91b57468d5c6ef053334ef",
+        "response_sha256": "d4a773ab275bf26566fd436fe0117ad42a419ca75b3f0a0fe710dbb0d07267f3",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-7DE7C5526257BF3F971B655A-TRANSPORT-01",
+        "duration_ms": 28184.433,
+        "error": null,
+        "logical_call_id": "CALL-7DE7C5526257BF3F971B655A",
+        "request_sha256": "0414319b1377b10920b37a3edb873f5c8c840764a44b008a4c8754087b9109b7",
+        "response_sha256": "780dc83a84b44192b2a6740a98781f0058ee644aa89114f61427598946fa7236",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-33DB0FBA0508A3A278F4A402-TRANSPORT-01",
+        "duration_ms": 27929.57,
+        "error": null,
+        "logical_call_id": "CALL-33DB0FBA0508A3A278F4A402",
+        "request_sha256": "a5256f760ea81a856c99be04c2745352be37f6ee583c413115b4ff4538abb217",
+        "response_sha256": "1f36bcfba9de3d5c7b0121fa83078631be36d6ddcd87f3a99e20a329dcefb260",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-0CFBDB1302E5568D6653D35C-TRANSPORT-01",
+        "duration_ms": 35598.806,
+        "error": null,
+        "logical_call_id": "CALL-0CFBDB1302E5568D6653D35C",
+        "request_sha256": "60ee3b539038a0bc8e9ce1e2602689d97f6e63045a75683f5382ecf271be90a9",
+        "response_sha256": "dc68b5a1b23426ff2554634b5503ed24a8dca87dfd2f21aee045374b3f7ae956",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-0CFBDB1302E5568D6653D35C-TRANSPORT-02",
+        "duration_ms": 22425.045,
+        "error": null,
+        "logical_call_id": "CALL-0CFBDB1302E5568D6653D35C",
+        "request_sha256": "0d0f01960938606dafaaab1192c526156a7f994f4f5de8d7dd14dee318d5cdb2",
+        "response_sha256": "246b0768c4b5e3fb88fd3e75c6cfe3a63de77cb427091fe07dd4bf23dda3c7f0",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-7022DF0CDD43619E9174370A-TRANSPORT-01",
+        "duration_ms": 13452.27,
+        "error": null,
+        "logical_call_id": "CALL-7022DF0CDD43619E9174370A",
+        "request_sha256": "91aea9f4ec2aab6ae28675cbb804574064bf4a789428c4f54ce7de3dfe8c9a34",
+        "response_sha256": "1c0f05231af9f0a58d1d3d28feb603ae300f6c10d7802c1a75bebe9e32d3cc67",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-7022DF0CDD43619E9174370A-TRANSPORT-02",
+        "duration_ms": 11579.847,
+        "error": null,
+        "logical_call_id": "CALL-7022DF0CDD43619E9174370A",
+        "request_sha256": "03af4cc918be19f984ffbc1567c28813323ce34ce582e4ad7f49cff3ffe78503",
+        "response_sha256": "8599d8f23dc49b08b21818f1f863fb71ece304c31c92c73f43843c70990c3dee",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-311D3E1179B5D7CDA15674C2-TRANSPORT-01",
+        "duration_ms": 14304.277,
+        "error": null,
+        "logical_call_id": "CALL-311D3E1179B5D7CDA15674C2",
+        "request_sha256": "076bc179f6f82ee2040cbb5be3325eb362b4fe80dda754ac00783ff5d9c2e468",
+        "response_sha256": "389a182c4ae128da658b093f44dbd92f93de77e888a5324d792f1f16f80086b2",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-311D3E1179B5D7CDA15674C2-TRANSPORT-02",
+        "duration_ms": 12981.53,
+        "error": null,
+        "logical_call_id": "CALL-311D3E1179B5D7CDA15674C2",
+        "request_sha256": "5d072908a8bc309dcc6dc0a3759911f5d8080e86a81090f1f0c68994682e0c40",
+        "response_sha256": "65e9cd74b1f64caa35cd8866df9076127f1d0129f740b9272be3316e35ca74eb",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-D9D0603EDB7CA8B1606277D1-TRANSPORT-01",
+        "duration_ms": 14643.336,
+        "error": null,
+        "logical_call_id": "CALL-D9D0603EDB7CA8B1606277D1",
+        "request_sha256": "076bc179f6f82ee2040cbb5be3325eb362b4fe80dda754ac00783ff5d9c2e468",
+        "response_sha256": "56ee43f32d6e872b2519bde672af7725258b53ef6dea81a2ee506ee36bd7d0a7",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-D9D0603EDB7CA8B1606277D1-TRANSPORT-02",
+        "duration_ms": 13839.616,
+        "error": null,
+        "logical_call_id": "CALL-D9D0603EDB7CA8B1606277D1",
+        "request_sha256": "9f34f8fe7adc351df0a5c3f9358cc3460d33227398f7afbe17974008a9c22780",
+        "response_sha256": "0527becdc8c9410a28de7dacf747ecf08620a347a83de13b779e5e7180edb37e",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-23B140B260BC85486D45CA0F-TRANSPORT-01",
+        "duration_ms": 14845.591,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-23B140B260BC85486D45CA0F",
+        "request_sha256": "e864dd1f4f474f73cca6eb870bceeb36164eebf830c53205d11dcae889eec56d",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-23B140B260BC85486D45CA0F-TRANSPORT-02",
+        "duration_ms": 20440.279,
+        "error": null,
+        "logical_call_id": "CALL-23B140B260BC85486D45CA0F",
+        "request_sha256": "c6c40a8fae94f689278a90c16492349434f48f62f51fe28a38db50fdd64f2fe2",
+        "response_sha256": "e85e51ed6edcbbce5a10c60bd7099ce5d86f0abec3faf705f90122a87c0596aa",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-67A91D64760B17E74B94010B-TRANSPORT-01",
+        "duration_ms": 14773.029,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-67A91D64760B17E74B94010B",
+        "request_sha256": "38686a918c36720b75eadb93bcf347c91a65b3958ea86587d0b04e6fe323c59d",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-67A91D64760B17E74B94010B-TRANSPORT-02",
+        "duration_ms": 28118.517,
+        "error": null,
+        "logical_call_id": "CALL-67A91D64760B17E74B94010B",
+        "request_sha256": "7a1438e4e4cd039d4d3a4d5925db1029242c6a799b4ca6295b68e45b64a3e2a4",
+        "response_sha256": "db691f4bcb12db9ccf0cbd1b1bb1359514fecbb44541449758285a1cbd204708",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-E16C40C1D2A9127A27E49DDC-TRANSPORT-01",
+        "duration_ms": 13767.459,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-E16C40C1D2A9127A27E49DDC",
+        "request_sha256": "288db5f7210cdd70e17430d4c3cfc7d8e0fdbb8a2a8aa20a5b64e939f25407b7",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-E16C40C1D2A9127A27E49DDC-TRANSPORT-02",
+        "duration_ms": 28969.76,
+        "error": null,
+        "logical_call_id": "CALL-E16C40C1D2A9127A27E49DDC",
+        "request_sha256": "edad466be09c57c9d59d3a4cbfde0552920f8221994e1f1ae3cdd478dc72ebc5",
+        "response_sha256": "9fcc9bf051ba76b74e8f5e8ed3f1712abfc8ca34c6b055be333ef784fdd989e3",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-2F03682FC3C5076C5CDF67DF-TRANSPORT-01",
+        "duration_ms": 33334.238,
+        "error": null,
+        "logical_call_id": "CALL-2F03682FC3C5076C5CDF67DF",
+        "request_sha256": "8444a16cc93f6a6ea4d81c4ae3e1513a45c43386092561361d1c256c480788fa",
+        "response_sha256": "6dcd8ee4965d34ac1bdf6753d49fab976b7c711b50a24326ca3535a93e491ace",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-F3D188D83B6A672F3A76F5B5-TRANSPORT-01",
+        "duration_ms": 26735.297,
+        "error": null,
+        "logical_call_id": "CALL-F3D188D83B6A672F3A76F5B5",
+        "request_sha256": "3064927f3d4146ea8517087e64185fa1e27ee790b0adb22bfbdf9bb267ef072e",
+        "response_sha256": "704d535ef5b72c0acbdb666544410f8e4707b6c71e4d4ad71f5caf391df7c9b4",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-05E0095E20B7B9A22E661C24-TRANSPORT-01",
+        "duration_ms": 32176.837,
+        "error": null,
+        "logical_call_id": "CALL-05E0095E20B7B9A22E661C24",
+        "request_sha256": "664155c2f492dddacf8bd365e06b42debe8e4f60c8d6f787d30459bb6d005b5b",
+        "response_sha256": "96da2e9c69b0db3bef9f3b192803ec6f576a2d4db85df9ed62b686502cddecfa",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-64F956A3E5B675CE5BB03AD3-TRANSPORT-01",
+        "duration_ms": 19423.232,
+        "error": null,
+        "logical_call_id": "CALL-64F956A3E5B675CE5BB03AD3",
+        "request_sha256": "e8dc56cdb3070426e8f3514eeb08bcdbf5d8ff9acc126d0168657ba6172e7b78",
+        "response_sha256": "d92a923772fb7948e4165be0a455dadbb158cfb98206a47403c62be4ef06eb11",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-64F956A3E5B675CE5BB03AD3-TRANSPORT-02",
+        "duration_ms": 32636.262,
+        "error": null,
+        "logical_call_id": "CALL-64F956A3E5B675CE5BB03AD3",
+        "request_sha256": "6eff0bf79baca6f807065995dea1e79aae8de7ec518b8dbacdf09602b43ad57a",
+        "response_sha256": "5c1e42c18538f546706474288c15a935d40952cf8be82ecbd660f51e1d20baef",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-33BE6167ADD056B87A527B72-TRANSPORT-01",
+        "duration_ms": 10954.876,
+        "error": null,
+        "logical_call_id": "CALL-33BE6167ADD056B87A527B72",
+        "request_sha256": "5c5b2aa651041e2428dfdbba6bb50b1c916986805d298cc53566b50e0df77e4a",
+        "response_sha256": "fcb9ea0c7545b16abd5102f61b393492a41bcc4c5af195c01b099c755d8061f9",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-33BE6167ADD056B87A527B72-TRANSPORT-02",
+        "duration_ms": 12311.167,
+        "error": null,
+        "logical_call_id": "CALL-33BE6167ADD056B87A527B72",
+        "request_sha256": "49ea8af3a2f856f19eb7ed6744fe75169136dcc140bd1f3690b6ed0c83eb35c4",
+        "response_sha256": "01fd3e76b585086a0d5674d1e2f74b2a237d1efb44e03f7b75f71550092a7502",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-43D848D50EBCC47357ACFAB8-TRANSPORT-01",
+        "duration_ms": 11676.984,
+        "error": null,
+        "logical_call_id": "CALL-43D848D50EBCC47357ACFAB8",
+        "request_sha256": "388d85eac5c67e354ae4b2ff8275e21a32bf1858635880e97dbc21680b0bb20e",
+        "response_sha256": "00f0361da42aff59d9388c84e1d449664cd4bc5e1c5c8912307076b14f4f7cf1",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-43D848D50EBCC47357ACFAB8-TRANSPORT-02",
+        "duration_ms": 11828.301,
+        "error": null,
+        "logical_call_id": "CALL-43D848D50EBCC47357ACFAB8",
+        "request_sha256": "0a767229d669c92c71f0dc16ae164d52cb8eda20bde43ff54d090f8269ac215c",
+        "response_sha256": "38dcf9eec84b7ac1f9cd92b937e83e0f38cdb9b369639eae62a986ae14671f11",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-E89CCE0BBB9AA0DD31FDF592-TRANSPORT-01",
+        "duration_ms": 13902.225,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-E89CCE0BBB9AA0DD31FDF592",
+        "request_sha256": "9f0ae7dd09e58d0f5380a0b1106d951df3d3e816a019df81803f3c14dde45142",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-E89CCE0BBB9AA0DD31FDF592-TRANSPORT-02",
+        "duration_ms": 24093.216,
+        "error": null,
+        "logical_call_id": "CALL-E89CCE0BBB9AA0DD31FDF592",
+        "request_sha256": "1688c15bf00bdf4abf7875a8f31ca8bc0bc2236713a8e69d883ff1588e14daf8",
+        "response_sha256": "445f40806d1962a93dadacfb3138cf2b1783d5a8588fd2d1c6d20654bc3e53c8",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-DCB5EF4729C875FF7832347D-TRANSPORT-01",
+        "duration_ms": 14865.465,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-DCB5EF4729C875FF7832347D",
+        "request_sha256": "1a3a2b2081680c0ee9817cac17a21d9a008598c1fd401954859b5921580001aa",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-DCB5EF4729C875FF7832347D-TRANSPORT-02",
+        "duration_ms": 26927.302,
+        "error": null,
+        "logical_call_id": "CALL-DCB5EF4729C875FF7832347D",
+        "request_sha256": "6d2a76ad3179efa7719f4e84264b498965891697290e39110342dbb026e5e76d",
+        "response_sha256": "1f0280d813ecf2fd39063f529ac6354171d1a20fdbba2daf72c075e8c1edea27",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-E4627EFA00D731889E4B421F-TRANSPORT-01",
+        "duration_ms": 27541.992,
+        "error": null,
+        "logical_call_id": "CALL-E4627EFA00D731889E4B421F",
+        "request_sha256": "08bf53ac9fbe82176dcdc182b48486642263629300541c54c0f3a9b9fb47dd05",
+        "response_sha256": "f7898aeaf6456632fc61d1279309f72a3b6caf55bbb1732358ff7757dc17a733",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-15EEF4B6C18EA4C2E35C6CE7-TRANSPORT-01",
+        "duration_ms": 35390.956,
+        "error": null,
+        "logical_call_id": "CALL-15EEF4B6C18EA4C2E35C6CE7",
+        "request_sha256": "06c430ec246a5c948068b4c05ac56f907612b5656988eb2d1571f8dbc3769665",
+        "response_sha256": "685966011850d33585f31988e7636b562a8ea7b617055f18eaa4bbfb7fec6ce2",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-6BDE4D2EF555E9023E844845-TRANSPORT-01",
+        "duration_ms": 28991.827,
+        "error": null,
+        "logical_call_id": "CALL-6BDE4D2EF555E9023E844845",
+        "request_sha256": "a339d51153d4365efc925f53e743b3c07916d7470a003644866315bee9ee0cd6",
+        "response_sha256": "7e56820f3a1f2dd0b14b7244e58bb877bda64913562e2187d18477f43d115fa4",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-8AED6F077D7D833F702CF1E2-TRANSPORT-01",
+        "duration_ms": 17663.086,
+        "error": null,
+        "logical_call_id": "CALL-8AED6F077D7D833F702CF1E2",
+        "request_sha256": "833c1b28abdb6c643f1b87efccc66437ca8b914e410296823701b2812e596abf",
+        "response_sha256": "a15545c300ed202b74e204232bad663f354455454cd7249fe0f036b7d8e5d840",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-8AED6F077D7D833F702CF1E2-TRANSPORT-02",
+        "duration_ms": 16631.264,
+        "error": null,
+        "logical_call_id": "CALL-8AED6F077D7D833F702CF1E2",
+        "request_sha256": "3e51a9a4514d317b08db7784021a9e93763d1acfcda8db27af0e6fc3bf33b83a",
+        "response_sha256": "5fe3d922e0e1184e8a07941b3fbfce67449fef3492e281073b00d3ca1e9307c0",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-22C0B67A70D951A5D221E835-TRANSPORT-01",
+        "duration_ms": 10672.392,
+        "error": null,
+        "logical_call_id": "CALL-22C0B67A70D951A5D221E835",
+        "request_sha256": "86f172637fb419a8474ee76cb6ad953943c56f94139e68712e351b41571d4f99",
+        "response_sha256": "603d8a07a53ffd28d7e0d985a7823e183dce5e9da59311b47e5b86ab292f00c8",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-22C0B67A70D951A5D221E835-TRANSPORT-02",
+        "duration_ms": 10403.906,
+        "error": null,
+        "logical_call_id": "CALL-22C0B67A70D951A5D221E835",
+        "request_sha256": "d490ba29a9bf83ba2a57084ebda2563e2ce20dd0de7777fb0cbe7d796583ccdb",
+        "response_sha256": "3cf24f68a2a19c13016ac1272215d7a27f40a8595e6534a9fc9344db52f99b87",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-BA05FD68E38B06502E8FA00C-TRANSPORT-01",
+        "duration_ms": 13365.462,
+        "error": null,
+        "logical_call_id": "CALL-BA05FD68E38B06502E8FA00C",
+        "request_sha256": "3c724c620e6cd3a10f9baeba98e09f33d1b5a635da6e25d144c9180251e94d96",
+        "response_sha256": "3cdb6ac3687f1a9e7435e9cd2dcbbec10c7c10c59ef36c30128b212e592374fc",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-BA05FD68E38B06502E8FA00C-TRANSPORT-02",
+        "duration_ms": 11815.424,
+        "error": null,
+        "logical_call_id": "CALL-BA05FD68E38B06502E8FA00C",
+        "request_sha256": "9542de2e39b3a20a6a42e3ab7f512937bac6902c3cdbed5d076c41ae3bc94cc9",
+        "response_sha256": "33335bf467faa1042e98a31ddf274b4e54f9e782746f63efc61a8c246747530f",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-54C7103B3B311F0925B75364-TRANSPORT-01",
+        "duration_ms": 13783.621,
+        "error": null,
+        "logical_call_id": "CALL-54C7103B3B311F0925B75364",
+        "request_sha256": "3c724c620e6cd3a10f9baeba98e09f33d1b5a635da6e25d144c9180251e94d96",
+        "response_sha256": "08a37af37a028f45dc4bd7f50616cb2560420546190ef211c7e6bc25702bac4d",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-54C7103B3B311F0925B75364-TRANSPORT-02",
+        "duration_ms": 12959.853,
+        "error": null,
+        "logical_call_id": "CALL-54C7103B3B311F0925B75364",
+        "request_sha256": "13909bc9d8e4660805dbd689a168195e9922fe1e9fb77b80deb1ae1efe6f4ad9",
+        "response_sha256": "ca68e55ca4683abd4c45d67733486e828314fb3025b4c9b3506e6b19c068efbd",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-1D4F14D99B043A27465E5985-TRANSPORT-01",
+        "duration_ms": 14689.71,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-1D4F14D99B043A27465E5985",
+        "request_sha256": "e864dd1f4f474f73cca6eb870bceeb36164eebf830c53205d11dcae889eec56d",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-1D4F14D99B043A27465E5985-TRANSPORT-02",
+        "duration_ms": 21070.684,
+        "error": null,
+        "logical_call_id": "CALL-1D4F14D99B043A27465E5985",
+        "request_sha256": "c6c40a8fae94f689278a90c16492349434f48f62f51fe28a38db50fdd64f2fe2",
+        "response_sha256": "7e65303578680232092e2165d83f8eefd82d22f1bc5c7fa4d6c0e5a5ab02b708",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-ECA25487847209A1FE980ACC-TRANSPORT-01",
+        "duration_ms": 14173.349,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-ECA25487847209A1FE980ACC",
+        "request_sha256": "c7e23fc4ea15a06719c577fe4cee537a1be137431ae3a5a8857a8afdf4440d6b",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-ECA25487847209A1FE980ACC-TRANSPORT-02",
+        "duration_ms": 28050.381,
+        "error": null,
+        "logical_call_id": "CALL-ECA25487847209A1FE980ACC",
+        "request_sha256": "bc984c1766c3bdadf97a78082aae063ae5028a9662a284f6a9499d91ebd23a67",
+        "response_sha256": "6c15de654a72adb014c8ddc2855fa5d09f807cb37926ce0322ff84762eadebdc",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-65C07F105A199F150E3E3678-TRANSPORT-01",
+        "duration_ms": 28910.67,
+        "error": null,
+        "logical_call_id": "CALL-65C07F105A199F150E3E3678",
+        "request_sha256": "26c9104b6e16df7ad9e7823104fa5f39a8be75869a91b57468d5c6ef053334ef",
+        "response_sha256": "5c3bdcdc4ac0c05a0f6ae6fc67b50d517249a0bce3f595bc8f40b51bf5caf471",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-ACDD2C7911F1F5EBE6B3A8C5-TRANSPORT-01",
+        "duration_ms": 28510.677,
+        "error": null,
+        "logical_call_id": "CALL-ACDD2C7911F1F5EBE6B3A8C5",
+        "request_sha256": "0414319b1377b10920b37a3edb873f5c8c840764a44b008a4c8754087b9109b7",
+        "response_sha256": "6fb813bba03b20d39012b82aac68e10efe75e73e2eafc584b673dcc903e78a3d",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-ED75CEDB59EC7CEFE06FCA0F-TRANSPORT-01",
+        "duration_ms": 28022.867,
+        "error": null,
+        "logical_call_id": "CALL-ED75CEDB59EC7CEFE06FCA0F",
+        "request_sha256": "a5256f760ea81a856c99be04c2745352be37f6ee583c413115b4ff4538abb217",
+        "response_sha256": "7efde8c6320aec024270a1c30338b5c9689734559ae1f42fdde4a5e2f41e0206",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-584365D4C7B24DE0D5C81C8B-TRANSPORT-01",
+        "duration_ms": 19616.675,
+        "error": null,
+        "logical_call_id": "CALL-584365D4C7B24DE0D5C81C8B",
+        "request_sha256": "6aacfc6bfb71fd460a33133317db46b06c5159e378d902828c272d8a4190c825",
+        "response_sha256": "64956378514699c8eb11bc5c46e8ccfec1fb07cdea7aef6f053d4dffeaabebc5",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-584365D4C7B24DE0D5C81C8B-TRANSPORT-02",
+        "duration_ms": 19237.603,
+        "error": null,
+        "logical_call_id": "CALL-584365D4C7B24DE0D5C81C8B",
+        "request_sha256": "65cd9d487b593dcd559084b2dd448f31c475a498a26bd975dc4f2f3e59789671",
+        "response_sha256": "13b73793808ab0d6cac67b7a377f25849d436e071c99d5ca43802e28940ba32d",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-2651C3261983E828BB7EEB67-TRANSPORT-01",
+        "duration_ms": 11211.815,
+        "error": null,
+        "logical_call_id": "CALL-2651C3261983E828BB7EEB67",
+        "request_sha256": "b56911a6e856126e6b5433cc0e5cc48a39bcdcef9eeadd156d631f999ac5d16c",
+        "response_sha256": "e08f732cb04565bce6fa05363d0683cd86adf04a4986e8a8c170373de2f98892",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-2651C3261983E828BB7EEB67-TRANSPORT-02",
+        "duration_ms": 11627.309,
+        "error": null,
+        "logical_call_id": "CALL-2651C3261983E828BB7EEB67",
+        "request_sha256": "da162206a1b8b32d7368312fe6408daff7592b86ffcca6ac58e56bb75b768e60",
+        "response_sha256": "4804972849c054ac91ff90d68773393d31c0e93a0fd08141d7dc7cff8680c8e1",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-ECC51A1D1C889AB5D105B092-TRANSPORT-01",
+        "duration_ms": 17780.802,
+        "error": null,
+        "logical_call_id": "CALL-ECC51A1D1C889AB5D105B092",
+        "request_sha256": "f0237b51bfc622eff340ed40d99582d22be3c977b0d1eb264aebac79a02184b1",
+        "response_sha256": "57ec2d49bb5d570584dabbd7a6cd9ad611fc92319e7e7ca7aaf90f61c4b34232",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-ECC51A1D1C889AB5D105B092-TRANSPORT-02",
+        "duration_ms": 13134.117,
+        "error": null,
+        "logical_call_id": "CALL-ECC51A1D1C889AB5D105B092",
+        "request_sha256": "d661027ce6882f501b19d663ae097ce08781e1859c496174b893e6f95f071622",
+        "response_sha256": "d641f358bd8764a4387be9557527c6ed4002bac96f138844aac7cd859ab0bb78",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-84802634D77A2DC5B8621111-TRANSPORT-01",
+        "duration_ms": 12656.446,
+        "error": null,
+        "logical_call_id": "CALL-84802634D77A2DC5B8621111",
+        "request_sha256": "f0237b51bfc622eff340ed40d99582d22be3c977b0d1eb264aebac79a02184b1",
+        "response_sha256": "9efcf2869fdc299edb4932ef303c5cc9aafc732e77b92b3dcf08de3f3ba6c970",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-84802634D77A2DC5B8621111-TRANSPORT-02",
+        "duration_ms": 11031.16,
+        "error": null,
+        "logical_call_id": "CALL-84802634D77A2DC5B8621111",
+        "request_sha256": "c4f4ee12d7972a073569eb154fe49a3ce3b7390051df0e5d857f26235f0a0018",
+        "response_sha256": "3dfc5a1d7edac12b587091212eacac80b3283217e23a1e1589255b2eb00854e5",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-27F86C2337C3753549050A2A-TRANSPORT-02",
+        "duration_ms": 15734.341,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-27F86C2337C3753549050A2A",
+        "request_sha256": "97f30593e768ba4e20c2d85b9ca73d513356b68b5c8c37fa2df2db17fcc2bf3b",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-27F86C2337C3753549050A2A-TRANSPORT-03",
+        "duration_ms": 30801.478,
+        "error": null,
+        "logical_call_id": "CALL-27F86C2337C3753549050A2A",
+        "request_sha256": "3064927f3d4146ea8517087e64185fa1e27ee790b0adb22bfbdf9bb267ef072e",
+        "response_sha256": "076617ed885095ff63dcc258546514a36acb8f22e2e108dfee0c1409b8c13427",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-069AEBE0B335909567E9E67A-TRANSPORT-01",
+        "duration_ms": 35929.01,
+        "error": null,
+        "logical_call_id": "CALL-069AEBE0B335909567E9E67A",
+        "request_sha256": "664155c2f492dddacf8bd365e06b42debe8e4f60c8d6f787d30459bb6d005b5b",
+        "response_sha256": "2dd171541a09b1f53577e455fee05813fdb17e4c7de8b4f56ff7c1ed8a3720bf",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-5D274CA9C40E15F965A535F5-TRANSPORT-01",
+        "duration_ms": 19892.46,
+        "error": null,
+        "logical_call_id": "CALL-5D274CA9C40E15F965A535F5",
+        "request_sha256": "eb3cd02535b7eead4cc8727de894bfd41931ccffd53e31f974a4f0f27557a3e8",
+        "response_sha256": "dabe49afc86e192c27bed8e47b5f9861ed7dfbd02d8986bbb45ac55d55faf6d7",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-5D274CA9C40E15F965A535F5-TRANSPORT-02",
+        "duration_ms": 21113.122,
+        "error": null,
+        "logical_call_id": "CALL-5D274CA9C40E15F965A535F5",
+        "request_sha256": "6130cbeb5a52f1db18d06c3721c37f3603925ecf94d127410ffe63333c32eafc",
+        "response_sha256": "8d49f948524bad5379225c4575373ea4ae8eba8d721991ca9d12c389718dc6e2",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-48A2DB0B17BBDEA56EF115D0-TRANSPORT-01",
+        "duration_ms": 11900.636,
+        "error": null,
+        "logical_call_id": "CALL-48A2DB0B17BBDEA56EF115D0",
+        "request_sha256": "a5a688adf299521f80e8ea066404697fb61b6d7cbdd96d943fafbfe3d039f842",
+        "response_sha256": "f9fee7c94ea62847980384dc4dad745d486bf8a1970b09e015c7daf2d8f5bcab",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-48A2DB0B17BBDEA56EF115D0-TRANSPORT-02",
+        "duration_ms": 11300.563,
+        "error": null,
+        "logical_call_id": "CALL-48A2DB0B17BBDEA56EF115D0",
+        "request_sha256": "151e7c70a547a81781d5a754051f0f48951ac617811bcdc848129a7f415c938c",
+        "response_sha256": "073d6ae03aee2e7bdaaa04d6a3446c2ba18fc1309a92689b5a835aced6f47a3e",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-31027D739BAADA1A8174F1E7-TRANSPORT-01",
+        "duration_ms": 7033.788,
+        "error": null,
+        "logical_call_id": "CALL-31027D739BAADA1A8174F1E7",
+        "request_sha256": "829ed68f25be08a41c58aa4a42f961b524937eca128677b6214cb0df033c6ee7",
+        "response_sha256": "2729984f887a203c0a0b085c38dc9a8654632701744edf56a42770bd655ad925",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-31027D739BAADA1A8174F1E7-TRANSPORT-02",
+        "duration_ms": 5415.027,
+        "error": null,
+        "logical_call_id": "CALL-31027D739BAADA1A8174F1E7",
+        "request_sha256": "eaa7e1204cc4fd8528ea3ee68fbb0b05577beb049b3ba2ea66ab679ce0a0f97d",
+        "response_sha256": "f4890e9afc5b1662043ee2392882077d8239991c85f4f4d0d2cba6593e4f699c",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-FAA531C99A8210A6CA411E10-TRANSPORT-01",
+        "duration_ms": 14138.673,
+        "error": null,
+        "logical_call_id": "CALL-FAA531C99A8210A6CA411E10",
+        "request_sha256": "829ed68f25be08a41c58aa4a42f961b524937eca128677b6214cb0df033c6ee7",
+        "response_sha256": "c0a5b8215552bc386b89fa3c5e5df7359515a086bd1b140b2664b1bae0c499a3",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-FAA531C99A8210A6CA411E10-TRANSPORT-02",
+        "duration_ms": 13112.004,
+        "error": null,
+        "logical_call_id": "CALL-FAA531C99A8210A6CA411E10",
+        "request_sha256": "5a5f89182035d700aac0f1ea883277e249cb0613319d594089bc85a031f8fb50",
+        "response_sha256": "782f50ac195a1a3aca41bff8d81b7dd751fb09a3fe9a7c8756d75b05bf4a5727",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-51B12BE56775F014BD146B81-TRANSPORT-01",
+        "duration_ms": 14959.44,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-51B12BE56775F014BD146B81",
+        "request_sha256": "231dbaf4cfb1cd3d99f15f8b8e5016816bcec7f435fca421779d0d2bae3c528e",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-51B12BE56775F014BD146B81-TRANSPORT-02",
+        "duration_ms": 16419.907,
+        "error": null,
+        "logical_call_id": "CALL-51B12BE56775F014BD146B81",
+        "request_sha256": "89d1f272ee31756e0f6254aa6126454f4dcd62da6128a879597bde2e14c2954d",
+        "response_sha256": "313516311ea93d9a3070e4144d82eb4cec575f6faf9629a22457f47da8b0042f",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-51B12BE56775F014BD146B81-TRANSPORT-03",
+        "duration_ms": 15574.453,
+        "error": null,
+        "logical_call_id": "CALL-51B12BE56775F014BD146B81",
+        "request_sha256": "49a3c79ca9e1d5aa87dee4c8c574759c48d7e73c79c35c480e6127aeae4de96c",
+        "response_sha256": "e7730e9a0b4927064c481998bd1a6342e3cf5b9bba9e6fa265b21563d3a1b319",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-56CD8AFCF2213C2063B12525-TRANSPORT-01",
+        "duration_ms": 11948.71,
+        "error": null,
+        "logical_call_id": "CALL-56CD8AFCF2213C2063B12525",
+        "request_sha256": "7c3b7d9c74eb4d42316ce9cbbfb09744e61239e00d26b0c870798af3a2857b49",
+        "response_sha256": "105817dcfc05d83bcc051ab3e8047657fd54d0a6c5744bc6b1a9ecfc6b17da6c",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-56CD8AFCF2213C2063B12525-TRANSPORT-02",
+        "duration_ms": 11940.45,
+        "error": null,
+        "logical_call_id": "CALL-56CD8AFCF2213C2063B12525",
+        "request_sha256": "b3015932bcdc4ebd506b5d2779b71c068525110249547b881a4153d1835dd7da",
+        "response_sha256": "7b53b7b6fef5c1a96e99d7458bc35f172fc4b5d1c6aa0c68d882da5e9e0c5071",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-E656F709BDF3CEDB50E4BD05-TRANSPORT-01",
+        "duration_ms": 35799.203,
+        "error": null,
+        "logical_call_id": "CALL-E656F709BDF3CEDB50E4BD05",
+        "request_sha256": "12d7cdeb9681e725572a99faa33d4d211023f1a5463364eb362192adec36123f",
+        "response_sha256": "6da2c22580950cd170f699d98049fb1d8ecda9242787dc94b701a62c57bf810c",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-E656F709BDF3CEDB50E4BD05-TRANSPORT-02",
+        "duration_ms": 12786.225,
+        "error": null,
+        "logical_call_id": "CALL-E656F709BDF3CEDB50E4BD05",
+        "request_sha256": "79bb938dcba24ca2b1f7257efadcb2fd8e5766cef08466c9b12604ee1ddc50d2",
+        "response_sha256": "a560f56be7471914b3dfee5d687391bcd6330a724f836901f17d6aced898ffa9",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-3E6A688ED69627BE909877D5-TRANSPORT-01",
+        "duration_ms": 15674.698,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-3E6A688ED69627BE909877D5",
+        "request_sha256": "cab08ca8ce9eb3687cde8724708425b69ce419e08cebca5092bb74d49df6977c",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-3E6A688ED69627BE909877D5-TRANSPORT-02",
+        "duration_ms": 22917.281,
+        "error": null,
+        "logical_call_id": "CALL-3E6A688ED69627BE909877D5",
+        "request_sha256": "209e1ecbf68bbadeb1cbbad69b356d0b097d39d10980003533b801bd373c1a49",
+        "response_sha256": "1ceecd08d74bb4b520e15b77be2dfcf7be265b935b5a9cb002a957ba7eaad7c7",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-3E6A688ED69627BE909877D5-TRANSPORT-03",
+        "duration_ms": 15281.01,
+        "error": null,
+        "logical_call_id": "CALL-3E6A688ED69627BE909877D5",
+        "request_sha256": "e8107ba20a80beedad463cf78b61415b7c00b7183b137c2c6fbb2dcca882889f",
+        "response_sha256": "93b9dcc01bc46cc30315955665101b878776e1177a714ee86484c38409d01122",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-632615DB5E7623E8F862AF09-TRANSPORT-01",
+        "duration_ms": 12003.647,
+        "error": null,
+        "logical_call_id": "CALL-632615DB5E7623E8F862AF09",
+        "request_sha256": "43bacefad5862df57dfe6df28d118cf30c9f28107eb1fef2d5ad15991b6ae7bd",
+        "response_sha256": "5703acf9cdbd19558d5efb8964a6232894db378e0f587a8898ab0322d3f6b7b3",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-632615DB5E7623E8F862AF09-TRANSPORT-02",
+        "duration_ms": 11050.637,
+        "error": null,
+        "logical_call_id": "CALL-632615DB5E7623E8F862AF09",
+        "request_sha256": "2cb87eaa8e0f63cbc86e3669d43a480aec7dcf63d701509f798cf71eba3d8a45",
+        "response_sha256": "c97a1dc997a342eabc28c63bff58bd52caebe2febf275eadf07bdbf935c21b39",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-0F3136A4B048B7917199DD5D-TRANSPORT-01",
+        "duration_ms": 16182.803,
+        "error": null,
+        "logical_call_id": "CALL-0F3136A4B048B7917199DD5D",
+        "request_sha256": "b2d7a8b4940cde68b96e6114f032edbdccaa9bd10f68cf456b9327d476b62122",
+        "response_sha256": "9f15a31f6ee828f0f55c58de84ebb5b2bdc994a2a007a958a3a31bb2d4761dc2",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-0F3136A4B048B7917199DD5D-TRANSPORT-02",
+        "duration_ms": 14024.268,
+        "error": null,
+        "logical_call_id": "CALL-0F3136A4B048B7917199DD5D",
+        "request_sha256": "557f30b5059af7d97cf2a16c4e3c7f19142f7b778afa1e51b56f56a8b44f85ff",
+        "response_sha256": "28d8e9a1e5f4c0f201f794a4963e012684c7a975bc1772d741e63c3cba8071b9",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-A5E4AD8F99986586087CDE62-TRANSPORT-01",
+        "duration_ms": 13779.823,
+        "error": null,
+        "logical_call_id": "CALL-A5E4AD8F99986586087CDE62",
+        "request_sha256": "b2d7a8b4940cde68b96e6114f032edbdccaa9bd10f68cf456b9327d476b62122",
+        "response_sha256": "46fd74dbfd598b946f48c9be7cc1bf96313111d1be0b82b42c8057df0f7ac242",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-A5E4AD8F99986586087CDE62-TRANSPORT-02",
+        "duration_ms": 11665.901,
+        "error": null,
+        "logical_call_id": "CALL-A5E4AD8F99986586087CDE62",
+        "request_sha256": "945ec15af58274bfb42801595973b451252e034721b587d0ee8119c193925c0d",
+        "response_sha256": "2b505a91e1c3e5fd516f7f1b88de1e4ccf087699c2918f90ce692f8528c2d79a",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-B586DE74AD3B013995A1F0AF-TRANSPORT-01",
+        "duration_ms": 16173.071,
+        "error": {
+          "error_class": "HTTPStatusError",
+          "error_code": null,
+          "http_status": 400,
+          "message": "Client error '400 Bad Request' for url 'https://api.featherless.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+          "raw_body": {
+            "error": {
+              "code": "completion_error",
+              "message": "This model is busy, please try again later.",
+              "type": "server_error"
+            }
+          },
+          "retryable": null
+        },
+        "logical_call_id": "CALL-B586DE74AD3B013995A1F0AF",
+        "request_sha256": "d725a51b0f234c18f221bf161bc6c32a1e72585eaf335b5da93c526d27c04e5c",
+        "response_sha256": null,
+        "status": "error"
+      },
+      {
+        "attempt_id": "CALL-B586DE74AD3B013995A1F0AF-TRANSPORT-02",
+        "duration_ms": 16813.617,
+        "error": null,
+        "logical_call_id": "CALL-B586DE74AD3B013995A1F0AF",
+        "request_sha256": "fd6d6934b969edb7e119066d1cade399fb69feae8e2ec9faefbcac87bc4b0dc6",
+        "response_sha256": "637a040d02bc7519afad354421f410287b5e5f475fe32ff8805e3f2bcec08acf",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-B586DE74AD3B013995A1F0AF-TRANSPORT-03",
+        "duration_ms": 17974.839,
+        "error": null,
+        "logical_call_id": "CALL-B586DE74AD3B013995A1F0AF",
+        "request_sha256": "c2be4483dd6af6b60f4a9eba31df963cad8340d1c32476a0d01a15208fc1d47c",
+        "response_sha256": "cec51ad1d80c7c9cda3bd6641e77d766f29af475fcf3072a3d6a8c03c054fb91",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-CA627D2A911F71C2CBB5F5A1-TRANSPORT-01",
+        "duration_ms": 18179.334,
+        "error": null,
+        "logical_call_id": "CALL-CA627D2A911F71C2CBB5F5A1",
+        "request_sha256": "5cf3812b185a946613a1586d62c076d0d8b818cde467b86c0f48428175fa71e8",
+        "response_sha256": "2dbded6f293f428e84b754d7437a95ebf1825f2d9c6e7a051c864ccd8b11af05",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-CA627D2A911F71C2CBB5F5A1-TRANSPORT-02",
+        "duration_ms": 3990.902,
+        "error": null,
+        "logical_call_id": "CALL-CA627D2A911F71C2CBB5F5A1",
+        "request_sha256": "5499e6246b41b760411020690dcc3e6574d7d4d1fab27e357f6aec358ce135fe",
+        "response_sha256": "debb39e7c74c4f52fcc021b9c4006defcc5a81b94d1bcd9cf5078f71d7350935",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-7A3BF820F9AB9BAB59E58DB2-TRANSPORT-01",
+        "duration_ms": 14159.383,
+        "error": null,
+        "logical_call_id": "CALL-7A3BF820F9AB9BAB59E58DB2",
+        "request_sha256": "c1b6cc0cee19549a03489293cc43c81a479cee0408618fa7e75a23ca7a0a0dd8",
+        "response_sha256": "9a2b06958af4be123193abbe9e7789f2fadbc050cae10724353c5910c692464c",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-7A3BF820F9AB9BAB59E58DB2-TRANSPORT-02",
+        "duration_ms": 13376.273,
+        "error": null,
+        "logical_call_id": "CALL-7A3BF820F9AB9BAB59E58DB2",
+        "request_sha256": "57d10dd850c65b9cac5f7b39c53256fc5ea505c3ceb0d97f51c36d44b987118f",
+        "response_sha256": "27e511b3bfd5303552669f9613bc0d14eaf25a153341511f4e02334589baff95",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-DA8D8AA64F24D616ABA9523F-TRANSPORT-01",
+        "duration_ms": 13893.631,
+        "error": null,
+        "logical_call_id": "CALL-DA8D8AA64F24D616ABA9523F",
+        "request_sha256": "c1b6cc0cee19549a03489293cc43c81a479cee0408618fa7e75a23ca7a0a0dd8",
+        "response_sha256": "32eddbc1731d3fa0f43aa1f2534f51ca99595ec3497984616396ba16f8eb2e8e",
+        "status": "ok"
+      },
+      {
+        "attempt_id": "CALL-DA8D8AA64F24D616ABA9523F-TRANSPORT-02",
+        "duration_ms": 11997.557,
+        "error": null,
+        "logical_call_id": "CALL-DA8D8AA64F24D616ABA9523F",
+        "request_sha256": "60a44a3ea9de8aa198fb9682b4675daa7c063f256787aceed7c4443001677cae",
+        "response_sha256": "37a79cfc743ddfa8477928131780c32da1e2d5493fe480c0bc35a4692c65246f",
+        "status": "ok"
+      }
+    ]
+  },
+  "results": {
+    "authoritative_path": "backend/data/reverie_live_evaluation_v1_1/results.json",
+    "byte_identical": true,
+    "sha256": "00ead5b5f303a57805a8f997e5bb682d504114772733686efc3ddf5ffcaffa5d",
+    "submission_path": "docs/submission/reverie-live-evaluation-results.json"
+  },
+  "same_input_and_config_verified": true,
+  "schema_version": "threadline-reverie-live-evaluation-publication/1.0.0",
+  "spec": {
+    "path": "backend/fixtures/reverie_live_evaluation_v1_1.json",
+    "sha256": "458279a9595b79e3785af7004cf68a93223fde21e0934b4c432525bebdc786a1"
+  },
+  "status": "complete",
+  "synthetic_only": true,
+  "validation": {
+    "complete_system_runs": 18,
+    "expected_system_runs": 18,
+    "failed_system_runs": 0,
+    "strict_recorder_schema": "ProviderRecorderCheckpoint",
+    "strict_result_schema": "LiveEvaluationArtifact",
+    "superseded_failed_call_count": 3,
+    "superseded_failed_call_ids": [
+      "CALL-43D848D50EBCC47357ACFAB8",
+      "CALL-82ECE77E75A859D8CBA6E9D6",
+      "CALL-E656F709BDF3CEDB50E4BD05"
+    ]
+  }
+}

@@ -352,7 +352,7 @@ summary:focus-visible,
   padding: 0.6rem 0.7rem;
   color: var(--text-tertiary);
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -367,7 +367,7 @@ summary:focus-visible,
   position: relative;
   color: var(--text-tertiary);
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -398,6 +398,7 @@ summary:focus-visible,
 .site-nav__technical[open] summary::after { transform: translateY(0.1rem) rotate(225deg); }
 .site-nav__technical summary:hover,
 .site-nav__technical summary[data-active] { color: var(--brass-light); }
+.site-nav__technical-label--compact { display: none; }
 
 .site-nav__technical-menu {
   position: absolute;
@@ -426,13 +427,14 @@ summary:focus-visible,
   border-bottom: 1px solid var(--brass);
   color: var(--ivory);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .site-header__text-cta:hover { color: var(--brass-light); }
+.site-header__cta-label--compact { display: none; }
 
 .threadline-route-transition {
   position: fixed;
@@ -543,10 +545,14 @@ samp {
 
   .site-nav {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     width: 100%;
     order: 3;
     gap: 0;
+  }
+
+  .site-nav--landing {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .site-nav__link {
@@ -558,6 +564,8 @@ samp {
 
   .site-nav__technical { min-width: 0; font-size: 0.6875rem; }
   .site-nav__technical summary { justify-content: center; padding-inline: 0.2rem; text-align: center; }
+  .site-nav__technical-label--full { display: none; }
+  .site-nav__technical-label--compact { display: inline; }
   .site-nav__technical-menu { right: 0; min-width: min(15rem, calc(100vw - 1.25rem)); }
   .site-nav__technical-menu .site-nav__link { justify-content: flex-start; padding-inline: 0.7rem; }
 
@@ -566,6 +574,9 @@ samp {
     padding: 0.55rem 0.75rem;
     font-size: 0.76rem;
   }
+
+  .site-header__cta-label--full { display: none; }
+  .site-header__cta-label--compact { display: inline; }
 }
 
 @media print {

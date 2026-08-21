@@ -15,6 +15,7 @@ from app.api.routes.persistence import router as persistence_router
 from app.api.routes.replays import router as replays_router
 from app.api.routes.results import router as results_router
 from app.api.routes.reviews import router as reviews_router
+from app.api.routes.reverie import router as reverie_router
 from app.api.routes.trials import router as trials_router
 
 api_router = APIRouter()
@@ -32,6 +33,7 @@ for router in (
     replays_router,
     counterfactuals_router,
     reviews_router,
+    reverie_router,
     trials_router,
     results_router,
     jobs_router,

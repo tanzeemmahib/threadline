@@ -51,13 +51,13 @@ The launcher builds and starts the frontend when needed, starts an isolated mock
 
 The script prints exact workspace URLs and process IDs. It does not modify source fixtures or require a provider key.
 
-For the eight-scene judge experience, open:
+For the primary six-scene Reverie evidence case, open:
 
 ```text
 http://127.0.0.1:3000/demo?demo=guided
 ```
 
-Select **Start evidence challenge**. Complete the sequence in `demo-script.md`.
+From the landing page, select **Run the evidence case**. Complete the sequence in [`../reverie-demo-script.md`](../reverie-demo-script.md). The older [`demo-script.md`](demo-script.md) documents a legacy workspace tour and is not the primary recording path.
 
 ## 3. Generate the locked submission evidence
 
@@ -161,14 +161,14 @@ cd ..
 
 1. Use a fresh terminal with no `LLM_API_KEY`.
 2. Run `./scripts/run-v1-demo.ps1`.
-3. Open `/` and select **Run the evidence challenge**.
-4. Complete all eight scenes.
+3. Open `/` and select **Run the evidence case**.
+4. Complete all six scenes.
 5. In **Evidence extraction**, open an exact source span and close it with `Escape`.
-6. Confirm the material location contradiction produces **Withheld**.
-7. Confirm the rival remains visible.
-8. Open **View technical evidence**.
+6. Confirm `FAMILY-018 ↔ SHELTER-204` remains a possible connection for authorized human review only.
+7. Confirm the document-backed age/timeline conflict blocks the `HOSPITAL-052` rival.
+8. Select **Compare the prompts**, verify `/prompt-lab`, and return with browser back navigation.
 9. Select **Reset** and start again.
-10. Open a printed workspace URL and inspect its evidence contract and audit state.
+10. As a legacy technical fallback, open a printed workspace URL and inspect its evidence contract and audit state.
 11. Confirm no network request to a model provider and no credential prompt occurred.
 
 ## 8. Optional connected-provider reproduction

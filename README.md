@@ -4,6 +4,19 @@
 
 THREADLINE preserves exact provenance, challenges each candidate hypothesis with contradictions and rivals, and deterministically withholds outputs that are not safe for authorized human review. It treats an unsupported connection as the highest-cost failure and never presents record similarity as proof of identity.
 
+## Reverie Hacks 2026 judge start
+
+> **Connect the records. Never guess the person.**
+
+THREADLINE reconnects fragmented synthetic missing-person reports across hospitals, shelters, NGOs, and families. AI extracts source-cited evidence; deterministic safety rules decide when the system must stop.
+
+1. Run `./scripts/run-v1-demo.ps1` — the deterministic path requires no network connection or API key.
+2. Open `http://127.0.0.1:3000/demo?demo=guided` and select **Run the evidence case**.
+3. Open `http://127.0.0.1:3000/prompt-lab` to compare exact inputs, prompts, outputs, and Prompt V1/V2/V3 promotion evidence.
+4. Use the [three-minute script](docs/reverie-demo-script.md) and [judge Q&A](docs/reverie-judge-qa.md).
+
+The guided climax is one supported possible connection prepared for authorized human review and one plausible rival stopped by a deterministic conflict gate. “Connection recovered” describes a candidate record connection—not a person identified.
+
 ## The problem
 
 Disaster records arrive incomplete, multilingual, inconsistently formatted, OCR-damaged, and sometimes contradictory. A phone may appear with a domestic or international prefix. One source may contain only a birth year. A native-script name may appear elsewhere as a Latin transliteration. Naive exact matching misses these threads; unconstrained fuzzy matching can merge different people.
@@ -32,11 +45,11 @@ THREADLINE separates probabilistic extraction from deterministic identity policy
 
 ## Architecture
 
-![THREADLINE evidence-first architecture](docs/threadline-workflow.png)
+![THREADLINE Reverie ML prompt-engineering workflow](docs/reverie-ml-workflow.png)
 
 Five schema-constrained stages can use the configured provider: extraction, multilingual normalization, hypothesis construction, contradiction challenge, and adjudication. Quarantine, source-span validation, timeline rules, candidate generation, pairwise comparison, scoring, blocking conflicts, privacy redaction, and the release contract are deterministic. Model-assisted stages may preserve or downgrade a result; they cannot upgrade a deterministic blocking state.
 
-The editable vector version is [docs/threadline-workflow.svg](docs/threadline-workflow.svg).
+The editable Reverie vector is [docs/reverie-ml-workflow.svg](docs/reverie-ml-workflow.svg). A compact implementation diagram remains at [docs/threadline-workflow.svg](docs/threadline-workflow.svg).
 
 ## Safety
 
@@ -53,7 +66,7 @@ THREADLINE proposes record connections for authorized review; it does not autono
 
 ## Benchmark
 
-THREADLINE keeps two evidence tracks separate. The submission comparison is a fixed-seed deterministic mock harness in which every system receives the same synthetic record packets; it demonstrates workflow behavior and reproducibility, not live-model quality. The archived Phase 11 Prompt V2 artifact below is one live-provider extraction run over 58 synthetic records; it is not a same-model baseline comparison or a claim about field performance.
+THREADLINE keeps its evidence tracks separate. The submission comparison is a fixed-seed deterministic mock harness in which every system receives the same synthetic record packets; it demonstrates workflow behavior and reproducibility, not live-model quality. The archived Phase 11 Prompt V2 artifact below is one live-provider extraction run over 58 synthetic records; it is not a same-model baseline comparison or a claim about field performance. A frozen preregistered live same-model comparison (3 synthetic cases × 3 repetitions × 2 systems = 18 runs, spec `THREADLINE-REVERIE-LIVE-EVAL-V1.1`) completed 18/18 runs with mixed outcomes and claims no superiority; its sanitized checkpoint lives under `backend/data/reverie_live_evaluation_v1_1/`.
 
 | Metric | Phase 10T Prompt V1 | Phase 11 Prompt V2 |
 |---|---:|---:|
@@ -111,11 +124,12 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/run-v1-demo.ps
 
 Then open:
 
-- `http://127.0.0.1:3000/demo?demo=guided` for the eight-scene evidence challenge.
+- `http://127.0.0.1:3000/demo?demo=guided` for the guided evidence case.
+- `http://127.0.0.1:3000/prompt-lab` for the same-input prompt and workflow comparison.
 - The `passing_workspace` and `blocked_workspace` URLs printed by the script for persisted API-backed cases.
 - `http://127.0.0.1:8000/docs` for the live API contract.
 
-The guided case is explicitly fictional. It shows the same record packet through a reasonable single-prompt deterministic replay and the full workflow, then opens exact spans, a soft date conflict, a material location contradiction, a credible rival, the deterministic release contract, and the authorized-review handoff. The replay is visibly labelled **not model performance**.
+The guided case is explicitly fictional. It shows the same three-record packet through a reasonable single-prompt deterministic replay and the full workflow. `FAMILY-018 ↔ SHELTER-204` becomes a traceable possible connection for authorized review; plausible rival `HOSPITAL-052` is stopped by exact age/timeline evidence and a deterministic conflict gate. The replay is visibly labelled **not model performance**.
 
 ## Tech stack
 
@@ -175,9 +189,9 @@ The default mock provider requires no credentials. For a live OpenAI-compatible 
 
 ## Tests
 
-The current runtime validation is green: 454 backend tests, the 10-gate deterministic validator, 28 Phase 11 extraction-contract tests, 35 frontend behavior tests, frontend typecheck, a full repository-wide ESLint pass, the production build, and desktop/mobile browser QA.
+The current runtime validation is green: 464 backend tests, the 10-gate deterministic validator, 28 Phase 11 extraction-contract tests, 43 frontend behavior tests, frontend typecheck, a full repository-wide ESLint pass, the production build, both integration-smoke paths, and production browser QA at desktop, tablet, and 390 px.
 
-The repository-wide Ruff and mypy baselines remain known debt (`184` Ruff findings and `139` mypy findings across 16 files at the current audit). The commands below are the complete check set, not a claim that those two static-analysis commands are currently green.
+The repository-wide Ruff and mypy baselines remain known debt (`185` Ruff findings across 17 files and `139` mypy findings across 16 files at the current audit). The commands below are the complete check set, not a claim that those two static-analysis commands are currently green.
 
 ```powershell
 cd backend
@@ -216,10 +230,24 @@ With the backend running:
 - Validate with consented, representative humanitarian datasets and measure subgroup error rates.
 - Add incident-aware country context for phone comparison without unsafe global assumptions.
 - Expand deterministic transliteration support and calibrated review tooling.
-- Complete repeated live-provider trials and report confidence intervals for extraction and decision drift.
+- Complete repeated live-provider trials and report confidence intervals for extraction and decision drift; the completed 18/18 same-model comparison reports per-repetition results without confidence intervals.
 
 ## Submission package
 
-The project description, technical narrative, safety statement, 2–4 minute demo script, judge Q&A, and checklist are in [docs/hackathon-submission.md](docs/hackathon-submission.md).
+The Reverie ML-track package is indexed by:
+
+- [ML workflow documentation](docs/reverie-ml-track-documentation.md)
+- [Editable workflow SVG](docs/reverie-ml-workflow.svg) and [submission PNG](docs/reverie-ml-workflow.png)
+- [Prompt comparison report](docs/reverie-prompt-comparison.md)
+- [Three-minute demo script](docs/reverie-demo-script.md)
+- [Judge Q&A](docs/reverie-judge-qa.md)
+- [Submission checklist](docs/reverie-submission-checklist.md)
+- [Machine-readable Prompt Lab artifact](docs/submission/reverie-prompt-lab.json)
+- [One-page evidence summary](docs/reverie-evidence-summary.md)
+- [Release, clean-copy, PDF, and deployment boundary](docs/reverie-release.md)
+
+The authoritative offline release command is `./scripts/reverie-release.ps1` on Windows or `bash scripts/reverie-release.sh` on POSIX systems. Official mode refuses a dirty tree; no public deployment is performed or claimed.
+
+The broader technical narrative and safety statement remain in [docs/hackathon-submission.md](docs/hackathon-submission.md), with locked benchmark evidence under [docs/submission/](docs/submission/README.md).
 
 Licensed under [MIT](LICENSE).

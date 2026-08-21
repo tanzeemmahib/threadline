@@ -573,10 +573,10 @@
   },
   "release_id": "THREADLINE-REVERIE-2026",
   "repository": {
-    "change_count": 142,
-    "commit": "85b01bfe8da01ecb014b82586bbcaba0d4159a3b",
-    "commit_timestamp": "2026-08-15T15:38:50-07:00",
-    "working_tree_clean": false
+    "change_count": 0,
+    "commit": "0c390e0d4429dba936ad41e38d98f29f208fc2f8",
+    "commit_timestamp": "2026-08-21T10:50:34-07:00",
+    "working_tree_clean": true
   },
   "routes": [
     "/",
